@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Encripter
+public class Encrypter
 {
     public static string EncryptDecrypt(string Data)
     {

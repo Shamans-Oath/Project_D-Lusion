@@ -25,7 +25,7 @@ public abstract class PersistentScriptableObject : ScriptableObject
         string tmpJson = JsonConvert.SerializeObject(this);
         Debug.Log(tmpJson);
 
-        formatter.Serialize(file, Encripter.EncryptDecrypt(tmpJson));
+        formatter.Serialize(file, Encrypter.EncryptDecrypt(tmpJson));
 
         file.Close();
     }
@@ -46,7 +46,7 @@ public abstract class PersistentScriptableObject : ScriptableObject
 
         FileStream file = File.Open(path, FileMode.Open);
 
-        string tmpJson = Encripter.EncryptDecrypt((string)formatter.Deserialize(file));
+        string tmpJson = Encrypter.EncryptDecrypt((string)formatter.Deserialize(file));
         Debug.Log(tmpJson);
 
         JsonUtility.FromJsonOverwrite(tmpJson, this);
