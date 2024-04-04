@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,13 @@ using UnityEngine.Localization.Settings;
 public class LanguageController : MonoBehaviour
 {
     private bool _active = false;
+    public GameData data;
 
     // Start is called before the first frame update
     void Start()
     {
-        int id = PlayerPrefs.GetInt("LocaleKey", 1);
-        ChangeLocale(id);
+        //int ID = PlayerPrefs.GetInt("LocaleKey", 1);
+        ChangeLocale(data.language);
     }
 
     public void ChangeLocale(int localeID) 
@@ -28,7 +30,7 @@ public class LanguageController : MonoBehaviour
         _active = true;
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
-        PlayerPrefs.SetInt("LocaleKey", localeID);
+        data.language = localeID;
         _active = false;
 
     }
