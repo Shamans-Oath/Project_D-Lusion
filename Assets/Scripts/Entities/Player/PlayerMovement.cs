@@ -29,18 +29,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (allowMovement)
         {
-            Movement();
-            Jump();
+            Movement(Speed);
+
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump(jumpForce);
+            }
         }
     }
 
     void FixedUpdate()
     {
-        if(!isGrounded())
-        cmp_rb.AddForce(new Vector2(0, -Gravity), ForceMode.Force);
+        ApplyGravity(Gravity);
     }
 
-    void Movement()
+    public void ApplyGravity(float Gravity)
+    {
+        if (!isGrounded())
+            cmp_rb.AddForce(new Vector2(0, -Gravity), ForceMode.Force);
+    }
+
+    public void Movement(float Speed)
     {
         Vector3 movementVector = new Vector3(CameraRelativeMovement().x, 0, CameraRelativeMovement().z).normalized * Speed;
         Vector3 verticalVelocity = new Vector3(0, cmp_rb.velocity.y, 0);
@@ -48,9 +57,9 @@ public class PlayerMovement : MonoBehaviour
         cmp_rb.velocity = movementVector + verticalVelocity;
     }
 
-    void Jump()
+    public void Jump(float jumpForce)
     {
-        if (Input.GetButtonDown("Jump") && isGrounded())
+        if (isGrounded())
         {
             cmp_rb.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
         }
@@ -61,6 +70,21 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        Vector3 rightRelativeHorizontalInput = horizontalInput * right;
+        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
+
+        return rightRelativeHorizontalInput + forwardRelativeVerticalInput;
+    }
+
+    public Vector3 CameraRelativeMovement(float horizontalInput, float verticalInput)
+    {
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
         forward.y = 0;
