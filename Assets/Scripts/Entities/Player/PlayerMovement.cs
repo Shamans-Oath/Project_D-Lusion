@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 boxSize;
     public LayerMask layerMask;
 
+    public float rotationSpeed;
     public float Speed;
     public float Gravity;
     public float jumpForce;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (allowMovement)
         {
             Movement(Speed);
+            Rotation(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
@@ -47,6 +50,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isGrounded())
             cmp_rb.AddForce(new Vector2(0, -Gravity), ForceMode.Force);
+    }
+
+    public void Rotation(float horizontalInput, float verticalInput)
+    {
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward = forward.normalized;
+        right = right.normalized;
+
+        Vector3 moveDirection = forward * verticalInput + right * horizontalInput; 
+
+        if (horizontalInput != 0 || verticalInput != 0)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed);
+        }
+
     }
 
     public void Movement(float Speed)

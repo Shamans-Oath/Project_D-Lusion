@@ -1,3 +1,4 @@
+using UnityEditor.Build.Pipeline;
 using UnityEngine;
 
 
@@ -62,22 +63,38 @@ public class LifeClass
         }
     }
 
-    public void AddMaxHealth(int amount)
+    public void AddMaxHealth(int amount, bool readjustment)
     {
-        float readjustmentRatio = (currentHealth * 100) / maxHealth;
-
         maxHealth += amount;
 
-        currentHealth = (int)((maxHealth * readjustmentRatio) / 100);
+        if(readjustment)
+        {
+            float readjustmentRatio = (maxHealth != 0) ? (currentHealth * 100) / maxHealth : 0;
+
+            currentHealth = (int)((maxHealth * readjustmentRatio) / 100);
+        }
     }
 
-    public void ReduceMaxHealth(int amount)
+    public void ReduceMaxHealth(int amount, bool readjustment)
     {
-        float readjustmentRatio = (currentHealth * 100) / maxHealth;
-
         maxHealth -= amount;
 
-        currentHealth = (int)((maxHealth * readjustmentRatio) / 100);
+        if (maxHealth <= 0)
+        {
+            maxHealth = 0;
+        }
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }        
+
+        if (readjustment)
+        {
+            float readjustmentRatio = (maxHealth != 0) ? (currentHealth * 100) / maxHealth : 0;
+
+            currentHealth = (int)((maxHealth * readjustmentRatio) / 100);
+        }
     }
 
     public void AddPercetangeMaxHealth(float percentage)
@@ -91,7 +108,7 @@ public class LifeClass
         {
             int amount = (int)((maxHealth * percentage) / 100);
 
-            AddMaxHealth(amount);
+            AddMaxHealth(amount, true);
         }
     }
 
@@ -106,7 +123,37 @@ public class LifeClass
         {
             int amount = (int)((maxHealth * percentage) / 100);
 
-            ReduceMaxHealth(amount);
+            ReduceMaxHealth(amount, true);
+        }
+    }
+
+    public void AddPercetangeMaxHealthNR(float percentage)
+    {
+        if (!(percentage > 0 && percentage <= 100))
+        {
+            Debug.Log("Invalid number");
+            return;
+        }
+        else
+        {
+            int amount = (int)((maxHealth * percentage) / 100);
+
+            AddMaxHealth(amount, false);
+        }
+    }
+
+    public void ReducePercetangeMaxHealthNR(float percentage)
+    {
+        if (!(percentage > 0 && percentage <= 100))
+        {
+            Debug.Log("Invalid number");
+            return;
+        }
+        else
+        {
+            int amount = (int)((maxHealth * percentage) / 100);
+
+            ReduceMaxHealth(amount, false);
         }
     }
 }

@@ -21,12 +21,12 @@ public class TestScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            health.AddMaxHealth(amount);
+            health.AddMaxHealth(amount, true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            health.ReduceMaxHealth(amount);
+            health.ReduceMaxHealth(amount, true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -57,6 +57,16 @@ public class TestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             health.ReducePercetangeMaxHealth(percentage);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            health.AddPercetangeMaxHealthNR(percentage);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            health.ReducePercetangeMaxHealthNR(percentage);
         }
     }
 }
