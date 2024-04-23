@@ -37,7 +37,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Atack"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6731b1a1-ffd9-4627-9f5e-ea7426462200"",
                     ""expectedControlType"": ""Button"",
@@ -90,7 +90,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Atack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -101,7 +101,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
-                    ""action"": ""Atack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -884,7 +884,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
         m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
-        m_GamePlay_Atack = m_GamePlay.FindAction("Atack", throwIfNotFound: true);
+        m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_SpecialAtack = m_GamePlay.FindAction("SpecialAtack", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
         m_GamePlay_Look = m_GamePlay.FindAction("Look", throwIfNotFound: true);
@@ -965,7 +965,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
     private readonly InputAction m_GamePlay_Move;
-    private readonly InputAction m_GamePlay_Atack;
+    private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_SpecialAtack;
     private readonly InputAction m_GamePlay_Dash;
     private readonly InputAction m_GamePlay_Look;
@@ -975,7 +975,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
         private @ActionControls m_Wrapper;
         public GamePlayActions(@ActionControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_GamePlay_Move;
-        public InputAction @Atack => m_Wrapper.m_GamePlay_Atack;
+        public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
         public InputAction @SpecialAtack => m_Wrapper.m_GamePlay_SpecialAtack;
         public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputAction @Look => m_Wrapper.m_GamePlay_Look;
@@ -992,9 +992,9 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Atack.started += instance.OnAtack;
-            @Atack.performed += instance.OnAtack;
-            @Atack.canceled += instance.OnAtack;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
             @SpecialAtack.started += instance.OnSpecialAtack;
             @SpecialAtack.performed += instance.OnSpecialAtack;
             @SpecialAtack.canceled += instance.OnSpecialAtack;
@@ -1014,9 +1014,9 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Atack.started -= instance.OnAtack;
-            @Atack.performed -= instance.OnAtack;
-            @Atack.canceled -= instance.OnAtack;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
             @SpecialAtack.started -= instance.OnSpecialAtack;
             @SpecialAtack.performed -= instance.OnSpecialAtack;
             @SpecialAtack.canceled -= instance.OnSpecialAtack;
@@ -1201,7 +1201,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
     public interface IGamePlayActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnAtack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         void OnSpecialAtack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
