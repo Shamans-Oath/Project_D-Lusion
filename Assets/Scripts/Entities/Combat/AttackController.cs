@@ -15,9 +15,11 @@ public class AttackController : MonoBehaviour
 
 
     public float attackResetTime;
+    private float _timer;
+
     private bool _onAttackTime;
     private float _waitTime;
-    private float _timer;
+
 
     private ActionControls inputSys;
 
@@ -29,6 +31,12 @@ public class AttackController : MonoBehaviour
     private void OnEnable()
     {        
         RessetAttacks();
+        cmp_hitBox.HitCheck += ReFillTime;
+    }
+
+    private void OnDisable()
+    {
+        cmp_hitBox.HitCheck -= ReFillTime;
     }
 
 
@@ -62,9 +70,9 @@ public class AttackController : MonoBehaviour
         _actualNrmAttack = attack.nextNrmCombo;
         _actualSpcAttack = attack.nextSpcCombo;
     }
-    public void AttackHitBox()
+    public void AttackHitBox(bool enable)
     {
-
+        cmp_hitBox.gameObject.SetActive(enable);
     }
 
     private void RessetAttacks()
@@ -89,10 +97,29 @@ public class AttackController : MonoBehaviour
     }
     #region Cooldowns
     //--------------Cooldowns---------------//
-
-    private void RessetCooldown()
+    private void ReFillTime()
+    {
+        _timer = attackResetTime;
+    }
+    public void SetResetTime(float newTime)
     {
 
+        attackResetTime = newTime;
+
+    }
+    private void RessetCooldown()
+    {
+        if(_timer > 0)
+        {
+            _timer -= Time.deltaTime;
+        }
+        else
+        {
+            if(_actualNrmAttack != baseNrmAttack || _actualSpcAttack != baseSpcAttack)
+            {
+                RessetAttacks();
+            }
+        }
     }
     public void AttackTimeQueue() 
     {
