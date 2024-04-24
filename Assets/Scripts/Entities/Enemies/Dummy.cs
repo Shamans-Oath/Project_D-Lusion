@@ -8,11 +8,14 @@ public class Dummy : MonoBehaviour
     public LifeClass lifeclass;
     public Animator anim;
 
+
     // Start is called before the first frame update
     void Start()
     {
         _dummylife = lifeclass.currentHealth;
-            anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
+        
+        //_basecolor = _mat.color;
     }
 
     // Update is called once per frame
@@ -23,18 +26,26 @@ public class Dummy : MonoBehaviour
 
     public void AlertDamage()
     {
-        
-        if (_dummylife != lifeclass.currentHealth) 
+
+        if (_dummylife != lifeclass.currentHealth)
         {
             Debug.Log("corre animación");
-           
             _dummylife = lifeclass.currentHealth;
+            Debug.Log(lifeclass.currentHealth);
+            Hurt();
+
         }
     }
-    
-    private void Hurt() 
-    {
 
+    private void Hurt()
+    {
+        Debug.Log("triggered");
+        anim.SetTrigger("isHurt");
+    }
+
+    private void GoBaseform() 
+    {
+        
     }
 
 }
