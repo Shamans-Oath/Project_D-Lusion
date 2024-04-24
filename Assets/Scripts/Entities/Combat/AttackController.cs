@@ -19,15 +19,26 @@ public class AttackController : MonoBehaviour
     private float _waitTime;
     private float _timer;
 
+    private ActionControls inputSys;
+
+
     private void Start()
     {
         RessetAttacks();
     }
     private void OnEnable()
-    {
+    {        
         RessetAttacks();
     }
 
+
+    private void Update()
+    {
+        //Funciones que puedes retirar de este Update y llamarlas luego desde el PlayerController si lo ves necesario
+        RessetCooldown();  //Cooldown para resetear los ataques al default
+        AttackTimeQueue(); //Cooldown de espera antes de volver a poder castear otro ataque
+
+    }
     public void NormalAttack()
     {
         AttackSett(_actualNrmAttack);
@@ -108,7 +119,7 @@ public class AttackController : MonoBehaviour
         if (hideBoxesGraph == false)
         {
             if (_actualNrmAttack) DrawNewAttack(drawNormalAtk, _actualNrmAttack, Color.magenta);
-            else DrawNewAttack(drawNormalAtk, baseNrmAttack, Color.gray);
+            else DrawNewAttack(drawNormalAtk, baseNrmAttack, Color.magenta);
 
             if (_actualSpcAttack) DrawNewAttack(drawNormalAtk, _actualSpcAttack, Color.black);
             else DrawNewAttack(drawSpcialAtk, baseSpcAttack, Color.black);
