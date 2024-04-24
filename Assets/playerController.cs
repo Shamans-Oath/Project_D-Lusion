@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private AttackController attackController;
 
+    [SerializeField] private movementTest movementTest;
+
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -40,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         //inputs.Disable();
         //deshabilitar el actions o como se llame que controle al player
-        inputs.GamePlay.Attack.performed-=_=>Attack();
+        //inputs.GamePlay.Attack.performed-=_=>Attack();
 
     }
 
@@ -53,8 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-       // :v ty yo
-       //FALTA
+       //movementTest.
     }
 
     private void Attack()
