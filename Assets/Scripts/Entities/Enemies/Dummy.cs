@@ -7,7 +7,7 @@ public class Dummy : MonoBehaviour
     private int _dummylife;
     public LifeClass lifeclass;
     public Animator anim;
-
+    static int furria;
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +41,8 @@ public class Dummy : MonoBehaviour
     {
         Debug.Log("triggered");
         anim.SetTrigger("isHurt");
+        furria += 1;
     }
 
-    private void GoBaseform() 
-    {
-        
-    }
 
 }
