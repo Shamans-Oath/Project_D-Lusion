@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class LifeClass 
+public class LifeClass : MonoBehaviour
 {
     public int maxHealth = 100;
 
