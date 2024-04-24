@@ -10,6 +10,10 @@ public class TestScript : MonoBehaviour
     public int amount;
     public float percentage;
 
+
+    public Transform offset;
+    public GameObject target;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +23,26 @@ public class TestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        HealthTest();
+        AngleTest();
+    }
+
+    void AngleTest()
+    {
+        Vector3 offsetToPlayer = offset.position - target.transform.position;
+        Vector3 camToPlayer = Camera.main.transform.position - target.transform.position;
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            float angle = Vector3.Angle(offsetToPlayer, camToPlayer);
+
+            Debug.Log(angle);
+        }
+    }
+
+    void HealthTest()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             health.AddMaxHealth(amount, true);
         }
