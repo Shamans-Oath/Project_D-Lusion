@@ -8,7 +8,7 @@ public class LifeClass : MonoBehaviour
     public int maxHealth = 100;
 
     public int currentHealth;
-
+     
     public void GainHealth(int amount)
     {
         if(currentHealth + amount >= maxHealth)
