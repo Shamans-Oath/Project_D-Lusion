@@ -614,7 +614,7 @@ MonoBehaviour:
   extraDmg: 0
   baseNrmAttack: {fileID: 11400000, guid: 8fd9cb6c37ede6448878127d601506cd, type: 2}
   baseSpcAttack: {fileID: 11400000, guid: 9240f120e0f23e54296262832acbc421, type: 2}
-  attackResetTime: 0
+  attackResetTime: 3
   hideBoxesGraph: 0
 --- !u!1 &1223168102
 GameObject:
@@ -1606,14 +1606,109 @@ GameObject:
   m_Component:
   - component: {fileID: 543450653684138702}
   - component: {fileID: 1157713403}
+  - component: {fileID: 919132149213059192}
   - component: {fileID: 1157713405}
+  - component: {fileID: 919132149213059190}
+  - component: {fileID: 919132149213059189}
+  - component: {fileID: 919132149213059191}
   m_Layer: 0
-  m_Name: Standing Melee Attack Downward
+  m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!136 &919132149213059189
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149213059188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.9241408
+  m_Direction: 1
+  m_Center: {x: -0, y: 0.94540256, z: 0}
+--- !u!114 &919132149213059190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149213059188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94673fcedc4825498222144c18451bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowMovement: 1
+  maxDistance: 1
+  boxSize: {x: 0.8, y: 0.2, z: 0.8}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  rotationSpeed: 5
+  Speed: 5
+  Gravity: 20
+  jumpForce: 10
+--- !u!54 &919132149213059191
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149213059188}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &919132149213059192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149213059188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca41d2f2ea6f954d8f0c2a517b70f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
+  furymeterMax: 100
+  furymeterGainRate: 5
+  furymeterLossRate: 100
+  maxHealth: 100
+  attackController: {fileID: 1157713405}
+  movementTest: {fileID: 0}
 --- !u!4 &1031632034293610643
 Transform:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class AttackController : MonoBehaviour
     public DamageDealer cmp_hitBox;
     public Animator cmp_anim;
 
-    public float extraDmg;
+    public int extraDmg;
     public AttackPreset baseNrmAttack;
     private AttackPreset _actualNrmAttack;
     public AttackPreset baseSpcAttack;
@@ -43,7 +43,7 @@ public class AttackController : MonoBehaviour
     private void Update()
     {
         //Funciones que puedes retirar de este Update y llamarlas luego desde el PlayerController si lo ves necesario
-        RessetCooldown();  //Cooldown para resetear los ataques al default
+        //RessetCooldown();  //Cooldown para resetear los ataques al default
         AttackTimeQueue(); //Cooldown de espera antes de volver a poder castear otro ataque
 
     }
@@ -60,15 +60,24 @@ public class AttackController : MonoBehaviour
     {
         if (attack == null || _onAttackTime == true) return;
         cmp_hitBox.attackTime = attack.duration;
-        cmp_hitBox.damage = attack.damage;
+        cmp_hitBox.damage = attack.damage + extraDmg;
         RepositionHitbox(attack.possitionOffset);
         ResizeHitbox(attack.hitSize);
         cmp_anim.runtimeAnimatorController = attack.animation;
         _waitTime = attack.duration;
-
+        cmp_anim.SetBool("Attack", true);
 
         _actualNrmAttack = attack.nextNrmCombo;
         _actualSpcAttack = attack.nextSpcCombo;
+    }
+
+    public void EnableHitbox()
+    {
+        cmp_hitBox.gameObject.SetActive(true);
+    }
+    public void DisableHitbox()
+    {
+        cmp_hitBox.gameObject.SetActive(false);
     }
     public void AttackHitBox(bool enable)
     {
@@ -79,6 +88,8 @@ public class AttackController : MonoBehaviour
     {
         if (baseNrmAttack) _actualNrmAttack = baseNrmAttack;
         if (baseSpcAttack) _actualSpcAttack = baseSpcAttack;
+
+        cmp_anim.SetBool("Attack", false);
     }
 
     private void ResizeHitbox(Vector3 size)
@@ -93,7 +104,7 @@ public class AttackController : MonoBehaviour
 
     private void AttachPossition()
     {
-
+        //Proximamente en cines
     }
     #region Cooldowns
     //--------------Cooldowns---------------//
@@ -130,6 +141,7 @@ public class AttackController : MonoBehaviour
         }
         else
         {
+            cmp_anim.SetBool("Attack", false);
             _onAttackTime = false;
         }
     }

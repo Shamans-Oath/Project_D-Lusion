@@ -28,22 +28,27 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        if (GameManager.gameInputSystem == null) GameManager.SetInputSystem();
+
+        inputs = GameManager.gameInputSystem;
         currentHealth = maxHealth;
         currentFurymeter = furymeterMax;
     }
 
     private void OnEnable()
     {
-        //inputs.Enable();
+        inputs.Enable();
         //habilitar el actions o como se llame que controle al player
         inputs.GamePlay.Attack.performed+=_=>Attack();
+        //inputs.GamePlay.SpecialAtack.performed += _ => attackController.SpecialAttack();
     }
 
     private void OnDisable()
     {
         //inputs.Disable();
         //deshabilitar el actions o como se llame que controle al player
-        //inputs.GamePlay.Attack.performed-=_=>Attack();
+        inputs.GamePlay.Attack.performed-=_=>Attack();
+        //inputs.GamePlay.SpecialAtack.performed -= _ => attackController.SpecialAttack();
 
     }
 
