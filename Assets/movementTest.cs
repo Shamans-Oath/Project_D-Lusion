@@ -27,9 +27,12 @@ public class movementTest : MonoBehaviour
         movement.Normalize();
 
         // Move the player in the calculated direction
-        transform.position += movement * speed * Time.deltaTime;
+        if (speed != 0 && movement != Vector3.zero)
+        {
+            transform.position += movement * speed * Time.deltaTime;
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed * Time.deltaTime);
+        }
 
         // Calculate the forward direction based on the camera's transform
         

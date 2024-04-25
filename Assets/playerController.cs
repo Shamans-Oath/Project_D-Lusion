@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour
     private float lastAttackTime;
 
     [Header("Fury Meter Settings")]
-    public float furymeterMax = 100f;
-    public float furymeterGainRate = 5f;
-    public float furymeterLossRate = 100f;
+    [Range(0.0f,1.0f)]
+    public float furymeterMax = 0f;
+    [Range(0.0f, 1.0f)]
+    public float furymeterGainRate = 0.05f;
+    [Range(0.0f, 1.0f)]
+    public float furymeterLossRate = 1f;
     private float currentFurymeter;
 
     [Header("Health Settings")]
@@ -21,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private ActionControls inputs; // The generated class from the Input Actions asset
 
-    [SerializeField] private AttackController attackController;
+    [SerializeField] private AttackController _cmp_attackController;
 
     [SerializeField] private movementTest movementTest;
 
@@ -40,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+
+        if(_cmp_attackController) _cmp_attackController.cmp_hitBox.HitCheck += UpdateFurymeter;
+
         inputs.Enable();
         //habilitar el actions o como se llame que controle al player
         inputs.GamePlay.Attack.performed+=_=>Attack();
@@ -48,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_cmp_attackController) _cmp_attackController.cmp_hitBox.HitCheck -= UpdateFurymeter;
         //inputs.Disable();
         //deshabilitar el actions o como se llame que controle al player
         inputs.GamePlay.Attack.performed-=_=>Attack();
@@ -72,7 +79,7 @@ public class PlayerController : MonoBehaviour
         if (Time.time > lastAttackTime + attackCooldown)
         {
             // Invoke attack function
-            attackController.NormalAttack();
+            _cmp_attackController.NormalAttack();
             lastAttackTime = Time.time;
         }
     }
@@ -81,6 +88,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateFurymeter()
     {
+        IncreaseFurymeter(furymeterGainRate);
+ 
         //??? :v debería ser relacionado con los golpes, al dummy por ahora
     }
 
