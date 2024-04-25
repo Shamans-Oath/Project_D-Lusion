@@ -1,8 +1,8 @@
-using UnityEditor.Build.Pipeline;
+
 using UnityEngine;
 
 
-[System.Serializable]
+
 public class LifeClass : MonoBehaviour
 {
     public int maxHealth = 100;

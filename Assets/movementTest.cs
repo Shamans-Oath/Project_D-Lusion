@@ -21,6 +21,9 @@ public class movementTest : MonoBehaviour
 
         // Calculate the movement direction based on the camera's forward direction
         Vector3 movement = cameraForward * moveVertical + virtualCamera.transform.right * moveHorizontal;
+
+        Vector3 tmpMov = new Vector3(movement.x, 0,movement.z);
+        movement = tmpMov;  
         movement.Normalize();
 
         // Move the player in the calculated direction

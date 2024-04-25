@@ -37,10 +37,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         inputs.Enable();
         //habilitar el actions o como se llame que controle al player
         inputs.GamePlay.Attack.performed+=_=>Attack();
-        //inputs.GamePlay.SpecialAtack.performed += _ => attackController.SpecialAttack();
+        //  inputs.GamePlay.SpecialAtack.performed += _ => attackController.SpecialAttack();
     }
 
     private void OnDisable()
