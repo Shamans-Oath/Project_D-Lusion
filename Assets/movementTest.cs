@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class movementTest : MonoBehaviour
 {
-   public float speed = 5f;
+    public float speed = 5f;
+    public float rotationSpeed = 10f;
+
+   
     public Camera virtualCamera;
 
     void Update()
@@ -13,7 +16,6 @@ public class movementTest : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        // Calculate the forward direction based on the camera's transform
         Vector3 cameraPosition = virtualCamera.transform.position;
         Vector3 cameraForward = (-cameraPosition + transform.position).normalized;
 
@@ -23,5 +25,16 @@ public class movementTest : MonoBehaviour
 
         // Move the player in the calculated direction
         transform.position += movement * speed * Time.deltaTime;
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movement), rotationSpeed * Time.deltaTime);
+
+        // Calculate the forward direction based on the camera's transform
+        
+    }
+
+    public void Movement(float moveHorizontal, float moveVertical)
+    {
+        
+
     }
 }
