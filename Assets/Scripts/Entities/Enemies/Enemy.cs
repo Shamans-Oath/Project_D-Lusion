@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,6 +19,14 @@ public class Enemy : MonoBehaviour
 
     public bool inHitstun;
 
+    public NavMeshAgent cmp_Agent;
+
+    public FollowStats[] agentValues;
+
+    public Transform followTarget;
+    public Transform lookingTarget;
+    public float rotationSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,27 +36,73 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        cmp_Agent.SetDestination(followTarget.position);
     }
 
-    public void PatternBehavior()
+    public void PatternBehavior(States newState, Transform target)
     {
+        states = newState;
+
+        followTarget = target;
+
         switch(states)
         {
-            case States.Orbitating:
-
-            break;
-
-            case States.StandBy:
-
-            break;
-
             case States.Following:
+                cmp_Agent.speed = agentValues[2].Speed;
+                cmp_Agent.angularSpeed = agentValues[2].angularSpeed;
+                cmp_Agent.acceleration = agentValues[2].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[2].stoppingDistance;
 
+                cmp_Agent.SetDestination(followTarget.position);
             break;
             
             case States.Attacking:
-                
+                cmp_Agent.speed = agentValues[3].Speed;
+                cmp_Agent.angularSpeed = agentValues[3].angularSpeed;
+                cmp_Agent.acceleration = agentValues[3].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[3].stoppingDistance;
+
+                cmp_Agent.SetDestination(followTarget.position);
+            break;
+
+            default:
+                Debug.Log("Estas usando la funcion de moverse hacia un punto, si quieres que el objeto mire hacia otro lado debes agregar un lookingAt");
+            break;
+        }
+    }
+
+    public void PatternBehavior(States newState, Transform target, Transform lookingAt)
+    {
+        states = newState;
+
+        followTarget = target;
+        lookingTarget = lookingAt;
+
+        Quaternion targetRotation = Quaternion.LookRotation(lookingTarget.transform.position - transform.position);
+
+        switch (states)
+        {
+            case States.Orbitating:
+                cmp_Agent.speed = agentValues[0].Speed;
+                cmp_Agent.angularSpeed = agentValues[0].angularSpeed;
+                cmp_Agent.acceleration = agentValues[0].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[0].stoppingDistance;
+
+                cmp_Agent.SetDestination(followTarget.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            break;
+
+            case States.StandBy:
+                cmp_Agent.speed = agentValues[1].Speed;
+                cmp_Agent.angularSpeed = agentValues[1].angularSpeed;
+                cmp_Agent.acceleration = agentValues[1].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[1].stoppingDistance;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            break;
+
+            default:
+                Debug.Log("Estas usando la funcion de moverse mirando a un objetivo, los otros dos estados no requieren de un lookingAt");
             break;
         }
     }
