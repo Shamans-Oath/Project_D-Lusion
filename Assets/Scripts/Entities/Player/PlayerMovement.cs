@@ -5,130 +5,45 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody cmp_rb;
-
     public bool allowMovement = true;
-    
-    [SerializeField]
-    float maxDistance = 0.5f;
-    [SerializeField]
-    Vector3 boxSize;
-    public LayerMask layerMask;
-
     public float rotationSpeed;
-    public float Speed;
-    public float Gravity;
-    public float jumpForce;
+    public float speed;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public Camera playerCamera;
+
+    private void Awake()
     {
-        cmp_rb = GetComponent<Rigidbody>();
+        if (playerCamera == false && GameObject.Find("Main Camera")) playerCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Movement(float moveHorizontal, float moveVertical)
     {
-        if (allowMovement)
-        {
-            Movement(Speed);
-            Rotation(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump(jumpForce);
-            }
-        }
+        if (allowMovement == false) return;
+        Vector3 movement = CalculateDirection(new Vector3(moveHorizontal, 0, moveVertical));
+        transform.position += movement * speed * Time.deltaTime;
+            
     }
 
-    void FixedUpdate()
+    public void Rotate(float roteHorizontal, float roteVertical)
     {
-        ApplyGravity(Gravity);
+        Vector3 direction = CalculateDirection(new Vector3(roteHorizontal, 0, roteVertical));
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), rotationSpeed * Time.deltaTime);
     }
 
-    public void ApplyGravity(float Gravity)
+    Vector3 CalculateDirection(Vector3 vector)
     {
-        if (!isGrounded())
-            cmp_rb.AddForce(new Vector2(0, -Gravity), ForceMode.Force);
-    }
+        Vector3 cameraPosition = playerCamera.transform.position;
+        Vector3 cameraForward = (-cameraPosition + transform.position).normalized;
 
-    public void Rotation(float horizontalInput, float verticalInput)
-    {
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
+        // Calculate the movement direction based on the camera's forward direction
+        Vector3 direction = cameraForward * vector.x + playerCamera.transform.right * vector.z;
 
-        Vector3 moveDirection = forward * verticalInput + right * horizontalInput; 
+        Vector3 tmpMov = new Vector3(direction.x, 0, direction.z);
+        direction = tmpMov;
+        direction.Normalize();
 
-        if (horizontalInput != 0 || verticalInput != 0)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed);
-        }
-
-    }
-
-    public void Movement(float Speed)
-    {
-        Vector3 movementVector = new Vector3(CameraRelativeMovement().x, 0, CameraRelativeMovement().z).normalized * Speed;
-        Vector3 verticalVelocity = new Vector3(0, cmp_rb.velocity.y, 0);
-
-        cmp_rb.velocity = movementVector + verticalVelocity;
-    }
-
-    public void Jump(float jumpForce)
-    {
-        if (isGrounded())
-        {
-            cmp_rb.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
-        }
-    }
-
-    Vector3 CameraRelativeMovement()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 rightRelativeHorizontalInput = horizontalInput * right;
-        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
-
-        return rightRelativeHorizontalInput + forwardRelativeVerticalInput;
-    }
-
-    public Vector3 CameraRelativeMovement(float horizontalInput, float verticalInput)
-    {
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 rightRelativeHorizontalInput = horizontalInput * right;
-        Vector3 forwardRelativeVerticalInput = verticalInput * forward;
-
-        return rightRelativeHorizontalInput + forwardRelativeVerticalInput;
-    }
-
-    bool isGrounded()
-    {
-        if(Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return direction;
     }
 
     public void ToggleMovement()
@@ -142,11 +57,4 @@ public class PlayerMovement : MonoBehaviour
             allowMovement = true;
         }
     }
-
-    /*void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawWireCube(transform.position - transform.up * maxDistance, boxSize);    
-    }*/
 }
