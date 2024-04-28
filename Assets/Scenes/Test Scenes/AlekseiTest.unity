@@ -1068,12 +1068,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515949660}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8, y: 0, z: -0}
+  m_LocalRotation: {x: -0.061446402, y: -0.0050639953, z: -0.0003117574, w: 0.9980975}
+  m_LocalPosition: {x: -5, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1617957346}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &633243548
 GameObject:
@@ -1558,6 +1558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 945223619}
+  enemy: {fileID: 1846835185}
   amount: 20
   percentage: 35
   offset: {fileID: 515949661}
@@ -2132,8 +2133,7 @@ Transform:
   m_LocalPosition: {x: 0.8292244, y: 0.78, z: 3.0149488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 515949661}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &1676218973
@@ -2447,7 +2447,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92f6041b29ec48e48adde73db5c16749, type: 2}
   followTarget: {fileID: 472062306}
   lookingTarget: {fileID: 0}
-  rotationSpeed: 0
+  rotationSpeed: 5
 --- !u!195 &1846835186
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2987,6 +2987,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 633243550}
   - {fileID: 154812803}
+  - {fileID: 515949661}
   - {fileID: 1617957346}
   - {fileID: 472062306}
   - {fileID: 1846835191}

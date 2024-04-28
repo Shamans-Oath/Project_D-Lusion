@@ -36,14 +36,47 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cmp_Agent.SetDestination(followTarget.position);
+        if(inHitstun == false)
+        {
+            EnemyMovement();
+        }        
     }
 
-    public void PatternBehavior(States newState, Transform target)
+    public void BehaviorChange(States newState, Transform target, Transform lookingAt)
     {
         states = newState;
 
         followTarget = target;
+        lookingTarget = lookingAt;
+
+       switch (states)
+        {
+            case States.Orbitating:
+                cmp_Agent.speed = agentValues[0].Speed;
+                cmp_Agent.angularSpeed = agentValues[0].angularSpeed;
+                cmp_Agent.acceleration = agentValues[0].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[0].stoppingDistance;
+            break;
+
+            case States.StandBy:
+                cmp_Agent.speed = agentValues[1].Speed;
+                cmp_Agent.angularSpeed = agentValues[1].angularSpeed;
+                cmp_Agent.acceleration = agentValues[1].Acceleration;
+                cmp_Agent.stoppingDistance = agentValues[1].stoppingDistance;
+            break;
+
+            default:
+                Debug.Log("Estas usando la funcion de moverse mirando a un objetivo, los otros dos estados no requieren de un lookingAt");
+            break;
+        }
+    }
+
+    public void BehaviorChange(States newState, Transform target)
+    {
+        states = newState;
+
+        followTarget = target;
+        lookingTarget = null;
 
         switch(states)
         {
@@ -52,8 +85,6 @@ public class Enemy : MonoBehaviour
                 cmp_Agent.angularSpeed = agentValues[2].angularSpeed;
                 cmp_Agent.acceleration = agentValues[2].Acceleration;
                 cmp_Agent.stoppingDistance = agentValues[2].stoppingDistance;
-
-                cmp_Agent.SetDestination(followTarget.position);
             break;
             
             case States.Attacking:
@@ -61,50 +92,27 @@ public class Enemy : MonoBehaviour
                 cmp_Agent.angularSpeed = agentValues[3].angularSpeed;
                 cmp_Agent.acceleration = agentValues[3].Acceleration;
                 cmp_Agent.stoppingDistance = agentValues[3].stoppingDistance;
-
-                cmp_Agent.SetDestination(followTarget.position);
             break;
 
             default:
                 Debug.Log("Estas usando la funcion de moverse hacia un punto, si quieres que el objeto mire hacia otro lado debes agregar un lookingAt");
             break;
         }
-    }
+    }    
 
-    public void PatternBehavior(States newState, Transform target, Transform lookingAt)
-    {
-        states = newState;
-
-        followTarget = target;
-        lookingTarget = lookingAt;
-
-        Quaternion targetRotation = Quaternion.LookRotation(lookingTarget.transform.position - transform.position);
-
-        switch (states)
+    public void EnemyMovement()
+    {   
+        if(followTarget != null)
         {
-            case States.Orbitating:
-                cmp_Agent.speed = agentValues[0].Speed;
-                cmp_Agent.angularSpeed = agentValues[0].angularSpeed;
-                cmp_Agent.acceleration = agentValues[0].Acceleration;
-                cmp_Agent.stoppingDistance = agentValues[0].stoppingDistance;
+            cmp_Agent.SetDestination(followTarget.position);
 
-                cmp_Agent.SetDestination(followTarget.position);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            break;
-
-            case States.StandBy:
-                cmp_Agent.speed = agentValues[1].Speed;
-                cmp_Agent.angularSpeed = agentValues[1].angularSpeed;
-                cmp_Agent.acceleration = agentValues[1].Acceleration;
-                cmp_Agent.stoppingDistance = agentValues[1].stoppingDistance;
+            if(lookingTarget != null)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(lookingTarget.transform.position - transform.position);
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            break;
-
-            default:
-                Debug.Log("Estas usando la funcion de moverse mirando a un objetivo, los otros dos estados no requieren de un lookingAt");
-            break;
-        }
+            }
+        }        
     }
 
     IEnumerator hitstunCooldown(float cooldown)

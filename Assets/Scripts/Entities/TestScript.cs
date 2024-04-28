@@ -6,6 +6,8 @@ public class TestScript : MonoBehaviour
 {
     [SerializeField]
     LifeClass health;
+    [SerializeField]
+    Enemy enemy;
 
     public int amount;
     public float percentage;
@@ -25,6 +27,30 @@ public class TestScript : MonoBehaviour
     {
         HealthTest();
         AngleTest();
+        BehaviorTest();
+    }
+
+    void BehaviorTest()
+    {
+        if(Input.GetKeyDown(KeyCode.U)) 
+        {
+            enemy.BehaviorChange(Enemy.States.Orbitating, offset, target.transform);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            enemy.BehaviorChange(Enemy.States.StandBy, offset, target.transform);
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            enemy.BehaviorChange(Enemy.States.Following, target.transform);
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            enemy.BehaviorChange(Enemy.States.Attacking, target.transform);
+        }
     }
 
     void AngleTest()
