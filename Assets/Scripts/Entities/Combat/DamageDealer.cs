@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class DamageDealer : MonoBehaviour
 {
     public event Action HitCheck = delegate { };
+    public event Action HitCanceled = delegate { };
     public string[] damageTags;
     public BoxCollider cmp_collider;
     public int damage;
@@ -24,10 +25,23 @@ public class DamageDealer : MonoBehaviour
     }
     void Damage(GameObject obj)
     {
-        HitCheck.Invoke();
-        if(obj.GetComponent<LifeClass>()!=null)
+        if(obj.GetComponent<Parry>()!=null)
+        {
+            Parry tmpParry = obj.GetComponent<Parry>();
+            tmpParry.TryDamage(damage, this);
+            if (tmpParry.parry) return;
+        }       
+        else if(obj.GetComponent<LifeClass>()!=null)
         {
             obj.GetComponent<LifeClass>().LooseHealth(damage);
         }
+        HitCheck.Invoke();
+    }
+
+    public void CancelAttack()
+    {
+        if (gameObject.activeSelf == false) return;
+        gameObject.SetActive(false);
+        HitCanceled.Invoke();
     }
 }
