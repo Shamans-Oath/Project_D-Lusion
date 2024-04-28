@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gravity : MonoBehaviour
 {
     public float maxDistance = 0.5f;
+    public float offSet;
     public float gravity;
     public Rigidbody cmp_rb;
     public Vector3 boxSize;
@@ -29,7 +30,7 @@ public class Gravity : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if (Physics.BoxCast(transform.position, boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
+        if (Physics.BoxCast(new Vector3(transform.position.x, transform.position.y+ offSet, transform.position.z), boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
         {
             return true;
         }

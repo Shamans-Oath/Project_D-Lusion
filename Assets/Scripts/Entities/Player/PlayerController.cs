@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         if (cmp_gravity.IsGrounded() == false) return;
-        Debug.Log(cmp_move.speed + " | " + direction);
         if (cmp_move.speed != 0 && direction != Vector2.zero)
         {
             cmp_move.Movement(direction.y, direction.x);

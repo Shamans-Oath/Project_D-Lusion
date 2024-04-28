@@ -277,7 +277,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.22
+  m_Height: 1.924141
   m_Direction: 1
   m_Center: {x: -0, y: 0.94540256, z: 0}
 --- !u!54 &355923020120665639
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc7c58f213889a44a329036010724f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0
+  jumpForce: 10
   cmp_rb: {fileID: 355923020120665639}
 --- !u!114 &2651180331669011679
 MonoBehaviour:
@@ -333,10 +333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2b2b0edcb2dc042b7c99aff713c11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 1.924141
-  gravity: 0.95
+  maxDistance: 1
+  offSet: 0.2
+  gravity: 20
   cmp_rb: {fileID: 355923020120665639}
-  boxSize: {x: 0.3, y: 0.1, z: 0.3}
+  boxSize: {x: 0.8, y: 0.2, z: 0.8}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
