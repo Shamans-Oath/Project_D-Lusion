@@ -5,10 +5,14 @@ using UnityEngine.Animations;
 
 public enum AttackAtachables
 {
+    Default,
     RightHand,
     LeftHand,
     RightFood,
     LeftFood,
+    Weapon1,
+    Weapon2
+    
 
 }
 

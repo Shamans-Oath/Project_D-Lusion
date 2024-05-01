@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Parry : MonoBehaviour
+public class ParryBlock : MonoBehaviour
 {
     public LifeClass cmp_life;
     [Header("Block Options")]
@@ -44,12 +44,12 @@ public class Parry : MonoBehaviour
             }
             else
             {
-                cmp_life.LooseHealth(Mathf.Max(0, damage - damageBlock));
+                if(cmp_life) cmp_life.LooseHealth(Mathf.Max(0, damage - damageBlock));
             }
         }
         else
         {
-            cmp_life.LooseHealth(damage);
+            if (cmp_life) cmp_life.LooseHealth(damage);
         }
     }
 

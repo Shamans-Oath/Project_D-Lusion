@@ -21,9 +21,6 @@ public class AttackController : MonoBehaviour
     private float _waitTime;
 
 
-    private ActionControls inputSys;
-
-
     private void Start()
     {
         RessetAttacks();

@@ -25,9 +25,9 @@ public class DamageDealer : MonoBehaviour
     }
     void Damage(GameObject obj)
     {
-        if(obj.GetComponent<Parry>()!=null)
+        if(obj.GetComponent<ParryBlock>()!=null)
         {
-            Parry tmpParry = obj.GetComponent<Parry>();
+            ParryBlock tmpParry = obj.GetComponent<ParryBlock>();
             tmpParry.TryDamage(damage, this);
             if (tmpParry.parry) return;
         }       
