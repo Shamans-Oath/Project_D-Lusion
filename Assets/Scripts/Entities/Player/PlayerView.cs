@@ -11,29 +11,68 @@ public class PlayerView : MonoBehaviour
     public Renderer[] tatooMaterials;
     float emissionIntensity;
     public float lerpDuration;
+
     // Start is called before the first frame update
     void Start()
     {
         _cmp_controller = gameObject.GetComponent<PlayerController>();
+        _cmp_controller.cmp_life.HealthGain += UpdateHealthOnHeal;
+        _cmp_controller.cmp_life.HealthLose += UpdateHealthOnLoss;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(emissionChange(0, 0));
+            _cmp_controller.cmp_life.LooseHealth(10);
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
-            StartCoroutine(emissionChange(0, 1));
-        }*/
+            _cmp_controller.cmp_life.GainHealth(10);
+        }
     }
 
     public void AnimatorUpdater()
     {
         cmp_anim.SetFloat("Blend",_cmp_controller.currentFurymeter);
+    }
+
+    public void UpdateHealthOnHeal()
+    {
+        float percentageDivision = 1 / tatooMaterials.Length;
+
+        for (int i = 0; i < tatooMaterials.Length; i++)
+        {
+            if (_cmp_controller.cmp_life.currentHealth >= _cmp_controller.maxHealth * (percentageDivision * i))
+            {
+                StartCoroutine(emissionChange(i, 1));
+
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    public void UpdateHealthOnLoss()
+    {
+        float percentageDivision = 1 / tatooMaterials.Length;
+
+        for (int i = tatooMaterials.Length - 1; i >= 0; i--)
+        {
+            if (_cmp_controller.cmp_life.currentHealth < _cmp_controller.maxHealth * (percentageDivision * i))
+            {
+                StartCoroutine(emissionChange(i, 0));
+            }
+            else
+            {
+                break;
+            }
+            
+        }
     }
 
     public IEnumerator emissionChange(int materialIndex, int changeType) 
@@ -77,5 +116,11 @@ public class PlayerView : MonoBehaviour
             Debug.Log("Esta corrutina solo acepta valores de 0 y 1, 0 para apagar el material y 1 para encederlo");
             StopCoroutine("emissionChange");
         }
+    }
+
+    void OnDisable()
+    {
+        _cmp_controller.cmp_life.HealthGain -= UpdateHealthOnHeal;
+        _cmp_controller.cmp_life.HealthLose -= UpdateHealthOnLoss;
     }
 }
