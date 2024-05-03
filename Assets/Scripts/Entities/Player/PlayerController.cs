@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
         //UpdateFurymeter();
         CheckHealthChanges();
+        DashWaitLanding();
     }
 
     private void FixedUpdate()
@@ -121,7 +122,14 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
+        if(!cmp_gravity.isGrounded) return;
+
         cmp_dash.DashToPosition(GameObject.Find("PuntoDash").transform.position);
+    }
+
+    private void DashWaitLanding()
+    {
+        cmp_dash.CheckLanding(cmp_gravity.isGrounded);
     }
 
     private void UpdateFurymeter()

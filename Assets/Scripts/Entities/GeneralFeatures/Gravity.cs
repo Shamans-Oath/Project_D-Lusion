@@ -10,6 +10,7 @@ public class Gravity : MonoBehaviour
     public Rigidbody cmp_rb;
     public Vector3 boxSize;
     public LayerMask layerMask;
+    public bool isGrounded { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -30,14 +31,9 @@ public class Gravity : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if (Physics.BoxCast(new Vector3(transform.position.x, transform.position.y+ offSet, transform.position.z), boxSize, -transform.up, transform.rotation, maxDistance, layerMask))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        isGrounded = Physics.BoxCast(new Vector3(transform.position.x, transform.position.y + offSet, transform.position.z), boxSize, -transform.up, transform.rotation, maxDistance, layerMask);
+
+        return isGrounded;
     }
 
 
