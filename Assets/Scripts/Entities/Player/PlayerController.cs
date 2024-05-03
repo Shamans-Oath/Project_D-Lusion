@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Health Settings")]
     public float maxHealth = 100f;
-    private float currentHealth;
+    public float currentHealth;
 
     private ActionControls inputs; // The generated class from the Input Actions asset
 
