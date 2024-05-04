@@ -10,7 +10,7 @@ public class Dash : MonoBehaviour
     private bool _isDashing;
     public bool isDashing { get { return _isDashing; } }
     private Vector3 _speed;
-    private bool tagToStop;
+    private bool _tagToStop;
 
     [Header("Time Management")]
     public float dashCooldownSeconds;
@@ -40,10 +40,10 @@ public class Dash : MonoBehaviour
             SetDashSpeed();
         }
 
-        if (tagToStop)
+        if (_tagToStop)
         {
             cmp_rb.velocity = Vector3.zero;
-            tagToStop = false;
+            _tagToStop = false;
         }
     }
 
@@ -127,7 +127,7 @@ public class Dash : MonoBehaviour
         DashState(false);
 
         //Stop the player from moving when landing, to avoid sliding, delegating to fixed update because of physics
-        tagToStop = true;
+        _tagToStop = true;
     }
 
     private void DashState(bool state)
