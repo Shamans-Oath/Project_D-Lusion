@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cmp_gravity.ApplyGravity(cmp_gravity.gravity);
+        if(!cmp_dash.isDashing) cmp_gravity.ApplyGravity(cmp_gravity.gravity);
         Move();
     }
 

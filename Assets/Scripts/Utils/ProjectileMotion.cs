@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ProjectileMotion : MonoBehaviour
 {
-    public static Vector3 GetStartSpeed(Vector3 direction, float height, float horizontalSpeed)
+    public static Vector3 GetStartSpeed(Vector3 direction, float height, float horizontalSpeed, float gravityMultiplier)
     {
-        float gravity = Mathf.Abs(Physics.gravity.y);
+        float gravity = Mathf.Abs(Physics.gravity.y) * gravityMultiplier;
 
         float verticalComponent = Mathf.Sqrt(2 * gravity * height);
 

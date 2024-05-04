@@ -7,13 +7,16 @@ public class PlayerDash : MonoBehaviour
     [Header("Dash Parameters")]
     public float timeMultiplier;
     public float baseHeight;
-    public float gravityMultiplierNearEnd;
+    public float gravityMultiplierUpHill;
+    public float gravityMultiplierDownHill;
     private bool _isDashing;
     private bool _isCharging;
     public bool isDashing { get { return _isDashing; } }
+    public bool isCharging { get { return _isCharging; } }
     private Vector3 _speed;
     private bool _tagToStop;
     private Vector3 _speedAfterStop;
+    private Vector3 _targetPosition;
 
     [Header("Time Management")]
     public float chargeTimeSeconds;
@@ -24,13 +27,18 @@ public class PlayerDash : MonoBehaviour
     public float timeToLand => _isDashing ? Mathf.Max(_dashDurationTimer / timeMultiplier, 0) : -1;
 
     [Header("References")]
+    public Collider cmp_collider;
     public Rigidbody cmp_rb;
     public PlayerMovement cmp_movement;
+
+    [Header("Debug")]
+    public bool debug;
 
     private void Awake()
     {
         if (cmp_rb == false) cmp_rb = GetComponent<Rigidbody>();
         if (cmp_movement == false) cmp_movement = GetComponent<PlayerMovement>();
+        if (cmp_collider == false) cmp_collider = GetComponent<Collider>();
     }
 
     private void Update()
@@ -64,23 +72,26 @@ public class PlayerDash : MonoBehaviour
 
     private IEnumerator Dash(Vector3 position)
     {
+        _targetPosition = position;
+
         _isCharging = true;
 
         //Start Calculations
         Vector3 startPosition = transform.position;
-        Vector3 direction = position - startPosition;
+        Vector3 targetPosition = position + Vector3.up * cmp_collider.bounds.extents.y;
+        Vector3 direction = targetPosition - startPosition;
         direction.y = 0f;
 
-        float height = baseHeight + (position - startPosition).y;
+        float height = baseHeight + (targetPosition - startPosition).y;
 
-        float flightTime = ProjectileMotion.GetFlightTime(height) + ProjectileMotion.GetFlightTime(baseHeight, gravityMultiplierNearEnd);
+        float flightTime = ProjectileMotion.GetFlightTime(height, gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(baseHeight, gravityMultiplierDownHill);
 
         float length = direction.magnitude;
 
         float newHorizontalSpeed = length / flightTime;
 
         //Get the speed to reach the target position
-        _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed);
+        _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed, gravityMultiplierUpHill);
 
         //Disable movement while dashing and charging
         DashState(true);
@@ -99,10 +110,7 @@ public class PlayerDash : MonoBehaviour
         float timeDelta = Time.fixedDeltaTime * timeMultiplier;
         float gravity = Physics.gravity.y;
 
-        if(_speed.y < 0)
-        {
-            gravity *= gravityMultiplierNearEnd;
-        }
+        gravity *= _speed.y < 0 ? gravityMultiplierDownHill : gravityMultiplierUpHill;
 
         _speed += Vector3.up * gravity * timeDelta;
 
@@ -148,6 +156,10 @@ public class PlayerDash : MonoBehaviour
         //Stop the player from moving when landing, to avoid sliding, delegating to fixed update because of physics
         _tagToStop = true;
         _speedAfterStop = Vector3.zero;
+
+        //Process Landing
+        ProcessLanding(_targetPosition);
+        _targetPosition = Vector3.zero;
     }
 
     private void DashState(bool state)
@@ -177,6 +189,21 @@ public class PlayerDash : MonoBehaviour
         _tagToStop = true;
         //Set the speed after the interruption
         _speedAfterStop = speedAfterInterruption;
+    }
+
+    #endregion
+
+    #region Debug
+
+    private void ProcessLanding(Vector3 position)
+    {
+        if(!debug) return;
+
+        Vector3 landingPosition = transform.position;
+        landingPosition.y = position.y;
+        float distance = Vector3.Distance(landingPosition, position);
+    
+        Debug.Log($"Landing at {landingPosition} {distance} units away of target in plane XZ");
     }
 
     #endregion
