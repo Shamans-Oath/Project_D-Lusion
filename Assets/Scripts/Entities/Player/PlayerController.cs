@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public Gravity cmp_gravity;
     public Jump cmp_jump;
     public LifeClass cmp_life;
-    public Dash cmp_dash;
+    public PlayerDash cmp_dash;
 
     private Vector2 direction;
     private void Awake()
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (cmp_gravity == false && gameObject.GetComponent<Gravity>()) cmp_gravity = gameObject.GetComponent<Gravity>();
         if (cmp_move == false && gameObject.GetComponent<PlayerMovement>()) cmp_move = gameObject.GetComponent<PlayerMovement>();
         if (cmp_attackController == false && gameObject.GetComponent<AttackController>()) cmp_attackController = gameObject.GetComponent <AttackController>();
-        if (cmp_dash == false && gameObject.GetComponent<Dash>()) cmp_dash = gameObject.GetComponent<Dash>();
+        if (cmp_dash == false && gameObject.GetComponent<PlayerDash>()) cmp_dash = gameObject.GetComponent<PlayerDash>();
 
 
         if (GameManager.gameInputSystem == null) GameManager.SetInputSystem();
@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!cmp_gravity.isGrounded) return;
 
-        cmp_dash.DashToPosition(GameObject.Find("PuntoDash").transform.position);
+        cmp_dash.ChargeDash(GameObject.Find("PuntoDash").transform.position);
     }
 
     private void DashWaitLanding()

@@ -2,20 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dash : MonoBehaviour
+public class PlayerDash : MonoBehaviour
 {
-    [Header("Parameters")]
+    [Header("Dash Parameters")]
+    public float timeMultiplier;
     public float baseHeight;
     public float gravityMultiplierNearEnd;
     private bool _isDashing;
+    private bool _isCharging;
     public bool isDashing { get { return _isDashing; } }
     private Vector3 _speed;
     private bool _tagToStop;
+    private Vector3 _speedAfterStop;
 
     [Header("Time Management")]
+    public float chargeTimeSeconds;
+    private Coroutine _dashCharge;
     public float dashCooldownSeconds;
     private float _dashCooldownTimer;
     private float _dashDurationTimer;
+    public float timeToLand => _isDashing ? Mathf.Max(_dashDurationTimer / timeMultiplier, 0) : -1;
 
     [Header("References")]
     public Rigidbody cmp_rb;
@@ -30,27 +36,35 @@ public class Dash : MonoBehaviour
     private void Update()
     {
         //Decrease Dash Timers When Cooldown is Active
-        WaitQueue(Time.deltaTime);
+        WaitQueue(Time.deltaTime * timeMultiplier);
     }
 
     private void FixedUpdate()
     {
-        if(_isDashing)
+        if(_isDashing && !_isCharging)
         {
             SetDashSpeed();
         }
 
         if (_tagToStop)
         {
-            cmp_rb.velocity = Vector3.zero;
+            cmp_rb.velocity = _speedAfterStop;
             _tagToStop = false;
+            _speedAfterStop = Vector3.zero;
         }
     }
 
-    public void DashToPosition(Vector3 position)
+    public void ChargeDash(Vector3 position)
     {
         //Check inner state: if the cooldown is not ready or the player is already dashing interrupt
-        if (!DashCooldownReady() || _isDashing) return;
+        if (!DashCooldownReady() || _isDashing || _isCharging) return;
+
+        _dashCharge = StartCoroutine(Dash(position));
+    }
+
+    private IEnumerator Dash(Vector3 position)
+    {
+        _isCharging = true;
 
         //Start Calculations
         Vector3 startPosition = transform.position;
@@ -59,25 +73,30 @@ public class Dash : MonoBehaviour
 
         float height = baseHeight + (position - startPosition).y;
 
-        float flightTime = ProjectileMotion.GetFlightTime(height) + ProjectileMotion.GetFlightTime(height, gravityMultiplierNearEnd);
+        float flightTime = ProjectileMotion.GetFlightTime(height) + ProjectileMotion.GetFlightTime(baseHeight, gravityMultiplierNearEnd);
 
-        float length = direction.magnitude; 
+        float length = direction.magnitude;
 
         float newHorizontalSpeed = length / flightTime;
 
         //Get the speed to reach the target position
         _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed);
 
-        //Disable movement while dashing
+        //Disable movement while dashing and charging
         DashState(true);
 
-        //Set Cooldown On Use
-        SetTimers(flightTime);
+        //Set Cooldown On Charge
+        SetTimers(flightTime + chargeTimeSeconds * timeMultiplier);
+
+        //Wait for the charge time
+        yield return new WaitForSeconds(chargeTimeSeconds);
+
+        _isCharging = false;
     }
 
     private void SetDashSpeed()
     {
-        float timeDelta = Time.fixedDeltaTime;
+        float timeDelta = Time.fixedDeltaTime * timeMultiplier;
         float gravity = Physics.gravity.y;
 
         if(_speed.y < 0)
@@ -88,7 +107,7 @@ public class Dash : MonoBehaviour
         _speed += Vector3.up * gravity * timeDelta;
 
         //Set the speed to the rigidbody
-        cmp_rb.velocity = _speed;
+        cmp_rb.velocity = _speed * timeMultiplier;
     }
 
     #region Time Management
@@ -128,6 +147,7 @@ public class Dash : MonoBehaviour
 
         //Stop the player from moving when landing, to avoid sliding, delegating to fixed update because of physics
         _tagToStop = true;
+        _speedAfterStop = Vector3.zero;
     }
 
     private void DashState(bool state)
@@ -136,6 +156,27 @@ public class Dash : MonoBehaviour
 
         //Disable movement while dashing
         cmp_movement.allowMovement = !state;
+    }
+
+    public void InterruptDash()
+    {
+        InterruptDash(Vector3.zero);
+    }
+
+    public void InterruptDash(Vector3 speedAfterInterruption)
+    {
+        if (!_isDashing) return;
+
+        //If is still charging, interrupt the charge
+        if (_isCharging) StopCoroutine(_dashCharge);
+
+        //Allow movement when interrupted
+        DashState(false);
+
+        //Stop the player one frame when interrupted, to avoid sliding, delegating to fixed update because of physics
+        _tagToStop = true;
+        //Set the speed after the interruption
+        _speedAfterStop = speedAfterInterruption;
     }
 
     #endregion
