@@ -1,9 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerDash : MonoBehaviour
 {
+    [System.Serializable]
+    public struct DebugEvent
+    {
+        public string comment;
+        public DashEvent debugEvent;
+        public UnityEvent debugAction;
+        public DashVariable[] logKeys;
+    }
+
     [Header("Dash Parameters")]
     public float timeMultiplier;
     public float baseHeight;
@@ -25,6 +36,7 @@ public class PlayerDash : MonoBehaviour
     private float _dashCooldownTimer;
     private float _dashDurationTimer;
     public float timeToLand => _isDashing ? Mathf.Max(_dashDurationTimer / timeMultiplier, 0) : -1;
+    public float realDashCooldown => Mathf.Max(_dashCooldownTimer / timeMultiplier, 0);
 
     [Header("References")]
     public Collider cmp_collider;
@@ -33,6 +45,31 @@ public class PlayerDash : MonoBehaviour
 
     [Header("Debug")]
     public bool debug;
+    public enum DashEvent
+    {
+        StartCharge,
+        StartDash, //Also EndCharge
+        MidCurve, //When vertical speed goes to zero
+        Land,
+        CooldownRestart
+    }
+
+    public enum DashVariable
+    {
+        DashCooldown,
+        DashDuration,
+        IsDashing,
+        IsCharging,
+        TimeToLand,
+        RealCooldown,
+        Speed,
+        RealSpeed,
+        TargetPosition,
+        TagToStop,
+        SpeedAfterStop
+    }
+
+    public List<DebugEvent> debugEvents;
 
     private void Awake()
     {
@@ -99,10 +136,14 @@ public class PlayerDash : MonoBehaviour
         //Set Cooldown On Charge
         SetTimers(flightTime + chargeTimeSeconds * timeMultiplier);
 
+        CallDashEventDebug(DashEvent.StartCharge);
+
         //Wait for the charge time
         yield return new WaitForSeconds(chargeTimeSeconds);
 
         _isCharging = false;
+
+        CallDashEventDebug(DashEvent.StartDash);
     }
 
     private void SetDashSpeed()
@@ -112,7 +153,13 @@ public class PlayerDash : MonoBehaviour
 
         gravity *= _speed.y < 0 ? gravityMultiplierDownHill : gravityMultiplierUpHill;
 
+        Vector3 previousSpeed = _speed;
+
         _speed += Vector3.up * gravity * timeDelta;
+
+        bool midCurve = _speed.y <= 0 && previousSpeed.y > 0;
+
+        if(midCurve) CallDashEventDebug(DashEvent.MidCurve);
 
         //Set the speed to the rigidbody
         cmp_rb.velocity = _speed * timeMultiplier;
@@ -121,13 +168,17 @@ public class PlayerDash : MonoBehaviour
     #region Time Management
     private void WaitQueue(float timeDelta)
     {
-        if (_dashCooldownTimer > 0) _dashCooldownTimer -= timeDelta;
+        if (_dashCooldownTimer > 0)
+        {
+            _dashCooldownTimer -= timeDelta;
+            if(_dashCooldownTimer <= 0) CallDashEventDebug(DashEvent.CooldownRestart);
+        }
         if (_dashDurationTimer > 0) _dashDurationTimer -= timeDelta;
     }
 
     private void SetTimers(float dashDuration)
     {
-        _dashCooldownTimer = dashCooldownSeconds + dashDuration;
+        _dashCooldownTimer = dashCooldownSeconds * timeMultiplier + dashDuration;
 
         _dashDurationTimer = dashDuration;
     }
@@ -157,8 +208,9 @@ public class PlayerDash : MonoBehaviour
         _tagToStop = true;
         _speedAfterStop = Vector3.zero;
 
+        CallDashEventDebug(DashEvent.Land);
+
         //Process Landing
-        ProcessLanding(_targetPosition);
         _targetPosition = Vector3.zero;
     }
 
@@ -173,6 +225,11 @@ public class PlayerDash : MonoBehaviour
     public void InterruptDash()
     {
         InterruptDash(Vector3.zero);
+    }
+
+    public void FlipDash(float angle)
+    {
+        InterruptDash(Quaternion.Euler(new Vector3(0f, angle, 0f)) * _speed * .18f);
     }
 
     public void InterruptDash(Vector3 speedAfterInterruption)
@@ -195,15 +252,99 @@ public class PlayerDash : MonoBehaviour
 
     #region Debug
 
-    private void ProcessLanding(Vector3 position)
+    private string VariableLog(DashVariable key)
+    {
+        switch(key)
+        {
+            case DashVariable.DashCooldown:
+                return $"Dash Cooldown > {_dashCooldownTimer} altered seconds left";
+            case DashVariable.DashDuration:
+                return $"Dash Duration > {_dashDurationTimer} altered seconds left";
+            case DashVariable.IsDashing:
+                return $"Is Dashing > {YesOrNo(_isDashing)}";     
+            case DashVariable.IsCharging:
+                return $"Is Charging > {YesOrNo(isCharging)}";              
+            case DashVariable.TimeToLand:
+                return $"Time To Land > {timeToLand} seconds left";              
+            case DashVariable.RealCooldown:
+                return $"Real Dash Cooldown > {realDashCooldown} seconds left";
+            case DashVariable.Speed:
+                return $"Speed > XZ {new Vector3(_speed.x, 0f, _speed.z).magnitude} Y {_speed.y} virtual u/s";
+            case DashVariable.RealSpeed:
+                return $"Real Speed > XZ {new Vector3(_speed.x, 0f, _speed.z).magnitude * timeMultiplier} Y {_speed.y * timeMultiplier} real u/s";
+            case DashVariable.TargetPosition:
+                return $"Target Position > XYZ {_targetPosition} Distance XZ {Vector3.Distance(new Vector3(transform.position.x, _targetPosition.y, transform.position.z), _targetPosition)}";
+            case DashVariable.TagToStop:
+                return $"Tagged To Stop > {YesOrNo(_tagToStop)}";
+            case DashVariable.SpeedAfterStop:
+                return $"Speed After Stop > {_speedAfterStop} real u/s";
+
+            default:
+                return $"Key {key} not found";
+        }
+
+        string YesOrNo(bool value)
+        {
+            return value ? "Yes" : "No";
+        }
+    }
+
+    private void LogVariables(DashEvent dashEvent, params DashVariable[] keys)
     {
         if(!debug) return;
 
-        Vector3 landingPosition = transform.position;
-        landingPosition.y = position.y;
-        float distance = Vector3.Distance(landingPosition, position);
-    
-        Debug.Log($"Landing at {landingPosition} {distance} units away of target in plane XZ");
+        string debugEventName;
+
+        switch (dashEvent)
+        {
+            case DashEvent.StartCharge:
+                debugEventName = "Start Charge";
+                break;
+            case DashEvent.StartDash:
+                debugEventName = "Start Dash";
+                break;
+            case DashEvent.MidCurve:
+                debugEventName = "Mid Curve";
+                break;
+            case DashEvent.Land:
+                debugEventName = "Land";
+                break;
+            case DashEvent.CooldownRestart:
+                debugEventName = "Cooldown Restart";
+                break;
+
+            default:
+                debugEventName = "Unknown";
+                break;
+        }
+
+        string log = $"Player Dash > {debugEventName} > ";
+
+        for(int i = 0; i < keys.Length; i++)
+        {
+            DashVariable key = keys[i];
+            Debug.Log(log + VariableLog(key));
+        }
+    }
+
+    private List<DebugEvent> FindAllDebugEvents(DashEvent dashEvent)
+    {
+        return debugEvents.FindAll(debugEvents => debugEvents.debugEvent == dashEvent);
+    }
+
+    private void CallDashEventDebug(DashEvent dashEvent)
+    {
+        if (!debug) return;
+
+        List<DebugEvent> debugEvents = FindAllDebugEvents(dashEvent);
+
+        foreach (DebugEvent debugEvent in debugEvents)
+        {
+            Debug.Log(debugEvent.comment);
+
+            if(debugEvent.debugAction != null) debugEvent.debugAction.Invoke();
+            LogVariables(debugEvent.debugEvent, debugEvent.logKeys);
+        }
     }
 
     #endregion
