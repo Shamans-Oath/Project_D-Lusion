@@ -12,9 +12,15 @@ public class PlayerView : MonoBehaviour
     float emissionIntensity;
     public float lerpDuration;
 
+    public SkinnedMeshRenderer cmp_smr;
+    public float blendLerpDuration;
+
+    public RagdolSetter cmp_ragdoll;
+
     // Start is called before the first frame update
     void Start()
     {
+        //cmp_smr = GetComponent<SkinnedMeshRenderer>();
         _cmp_controller = gameObject.GetComponent<PlayerController>();
         _cmp_controller.cmp_life.HealthGain += UpdateHealthOnHeal;
         _cmp_controller.cmp_life.HealthLose += UpdateHealthOnLoss;
@@ -32,12 +38,48 @@ public class PlayerView : MonoBehaviour
         {
             _cmp_controller.cmp_life.GainHealth(10);
         }
+
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            UpdateBlendShape();
+        }  
     }
 
-    public void AnimatorUpdater()
+    public void ActivateRagdoll()
+    {
+        cmp_ragdoll.RagdollSetActive(true);
+    }
+
+
+    public void DeactivateRagdoll()
+    {
+        cmp_ragdoll.RagdollSetActive(false);
+    }
+
+    public void AnimatorSetBoolTrue(string name)
+    {
+        cmp_anim.SetBool(name, true);
+    }
+    public void AnimatorSetBoolFalse(string name)
+    {
+        cmp_anim.SetBool(name, false);
+    }
+
+    public void AnimatorSetFloat(string parameter, float value)
+    {
+        cmp_anim.SetFloat(parameter, value);
+    }
+
+    public void PlayAnimation(string name)
+    {
+        cmp_anim.Play(name);
+    }
+
+    /*public void AnimatorUpdater()
     {
         cmp_anim.SetFloat("Blend",_cmp_controller.currentFurymeter);
-    }
+    }*/
 
     public void UpdateHealthOnHeal()
     {
@@ -45,7 +87,7 @@ public class PlayerView : MonoBehaviour
 
         for (int i = 0; i < tatooMaterials.Length; i++)
         {
-            if (_cmp_controller.cmp_life.currentHealth >= _cmp_controller.maxHealth * (percentageDivision * i))
+            if (_cmp_controller.currentHealth >= _cmp_controller.maxHealth * (percentageDivision * i))
             {
                 StartCoroutine(emissionChange(i, 1));
 
@@ -63,7 +105,7 @@ public class PlayerView : MonoBehaviour
 
         for (int i = tatooMaterials.Length - 1; i >= 0; i--)
         {
-            if (_cmp_controller.cmp_life.currentHealth < _cmp_controller.maxHealth * (percentageDivision * i))
+            if (_cmp_controller.currentHealth <= _cmp_controller.maxHealth * (percentageDivision * i))
             {
                 StartCoroutine(emissionChange(i, 0));
             }
@@ -84,7 +126,7 @@ public class PlayerView : MonoBehaviour
             while (true)
             {
                 yield return null;
-                emissionIntensity = Mathf.Lerp(5, -10, t / lerpDuration);
+                emissionIntensity = Mathf.Lerp(5, -10, t / blendLerpDuration);
                 tatooMaterials[materialIndex].material.SetColor("_EmissionColor", Color.green * emissionIntensity);
 
                 t += Time.deltaTime;
@@ -116,6 +158,36 @@ public class PlayerView : MonoBehaviour
             Debug.Log("Esta corrutina solo acepta valores de 0 y 1, 0 para apagar el material y 1 para encederlo");
             StopCoroutine("emissionChange");
         }
+    }
+
+    public void UpdateBlendShape()
+    {
+        if(_cmp_controller.currentFurymeter == 0 || _cmp_controller.currentFurymeter == 0.25f || _cmp_controller.currentFurymeter == 0.5f || _cmp_controller.currentFurymeter == 0.75f || _cmp_controller.currentFurymeter == 1)
+        {
+            StopCoroutine("blendShapeLerp");
+            StartCoroutine(blendShapeLerp(_cmp_controller.currentFurymeter * 100));
+        }
+    }
+
+    public IEnumerator blendShapeLerp(float targetValue)
+    {
+        float t = 0;
+
+        float currentWeight = cmp_smr.GetBlendShapeWeight(0);
+                
+        while (true)
+        {
+            yield return null;
+            currentWeight = Mathf.Lerp(currentWeight, targetValue, t / lerpDuration);
+            cmp_smr.SetBlendShapeWeight(0, currentWeight);
+
+            t += Time.deltaTime;
+
+            if (t > lerpDuration)
+            {
+                break;
+            }
+        }        
     }
 
     void OnDisable()
