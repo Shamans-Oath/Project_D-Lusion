@@ -4,43 +4,51 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-    public float maxDistance = 0.5f;
-    public float offSet;
+    [Header("Gravity")]
     public float gravity;
+
+    [Header("Ground Check")]
+    public LayerMask groundLayer;
+    public Vector3 feetSize;
+    public Vector3 offset;
+    [SerializeField] private bool _isGrounded;
+    public bool isGrounded { get { return _isGrounded; } }
+
+    [Header("References")]
     public Rigidbody cmp_rb;
-    public Vector3 boxSize;
-    public LayerMask layerMask;
-    public bool isGrounded { get; private set; }
-    // Start is called before the first frame update
-    void Start()
+    public Collider cmp_collider;
+
+    private void Awake()
     {
-        
+        if (cmp_rb == false && gameObject.GetComponent<Rigidbody>()) cmp_rb = gameObject.GetComponent<Rigidbody>();
+        if (cmp_collider == false && gameObject.GetComponent<Collider>()) cmp_collider = gameObject.GetComponent<Collider>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ApplyGravity(float multiplier)
     {
-        
+        ApplyGravity(Vector3.up, multiplier);
     }
 
-    public void ApplyGravity(float apliedGravity)
+    public void ApplyGravity(Vector3 direction, float multiplier)
     {
-        if (!IsGrounded())
-            cmp_rb.AddForce(new Vector2(0, -apliedGravity), ForceMode.Force);
+        if (IsGrounded()) return;
+
+        cmp_rb.AddForce(-direction * gravity * multiplier, ForceMode.VelocityChange);
     }
 
     public bool IsGrounded()
     {
-        isGrounded = Physics.BoxCast(new Vector3(transform.position.x, transform.position.y + offSet, transform.position.z), boxSize, -transform.up, transform.rotation, maxDistance, layerMask);
+        Vector3 origin = transform.position + offset - feetSize.y / 2 * transform.up;
 
-        return isGrounded;
+        _isGrounded = Physics.OverlapBox(origin, feetSize / 2, transform.rotation, groundLayer).Length > 0;
+
+        return _isGrounded;
     }
 
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
 
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.green;
-
-    //    Gizmos.DrawWireCube(transform.position - transform.up * maxDistance, boxSize);    
-    //}
+        Gizmos.DrawWireCube(transform.position + offset - feetSize.y / 2 * transform.up, feetSize);
+    }
 }

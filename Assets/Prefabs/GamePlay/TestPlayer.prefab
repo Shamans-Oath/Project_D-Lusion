@@ -155,6 +155,11 @@ GameObject:
   - component: {fileID: 5557597068020745307}
   - component: {fileID: 8578116982879951112}
   - component: {fileID: 2665138634341200758}
+  - component: {fileID: 3163518207581144454}
+  - component: {fileID: 6572936864209037680}
+  - component: {fileID: 6436765680565511185}
+  - component: {fileID: 1243138648325589810}
+  - component: {fileID: 7131047892913605349}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -219,11 +224,17 @@ MonoBehaviour:
   furymeterLossRate: 1
   currentFurymeter: 0
   maxHealth: 100
+  currentHealth: 0
   cmp_attackController: {fileID: 0}
   cmp_move: {fileID: 0}
   cmp_gravity: {fileID: 0}
   cmp_jump: {fileID: 0}
   cmp_life: {fileID: 0}
+  cmp_dash: {fileID: 0}
+  cmp_rotation: {fileID: 0}
+  cmp_drag: {fileID: 0}
+  cmp_slope: {fileID: 0}
+  cmp_ladder: {fileID: 0}
 --- !u!114 &8877314205788633406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,10 +266,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94673fcedc4825498222144c18451bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowMovement: 1
-  rotationSpeed: 5
-  speed: 5
+  maxSpeed: 6
+  acceleration: 5
+  _allowMovement: 1
   playerCamera: {fileID: 0}
+  cmp_rb: {fileID: 0}
+  cmp_slope: {fileID: 0}
+  cmp_ladder: {fileID: 0}
 --- !u!136 &3246886364620360676
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -304,7 +318,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -335,14 +349,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da2b2b0edcb2dc042b7c99aff713c11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 1
-  offSet: 0.2
-  gravity: 20
-  cmp_rb: {fileID: 355923020120665639}
-  boxSize: {x: 0.8, y: 0.2, z: 0.8}
-  layerMask:
+  gravity: 25
+  groundLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
+  feetSize: {x: 0.5, y: 0.2, z: 0.75}
+  offset: {x: 0, y: 0, z: 0}
+  _isGrounded: 0
+  cmp_rb: {fileID: 355923020120665639}
+  cmp_collider: {fileID: 3246886364620360676}
 --- !u!114 &5557597068020745307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +409,163 @@ MonoBehaviour:
   - {fileID: 3246886364620360676}
   cmp_normalRB:
   - {fileID: 355923020120665639}
+--- !u!114 &3163518207581144454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291cace32f34ac545aa54bb4fa9a2e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeMultiplier: 1
+  baseHeight: 3
+  gravityMultiplierUpHill: 2
+  gravityMultiplierDownHill: 5
+  chargeTimeSeconds: 0.5
+  dashCooldownSeconds: 1
+  cmp_collider: {fileID: 0}
+  cmp_rb: {fileID: 0}
+  cmp_movement: {fileID: 0}
+  cmp_gravity: {fileID: 0}
+  debug: 1
+  debugEvents:
+  - comment: ----LAND----
+    debugEvent: 3
+    debugAction:
+      m_PersistentCalls:
+        m_Calls: []
+    logKeys: 08000000
+--- !u!114 &6572936864209037680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47199ecbb0234a4f8b71cbd03fdfe46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startRotationSpeed: 0
+  maxRotationSpeed: 15
+  rotationAcceleration: 5
+  _rotationAngularSpeed: 0
+  rotationSpeedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.3
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _isRotating: 0
+  playerCamera: {fileID: 0}
+  cmp_movement: {fileID: 0}
+--- !u!114 &6436765680565511185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041a2f8c125161e43970270f499e8589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundDrag: 15
+  airDrag: 5
+  cmp_move: {fileID: 0}
+  cmp_rb: {fileID: 0}
+  cmp_gravity: {fileID: 0}
+  cmp_dash: {fileID: 0}
+  cmp_slope: {fileID: 0}
+  cmp_ladder: {fileID: 0}
+--- !u!114 &1243138648325589810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad19e37adfe2b92448cbc1ecd92919ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraDistance: 0.15
+  slopeLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  maxSlopeAngle: 45
+  _onSlope: 0
+--- !u!114 &7131047892913605349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368db0179a4a6e744924b2ada3ca5a47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepHeight: 0.25
+  stepDepth: 0.15
+  stepDistance: 0.75
+  stepSize: {x: 0.2, y: 0.2, z: 0.2}
+  stepCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: -0.08206491
+      outSlope: -0.08206491
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16164668
+    - serializedVersion: 3
+      time: 1
+      value: 0.65
+      inSlope: 1.4859328
+      outSlope: 1.4859328
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07325381
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _onStep: 0
+  timeToStep: 0.2
+  _stepTimer: 0
+  cmp_slope: {fileID: 0}
+  cmp_move: {fileID: 0}
+  cmp_collider: {fileID: 0}
 --- !u!1 &373831292614539953
 GameObject:
   m_ObjectHideFlags: 0

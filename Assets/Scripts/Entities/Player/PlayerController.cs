@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     public Jump cmp_jump;
     public LifeClass cmp_life;
     public PlayerDash cmp_dash;
+    public PlayerRotation cmp_rotation;
+    public Drag cmp_drag;
+    public Slope cmp_slope;
+    public LadderStep cmp_ladder;
 
     private Vector2 direction;
     private void Awake()
@@ -40,7 +44,10 @@ public class PlayerController : MonoBehaviour
         if (cmp_move == false && gameObject.GetComponent<PlayerMovement>()) cmp_move = gameObject.GetComponent<PlayerMovement>();
         if (cmp_attackController == false && gameObject.GetComponent<AttackController>()) cmp_attackController = gameObject.GetComponent <AttackController>();
         if (cmp_dash == false && gameObject.GetComponent<PlayerDash>()) cmp_dash = gameObject.GetComponent<PlayerDash>();
-
+        if (cmp_rotation == false && gameObject.GetComponent<PlayerRotation>()) cmp_rotation = gameObject.GetComponent<PlayerRotation>();
+        if (cmp_drag == false && gameObject.GetComponent<Drag>()) cmp_drag = gameObject.GetComponent<Drag>();
+        if (cmp_slope == false && gameObject.GetComponent<Slope>()) cmp_slope = gameObject.GetComponent<Slope>();
+        if (cmp_ladder == false && gameObject.GetComponent<LadderStep>()) cmp_ladder = gameObject.GetComponent<LadderStep>();
 
         if (GameManager.gameInputSystem == null) GameManager.SetInputSystem();
 
@@ -96,18 +103,33 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!cmp_dash.isDashing) cmp_gravity.ApplyGravity(cmp_gravity.gravity);
+        cmp_ladder.OnStep(new Vector2(direction.y, direction.x));
+        cmp_slope.OnSlope();
+
+        if (!cmp_dash.isDashing && !cmp_ladder.onStep)
+        {
+            if (cmp_slope.onSlope) cmp_gravity.ApplyGravity(cmp_slope.slopeNormal, Time.fixedDeltaTime);
+            else cmp_gravity.ApplyGravity(Time.fixedDeltaTime);
+        }
         Move();
     }
 
     private void Move()
     {
-        if (cmp_gravity.IsGrounded() == false) return;
-        if (cmp_move.speed != 0 && direction != Vector2.zero)
+        if (!cmp_dash.isDashing)
+        {
+            cmp_drag.ApplyDrag(new Vector2(direction.y, direction.x));
+            cmp_move.LimitSpeed();
+        }
+
+        if (!cmp_gravity.isGrounded && !cmp_ladder.onStep) return;
+
+        if (cmp_move.acceleration != 0 && direction != Vector2.zero)
         {
             cmp_move.Movement(direction.y, direction.x);
-            cmp_move.Rotate(direction.y, direction.x);
         }
+
+        cmp_rotation.Rotate(new Vector2(direction.y, direction.x));
     }
 
     private void Attack()

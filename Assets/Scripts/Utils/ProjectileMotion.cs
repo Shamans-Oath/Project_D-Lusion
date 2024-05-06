@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ProjectileMotion : MonoBehaviour
 {
-    public static Vector3 GetStartSpeed(Vector3 direction, float height, float horizontalSpeed, float gravityMultiplier)
+    public static Vector3 GetStartSpeed(Vector3 direction, float height, float horizontalSpeed, float gravity)
     {
-        float gravity = Mathf.Abs(Physics.gravity.y) * gravityMultiplier;
-
         float verticalComponent = Mathf.Sqrt(2 * gravity * height);
 
         Vector3 speed = direction.normalized * horizontalSpeed + Vector3.up * verticalComponent;
@@ -15,17 +13,10 @@ public class ProjectileMotion : MonoBehaviour
         return speed;
     }
 
-    public static float GetFlightTime(float height, float gravityMultiplier)
+    public static float GetFlightTime(float height, float gravity)
     {
-        float gravity = Mathf.Abs(Physics.gravity.y) * gravityMultiplier;
-
         float time = Mathf.Sqrt(2 * height / gravity);
 
         return time;
-    }
-
-    public static float GetFlightTime(float height)
-    {
-        return GetFlightTime(height, 1f);
     }
 }

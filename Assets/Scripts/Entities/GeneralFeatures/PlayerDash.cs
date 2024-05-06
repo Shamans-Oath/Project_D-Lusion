@@ -42,6 +42,7 @@ public class PlayerDash : MonoBehaviour
     public Collider cmp_collider;
     public Rigidbody cmp_rb;
     public PlayerMovement cmp_movement;
+    public Gravity cmp_gravity;
 
     [Header("Debug")]
     public bool debug;
@@ -76,21 +77,22 @@ public class PlayerDash : MonoBehaviour
         if (cmp_rb == false) cmp_rb = GetComponent<Rigidbody>();
         if (cmp_movement == false) cmp_movement = GetComponent<PlayerMovement>();
         if (cmp_collider == false) cmp_collider = GetComponent<Collider>();
+        if (cmp_gravity == false) cmp_gravity = GetComponent<Gravity>();
     }
 
     private void Update()
     {
         //Decrease Dash Timers When Cooldown is Active
         WaitQueue(Time.deltaTime * timeMultiplier);
+
+        if (_isDashing && !_isCharging)
+        {
+            DashMovement();
+        }
     }
 
     private void FixedUpdate()
     {
-        if(_isDashing && !_isCharging)
-        {
-            SetDashSpeed();
-        }
-
         if (_tagToStop)
         {
             cmp_rb.velocity = _speedAfterStop;
@@ -114,24 +116,27 @@ public class PlayerDash : MonoBehaviour
         _isCharging = true;
 
         //Start Calculations
+        float gravity = cmp_gravity.gravity;
         Vector3 startPosition = transform.position;
-        Vector3 targetPosition = position + Vector3.up * cmp_collider.bounds.extents.y;
+        Vector3 targetPosition = position;
         Vector3 direction = targetPosition - startPosition;
         direction.y = 0f;
 
         float height = baseHeight + (targetPosition - startPosition).y;
 
-        float flightTime = ProjectileMotion.GetFlightTime(height, gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(baseHeight, gravityMultiplierDownHill);
+        float flightTime = ProjectileMotion.GetFlightTime(height, gravity * gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(baseHeight, gravity * gravityMultiplierDownHill);
 
         float length = direction.magnitude;
 
         float newHorizontalSpeed = length / flightTime;
 
         //Get the speed to reach the target position
-        _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed, gravityMultiplierUpHill);
+        _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed, gravity * gravityMultiplierUpHill);
 
         //Disable movement while dashing and charging
         DashState(true);
+
+        cmp_rb.velocity = Vector3.zero;
 
         //Set Cooldown On Charge
         SetTimers(flightTime + chargeTimeSeconds * timeMultiplier);
@@ -146,10 +151,11 @@ public class PlayerDash : MonoBehaviour
         CallDashEventDebug(DashEvent.StartDash);
     }
 
-    private void SetDashSpeed()
+    private void DashMovement()
     {
-        float timeDelta = Time.fixedDeltaTime * timeMultiplier;
-        float gravity = Physics.gravity.y;
+        float timeDelta = Time.deltaTime * timeMultiplier;
+
+        float gravity = -Mathf.Abs(cmp_gravity.gravity);
 
         gravity *= _speed.y < 0 ? gravityMultiplierDownHill : gravityMultiplierUpHill;
 
@@ -162,7 +168,9 @@ public class PlayerDash : MonoBehaviour
         if(midCurve) CallDashEventDebug(DashEvent.MidCurve);
 
         //Set the speed to the rigidbody
-        cmp_rb.velocity = _speed * timeMultiplier;
+        Vector3 realSpeed = _speed * timeMultiplier;
+
+        transform.position += realSpeed * Time.deltaTime;
     }
 
     #region Time Management
@@ -219,7 +227,7 @@ public class PlayerDash : MonoBehaviour
         _isDashing = state;
 
         //Disable movement while dashing
-        cmp_movement.allowMovement = !state;
+        cmp_movement.ToggleMovement(!state);
     }
 
     public void InterruptDash()
