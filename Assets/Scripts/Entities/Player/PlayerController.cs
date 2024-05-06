@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
             else cmp_gravity.ApplyGravity(Time.fixedDeltaTime);
         }
         Move();
+
+        cmp_gravity.LimitVerticalSpeed();
     }
 
     private void Move()

@@ -6,6 +6,7 @@ public class Gravity : MonoBehaviour
 {
     [Header("Gravity")]
     public float gravity;
+    public float maxVerticalSpeed;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
@@ -34,6 +35,14 @@ public class Gravity : MonoBehaviour
         if (IsGrounded()) return;
 
         cmp_rb.AddForce(-direction * gravity * multiplier, ForceMode.VelocityChange);
+    }
+
+    public void LimitVerticalSpeed()
+    {
+        if(Mathf.Abs(cmp_rb.velocity.y) > maxVerticalSpeed)
+        {
+            cmp_rb.velocity = new Vector3(cmp_rb.velocity.x, maxVerticalSpeed * Mathf.Sign(cmp_rb.velocity.y), cmp_rb.velocity.z);
+        }
     }
 
     public bool IsGrounded()
