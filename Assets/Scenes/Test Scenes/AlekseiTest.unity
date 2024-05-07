@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70600822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06144646, y: -0.004924524, z: -0.0003031712, w: 0.9980982}
+  m_LocalRotation: {x: -0.061446305, y: -0.005319959, z: -0.00032751536, w: 0.99809617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1116,10 +1116,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94673fcedc4825498222144c18451bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowMovement: 1
-  rotationSpeed: 5
-  speed: 0
+  maxSpeed: 0
+  acceleration: 0
+  _allowMovement: 1
   playerCamera: {fileID: 0}
+  cmp_rb: {fileID: 0}
+  cmp_slope: {fileID: 0}
+  cmp_ladder: {fileID: 0}
 --- !u!54 &472062308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1400,7 +1403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634950427}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06144646, y: -0.004924524, z: -0.0003031712, w: 0.9980982}
+  m_LocalRotation: {x: -0.061446305, y: -0.005319959, z: -0.00032751536, w: 0.99809617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2150,6 +2153,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2665138634341200758, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+      propertyPath: cmp_anim
+      value: 
+      objectReference: {fileID: 1456512573}
     - target: {fileID: 5750635313050069094, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2357,7 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ccb7756a8aca141b578e875133c94c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cmp_anim: {fileID: 0}
+  cmp_anim: {fileID: 1456512573}
   tatooMaterials:
   - {fileID: 1483991253}
   - {fileID: 329753428}
@@ -2367,7 +2374,7 @@ MonoBehaviour:
   lerpDuration: 2
   cmp_smr: {fileID: 1299358536}
   blendLerpDuration: 1
-  cmp_ragdoll: {fileID: 0}
+  cmp_ragdoll: {fileID: 1456512566}
 --- !u!54 &1456512553 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 355923020120665639, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
@@ -2410,8 +2417,25 @@ MonoBehaviour:
   cmp_collider: {fileID: 1456512554}
   cmp_rb: {fileID: 1456512553}
   cmp_movement: {fileID: 1456512555}
+  cmp_gravity: {fileID: 0}
   debug: 0
   debugEvents: []
+--- !u!114 &1456512566 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2665138634341200758, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+  m_PrefabInstance: {fileID: 1344777263}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456512534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e9dbbdfe1cdca4fa18c357d11d3141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1456512573 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6893883958289241529, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+  m_PrefabInstance: {fileID: 1344777263}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1479186867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2780,7 +2804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617957342}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06144646, y: -0.004924524, z: -0.0003031712, w: 0.9980982}
+  m_LocalRotation: {x: -0.061446305, y: -0.005319959, z: -0.00032751536, w: 0.99809617}
   m_LocalPosition: {x: 0.8292244, y: 0.78, z: 3.0149488}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3729,7 +3753,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129322142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.061446477, y: -0.00492454, z: -0.00030317222, w: 0.9980982}
+  m_LocalRotation: {x: -0.061446358, y: -0.0053199497, z: -0.00032751507, w: 0.99809617}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

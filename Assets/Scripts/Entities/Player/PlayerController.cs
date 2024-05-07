@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public Slope cmp_slope;
     public LadderStep cmp_ladder;
 
-    private Vector2 direction;
+    [HideInInspector]
+    public Vector2 direction;
     private void Awake()
     {
         if (cmp_life == false && gameObject.GetComponent<LifeClass>()) cmp_life = gameObject.GetComponent<LifeClass>();

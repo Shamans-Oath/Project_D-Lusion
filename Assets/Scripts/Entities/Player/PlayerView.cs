@@ -39,11 +39,30 @@ public class PlayerView : MonoBehaviour
             _cmp_controller.cmp_life.GainHealth(10);
         }
 
-
         if (Input.GetMouseButtonDown(2))
         {
             UpdateBlendShape();
         }  
+
+        if(Input.GetMouseButtonDown(3))
+        {
+            ActivateRagdoll();
+        }
+
+        if (Input.GetMouseButtonDown(4))
+        {
+            DeactivateRagdoll();
+        }
+
+        /*if(_cmp_controller.cmp_move.cmp_rb.velocity.y > 0)
+        {
+            AnimatorSetFloat("UpSpd", _cmp_controller.cmp_move.cmp_rb.velocity.y);
+        }*/
+
+
+        cmp_anim.SetBool("Ground", _cmp_controller.cmp_gravity.isGrounded);
+        AnimatorSetFloat("Blend", _cmp_controller.currentFurymeter);
+        AnimatorSetFloat("Speed", _cmp_controller.direction.x + _cmp_controller.direction.y);
     }
 
     public void ActivateRagdoll()
@@ -81,13 +100,14 @@ public class PlayerView : MonoBehaviour
         cmp_anim.SetFloat("Blend",_cmp_controller.currentFurymeter);
     }*/
 
+    //Estas funciones todavia no estan listas, usar solo la corutina de emissionChange
     public void UpdateHealthOnHeal()
     {
         float percentageDivision = 1 / tatooMaterials.Length;
 
         for (int i = 0; i < tatooMaterials.Length; i++)
         {
-            if (_cmp_controller.currentHealth >= _cmp_controller.maxHealth * (percentageDivision * i))
+            if (_cmp_controller.cmp_life.currentHealth >= _cmp_controller.cmp_life.maxHealth * (percentageDivision * (i + 1)))
             {
                 StartCoroutine(emissionChange(i, 1));
 
@@ -105,7 +125,7 @@ public class PlayerView : MonoBehaviour
 
         for (int i = tatooMaterials.Length - 1; i >= 0; i--)
         {
-            if (_cmp_controller.currentHealth <= _cmp_controller.maxHealth * (percentageDivision * i))
+            if (_cmp_controller.cmp_life.currentHealth <= _cmp_controller.cmp_life.maxHealth * (percentageDivision * i))
             {
                 StartCoroutine(emissionChange(i, 0));
             }
@@ -126,8 +146,11 @@ public class PlayerView : MonoBehaviour
             while (true)
             {
                 yield return null;
-                emissionIntensity = Mathf.Lerp(5, -10, t / blendLerpDuration);
-                tatooMaterials[materialIndex].material.SetColor("_EmissionColor", Color.green * emissionIntensity);
+                emissionIntensity = Mathf.Lerp(5, -10, t / lerpDuration);
+
+                float adjustedIntensity = emissionIntensity - (0.4169f);
+                
+                tatooMaterials[materialIndex].material.SetColor("_EmissionColor", new Color(0, 0.75f, 0.01f) * Mathf.Pow(2, adjustedIntensity));
 
                 t += Time.deltaTime;
 
@@ -143,7 +166,10 @@ public class PlayerView : MonoBehaviour
             {
                 yield return null;
                 emissionIntensity = Mathf.Lerp(-10, 5, t / lerpDuration);
-                tatooMaterials[materialIndex].material.SetColor("_EmissionColor", Color.green * emissionIntensity);
+
+                float adjustedIntensity = emissionIntensity - (0.4169f);
+                
+                tatooMaterials[materialIndex].material.SetColor("_EmissionColor", new Color(0, 0.75f, 0.01f) * Mathf.Pow(2, adjustedIntensity));
 
                 t += Time.deltaTime;
 
