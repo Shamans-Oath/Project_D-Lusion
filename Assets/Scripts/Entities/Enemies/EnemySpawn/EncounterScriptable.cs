@@ -5,13 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EncounterData", menuName = "Enemies/EncounterData", order = 1)]
 public class EncounterScriptable : ScriptableObject
 {
-    public WaveInfo[] waves;
+    public Waves[] waves;
     public float timeBetweenWaves;
+}
+
+[System.Serializable]
+public class Waves
+{
+    public WaveInfo[] waveInfo;
 }
 
 [System.Serializable]
 public class WaveInfo
 {
+    public int poolIndex;
     public string enemyName;
     public int numberOfEnemies;
 }

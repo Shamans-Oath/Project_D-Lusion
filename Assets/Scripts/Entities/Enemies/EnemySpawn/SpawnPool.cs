@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class SpawnPool : MonoBehaviour
 {
     public List<PoolableEnemies> poolList = new List<PoolableEnemies>();
-    public GameObject[] enemiesToPool;
+    public GameObject[] objectsToPool;
     
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class SpawnPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        /*if(Input.GetKeyDown(KeyCode.P))
         {
             UpdatePool(0, 5, "TestEnemy");
         }
@@ -37,64 +37,75 @@ public class SpawnPool : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.U))
         {
             UpdatePool(1, 7, "TestEnemy2");
-        }
+        }*/
     }
 
-    public void UpdatePool(int enemyIndex, int amountToPool, string enemyName)
+    public void UpdatePool(int objectIndex, int amountToPool, string objectName)
     {
         if (poolList.Count > 0)
         {
-            for (int i = 0; i < poolList.Count; i++)
-            {
-                if (poolList[i].listName == enemyName)
-                {
-                    int alreadyPooled = 0;
-
-                    for (int x = 0; x < poolList[i].pooledEnemies.Count; x++)
-                    {
-                        if (poolList[i].pooledEnemies[x].name == enemyName)
-                        {
-                            alreadyPooled++;
-                        }
-                    }
-
-                    GameObject tmp;
-                    for (int a = 0; a < amountToPool - alreadyPooled; a++)
-                    {
-                        tmp = Instantiate(enemiesToPool[enemyIndex]);
-                        tmp.name = enemyName;
-                        tmp.SetActive(false);
-                        poolList[i].pooledEnemies.Add(tmp);
-                    }
-                }
-                else if (i == poolList.Count - 1 && poolList[i].listName != enemyName)
-                {
-                    poolList.Add(new PoolableEnemies());
-                    poolList[i + 1].listName = enemyName;
-
-                    GameObject tmp;
-                    for (int z = 0; z < amountToPool; z++)
-                    {
-                        tmp = Instantiate(enemiesToPool[enemyIndex]);
-                        tmp.name = enemyName;
-                        tmp.SetActive(false);
-                        poolList[i + 1].pooledEnemies.Add(tmp);
-                    }
-                }
-            }
+            CheckList(objectIndex, amountToPool, objectName);
         }
         else
         {
             poolList.Add(new PoolableEnemies());
-            poolList[0].listName = enemyName;
+            poolList[0].listName = objectName;
 
             GameObject tmp;
             for (int z = 0; z < amountToPool; z++)
             {
-                tmp = Instantiate(enemiesToPool[enemyIndex]);
-                tmp.name = enemyName;
+                tmp = Instantiate(objectsToPool[objectIndex]);
+                tmp.name = objectName;                
                 tmp.SetActive(false);
+                DisableToggle disable = tmp.AddComponent<DisableToggle>();
                 poolList[0].pooledEnemies.Add(tmp);
+            }
+        }
+    }
+
+
+    public void CheckList(int objectIndex, int amountToPool, string objectName)
+    {
+        for (int i = 0; i < poolList.Count; i++)
+        {
+            if (poolList[i].listName == objectName)
+            {
+                int alreadyPooled = 0;
+
+                for (int x = 0; x < poolList[i].pooledEnemies.Count; x++)
+                {
+                    if (poolList[i].pooledEnemies[x].name == objectName)
+                    {
+                        alreadyPooled++;
+                    }
+                }
+
+                GameObject tmp;
+                for (int a = 0; a < amountToPool - alreadyPooled; a++)
+                {
+                    tmp = Instantiate(objectsToPool[objectIndex]);
+                    tmp.name = objectName;
+                    tmp.SetActive(false);
+                    DisableToggle disable = tmp.AddComponent<DisableToggle>();
+                    poolList[i].pooledEnemies.Add(tmp);
+                }
+
+                return;
+            }
+            else if (i == poolList.Count - 1 && poolList[i].listName != objectName)
+            {
+                poolList.Add(new PoolableEnemies());
+                poolList[i + 1].listName = objectName;
+
+                GameObject tmp;
+                for (int z = 0; z < amountToPool; z++)
+                {
+                    tmp = Instantiate(objectsToPool[objectIndex]);
+                    tmp.name = objectName;
+                    tmp.SetActive(false);
+                    DisableToggle disable = tmp.AddComponent<DisableToggle>();
+                    poolList[i + 1].pooledEnemies.Add(tmp);
+                }
             }
         }
     }
