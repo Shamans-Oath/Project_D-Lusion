@@ -11,7 +11,14 @@ public abstract class Controller : MonoBehaviour, IActivable
     protected bool active;
 
     [Header("Components")]
+    [SerializeField] private List<IFeatureSetup> additionalFeatures;
     public Dictionary<System.Type, IFeatureSetup> features;
+
+    [Header("Links")]
+    [SerializeField] protected List<Link> actionLinks;
+    public List<Link> ActionLinks { get { return actionLinks; } }
+    [SerializeField] protected List<Link> reactionLinks;
+    public List<Link> ReactionLinks { get { return reactionLinks; } }
 
     private void Awake()
     {
@@ -24,6 +31,7 @@ public abstract class Controller : MonoBehaviour, IActivable
         if (!active) return;
 
         UpdateFeatures();
+        UpdateLinks();
     }
 
     private void FixedUpdate()
@@ -31,12 +39,18 @@ public abstract class Controller : MonoBehaviour, IActivable
         if (!active) return;
 
         FixedUpdateFeatures();
+        FixedUpdateLinks();
     }
 
     public virtual void Setup()
     {
         settings.AssemblySettings();
         List<IFeatureSetup> featureList = new List<IFeatureSetup>(GetComponents<IFeatureSetup>());
+
+        additionalFeatures.ForEach(feature => {
+            if(!featureList.Contains(feature)) featureList.Add(feature);
+        });
+
         features = new Dictionary<System.Type, IFeatureSetup>();
 
         foreach (IFeatureSetup feature in featureList)
@@ -44,6 +58,9 @@ public abstract class Controller : MonoBehaviour, IActivable
             features.Add(feature.GetType(), feature);
             feature.SetupFeature(this);
         }
+
+        actionLinks = new List<Link>();
+        reactionLinks = new List<Link>();
     }
 
     public virtual void UpdateFeatures()
@@ -90,6 +107,40 @@ public abstract class Controller : MonoBehaviour, IActivable
         featureAction.FeatureAction(this);
     }
 
+    public void UpdateLinks()
+    {
+        foreach (Link link in actionLinks)
+        {
+            ILinkUpdate linkUpdate = link as ILinkUpdate;
+            if (linkUpdate == null) continue;
+            linkUpdate.RequestActorUpdate(this);
+        }
+
+        foreach (Link link in reactionLinks)
+        {
+            ILinkUpdate linkUpdate = link as ILinkUpdate;
+            if (linkUpdate == null) continue;
+            linkUpdate.RequestReactorUpdate(this);
+        }
+    }
+
+    public void FixedUpdateLinks()
+    {
+        foreach (Link link in actionLinks)
+        {
+            ILinkFixedUpdate linkFixedUpdate = link as ILinkFixedUpdate;
+            if (linkFixedUpdate == null) continue;
+            linkFixedUpdate.RequestActorFixedUpdate(this);
+        }
+
+        foreach (Link link in reactionLinks)
+        {
+            ILinkFixedUpdate linkFixedUpdate = link as ILinkFixedUpdate;
+            if (linkFixedUpdate == null) continue;
+            linkFixedUpdate.RequestReactorFixedUpdate(this);
+        }
+    }
+
     public bool GetActive()
     {
         return active;
@@ -104,6 +155,13 @@ public abstract class Controller : MonoBehaviour, IActivable
             IActivable activableFeature = feature as IActivable;
 
             if (activableFeature != null) activableFeature.ToggleActive(active && activableFeature.GetActive());
+        }
+
+        if(active) return;
+
+        foreach (Link link in actionLinks)
+        {
+            link.Unlink();
         }
     }
 }
