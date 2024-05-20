@@ -19,7 +19,8 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public bool onLadder { get; set; }
     //Combat
     public bool block { get; set; }
-    public bool dodge { get; set; }
+    public bool parry { get; set; }
+    public int attack { get; set; }
     //Furry
     public float furryCount { get; set; }
     //Living

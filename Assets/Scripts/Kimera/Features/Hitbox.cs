@@ -9,7 +9,7 @@ namespace Features
         //Configuration
         [Header("Settings")]
         public Settings settings;
-        [SerializeField] private Controller controller;
+        [SerializeField] protected Controller controller;
         //Control
         [Header("Control")]
         [SerializeField] private bool active;
@@ -17,7 +17,7 @@ namespace Features
         [Header("States")]
         [SerializeField] private Vector3 boxSize;
         [SerializeField] private Vector3 boxOffset;
-        [SerializeField] private List<string> tagsToInteract;
+        [SerializeField] protected List<string> tagsToInteract;
         //Properties
         //References
         //Componentes

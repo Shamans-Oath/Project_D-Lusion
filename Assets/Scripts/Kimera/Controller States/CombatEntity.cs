@@ -5,5 +5,6 @@ using UnityEngine;
 public interface CombatEntity
 {
     public bool block { get; set; }
-    public bool dodge { get; set; }
+    public bool parry { get; set; }
+    public int attack { get; set; }
 }

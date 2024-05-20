@@ -5,11 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Link
 {
+    protected Settings settings;
     [SerializeField] protected Controller actor;
     [SerializeField] protected Controller reactor;
 
-    public Link(Controller actor, Controller reactor)
+    public Link(Controller actor, Controller reactor, Settings settings)
     {
+        this.settings = settings;
         this.actor = actor;
         this.reactor = reactor;
 
