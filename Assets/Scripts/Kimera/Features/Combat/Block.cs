@@ -47,7 +47,14 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             if(parryTimer > 0) parryTimer -= Time.deltaTime;
+            else
+            {
+                parry = false;
+            }
             if (blockTimer > 0) blockTimer -= Time.deltaTime;
+            {
+                blockTimer = 0;
+            }
 
             if (!active) return;
 

@@ -10,8 +10,6 @@ namespace Features
     {
         public AnimationClip animationClip;
         public AttackSwing[] swings;
-        public AnimatorOverrideController overrideController;
-
 
         public void BuildAnimationEvents()
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup //Other channels
+    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -15,6 +15,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] private bool activeAttack;
+        [SerializeField] private Vector3 playerForward;
         public bool ActiveAttack { get => activeAttack; }
         [SerializeField] private AttackSwing actualAttack;
         //Properties
@@ -38,13 +39,21 @@ namespace Features
             ToggleActive(true);
         }
 
+        public void UpdateFeature(Controller controller)
+        {
+            if(!active) return;
+        
+            InputEntity inputEntity = controller as InputEntity;
+            if(inputEntity != null) playerForward = inputEntity.playerForward;
+        }
+
         public void StartAttackBox(AttackSwing attack)
         {
             if (!active || attack == null) return;
 
             actualAttack = attack;
             activeAttack = true;
-            attackBox.SetBox(attack.size, attack.offset, attack.movement, true);
+            attackBox.SetBox(attack.size, attack.offset, new Vector3(playerForward.x * attack.movement.x, attack.movement.y, playerForward.z * attack.movement.z), true);
             attackBox.SetAttack(attack.settings);
         }
 

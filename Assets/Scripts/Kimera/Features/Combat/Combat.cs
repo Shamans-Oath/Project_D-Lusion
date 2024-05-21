@@ -144,7 +144,7 @@ namespace Features
                 SetupAttack(attackQueue.Dequeue());
             } 
 
-            else if(attackTimer <= 0 && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
+            else if(attackTimer <= 0.3f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
             {
                 StopAttack();
             }
@@ -157,18 +157,17 @@ namespace Features
 
             actualAttack = attack;
             attackTimer = attack.animationClip.length;
-            cmp_animator.runtimeAnimatorController = attack.overrideController;
+            AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
+            animatorOverride["Box"] = attack.animationClip;
+            cmp_animator.runtimeAnimatorController = animatorOverride;
             cmp_animator.SetBool("Attack", true);
         }
 
         public void StartAttack(int i)
         {
+            if (!active || i < 0 || i >= possibleAttacks.Count) return;
 
-            if(!active || i < 0 || i >= possibleAttacks.Count) return;
-
-            if(actualAttack == null || !activeAttack) return;
-
-            Debug.Log(attackTimer);
+            if(actualAttack == null) return;
 
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i]);
         }
@@ -177,9 +176,7 @@ namespace Features
         {
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
 
-            if (actualAttack == null || !activeAttack) return;
-
-            Debug.Log(attackTimer);
+            if (actualAttack == null) return;
 
             possibleAttacks[i].EndAttackBox();
         }

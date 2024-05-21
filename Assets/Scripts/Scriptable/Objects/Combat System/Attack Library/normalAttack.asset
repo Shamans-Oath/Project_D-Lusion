@@ -15,11 +15,10 @@ MonoBehaviour:
   animationClip: {fileID: 7400000, guid: 4d1a49a19b353504c86212174dc6b556, type: 2}
   swings:
   - swingName: BoxPunch
-    size: {x: 0.2, y: 0.2, z: 0.2}
-    offset: {x: 0, y: 0, z: 0.1}
-    movement: {x: 0, y: 0, z: 5}
+    size: {x: 0.5, y: 0.5, z: 0.5}
+    offset: {x: 0, y: 0, z: 0.35}
+    movement: {x: 0, y: 0, z: 10}
     settings: {fileID: 0}
     duration: 1.7333335
-    start: 0.5708166
-    end: 1.058099
-  overrideController: {fileID: 22100000, guid: 3ea972cd205430a4093d4b8f52ae6f2e, type: 2}
+    start: 0.5777778
+    end: 1.2480001

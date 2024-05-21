@@ -36,7 +36,9 @@ namespace Features
                 }
             }
 
-            if (!reactorCombat.block && !reactorCombat.parry)
+            bool damaged = reactorCombat != null ? !reactorCombat.block && !reactorCombat.parry : true;
+
+            if (damaged)
             {
                 reactorLife.Health(-damage);
                 if(furry != null) furry.IncreaseFurryCount();
