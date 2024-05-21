@@ -1,3 +1,4 @@
+using Features;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +30,19 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     // Stun
     public bool isStunned { get; set; }
 
+    [Header("Components")]
+    public Transform dashPoint;
+
+    private void OnEnable()
+    {
+        SearchFeature<Life>().OnDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+        SearchFeature<Life>().OnDeath -= OnDeath;
+    }
+
     public override void Setup()
     {
         playerCamera = Camera.main;
@@ -38,6 +52,39 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        inputDirection = context.ReadValue<Vector2>();
+        var direction = context.ReadValue<Vector2>();
+        inputDirection = new Vector2(direction.y, direction.x);
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed) CallFeature<Features.Jump>();
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.performed) CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+    }
+
+    public void OnDeath()
+    {
+        CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+        ToggleActive(false);
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "normal", Setting.ValueType.String));
+    }
+
+    public void OnSpecialAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "special", Setting.ValueType.String));
+    }
+
+    public void OnBlock(InputAction.CallbackContext context)
+    {
+        if (context.performed) CallFeature<Block>(new Setting("toggleBlock", true, Setting.ValueType.Bool));
+        if (context.canceled) CallFeature<Block>(new Setting("toggleBlock", false, Setting.ValueType.Bool));
     }
 }

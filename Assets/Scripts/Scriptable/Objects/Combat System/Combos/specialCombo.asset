@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313693a6a351ece4a85ec31d778cd8da, type: 3}
-  m_Name: New Attack Preset
+  m_Name: specialCombo
   m_EditorClassIdentifier: 
-  attackChain: []
-  comboCondition: 
-  interruptions: []
+  attackChain:
+  - {fileID: 11400000, guid: eae3715fd58bcc542ba7af1bbc54d33f, type: 2}
+  condition: special
+  interruptions:
+  - condition: normal
+    nextCombo: {fileID: 11400000, guid: d3228fa62621844469ba78ab3f60bf41, type: 2}

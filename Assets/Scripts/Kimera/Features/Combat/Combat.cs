@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 namespace Features
 {
-    public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
+    public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, ISubcontroller //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -21,14 +22,14 @@ namespace Features
         [SerializeField] private Queue<AttackPreset> attackQueue;
         [SerializeField] private ComboPreset actualCombo;
         //States / Time Management
-        private float attackTimer;
+        [SerializeField] private float attackTimer;
         //Properties
         [Header("Properties")]
         public List<ComboPreset> defaultCombos;
         public int attack;
         //References
         [Header("References")]
-        public CombatAnimatorPlayer combatAnimator;
+        public CombatAnimator combatAnimator;
         public List<Attack> possibleAttacks;
         public ISubcontroller movement;
         [Header("Components")]
@@ -41,11 +42,11 @@ namespace Features
             attackQueue = new Queue<AttackPreset>();
 
             //Setup References
-            combatAnimator = new CombatAnimatorPlayer();
-            possibleAttacks = new List<Attack>(GetComponents<Attack>());
+            combatAnimator = GetComponent<CombatAnimator>();
 
             //Setup Components
             cmp_animator = GetComponent<Animator>();
+            movement = GetComponent<Movement>() as ISubcontroller;
         }
 
         public void SetupFeature(Controller controller)
@@ -72,7 +73,7 @@ namespace Features
 
         public void StartCombo(List<string> conditions)
         {
-            if (active) return;
+            if (!active) return;
 
             if (conditions.Contains("stop"))
             {
@@ -97,7 +98,6 @@ namespace Features
                         break;
                     }
                 }
-                return;
             } else if (actualCombo.interruptions.Length > 0)
             {
                 for (int i = 0; i < actualCombo.interruptions.Length; i++)
@@ -127,7 +127,7 @@ namespace Features
             if(attackTimer > 0) attackTimer -= Time.deltaTime;
 
             if (!active) return;
-            
+
             StartCombo(combatAnimator.GetActiveConditions());
 
             CombatEntity combat = controller as CombatEntity;
@@ -142,8 +142,9 @@ namespace Features
             if(!activeAttack && attackTimer <= 0 && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
-            }
-            else
+            } 
+
+            else if(attackTimer <= 0 && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
             {
                 StopAttack();
             }
@@ -162,7 +163,12 @@ namespace Features
 
         public void StartAttack(int i)
         {
+
             if(!active || i < 0 || i >= possibleAttacks.Count) return;
+
+            if(actualAttack == null || !activeAttack) return;
+
+            Debug.Log(attackTimer);
 
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i]);
         }
@@ -170,6 +176,10 @@ namespace Features
         public void EndAttack(int i)
         {
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
+
+            if (actualAttack == null || !activeAttack) return;
+
+            Debug.Log(attackTimer);
 
             possibleAttacks[i].EndAttackBox();
         }
@@ -183,7 +193,7 @@ namespace Features
             activeAttack = false;
             attackQueue.Clear();
 
-            cmp_animator.SetBool("Attack", true);
+            cmp_animator.SetBool("Attack", false);
         }
 
         public bool GetActive()
@@ -198,6 +208,11 @@ namespace Features
             if (active) return;
 
             StopAttack();
+        }
+
+        public void ToggleActiveSubcontroller(bool active)
+        {
+            ToggleActive(active);
         }
     }
 }

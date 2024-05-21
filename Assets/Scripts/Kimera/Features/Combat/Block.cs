@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Block :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
+    public class Block :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, IFeatureAction //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -25,12 +25,12 @@ namespace Features
         public float blockTime;
         //References
         [Header("References")]
-        public CombatAnimatorPlayer combatAnimator;
+        public CombatAnimator combatAnimator;
         //Componentes
 
         private void Awake()
         {
-            combatAnimator = GetComponent<CombatAnimatorPlayer>();
+            combatAnimator = GetComponent<CombatAnimator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -68,6 +68,14 @@ namespace Features
             combatAnimator.InputConditon("stop");
         }
 
+        public void EndBlock()
+        {
+            block = false;
+            parry = false;
+            blockTimer = 0;
+            parryTimer = 0;
+        }
+
         public bool GetActive()
         {
             return active;
@@ -76,6 +84,21 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+        }
+
+        public void FeatureAction(Controller controller, params Setting[] settings)
+        {
+            if(settings.Length <= 0) return;
+
+            bool value = settings[0].boolValue;
+
+            if (value)
+            {
+                StartBlock();
+                return;
+            }
+
+            EndBlock();
         }
     }
 }

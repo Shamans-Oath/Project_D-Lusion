@@ -15,7 +15,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] protected bool onTerrain;
-        public bool OnTerrain { get { return OnTerrain && active; } }
+        public bool OnTerrain { get { return onTerrain && active; } }
         public int terrainOrder;
         //Properties
         [Header("Properties")]
@@ -26,8 +26,8 @@ namespace Features
         public virtual void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
-            terrainLayer = settings.Search("terrainLayer");
+        
+            terrainLayer = 1 << LayerMask.NameToLayer(settings.Search("terrainLayer"));
 
             ToggleActive(true);
         }

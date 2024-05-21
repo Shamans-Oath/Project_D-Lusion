@@ -32,6 +32,7 @@ namespace Features
             settings = controller.settings;
 
             maxHealth = settings.Search("maxHealth");
+            currentHealth = maxHealth;
 
             ToggleActive(true);
         }
@@ -65,6 +66,8 @@ namespace Features
             int diff = currentHealth - previousCurrentHealth;
             if (diff > 0) OnHeal?.Invoke();
             else if (diff < 0) OnDamage?.Invoke();
+
+            if (currentHealth <= 0) OnDeath?.Invoke();
         }
 
         public void MaxHealth(int amount, bool readjust = true, bool triggerEvents = true)

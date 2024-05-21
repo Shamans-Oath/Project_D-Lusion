@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313693a6a351ece4a85ec31d778cd8da, type: 3}
+  m_Name: normalCombo
+  m_EditorClassIdentifier: 
+  attackChain:
+  - {fileID: 11400000, guid: 04625dfe9f4dde54699030863a4d1cb0, type: 2}
+  condition: normal
+  interruptions:
+  - condition: special
+    nextCombo: {fileID: 11400000, guid: 489d9d38a8eeb0747847a2599574de31, type: 2}

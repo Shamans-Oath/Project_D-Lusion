@@ -23,6 +23,12 @@ namespace Features
         public AttackBox attackBox;
         //Componentes
 
+        private void Awake()
+        {
+            //Setup References
+            attackBox = GetComponent<AttackBox>();
+        }
+
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;

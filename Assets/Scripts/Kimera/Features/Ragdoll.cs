@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup //Other channels
+public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -40,7 +40,8 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup //Other channel
 
             //Setup Properties
 
-            ToggleActive(false);
+            ToggleActive(true);
+            RagdollSetActive(false);
         }
 
         public void RagdollSetActive(bool active)
@@ -76,8 +77,15 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup //Other channel
         public void ToggleActive(bool active)
         {
             this.active = active;
+        }
 
-            RagdollSetActive(active);
+        public void FeatureAction(Controller controller, params Setting[] settings)
+        {
+            if(!active) return;
+
+            if(settings.Length <= 0) return;
+
+            RagdollSetActive(settings[0].boolValue);
         }
     }
 }

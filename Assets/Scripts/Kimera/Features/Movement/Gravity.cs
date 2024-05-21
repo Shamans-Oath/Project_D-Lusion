@@ -20,6 +20,7 @@ namespace Features
         //References
         [Header("References")]
         [SerializeField] private List<TerrainModifier> terrains;
+        [SerializeField] private Dash dash;
         //Componentes
         [Header("Components")]
         public Rigidbody cmp_rigidbody;
@@ -27,6 +28,7 @@ namespace Features
         private void Awake()
         {
             //Setup References
+            dash = GetComponent<Dash>();
             terrains = new List<TerrainModifier>(GetComponents<TerrainModifier>());
             terrains.Sort(TerrainModifier.CompareByOrder);
 
@@ -64,21 +66,26 @@ namespace Features
             TerrainEntity terrain = controller as TerrainEntity;
             if (terrain == null) return;
 
-            ApplyGravity(terrain);
+            SpecialTerrainEntity specialTerrain = controller as SpecialTerrainEntity;
+
+            ApplyGravity(terrain, specialTerrain);
         }
 
-        public void ApplyGravity(TerrainEntity terrain)
+        public void ApplyGravity(TerrainEntity terrain, SpecialTerrainEntity specialTerrin)
         {
+            bool isDashing = dash != null ? dash.IsDashing && !dash.IsCharging : false;
             bool grounded = terrain.onGround;
+            bool onSlope = terrain.onSlope;
+            bool onLadder = specialTerrin != null ? specialTerrin.onLadder : false;
 
-            if (grounded) return;
+            if (isDashing || (grounded && !onSlope && !onLadder)) return;
 
             Vector3 direction = Vector3.up;
 
             terrains.Sort(TerrainModifier.CompareByOrder);
             if (terrains.Count > 0) if (terrains[terrains.Count - 1].OnTerrain) direction = terrains[terrains.Count - 1].GetTerrainNormal();
 
-            cmp_rigidbody.AddForce(-Vector3.up * gravityValue, ForceMode.VelocityChange);
+            cmp_rigidbody.AddForce(-direction * gravityValue * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
 
         public void LimitVerticalSpeed()

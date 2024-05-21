@@ -11,7 +11,7 @@ public abstract class Controller : MonoBehaviour, IActivable
     protected bool active;
 
     [Header("Components")]
-    [SerializeField] private List<IFeatureSetup> additionalFeatures;
+    [SerializeField] protected List<GameObject> additionalGameObjectFeatures;
     public Dictionary<System.Type, IFeatureSetup> features;
 
     [Header("Links")]
@@ -47,9 +47,7 @@ public abstract class Controller : MonoBehaviour, IActivable
         settings.AssemblySettings();
         List<IFeatureSetup> featureList = new List<IFeatureSetup>(GetComponents<IFeatureSetup>());
 
-        additionalFeatures.ForEach(feature => {
-            if(!featureList.Contains(feature)) featureList.Add(feature);
-        });
+        additionalGameObjectFeatures.ForEach(go => featureList.AddRange(new List<IFeatureSetup>(go.GetComponents<IFeatureSetup>())));
 
         features = new Dictionary<System.Type, IFeatureSetup>();
 
@@ -94,7 +92,7 @@ public abstract class Controller : MonoBehaviour, IActivable
         return (T)features[typeof(T)];
     }
 
-    public void CallFeature<T>() where T : IFeatureSetup
+    public void CallFeature<T>(params Setting[] settings) where T : IFeatureSetup
     {
         if (!active) return;
 
@@ -104,7 +102,7 @@ public abstract class Controller : MonoBehaviour, IActivable
 
         if (featureAction == null) return;
 
-        featureAction.FeatureAction(this);
+        featureAction.FeatureAction(this, settings);
     }
 
     public void UpdateLinks()

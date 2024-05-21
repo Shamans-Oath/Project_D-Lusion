@@ -24,7 +24,7 @@ namespace Features
         [SerializeField] private List<TerrainModifier> terrains;
         [SerializeField] private Rotation rotation;
         [SerializeField] private Jump jump;
-        [SerializeField] private Dash dash;
+        [SerializeField] private Friction friction;
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody cmp_rigidbody;
@@ -37,7 +37,7 @@ namespace Features
 
             rotation = GetComponent<Rotation>();
             jump = GetComponent<Jump>();
-            dash = GetComponent<Dash>();
+            friction = GetComponent<Friction>();
 
             //Setup Components
             cmp_rigidbody = GetComponent<Rigidbody>();
@@ -150,9 +150,9 @@ namespace Features
         {
             if (rotation != null) rotation.ToggleActive(active);
             if (jump != null) jump.ToggleActive(active);
-            if (dash != null) dash.ToggleActive(active);
+            if (friction != null) friction.ToggleActive(active);
 
-            ToggleActive(active && this.active);
+            ToggleActive(active);
         }
     }
 }

@@ -29,7 +29,11 @@ namespace Features
         private void Awake()
         {
             tagsToInteract = new List<string>();
-            if(cmp_collider != null) cmp_collider.isTrigger = true;
+
+            cmp_collider = GetComponent<BoxCollider>();
+            cmp_rigidbody = GetComponent<Rigidbody>();
+
+            if (cmp_collider != null) cmp_collider.isTrigger = true;
         }
 
         public virtual void SetupFeature(Controller controller)

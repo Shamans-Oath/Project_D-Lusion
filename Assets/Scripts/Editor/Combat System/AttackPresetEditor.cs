@@ -27,7 +27,7 @@ public class AttackPresetEditor : Editor
         //Add UI Builder staff
         visualTree.CloneTree(root);
 
-        VisualElement objectField = root.Q<ObjectField>();
+        VisualElement objectField = root.Q<ObjectField>("AnimationField");
         ObjectField animatorField = objectField as ObjectField;
 
         var listView = root.Q<ListView>();

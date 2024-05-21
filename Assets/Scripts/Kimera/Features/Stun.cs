@@ -38,7 +38,7 @@ namespace Features
             settings = controller.settings;
 
             //Setup Properties
-            stunDuration = settings.Search("stunDuration");
+            stunDuration = settings.Search("stunDurationDefault");
 
             ToggleActive(true);
         }

@@ -22,9 +22,9 @@ namespace Features
             string tag2 = settings.Search("attackHitboxTag2");
             string tag3 = settings.Search("attackHitboxTag3");
 
-            if(tag1 != string.Empty) tagsToInteract.Add(tag1);
-            if (tag2 != string.Empty) tagsToInteract.Add(tag2);
-            if (tag3 != string.Empty) tagsToInteract.Add(tag3);
+            if(tag1 != null) if(tag1 != string.Empty) tagsToInteract.Add(tag1);
+            if(tag2 != null) if (tag2 != string.Empty) tagsToInteract.Add(tag2);
+            if(tag3 != null) if (tag3 != string.Empty) tagsToInteract.Add(tag3);
         }
 
         protected override void InteractEntity(Controller interactor)

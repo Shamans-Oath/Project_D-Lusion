@@ -75,11 +75,7 @@ namespace Features
         {
             //Decrease Dash Timers When Cooldown is Active
             WaitQueue();
-
-            TerrainEntity terrain = controller as TerrainEntity;
-            if (terrain != null) CheckLanding(terrain.onGround);
             
-
             if (!isDashing || isCharging) return;
             
             DashMovement();
@@ -94,8 +90,9 @@ namespace Features
         public void FixedUpdateFeature(Controller controller)
         {
             if(!tagToStop) return;
-
-            cmp_rigidbody.velocity = speedAfterStop;
+            
+            Debug.Log("Stop");
+            cmp_rigidbody.AddForce(-cmp_rigidbody.velocity + speedAfterStop, ForceMode.VelocityChange);
             
             tagToStop = false;
             speedAfterStop = Vector3.zero;
@@ -104,6 +101,12 @@ namespace Features
         public void FeatureAction(Controller controller, params Setting[] settings)
         {
             if(!active) return;
+
+            TerrainEntity terrain = controller as TerrainEntity;
+            if (terrain != null)
+            {
+                if (!terrain.onGround) return;
+            }
 
             if (settings.Length < 1) return;
 
@@ -164,6 +167,11 @@ namespace Features
 
         private void DashMovement()
         {
+            if (dashDurationTimer <= 0)
+            {
+                if(isDashing) DashState(false);
+            }
+
             float timeDelta = Time.deltaTime * timeMultiplier;
 
             float gravity = -Mathf.Abs(gravityValue);
@@ -213,13 +221,6 @@ namespace Features
 
         #region State Management
 
-        public void CheckLanding(bool isGrounded)
-        {
-            if (!isGrounded || !isDashing || dashDurationTimer > 0) return;
-
-            Landing();
-        }
-
         private void Landing()
         {
             //Allow Movement When landing after dashing
@@ -247,7 +248,7 @@ namespace Features
             if (!isDashing) return;
 
             //If is still charging, interrupt the charge
-            if (isCharging) StopCoroutine(dashCharge);
+            if (isCharging && dashCharge != null) StopCoroutine(dashCharge);
 
             //Allow movement when interrupted
             DashState(false);

@@ -15,6 +15,7 @@ namespace Features
 			//Link Features
             CombatEntity actorCombat = actor as CombatEntity;
             CombatEntity reactorCombat = reactor as CombatEntity;
+            Furry furry = actor.SearchFeature<Furry>();
 
             Life reactorLife = reactor.SearchFeature<Life>();
 
@@ -26,15 +27,25 @@ namespace Features
 
             int damage = actorCombat.attack;
 
-            if (int.TryParse(attack.Search("attackExtra"), out int extraAttack))
+            if(attack != null)
             {
-                damage += extraAttack;
+                //Si hay settings de ataque
+                if (int.TryParse(attack.Search("attackExtra"), out int extraAttack))
+                {
+                    damage += extraAttack;
+                }
             }
 
             if (!reactorCombat.block && !reactorCombat.parry)
             {
                 reactorLife.Health(-damage);
+                if(furry != null) furry.IncreaseFurryCount();
+                //Añadir efectos de ataque
+                Unlink();
+                return;
             }
+
+            //Añadir efectos de bloques
 
             Unlink();
         }
