@@ -11,6 +11,8 @@ namespace Features
         public AnimationClip animationClip;
         public AttackSwing[] swings;
 
+
+#if UNITY_EDITOR
         public void BuildAnimationEvents()
         {
             AnimationEvent[] clipEvents = new AnimationEvent[swings.Length * 2];
@@ -33,5 +35,6 @@ namespace Features
 
             AnimationUtility.SetAnimationEvents(animationClip, clipEvents);
         }
+#endif
     }
 }

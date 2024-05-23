@@ -74,12 +74,12 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "normal", Setting.ValueType.String));
+        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext context)
     {
-        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "special", Setting.ValueType.String));
+        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-special", Setting.ValueType.String));
     }
 
     public void OnBlock(InputAction.CallbackContext context)

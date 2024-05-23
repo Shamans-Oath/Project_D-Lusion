@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Features
 {
-    public class CombatAnimator :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction, ICombatAnimator //Other channels
+    public class CombatAnimator :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction, IFeatureUpdate, ICombatAnimator //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -17,6 +18,7 @@ namespace Features
         [Header("States")]
         private Dictionary<string, bool> conditions;
         private Dictionary<string, Coroutine> coroutinesInput;
+        [SerializeField] private string currentCondition;
         //Properties
         [Header("Properties")]
         public float inputPermanenceTime;
@@ -140,6 +142,12 @@ namespace Features
             }
 
             return false;
+        }
+
+        public void UpdateFeature(Controller controller)
+        {
+            currentCondition = ""; 
+            GetActiveConditions().ForEach(x => currentCondition += $"{x} ");
         }
     }
 }

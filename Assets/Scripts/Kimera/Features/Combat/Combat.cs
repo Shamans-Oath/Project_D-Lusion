@@ -139,12 +139,12 @@ namespace Features
                 if (attack.ActiveAttack) activeAttack = true;
             });
 
-            if(!activeAttack && attackTimer <= 0 && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
+            if(!activeAttack && attackTimer <= .3f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
             } 
 
-            else if(attackTimer <= 0.3f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
+            else if(attackTimer <= .2f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
             {
                 StopAttack();
             }

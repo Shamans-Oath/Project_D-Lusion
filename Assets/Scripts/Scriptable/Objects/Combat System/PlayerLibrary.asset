@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a63e294bffba4409cd5b6d599aa925, type: 3}
+  m_Name: PlayerLibrary
+  m_EditorClassIdentifier: 
+  attackFiles:
+  - key: A
+    attack: {fileID: 11400000, guid: 04625dfe9f4dde54699030863a4d1cb0, type: 2}
+  - key: B
+    attack: {fileID: 11400000, guid: eae3715fd58bcc542ba7af1bbc54d33f, type: 2}
+  comboFiles:
+  - key: A
+    combo: {fileID: 11400000, guid: d3228fa62621844469ba78ab3f60bf41, type: 2}
+  - key: B
+    combo: {fileID: 11400000, guid: bbe6d34e0e756fa4b87ecd01a424bb36, type: 2}
+  - key: C
+    combo: {fileID: 11400000, guid: 25dcb277aa412ee4bb95a4498da6446c, type: 2}
+  - key: D
+    combo: {fileID: 11400000, guid: 70c6356d6fc7499469afcb7251ccb4d2, type: 2}
