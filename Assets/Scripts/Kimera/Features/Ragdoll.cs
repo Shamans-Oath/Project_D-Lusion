@@ -25,7 +25,7 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction
 
         private void Awake()
         {
-            cmp_anim = GetComponent<Animator>();
+            if(cmp_anim==null)cmp_anim = GetComponent<Animator>();
 
             if (ragdolModel)
             {

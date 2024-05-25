@@ -25,7 +25,8 @@ namespace Features
 
         public void OnDeath()
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            SearchFeature<Ragdoll>().RagdollSetActive(true);
         }
 
         public void Dummy()

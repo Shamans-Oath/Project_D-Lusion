@@ -63,7 +63,11 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.performed) CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+        if (context.performed)
+        {
+           // SearchFeature<Rotation>().RotateTo(dashPoint.position);
+            CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+        }
     }
 
     public void OnDeath()
