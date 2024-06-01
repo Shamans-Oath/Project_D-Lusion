@@ -123,52 +123,6 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 8
-  - key: maxSpeed
-    boolValue: 0
-    intValue: 0
-    floatValue: 20
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: acceleration
-    boolValue: 0
-    intValue: 0
-    floatValue: 10
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
   - key: maxVerticalSpeed
     boolValue: 0
     intValue: 0
@@ -284,29 +238,6 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 6
-  - key: groundFriction
-    boolValue: 0
-    intValue: 0
-    floatValue: 5
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
   - key: airFriction
     boolValue: 0
     intValue: 0
@@ -513,29 +444,6 @@ MonoBehaviour:
     boolValue: 0
     intValue: 0
     floatValue: 50
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: jumpForce
-    boolValue: 0
-    intValue: 0
-    floatValue: 15
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1065,6 +973,98 @@ MonoBehaviour:
     boolValue: 0
     intValue: 0
     floatValue: 0.16
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: maxSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 12
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: jumpForce
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: groundFriction
+    boolValue: 0
+    intValue: 0
+    floatValue: 8
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: acceleration
+    boolValue: 0
+    intValue: 0
+    floatValue: 5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}

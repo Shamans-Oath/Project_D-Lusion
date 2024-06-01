@@ -240,7 +240,7 @@ public class Settings : ScriptableObject
         static void SerializeSetting(string key, Setting setting)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(key, GUILayout.MaxWidth(75));
+            EditorGUILayout.LabelField(key, GUILayout.MaxWidth(150));
             string type = "Invalid Type";
 
             switch (setting.valueType)

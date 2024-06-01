@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Movement : MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate, ISubcontroller
+    public class Movement : MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate, IFeatureAction, ISubcontroller
     {
         //Configuration
         [Header("Settings")]
@@ -64,6 +64,24 @@ namespace Features
             InputEntity input = controller as InputEntity;
             if(input == null) return;
             Vector2 direction = input.inputDirection;
+
+            Move(direction, kinetic, input);
+        }
+
+        public void FeatureAction(Controller controller, params Setting[] settings)
+        {
+            if(!active) return;
+
+            if(settings.Length < 1) return;
+
+            Vector2 direction = settings[0].vector2Value;
+
+            if(direction == Vector2.zero) return;
+
+            KineticEntity kinetic = controller as KineticEntity;
+            if(kinetic == null) return;
+
+            InputEntity input = controller as InputEntity;
 
             Move(direction, kinetic, input);
         }

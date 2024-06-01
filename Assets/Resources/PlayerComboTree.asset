@@ -19,7 +19,7 @@ MonoBehaviour:
     condition: attack-special
     attackKeys: B,B,A
     interruptions:
-    - comboKey: D
+    - comboKey: A
       condition: attack-normal
       GUID: 4f6083ac-8319-476b-ac11-2e03f73aa915
   - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
@@ -28,45 +28,17 @@ MonoBehaviour:
     condition: attack-normal
     attackKeys: A,A,B
     interruptions:
-    - comboKey: C
-      condition: attack-special
-      GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
-  - NodeGUID: fa927477-26c4-486d-9582-6cf0029f6d58
-    position: {x: 439, y: 177}
-    comboKey: D
-    condition: attack-special
-    attackKeys: A,B
-    interruptions:
-    - comboKey: A
-      condition: attack-normal
-      GUID: d8c46197-c4d3-4e85-b163-eb61d6d422d5
-  - NodeGUID: 9a930eff-f3a2-4790-b904-24ec00f139cf
-    position: {x: 439, y: -45}
-    comboKey: C
-    condition: attack-normal
-    attackKeys: B,A
-    interruptions:
     - comboKey: B
       condition: attack-special
-      GUID: d48ce217-7b53-4d3f-846a-dbb2b49a5efb
+      GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
   nodeLinkData:
   - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
     PortName: f501e49a-1555-49fc-92d3-10e4dc10e375
-    TargetNodeGuid: 9a930eff-f3a2-4790-b904-24ec00f139cf
-    condition: attack-special
-    comboKey: C
-  - BaseNodeGuid: 9a930eff-f3a2-4790-b904-24ec00f139cf
-    PortName: d48ce217-7b53-4d3f-846a-dbb2b49a5efb
     TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
     condition: attack-special
     comboKey: B
-  - BaseNodeGuid: fa927477-26c4-486d-9582-6cf0029f6d58
-    PortName: d8c46197-c4d3-4e85-b163-eb61d6d422d5
+  - BaseNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    PortName: 4f6083ac-8319-476b-ac11-2e03f73aa915
     TargetNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
     condition: attack-normal
     comboKey: A
-  - BaseNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
-    PortName: 4f6083ac-8319-476b-ac11-2e03f73aa915
-    TargetNodeGuid: fa927477-26c4-486d-9582-6cf0029f6d58
-    condition: attack-normal
-    comboKey: D

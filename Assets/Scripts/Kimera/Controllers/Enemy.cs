@@ -4,34 +4,36 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Enemy : Controller, LivingEntity
+    public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, FollowEntity
     {
+
+        //Living
         public int currentHealth { get; set; }
         public int maxHealth { get; set; }
 
-        public Animator anim;
+        //Kinetic
+        public float currentSpeed { get; set; }
+
+        //Terrain
+        public bool onGround { get; set; }
+        public bool onSlope { get; set; }
+
+        //Follow
+        public GameObject target {  get; set; }
 
         private void OnEnable()
         {
             SearchFeature<Life>().OnDeath += OnDeath;
-            SearchFeature<Life>().OnDamage += Dummy; //S: Eliminar mas Adelante
         }
 
         private void OnDisable()
         {
             SearchFeature<Life>().OnDeath -= OnDeath;
-            SearchFeature<Life>().OnDamage -= Dummy; //S: Eliminar mas Adelante
         }
 
         public void OnDeath()
         {
-            //Destroy(gameObject);
-            SearchFeature<Ragdoll>().RagdollSetActive(true);
-        }
-
-        public void Dummy()
-        {
-            anim.SetTrigger("isHurt");
+            Destroy(gameObject);
         }
     }
 }

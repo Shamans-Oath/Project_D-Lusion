@@ -17,30 +17,31 @@ namespace Features
         [Header("Properties")]
         public float disableTimeAfterHit;
         //References
+        [Header("References")]
         public Life life;
         public Stun stun;
         //Componentes
+        [Header("Components")]
+        public Animator animator;
 
         private void Awake()
         {
+            //Get References
             life = GetComponent<Life>();
             stun = GetComponent<Stun>();
+
+            //Get Components
+            if(animator == null) animator = GetComponent<Animator>();
         }
 
         private void OnEnable()
         {
-            life.OnDamage += () =>
-            {
-                if (active) stun.StunSomeTime(disableTimeAfterHit);
-            };
+            if (life != null) life.OnDamage += ReactToDamage;
         }
 
         private void OnDisable()
         {
-            life.OnDamage -= () =>
-            {
-                if (active) stun.StunSomeTime(disableTimeAfterHit);
-            };
+            if (life != null) life.OnDamage -= ReactToDamage;
         }
 
         public void SetupFeature(Controller controller)
@@ -51,6 +52,14 @@ namespace Features
             disableTimeAfterHit = settings.Search("disableTimeAfterHit");
 
             ToggleActive(true);
+        }
+
+        private void ReactToDamage()
+        {
+            if (!active) return;
+
+            if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
+            if (animator != null) animator.SetTrigger("isHurt");
         }
 
         public bool GetActive()
