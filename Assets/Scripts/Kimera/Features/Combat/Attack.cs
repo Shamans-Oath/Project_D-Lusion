@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
+    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, IFeatureFixedUpdate //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -15,6 +15,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] private bool activeAttack;
+        [SerializeField] private bool uniqueEffectsTriggered = false;
         [SerializeField] private Vector3 playerForward;
         public bool ActiveAttack { get => activeAttack; }
         [SerializeField] private AttackSwing actualAttack;
@@ -23,6 +24,8 @@ namespace Features
         [Header("References")]
         public AttackBox attackBox;
         //Componentes
+        [Header("Components")]
+        [SerializeField] private Rigidbody playerRigidbody;
 
         private void Awake()
         {
@@ -47,6 +50,13 @@ namespace Features
             if(inputEntity != null) playerForward = inputEntity.playerForward;
         }
 
+        public void FixedUpdateFeature(Controller controller)
+        {
+            if (!active) return;
+
+            if (actualAttack != null && activeAttack) AttackEffects(actualAttack.settings);
+        }
+
         public void StartAttackBox(AttackSwing attack)
         {
             if (!active || attack == null) return;
@@ -55,6 +65,63 @@ namespace Features
             activeAttack = true;
             attackBox.SetBox(attack.size, attack.offset, new Vector3(playerForward.x * attack.movement.x, attack.movement.y, playerForward.z * attack.movement.z), true);
             attackBox.SetAttack(attack.settings);
+            uniqueEffectsTriggered = false;
+
+            if (attack.settings != null) attack.settings.AssemblySettings();
+        }
+
+        private void AttackEffects(Settings attackSettings)
+        {
+            if (!active || attackSettings == null || playerRigidbody == null) return;
+
+            //Contiuous Events During Swing
+            AttackFollowForce(attackSettings);
+
+            if (uniqueEffectsTriggered) return;
+            uniqueEffectsTriggered = true;
+
+            //Unique Events
+            AttackImpulse(attackSettings);
+            VerticalAttackImpulse(attackSettings);
+        }
+
+        private void AttackFollowForce(Settings attackSettings)
+        {
+            if (attackSettings == null) return;
+
+            float? attackFollowMove = attackSettings.Search("attackFollowMove");
+
+            if (attackFollowMove == null) return;
+
+            if (attackFollowMove == 0) return;
+
+            playerRigidbody.AddForce(transform.forward * (float)attackFollowMove);
+        }
+
+        private void AttackImpulse(Settings attackSettings)
+        {
+            if(attackSettings == null) return;
+
+            float? attackImpulse = attackSettings.Search("attackImpulse");
+
+            if(attackImpulse == null) return;
+
+            if (attackImpulse == 0) return;
+
+            playerRigidbody.AddForce(transform.forward * (float)attackImpulse, ForceMode.Impulse);
+        }
+
+        private void VerticalAttackImpulse(Settings attackSettings)
+        {
+            if (attackSettings == null) return;
+
+            float? attackImpulse = attackSettings.Search("attackImpulseVertical");
+
+            if (attackImpulse == null) return;
+
+            if (attackImpulse == 0) return;
+
+            playerRigidbody.AddForce(transform.up * (float)attackImpulse, ForceMode.Impulse);
         }
 
         public void EndAttackBox()

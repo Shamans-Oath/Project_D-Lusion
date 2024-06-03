@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Features
 {
-    public class MovementModeSelector :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate //Other channels
+    public class MovementModeSelector :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate, ISubcontroller //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -104,6 +105,19 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+
+            if (active) return;
+
+            if(agent == null) return;
+
+            agent.destination = transform.position;
+        }
+
+        public void ToggleActiveSubcontroller(bool active)
+        {
+            moveModes.Values.ToList().ForEach(mode => mode.ToggleActive(active));
+
+            ToggleActive(active);
         }
     }
 }

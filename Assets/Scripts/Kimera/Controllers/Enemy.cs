@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, FollowEntity
+    public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, FollowEntity
     {
 
         //Living
@@ -17,6 +17,8 @@ namespace Features
         //Terrain
         public bool onGround { get; set; }
         public bool onSlope { get; set; }
+
+        public bool onLadder { get; set; }
 
         //Follow
         public GameObject target {  get; set; }

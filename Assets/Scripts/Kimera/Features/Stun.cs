@@ -78,7 +78,7 @@ namespace Features
             stunTimer = Mathf.Max(stunTimer, stunTime);
 
             if(isStunned) return;
-            
+
             subcontrollers.ForEach(subcontroller => subcontroller.ToggleActiveSubcontroller(false));
             isStunned = true;
         }
