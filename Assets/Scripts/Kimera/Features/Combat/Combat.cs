@@ -166,9 +166,7 @@ namespace Features
         public void StartAttack(int i)
         {
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
-
-            if(actualAttack == null) return;
-
+            if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i]);
         }
 

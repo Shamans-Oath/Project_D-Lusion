@@ -26,6 +26,7 @@ namespace Features
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody playerRigidbody;
+        [SerializeField] private Rigidbody rigidbody;
 
         [Header("Debug")]
         public bool debug;
@@ -34,6 +35,9 @@ namespace Features
         {
             //Setup References
             attackBox = GetComponent<AttackBox>();
+
+            //Setup Components
+            rigidbody = GetComponent<Rigidbody>();
         }
 
         public void SetupFeature(Controller controller)
@@ -57,7 +61,10 @@ namespace Features
         {
             if (!active) return;
 
-            if (actualAttack != null && activeAttack) AttackEffects(actualAttack.settings);
+            KineticEntity kinetic = controller as KineticEntity;
+            if(kinetic != null) kinetic.currentSpeed = playerRigidbody.velocity.magnitude;
+
+            if (actualAttack != null && activeAttack) AttackEffects(actualAttack.settings, kinetic);
         }
 
         public void StartAttackBox(AttackSwing attack)
@@ -68,18 +75,19 @@ namespace Features
             activeAttack = true;
             Vector3 attackDirection = transform.right * attack.movement.x + transform.up * attack.movement.y + transform.forward * attack.movement.z;
             attackBox.SetBox(attack.size, attack.offset, attackDirection, true);
-            attackBox.SetAttack(attack.settings);
+            attackBox.SetAttack(attack.settings);   
             uniqueEffectsTriggered = false;
 
             if (attack.settings != null) attack.settings.AssemblySettings();
         }
 
-        private void AttackEffects(Settings attackSettings)
+        private void AttackEffects(Settings attackSettings, KineticEntity kinetic)
         {
             if (!active || attackSettings == null || playerRigidbody == null) return;
 
             //Contiuous Events During Swing
-            AttackFollowForce(attackSettings);
+            AttackFollowForce(attackSettings, kinetic);
+            AttackFollowVerticalForce(attackSettings, kinetic);
 
             if (uniqueEffectsTriggered) return;
             uniqueEffectsTriggered = true;
@@ -89,17 +97,30 @@ namespace Features
             VerticalAttackImpulse(attackSettings);
         }
 
-        private void AttackFollowForce(Settings attackSettings)
+        private void AttackFollowForce(Settings attackSettings, KineticEntity kinetic)
         {
-            if (attackSettings == null) return;
+            if (attackSettings == null || kinetic == null) return;
 
-            float? attackFollowMove = attackSettings.Search("attackFollowMove");
+            float? attackFollowMove = attackSettings.Search("attackFrictionMove");
 
             if (attackFollowMove == null) return;
 
             if (attackFollowMove == 0) return;
 
-            playerRigidbody.AddForce(transform.forward * (float)attackFollowMove);
+            playerRigidbody.AddForce(-transform.forward * (float)attackFollowMove, ForceMode.Acceleration);
+        }
+
+        private void AttackFollowVerticalForce(Settings attackSettings, KineticEntity kinetic)
+        {
+            if (attackSettings == null || kinetic == null) return;
+
+            float? attackFollowMove = attackSettings.Search("attackFollowVerticalMove");
+
+            if (attackFollowMove == null) return;
+
+            if (attackFollowMove == 0) return;
+
+            playerRigidbody.AddForce(transform.up * (float)attackFollowMove, ForceMode.Acceleration);
         }
 
         private void AttackImpulse(Settings attackSettings)
@@ -112,7 +133,7 @@ namespace Features
 
             if (attackImpulse == 0) return;
 
-            playerRigidbody.AddForce(transform.forward * (float)attackImpulse, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.forward * (float)attackImpulse, ForceMode.VelocityChange);
         }
 
         private void VerticalAttackImpulse(Settings attackSettings)
@@ -125,7 +146,7 @@ namespace Features
 
             if (attackImpulse == 0) return;
 
-            playerRigidbody.AddForce(transform.up * (float)attackImpulse, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.up * (float)attackImpulse, ForceMode.VelocityChange);    
         }
 
         public void EndAttackBox()
@@ -155,7 +176,7 @@ namespace Features
             Gizmos.matrix = transform.localToWorldMatrix;
 
             Gizmos.color = Color.green;
-            Gizmos.DrawCube(actualAttack.offset, actualAttack.size);
+            Gizmos.DrawCube(Vector3.zero,actualAttack.size);
         }
     }
 }
