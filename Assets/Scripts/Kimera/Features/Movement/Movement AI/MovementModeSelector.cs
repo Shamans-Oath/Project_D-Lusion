@@ -32,6 +32,7 @@ namespace Features
         private void Awake()
         {
             if(agent == null) agent = GetComponent<NavMeshAgent>();
+            if (agent != null) agent.destination = transform.position;
         }
 
         public void SetupFeature(Controller controller)
