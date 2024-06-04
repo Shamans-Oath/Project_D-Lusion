@@ -27,6 +27,9 @@ namespace Features
         [Header("Components")]
         [SerializeField] private Rigidbody playerRigidbody;
 
+        [Header("Debug")]
+        public bool debug;
+
         private void Awake()
         {
             //Setup References
@@ -63,7 +66,8 @@ namespace Features
 
             actualAttack = attack;
             activeAttack = true;
-            attackBox.SetBox(attack.size, attack.offset, new Vector3(playerForward.x * attack.movement.x, attack.movement.y, playerForward.z * attack.movement.z), true);
+            Vector3 attackDirection = transform.right * attack.movement.x + transform.up * attack.movement.y + transform.forward * attack.movement.z;
+            attackBox.SetBox(attack.size, attack.offset, attackDirection, true);
             attackBox.SetAttack(attack.settings);
             uniqueEffectsTriggered = false;
 
@@ -140,6 +144,18 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!debug || !Application.isPlaying) return;
+
+            if (actualAttack == null || !activeAttack) return;
+
+            Gizmos.matrix = transform.localToWorldMatrix;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(actualAttack.offset, actualAttack.size);
         }
     }
 }
