@@ -15,6 +15,7 @@ namespace Features
 			//Link Features
             CombatEntity actorCombat = actor as CombatEntity;
             CombatEntity reactorCombat = reactor as CombatEntity;
+            Rigidbody reactorRigidbody = reactor.gameObject.GetComponent<Rigidbody>();
             Furry furry = actor.SearchFeature<Furry>();
 
             Life reactorLife = reactor.SearchFeature<Life>();
@@ -44,6 +45,20 @@ namespace Features
                 reactorLife.Health(-damage);
                 if(furry != null) furry.IncreaseFurryCount();
                 //Añadir efectos de ataque
+                if (attack != null)
+                {
+                    Vector3? attackKnockback = attack.Search("attackKnockback");
+
+                    if (attackKnockback != null)
+                    {
+                        Vector3 direction = reactor.transform.position - actor.transform.position;
+                        direction.Normalize();
+
+                        AddAttackKnockback(reactorRigidbody, (Vector3)attackKnockback, direction);
+                    }
+                }
+
+
                 Unlink();
                 return;
             }
@@ -51,6 +66,15 @@ namespace Features
             //Añadir efectos de bloques
 
             Unlink();
+        }
+
+        private void AddAttackKnockback(Rigidbody reactorRigidbody, Vector3 attackKnockback, Vector3 direction)
+        {
+            if (reactorRigidbody == null || attackKnockback == Vector3.zero || direction == Vector3.zero) return;
+
+            Vector3 knockbackInDirection = Vector3.Cross(direction, Vector3.up) * attackKnockback.x + Vector3.up * attackKnockback.y + direction * attackKnockback.z;
+
+            reactorRigidbody.AddForce(knockbackInDirection, ForceMode.VelocityChange);
         }
     }
 }

@@ -107,11 +107,9 @@ namespace Features
         {
             this.active = active;
 
-            if (active) return;
+            if (agent == null) return;
 
-            if(agent == null) return;
-
-            agent.destination = transform.position;
+            agent.enabled = active;
         }
 
         public void ToggleActiveSubcontroller(bool active)

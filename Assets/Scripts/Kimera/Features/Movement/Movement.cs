@@ -91,6 +91,8 @@ namespace Features
             if(!active) return;
             if(cmp_rigidbody == null) return;
 
+            if(direction == Vector2.zero) return;
+
             Vector3 movement = ProjectOnCameraFlattenPlane(new Vector3(direction.x, 0f, direction.y), input.playerCamera);
             
             if(input != null) input.playerForward = movement.normalized;

@@ -65,7 +65,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         if (context.performed)
         {
-           // SearchFeature<Rotation>().RotateTo(dashPoint.position);
+            // SearchFeature<Rotation>().RotateTo(dashPoint.position);
             CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
         }
     }

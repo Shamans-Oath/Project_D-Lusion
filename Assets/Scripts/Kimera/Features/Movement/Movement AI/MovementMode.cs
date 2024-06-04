@@ -23,6 +23,13 @@ namespace Features
         public float checkBlockRadius;
         //References
         //Componentes
+        [Header("Components")]
+        [SerializeField] protected Collider box;
+
+        private void Awake()
+        {
+            box = GetComponent<Collider>();
+        }
 
         public virtual void SetupFeature(Controller controller)
         {
@@ -39,7 +46,11 @@ namespace Features
 
         protected bool CheckBlocked(Vector3 position)
         {
-            return Physics.OverlapSphere(position, checkBlockRadius, solidLayer).Length > 0;
+            Vector3 colliderHeight = Vector3.zero;
+
+            if(box != null) colliderHeight = Vector3.up * box.bounds.extents.y;
+
+            return Physics.OverlapSphere(position + colliderHeight, checkBlockRadius, solidLayer).Length > 0;
         }
 
         protected Vector3 ToFloor(Vector3 position)

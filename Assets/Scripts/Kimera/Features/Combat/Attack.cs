@@ -26,7 +26,7 @@ namespace Features
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody playerRigidbody;
-        [SerializeField] private Rigidbody rigidbody;
+        [SerializeField] private Rigidbody rb;
 
         [Header("Debug")]
         public bool debug;
@@ -37,7 +37,7 @@ namespace Features
             attackBox = GetComponent<AttackBox>();
 
             //Setup Components
-            rigidbody = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
         }
 
         public void SetupFeature(Controller controller)

@@ -64,7 +64,6 @@ namespace Features
 
             cmp_collider.size = boxSize;
             transform.localPosition = boxOffset;
-            cmp_rigidbody.velocity = Vector3.zero;
             cmp_rigidbody.AddForce(boxImpulse, ForceMode.VelocityChange);
         }
 
