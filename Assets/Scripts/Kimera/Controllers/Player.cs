@@ -67,6 +67,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         {
             // SearchFeature<Rotation>().RotateTo(dashPoint.position);
             CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+            //CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
         }
     }
 

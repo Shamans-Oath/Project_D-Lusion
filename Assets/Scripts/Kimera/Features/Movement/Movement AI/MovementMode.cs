@@ -55,7 +55,11 @@ namespace Features
 
         protected Vector3 ToFloor(Vector3 position)
         {
-            if(Physics.Raycast(position, -Vector3.up, out RaycastHit floorHit, Mathf.Infinity, solidLayer))
+            Vector3 colliderHeight = Vector3.zero;
+
+            if (box != null) colliderHeight = Vector3.up * box.bounds.extents.y;
+
+            if (Physics.Raycast(position + colliderHeight, -Vector3.up, out RaycastHit floorHit, Mathf.Infinity, solidLayer))
             {
                 return floorHit.point;
             }

@@ -28,9 +28,11 @@ namespace Features
         //Componentes
         [Header("Components")]
         public NavMeshAgent agent;
+        public Rigidbody rb;
 
         private void Awake()
         {
+            if(rb == null) rb = GetComponent<Rigidbody>();
             if(agent == null) agent = GetComponent<NavMeshAgent>();
             if (agent != null) agent.destination = transform.position;
         }
@@ -110,6 +112,10 @@ namespace Features
             if (agent == null) return;
 
             agent.enabled = active;
+
+            if(rb == null) return;
+
+            rb.velocity = Vector3.zero;
         }
 
         public void ToggleActiveSubcontroller(bool active)
