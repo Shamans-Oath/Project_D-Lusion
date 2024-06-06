@@ -21,6 +21,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] private int currentHealth;
+        public int CurrentHealth { get => currentHealth; }
         //Properties
         [Header("Properties")]
         public int maxHealth;

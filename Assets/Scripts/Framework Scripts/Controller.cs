@@ -178,7 +178,7 @@ public abstract class Controller : MonoBehaviour, IActivable
 
         if(active) return;
 
-        foreach (Link link in actionLinks)
+        foreach (Link link in new List<Link>(actionLinks))
         {
             link.Unlink();
         }

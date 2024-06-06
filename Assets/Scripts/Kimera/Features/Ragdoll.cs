@@ -26,12 +26,6 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction
         private void Awake()
         {
             if(cmp_anim==null)cmp_anim = GetComponent<Animator>();
-
-            if (ragdolModel)
-            {
-                cmp_ragdollCols = ragdolModel.GetComponentsInChildren<Collider>();
-                cmp_ragdollRB = ragdolModel.GetComponentsInChildren<Rigidbody>();
-            }
         }
 
         public void SetupFeature(Controller controller)
@@ -39,6 +33,9 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction
             settings = controller.settings;
 
             //Setup Properties
+
+            cmp_ragdollCols = ragdolModel.GetComponentsInChildren<Collider>();
+            cmp_ragdollRB = ragdolModel.GetComponentsInChildren<Rigidbody>();
 
             ToggleActive(true);
             RagdollSetActive(false);

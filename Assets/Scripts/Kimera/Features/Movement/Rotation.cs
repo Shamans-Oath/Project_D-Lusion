@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Features
 {
@@ -27,6 +28,13 @@ namespace Features
         public AnimationCurve rotationSpeedCurve;
         //References
         //Componentes
+        [Header("Components")]
+        [SerializeField] private NavMeshAgent agent;
+
+        private void Awake()
+        {
+            if(agent != null) agent = GetComponent<NavMeshAgent>();
+        }
 
         public void SetupFeature(Controller controller)
         {
@@ -46,10 +54,36 @@ namespace Features
             if (!active) return;
 
             InputEntity input = controller as InputEntity;
-            if (input == null) return;
+            if (input != null)
+            {
+                Vector3 forward = input.playerForward;
+                RotateTo(forward);
+                return;
+            }
 
-            Vector3 forward = input.playerForward;
-            RotateTo(forward);
+            FollowEntity follow = controller as FollowEntity;
+            if(follow != null)
+            {
+                if(follow.target != null)
+                {
+                    Vector3 forward = follow.target.transform.position - transform.position;
+                    forward.y = 0f;
+                    forward.Normalize();
+
+                    RotateTo(forward);
+                    return;
+                }
+            }
+
+            if(agent != null)
+            {
+                Vector3 forward = agent.destination - transform.position;
+                forward.y = 0f;
+                forward = forward.normalized;
+
+                RotateTo(forward);
+                return;
+            }
         }
 
         public void RotateTo(Vector3 forward)

@@ -38,14 +38,13 @@ namespace Features
 
         private void Awake()
         {
-            defaultCombos = new List<ComboPreset>();
             attackQueue = new Queue<AttackPreset>();
 
             //Setup References
             combatAnimator = GetComponent<CombatAnimator>();
 
             //Setup Components
-            cmp_animator = GetComponent<Animator>();
+            if(cmp_animator == null) cmp_animator = GetComponent<Animator>();
             movement = GetComponent<Movement>() as ISubcontroller;
         }
 
@@ -55,6 +54,8 @@ namespace Features
 
             //Setup Properties
             attack = settings.Search("attack");
+
+            defaultCombos = new List<ComboPreset>();
 
             ComboPreset combo1 = settings.Search("defaultCombo1") as ComboPreset;
             ComboPreset combo2 = settings.Search("defaultCombo2") as ComboPreset;
@@ -172,7 +173,7 @@ namespace Features
 
         public void EndAttack(int i)
         {
-            if (!active || i < 0 || i >= possibleAttacks.Count) return;
+            if (i < 0 || i >= possibleAttacks.Count) return;
 
             if (actualAttack == null) return;
 
@@ -182,6 +183,11 @@ namespace Features
         private void StopAttack()
         {
             if (movement != null) movement.ToggleActiveSubcontroller(true);
+
+            for(int i = 0; i < possibleAttacks.Count; i++)
+            {
+                EndAttack(i);
+            }
 
             actualAttack = null;
             actualCombo = null;

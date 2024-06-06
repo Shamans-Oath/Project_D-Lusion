@@ -100,6 +100,12 @@ namespace Features
             agent.destination = activeMoveMode.RequestNextPoint(follow);
         }
 
+        public string GetActiveMoveModeName()
+        {
+            if (activeMoveMode == null) return "quiet";
+            else return activeMoveMode.modeName;
+        }
+
         public bool GetActive()
         {
             return active;
@@ -115,7 +121,9 @@ namespace Features
 
             if(rb == null) return;
 
-            rb.velocity = Vector3.zero;
+            if(!rb.isKinematic)rb.velocity = Vector3.zero;
+            rb.isKinematic = active;
+            if(!rb.isKinematic)rb.velocity = Vector3.zero;
         }
 
         public void ToggleActiveSubcontroller(bool active)

@@ -20,6 +20,7 @@ namespace Features
         [Header("References")]
         public Life life;
         public Stun stun;
+        public MovementIntelligence movementIntel;
         //Componentes
         [Header("Components")]
         public Animator animator;
@@ -59,7 +60,10 @@ namespace Features
             if (!active) return;
 
             if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
-            if (animator != null) animator.SetTrigger("isHurt");
+            if(movementIntel != null && life != null)
+            {
+                if (life.CurrentHealth <= movementIntel.runAwayLife) movementIntel.SetActionState(MovementIntelligence.ActionState.OutOfBattle);
+            }
         }
 
         public bool GetActive()
