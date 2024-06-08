@@ -8,6 +8,7 @@ namespace Features
     {
         //Configuration
         [Header("Settings")]
+        public Controller controller;
         public Settings settings;
         //Control
         [Header("Control")]
@@ -24,6 +25,7 @@ namespace Features
         //Componentes
         [Header("Components")]
         public Animator animator;
+        public CrowdIntelligence<Enemy> enemyCrowd;
 
         private void Awake()
         {
@@ -48,6 +50,7 @@ namespace Features
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
+            this.controller = controller;
 
             //Setup Properties
             disableTimeAfterHit = settings.Search("disableTimeAfterHit");
@@ -60,9 +63,11 @@ namespace Features
             if (!active) return;
 
             if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
-            if(movementIntel != null && life != null)
+
+            Enemy meEnemy = controller as Enemy;
+            if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)
             {
-                if (life.CurrentHealth <= movementIntel.runAwayLife) movementIntel.SetActionState(MovementIntelligence.ActionState.OutOfBattle);
+                if (life.CurrentHealth <= movementIntel.runAwayLife) enemyCrowd.SetUnitOutOfBattle(meEnemy);
             }
         }
 

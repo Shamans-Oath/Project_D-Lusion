@@ -239,6 +239,7 @@ namespace Features
                     break;
 
                 case ActionState.Available:
+                    hostile = false;
                     available = true;
                     break;
 
