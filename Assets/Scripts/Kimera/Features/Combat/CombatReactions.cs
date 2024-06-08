@@ -32,6 +32,7 @@ namespace Features
             //Get References
             life = GetComponent<Life>();
             stun = GetComponent<Stun>();
+            if (movementIntel == null) movementIntel = GetComponent<MovementIntelligence>();
 
             //Get Components
             if(animator == null) animator = GetComponent<Animator>();
@@ -67,7 +68,10 @@ namespace Features
             Enemy meEnemy = controller as Enemy;
             if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)
             {
-                if (life.CurrentHealth <= movementIntel.runAwayLife) enemyCrowd.SetUnitOutOfBattle(meEnemy);
+                if (life.CurrentHealth <= movementIntel.runAwayLife)
+                {
+                    enemyCrowd.SetUnitOutOfBattle(meEnemy);
+                }
             }
         }
 
