@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 {
+    [Serializable]
     public struct Unit
     {
         public bool defeated;
@@ -20,6 +21,7 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
     [SerializeField] protected List<T> units;
     [SerializeField] protected bool crowdAlerted = false;
     protected Dictionary<T, Unit> crowd;
+    [SerializeField] protected List<Unit> crowdList;
 
     [Header("Crowd Aggro Settings")]
     [SerializeField] protected int hostileTokens;
@@ -38,6 +40,7 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
     protected void Update()
     {
         ManageCrowd();
+        crowdList = crowd.Values.ToList();
     }
 
     protected void ManageCrowd()
@@ -141,7 +144,9 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
         crowdAlerted = true;
 
-        foreach (var pair in crowd)
+        var crowdCopy = new Dictionary<T, Unit>(crowd);
+
+        foreach (var pair in crowdCopy)
         {
             if (pair.Key == null || pair.Value.defeated) continue;
 
@@ -159,6 +164,8 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
         unitData.hostile = true;
 
+        crowd[unit] = unitData;
+
         if (unitData.intel == null) return;
 
         unitData.intel.SetActionState(MovementIntelligence.ActionState.Hostile);
@@ -174,6 +181,8 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
         unitData.hostile = false;
         unitData.available = true;
+
+        crowd[unit] = unitData;
 
         if (unitData.intel == null) return;
 
@@ -191,6 +200,8 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
         unitData.hostile = false;
         unitData.available = false;
 
+        crowd[unit] = unitData;
+
         if (unitData.intel == null) return;
 
         unitData.intel.SetActionState(MovementIntelligence.ActionState.OutOfBattle);
@@ -204,6 +215,9 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
         unitData.hostile = false;
         unitData.available = false;
+        unitData.defeated = true;
+
+        crowd[unit] = unitData;
 
         if (unitData.intel == null) return;
 
@@ -219,6 +233,8 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
         if (unitData.conscious || unitData.defeated) return;
 
         unitData.conscious = true;
+
+        crowd[unit] = unitData;
     }
 
     public Dictionary<T, Unit> GetHostile()
@@ -230,7 +246,7 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
     public Dictionary<T, Unit> GetAvailable()
     {
-        var hostile = crowd.Where(x => x.Value.available && !x.Value.defeated && x.Value.conscious).ToDictionary(x => x.Key, x => x.Value);
+        var hostile = crowd.Where(x => x.Value.available && !x.Value.hostile && !x.Value.defeated && x.Value.conscious).ToDictionary(x => x.Key, x => x.Value);
 
         return hostile;
     }
