@@ -25,6 +25,7 @@ namespace Features
         //References
         [Header("References")]
         public Dictionary<string, MovementMode> moveModes;
+        public Rotation rotation;
         //Componentes
         [Header("Components")]
         public NavMeshAgent agent;
@@ -32,6 +33,10 @@ namespace Features
 
         private void Awake()
         {
+            //Setup subcontroller
+            if(rotation == null) rotation = GetComponent<Rotation>();
+
+            //Setup components
             if(rb == null) rb = GetComponent<Rigidbody>();
             if(agent == null) agent = GetComponent<NavMeshAgent>();
             if (agent != null) agent.destination = transform.position;
@@ -82,7 +87,7 @@ namespace Features
                 agent.destination = transform.position;
                 agent.speed = 0f;
                 return;
-            }
+            }   
 
             activeMoveMode = moveModes[mode];
             agent.speed = activeMoveMode.modeSpeed;
@@ -129,6 +134,7 @@ namespace Features
         public void ToggleActiveSubcontroller(bool active)
         {
             moveModes.Values.ToList().ForEach(mode => mode.ToggleActive(active));
+            if(rotation != null) rotation.ToggleActive(active);
 
             ToggleActive(active);
         }

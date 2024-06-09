@@ -33,7 +33,7 @@ namespace Features
 
         private void Awake()
         {
-            if(agent != null) agent = GetComponent<NavMeshAgent>();
+            if(agent == null) agent = GetComponent<NavMeshAgent>();
         }
 
         public void SetupFeature(Controller controller)
@@ -61,6 +61,19 @@ namespace Features
                 return;
             }
 
+            if (agent != null)
+            {
+                if (agent.enabled)
+                {
+                    Vector3 forward = agent.destination - transform.position;
+                    forward.y = 0f;
+                    forward = forward.normalized;
+
+                    RotateTo(forward);
+                    return;
+                }
+            }
+
             FollowEntity follow = controller as FollowEntity;
             if(follow != null)
             {
@@ -73,16 +86,6 @@ namespace Features
                     RotateTo(forward);
                     return;
                 }
-            }
-
-            if(agent != null)
-            {
-                Vector3 forward = agent.destination - transform.position;
-                forward.y = 0f;
-                forward = forward.normalized;
-
-                RotateTo(forward);
-                return;
             }
         }
 

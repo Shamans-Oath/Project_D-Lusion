@@ -82,6 +82,11 @@ namespace Features
                 return;
             }
 
+            if(attackQueue.Count <= 0 && !activeAttack)
+            {
+                actualCombo = null;
+            }
+
             if (actualCombo == null)
             {
                 for(int i = 0; i < defaultCombos.Count; i++)
