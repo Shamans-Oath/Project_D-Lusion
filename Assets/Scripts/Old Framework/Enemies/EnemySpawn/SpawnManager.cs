@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -39,6 +40,7 @@ public class SpawnManager : MonoBehaviour
                 if(currentWave == currentEncounter.waves.Length - 1)
                 {
                     isActive = false;
+                    currentModule = null;
                 }
                 else
                 {
@@ -99,5 +101,36 @@ public class SpawnManager : MonoBehaviour
         {
             remainingEnemies[i].transform.position = currentModule.spawnPoints[i].position;
         }
+    }
+
+    public void SpawnEnemySingle(int poolIndex, string enemyName, int spawnIndex)
+    {
+        bool listCheck()
+        {
+            for (int i = 0; i < pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies.Count; i++)
+            {
+                if (!pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies[i].activeInHierarchy)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        if (listCheck() == true)
+        {
+            pool.UpdatePool(poolIndex, pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies.Count + 1, enemyName);
+        }
+
+        GameObject enemy = pool.GetPooledObject(enemyName);
+
+        if (enemy != null)
+        {
+            enemy.SetActive(true);
+            remainingEnemies.Add(enemy);
+        }
+
+        enemy.transform.position = currentModule.spawnPoints[spawnIndex].position;
     }
 }
