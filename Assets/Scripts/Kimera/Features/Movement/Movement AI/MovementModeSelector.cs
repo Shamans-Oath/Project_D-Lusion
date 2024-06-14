@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Features
 {
-    public class MovementModeSelector :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate //Other channels
+    public class MovementModeSelector :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate, ISubcontroller //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -24,13 +25,21 @@ namespace Features
         //References
         [Header("References")]
         public Dictionary<string, MovementMode> moveModes;
+        public Rotation rotation;
         //Componentes
         [Header("Components")]
         public NavMeshAgent agent;
+        public Rigidbody rb;
 
         private void Awake()
         {
+            //Setup subcontroller
+            if(rotation == null) rotation = GetComponent<Rotation>();
+
+            //Setup components
+            if(rb == null) rb = GetComponent<Rigidbody>();
             if(agent == null) agent = GetComponent<NavMeshAgent>();
+            if (agent != null) agent.destination = transform.position;
         }
 
         public void SetupFeature(Controller controller)
@@ -78,7 +87,7 @@ namespace Features
                 agent.destination = transform.position;
                 agent.speed = 0f;
                 return;
-            }
+            }   
 
             activeMoveMode = moveModes[mode];
             agent.speed = activeMoveMode.modeSpeed;
@@ -96,6 +105,12 @@ namespace Features
             agent.destination = activeMoveMode.RequestNextPoint(follow);
         }
 
+        public string GetActiveMoveModeName()
+        {
+            if (activeMoveMode == null) return "quiet";
+            else return activeMoveMode.modeName;
+        }
+
         public bool GetActive()
         {
             return active;
@@ -104,6 +119,24 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+
+            if (agent == null) return;
+
+            agent.enabled = active;
+
+            if(rb == null) return;
+
+            if(!rb.isKinematic)rb.velocity = Vector3.zero;
+            rb.isKinematic = active;
+            if(!rb.isKinematic)rb.velocity = Vector3.zero;
+        }
+
+        public void ToggleActiveSubcontroller(bool active)
+        {
+            moveModes.Values.ToList().ForEach(mode => mode.ToggleActive(active));
+            if(rotation != null) rotation.ToggleActive(active);
+
+            ToggleActive(active);
         }
     }
 }

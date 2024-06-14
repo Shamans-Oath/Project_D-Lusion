@@ -14,11 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationClip: {fileID: 7400000, guid: 4d1a49a19b353504c86212174dc6b556, type: 2}
   swings:
-  - swingName: BoxPunch
-    size: {x: 0.5, y: 0.5, z: 0.5}
-    offset: {x: 0, y: 0, z: 0.35}
-    movement: {x: 0, y: 0, z: 10}
-    settings: {fileID: 0}
+  - swingName: BoxPunch1
+    size: {x: 1, y: 0.5, z: 1}
+    offset: {x: 0, y: 0, z: 1}
+    movement: {x: 0, y: 0, z: 2}
+    settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
+    duration: 1.7333335
+    start: 0.34358966
+    end: 1.0138121
+  - swingName: BoxPunch2
+    size: {x: 1, y: 0.5, z: 1}
+    offset: {x: 0, y: 0, z: 1}
+    movement: {x: 0, y: 0, z: 2}
+    settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
     duration: 1.7333335
     start: 0.5777778
     end: 1.2480001
+  - swingName: BoxPunch3
+    size: {x: 1, y: 0.5, z: 1}
+    offset: {x: 0, y: 0, z: 1}
+    movement: {x: 0, y: 0, z: 2}
+    settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
+    duration: 1.7333335
+    start: 0.8220856
+    end: 1.492308

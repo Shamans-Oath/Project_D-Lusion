@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
+    public class Attack :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, IFeatureFixedUpdate //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -15,6 +15,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] private bool activeAttack;
+        [SerializeField] private bool uniqueEffectsTriggered = false;
         [SerializeField] private Vector3 playerForward;
         public bool ActiveAttack { get => activeAttack; }
         [SerializeField] private AttackSwing actualAttack;
@@ -23,11 +24,20 @@ namespace Features
         [Header("References")]
         public AttackBox attackBox;
         //Componentes
+        [Header("Components")]
+        [SerializeField] private Rigidbody playerRigidbody;
+        [SerializeField] private Rigidbody rb;
+
+        [Header("Debug")]
+        public bool debug;
 
         private void Awake()
         {
             //Setup References
             attackBox = GetComponent<AttackBox>();
+
+            //Setup Components
+            rb = GetComponent<Rigidbody>();
         }
 
         public void SetupFeature(Controller controller)
@@ -47,14 +57,96 @@ namespace Features
             if(inputEntity != null) playerForward = inputEntity.playerForward;
         }
 
+        public void FixedUpdateFeature(Controller controller)
+        {
+            if (!active) return;
+
+            KineticEntity kinetic = controller as KineticEntity;
+            if(kinetic != null) kinetic.currentSpeed = playerRigidbody.velocity.magnitude;
+
+            if (actualAttack != null && activeAttack) AttackEffects(actualAttack.settings, kinetic);
+        }
+
         public void StartAttackBox(AttackSwing attack)
         {
             if (!active || attack == null) return;
 
             actualAttack = attack;
             activeAttack = true;
-            attackBox.SetBox(attack.size, attack.offset, new Vector3(playerForward.x * attack.movement.x, attack.movement.y, playerForward.z * attack.movement.z), true);
-            attackBox.SetAttack(attack.settings);
+            Vector3 attackDirection = transform.right * attack.movement.x + transform.up * attack.movement.y + transform.forward * attack.movement.z;
+            attackBox.SetBox(attack.size, attack.offset, attackDirection, true);
+            attackBox.SetAttack(attack.settings);   
+            uniqueEffectsTriggered = false;
+
+            if (attack.settings != null) attack.settings.AssemblySettings();
+        }
+
+        private void AttackEffects(Settings attackSettings, KineticEntity kinetic)
+        {
+            if (!active || attackSettings == null || playerRigidbody == null) return;
+
+            //Contiuous Events During Swing
+            AttackFollowForce(attackSettings, kinetic);
+            AttackFollowVerticalForce(attackSettings, kinetic);
+
+            if (uniqueEffectsTriggered) return;
+            uniqueEffectsTriggered = true;
+
+            //Unique Events
+            AttackImpulse(attackSettings);
+            VerticalAttackImpulse(attackSettings);
+        }
+
+        private void AttackFollowForce(Settings attackSettings, KineticEntity kinetic)
+        {
+            if (attackSettings == null || kinetic == null) return;
+
+            float? attackFollowMove = attackSettings.Search("attackFrictionMove");
+
+            if (attackFollowMove == null) return;
+
+            if (attackFollowMove == 0) return;
+
+            playerRigidbody.AddForce(-transform.forward * (float)attackFollowMove, ForceMode.Acceleration);
+        }
+
+        private void AttackFollowVerticalForce(Settings attackSettings, KineticEntity kinetic)
+        {
+            if (attackSettings == null || kinetic == null) return;
+
+            float? attackFollowMove = attackSettings.Search("attackFollowVerticalMove");
+
+            if (attackFollowMove == null) return;
+
+            if (attackFollowMove == 0) return;
+
+            playerRigidbody.AddForce(transform.up * (float)attackFollowMove, ForceMode.Acceleration);
+        }
+
+        private void AttackImpulse(Settings attackSettings)
+        {
+            if(attackSettings == null) return;
+
+            float? attackImpulse = attackSettings.Search("attackImpulse");
+
+            if(attackImpulse == null) return;
+
+            if (attackImpulse == 0) return;
+
+            playerRigidbody.AddForce(transform.forward * (float)attackImpulse, ForceMode.VelocityChange);
+        }
+
+        private void VerticalAttackImpulse(Settings attackSettings)
+        {
+            if (attackSettings == null) return;
+
+            float? attackImpulse = attackSettings.Search("attackImpulseVertical");
+
+            if (attackImpulse == null) return;
+
+            if (attackImpulse == 0) return;
+
+            playerRigidbody.AddForce(transform.up * (float)attackImpulse, ForceMode.VelocityChange);    
         }
 
         public void EndAttackBox()
@@ -73,6 +165,18 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!debug || !Application.isPlaying) return;
+
+            if (actualAttack == null || !activeAttack) return;
+
+            Gizmos.matrix = transform.localToWorldMatrix;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(Vector3.zero,actualAttack.size);
         }
     }
 }

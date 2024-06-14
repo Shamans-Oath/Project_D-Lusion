@@ -65,7 +65,6 @@ namespace Features
             Vector3 forward = input.playerForward;
             bool grounded = terrain.onGround;
             Vector3 velocity = cmp_rigidbody.velocity;
-            if (terrain.onGround) velocity.y = 0f;
 
             terrains.Sort(TerrainModifier.CompareByOrder);
             if (terrains.Count > 0)
@@ -80,6 +79,7 @@ namespace Features
 
             bool changeDir = ChangeDirection(forward, velocity);
             bool onLadder = specialTerrainEntity != null ? specialTerrainEntity.onLadder : false;
+            if (!terrain.onSlope && !onLadder)velocity.y = 0f;
 
             float drag = 0f;
             if (grounded && !onLadder)

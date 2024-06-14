@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Follow :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
+    public class Follow :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, IFeatureAction //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -22,7 +22,8 @@ namespace Features
         //References
         //Componentes
         [Header("Components")]
-        GameObject targetGameObject;
+        public GameObject targetGameObject;
+        public CrowdIntelligence<Enemy> enemyCrowd;
 
         public void SetupFeature(Controller controller)
         {
@@ -44,11 +45,11 @@ namespace Features
             FollowEntity follow = controller as FollowEntity;
             if(follow == null) return;
 
-            DetectTarget();
+            DetectTarget(controller);
             UpdateTarget(follow);
         }
 
-        private void DetectTarget()
+        private void DetectTarget(Controller controller)
         {
             if (!active || targetGameObject == null || targetDetected) return;
             
@@ -57,6 +58,12 @@ namespace Features
             if (distanceToTarget < detectDistance)
             {
                 targetDetected = true;
+                if(enemyCrowd != null)
+                {
+                    enemyCrowd.CrowdAlert();
+                    Enemy meEnemy = controller as Enemy;
+                    if (meEnemy != null) enemyCrowd.SetUnitConscious(meEnemy);
+                }
             }
         }
 
@@ -71,6 +78,23 @@ namespace Features
             }
 
             follow.target = targetGameObject;
+        }
+
+        public void FeatureAction(Controller controller, params Setting[] settings)
+        {
+            if(settings.Length < 1) return;
+
+            bool targetedState = settings[0].boolValue;
+
+            targetDetected = targetedState;
+
+            if (!targetedState) return;
+
+            if (enemyCrowd != null)
+            {
+                Enemy meEnemy = controller as Enemy;
+                if (meEnemy != null) enemyCrowd.SetUnitConscious(meEnemy);
+            }
         }
 
         public bool GetActive()

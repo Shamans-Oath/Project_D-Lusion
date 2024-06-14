@@ -15,10 +15,18 @@ MonoBehaviour:
   animationClip: {fileID: 7400000, guid: 93a46ea8df26042448c245439e2f4a41, type: 2}
   swings:
   - swingName: KickMMA
-    size: {x: 0.5, y: 0.6, z: 0.6}
-    offset: {x: 0, y: -0.4, z: 0.45}
-    movement: {x: 0, y: 3, z: 5}
-    settings: {fileID: 0}
+    size: {x: 1, y: 2, z: 1}
+    offset: {x: 0, y: -0.5, z: 0.5}
+    movement: {x: 0, y: 5, z: 4.5}
+    settings: {fileID: 11400000, guid: bb74101587ca40e4aabf8bef0706880d, type: 2}
     duration: 1.6000001
     start: 0.31485942
-    end: 1.0152612
+    end: 0.6191879
+  - swingName: KickMMA
+    size: {x: 1, y: 2, z: 1}
+    offset: {x: 0, y: 0, z: 0.5}
+    movement: {x: 0, y: 0, z: 4.5}
+    settings: {fileID: 11400000, guid: 2b1cce930954c0f4895e092418ff6249, type: 2}
+    duration: 1.6000001
+    start: 0.78516245
+    end: 1.0894909

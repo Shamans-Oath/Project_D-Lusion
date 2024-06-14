@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, FollowEntity
+    public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, FollowEntity, CombatEntity
     {
 
         //Living
@@ -18,8 +18,14 @@ namespace Features
         public bool onGround { get; set; }
         public bool onSlope { get; set; }
 
+        public bool onLadder { get; set; }
+
         //Follow
         public GameObject target {  get; set; }
+        //Combat
+        public bool block { get; set; }
+        public bool parry { get; set; }
+        public int attack {  get; set; }
 
         private void OnEnable()
         {
@@ -33,7 +39,9 @@ namespace Features
 
         public void OnDeath()
         {
-            Destroy(gameObject);
+            CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+            ToggleActive(false);
+            //Destroy(gameObject);
         }
     }
 }

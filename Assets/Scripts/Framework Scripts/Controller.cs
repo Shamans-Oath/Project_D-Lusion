@@ -13,6 +13,7 @@ public abstract class Controller : MonoBehaviour, IActivable
     [Header("Components")]
     [SerializeField] protected List<GameObject> additionalGameObjectFeatures;
     public Dictionary<System.Type, IFeatureSetup> features;
+    public List<IFeatureSetup> otherFeatures;
 
     [Header("Links")]
     [SerializeField] protected List<Link> actionLinks;
@@ -50,10 +51,12 @@ public abstract class Controller : MonoBehaviour, IActivable
         additionalGameObjectFeatures.ForEach(go => featureList.AddRange(new List<IFeatureSetup>(go.GetComponents<IFeatureSetup>())));
 
         features = new Dictionary<System.Type, IFeatureSetup>();
+        otherFeatures = new List<IFeatureSetup>();
 
         foreach (IFeatureSetup feature in featureList)
         {
-            features.Add(feature.GetType(), feature);
+            if (!features.ContainsKey(feature.GetType())) features.Add(feature.GetType(), feature);
+            else otherFeatures.Add(feature);
             feature.SetupFeature(this);
         }
 
@@ -71,11 +74,29 @@ public abstract class Controller : MonoBehaviour, IActivable
 
             featureUpdate.UpdateFeature(this);
         }
+
+        foreach (IFeatureSetup feature in otherFeatures)
+        {
+            IFeatureUpdate featureUpdate = feature as IFeatureUpdate;
+
+            if (featureUpdate == null) continue;
+
+            featureUpdate.UpdateFeature(this);
+        }
     }
 
     public virtual void FixedUpdateFeatures()
     {
         foreach (IFeatureSetup feature in features.Values)
+        {
+            IFeatureFixedUpdate featureFixedUpdate = feature as IFeatureFixedUpdate;
+
+            if (featureFixedUpdate == null) continue;
+
+            featureFixedUpdate.FixedUpdateFeature(this);
+        }
+
+        foreach (IFeatureSetup feature in otherFeatures)
         {
             IFeatureFixedUpdate featureFixedUpdate = feature as IFeatureFixedUpdate;
 
@@ -157,7 +178,7 @@ public abstract class Controller : MonoBehaviour, IActivable
 
         if(active) return;
 
-        foreach (Link link in actionLinks)
+        foreach (Link link in new List<Link>(actionLinks))
         {
             link.Unlink();
         }

@@ -9,6 +9,8 @@ namespace Features
         //States
         [Header("States")]
         public RaycastHit stepHit;
+        [SerializeField] private bool hipBlocked;
+        [SerializeField] private bool feetBlocked;
         //States / Time Management
         private float stepTimer;
         //Properties
@@ -16,7 +18,9 @@ namespace Features
         public float stepDistance;
         public float stepHeight;
         public float stepDepth;
+        public float hipHeight;
         public Vector3 feetSize;
+        public Vector3 hipSize;
         public AnimationCurve stepCurve;
         //Properties / Time Management
         public float timeToStep;
@@ -24,6 +28,9 @@ namespace Features
         [Header("References")]
         public Slope slope;
         //Componentes
+        //Debug
+        [Header("Debug")]
+        public bool debug;
 
         private void Awake()
         {
@@ -39,6 +46,8 @@ namespace Features
             stepHeight = settings.Search("stepHeight");
             stepDepth = settings.Search("stepDepth");
             feetSize = settings.Search("feetSize");
+            hipHeight = settings.Search("hipHeight");
+            hipSize = settings.Search("hipSize");
             stepCurve = settings.Search("stepCurve");
             timeToStep = settings.Search("timeToStep");
 
@@ -55,7 +64,7 @@ namespace Features
             }
 
             if (onTerrain) stepTimer += Time.deltaTime;
-            else stepTimer = 0;
+            else if(stepTimer > 0) stepTimer -= Time.deltaTime;
         }
 
         public override void CheckTerrain(Controller controller)
@@ -63,10 +72,18 @@ namespace Features
             InputEntity input = controller as InputEntity;
             if (input == null) return;
 
-            Vector3 direction = input.playerForward;
-            Vector3 origin = transform.position + transform.up * stepHeight + direction * stepDepth;
+            Vector3 direction = transform.forward;
+            Vector3 originStep = transform.position + transform.up * stepHeight + direction * stepDepth;
+            Vector3 originHip = transform.position + transform.up * hipHeight;
 
-            if (Physics.BoxCast(origin, feetSize / 2, direction, out stepHit, transform.rotation, stepDistance, terrainLayer))
+            hipBlocked = Physics.OverlapBox(originHip, hipSize, transform.rotation, terrainLayer).Length > 0;
+            feetBlocked = Physics.BoxCast(originStep, feetSize / 2, direction, out stepHit, transform.rotation, stepDistance, terrainLayer);
+
+            if (hipBlocked)
+            {
+                onTerrain = false;
+            }
+            else if(feetBlocked)
             {
                 onTerrain = slope == null ? true : !slope.IsSlopeSurface(stepHit.normal);
             } else
@@ -101,6 +118,24 @@ namespace Features
             if(!onTerrain) return Vector3.zero;
 
             return stepHit.normal;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!debug || !Application.isPlaying) return;
+
+            Gizmos.matrix = transform.localToWorldMatrix;
+
+            Gizmos.color = hipBlocked ? Color.red : Color.green;
+            Vector3 originHip = Vector3.up * hipHeight;
+            Gizmos.DrawCube(originHip, hipSize);
+
+            Gizmos.color = feetBlocked ? Color.red : Color.green;
+            Vector3 originFeet = Vector3.up * stepHeight + Vector3.forward * stepDepth;
+            Vector3 endFeet = originFeet + Vector3.forward * stepDistance;
+            Gizmos.DrawCube(originFeet, feetSize);
+            Gizmos.DrawLine(originFeet, endFeet);
+
         }
     }
 }

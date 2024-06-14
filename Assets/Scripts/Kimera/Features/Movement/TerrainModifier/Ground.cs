@@ -44,9 +44,12 @@ namespace Features
 
         public override Vector3 ProjectOnTerrain(Vector3 direction)
         {
-            return Vector3.ProjectOnPlane(direction, Vector3.up);
-        }
+            Vector3 flattenDirection = direction;
+            flattenDirection.y = 0f;
 
+            return flattenDirection;
+        }
+            
         public override Vector3 GetTerrainNormal()
         {
             return Vector3.up;

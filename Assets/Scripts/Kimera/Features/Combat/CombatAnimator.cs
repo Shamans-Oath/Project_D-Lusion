@@ -25,16 +25,13 @@ namespace Features
         //References
         //Componentes
 
-        private void Awake()
-        {
-            conditions = new Dictionary<string, bool>();
-            coroutinesInput = new Dictionary<string, Coroutine>();
-            conditions.Add("stop", false);
-        }
-
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
+
+            conditions = new Dictionary<string, bool>();
+            coroutinesInput = new Dictionary<string, Coroutine>();
+            conditions.Add("stop", false);
 
             //Setup Properties
             inputPermanenceTime = settings.Search("inputPermanenceTime");
