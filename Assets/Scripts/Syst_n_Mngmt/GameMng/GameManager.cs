@@ -6,6 +6,8 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
+    [ReadOnly]
+    public float timeSet;
 
 
     public static event Action StateChanged = delegate { };
@@ -59,4 +61,33 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    #region TimeSettings
+    private static float defaultTime = 1;
+    private static float currentGameplayTime = 1;
+    public static void SetTimeTo(float timeValue)
+    {
+        Time.timeScale = timeValue;
+    }
+
+    public static void LerpTimeTo(float timeValue, float secconds)
+    {
+        
+    }
+    public IEnumerator ChangeTime(float timeValue, float secconds)
+    {
+
+        yield return 0;
+    }
+    public static void SaveCurrentGameplayTime()
+    {
+        currentGameplayTime = Time.timeScale;
+    }
+    #endregion
+
+    #region CursorSettings
+
+    #endregion
+
+
 }
