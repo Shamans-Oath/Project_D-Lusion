@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.UI;
-
+using System;
 public class TargetLock : MonoBehaviour
 {
+    public event Action<GameObject> UpdatedTarget = delegate { };
     [Header("Objects")]
     [Space]
     public Camera_System camSys;
     [SerializeField] private Transform baseReference;
-    [SerializeField] private Camera mainCamera;            // your main camera object.
-    [SerializeField] private CinemachineFreeLook cinemachineFreeLook; //cinemachine free lock camera object.
+     public Camera mainCamera;         
+     public CinemachineFreeLook cinemachineFreeLook;
     [Space]
     [Header("UI")]
-    [SerializeField] private Image aimIcon;  // ui image of aim icon u can leave it null.
+    [SerializeField] private Image aimIcon;  
     [Space]
     [Header("Settings")]
     [Space]
@@ -35,10 +36,23 @@ public class TargetLock : MonoBehaviour
     private float mouseX;
     private float mouseY;
 
+    private float _defaultRadius;
+    private float _defaultDistance;
+    private float _defaultAdjSpd;
+
     void Start()
-    {        
+    {
+        _defaultRadius = detectRadius;
+        _defaultDistance = distance;
+        _defaultAdjSpd = adjustmentSpeed;
         //cinemachineFreeLook.m_XAxis.m_InputAxisName = "";
         //cinemachineFreeLook.m_YAxis.m_InputAxisName = "";
+    }
+    public void ResetValues()
+    {
+        detectRadius = _defaultRadius;
+        distance = _defaultDistance;
+        adjustmentSpeed = _defaultAdjSpd;
     }
     void Update()
     {
@@ -59,7 +73,7 @@ public class TargetLock : MonoBehaviour
                 cinemachineFreeLook.m_XAxis.m_InputAxisValue,
                 cinemachineFreeLook.m_YAxis.m_InputAxisValue);
 
-            Debug.Log(detectRadius + " | " + (Mathf.Abs(mousePos.x) + Mathf.Abs(mousePos.y)) * 4.5f);
+            
             if ((Mathf.Abs(mousePos.x) + Mathf.Abs(mousePos.y)) * 4.5f > (detectRadius/2))
             {
                 AssignTarget();
@@ -163,6 +177,7 @@ public class TargetLock : MonoBehaviour
         }*/
         if(hits.Length<=0)
         {
+            if (currentTarget != null) UpdatedTarget.Invoke(null);
             currentTarget = null;
             RemoveTarget();
             return null;
@@ -182,7 +197,7 @@ public class TargetLock : MonoBehaviour
         }
 
         //currentTarget = returnObj.transform;
-        
+        if (returnObj != currentTarget) UpdatedTarget.Invoke(returnObj);
         return returnObj;
         
         

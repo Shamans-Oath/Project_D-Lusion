@@ -69,19 +69,39 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = timeValue;
     }
-
+    private static Coroutine timeLerp;
     public static void LerpTimeTo(float timeValue, float secconds)
     {
-        
+        if (timeLerp != null) manager.StopCoroutine(timeLerp);
+        timeLerp = manager.StartCoroutine(manager.ChangeTime(timeValue, secconds));
     }
     public IEnumerator ChangeTime(float timeValue, float secconds)
     {
+        float t = 0;
+       
+        while (true)
+        {
+            yield return null;
+            Time.timeScale = Mathf.Lerp(Time.timeScale, timeValue, t / secconds);
+            t += Time.unscaledDeltaTime;
+            if (t > secconds)
+            {
+                break;
+            }
+        }
 
+
+        timeLerp = null;
         yield return 0;
     }
     public static void SaveCurrentGameplayTime()
     {
         currentGameplayTime = Time.timeScale;
+    }
+
+    public static void ResetTime()
+    {
+        Time.timeScale = defaultTime; ;
     }
     #endregion
 

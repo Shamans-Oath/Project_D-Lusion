@@ -31,6 +31,7 @@ namespace Features
         [Header("Properties")]
         //Shared Properties
         public float gravityValue;
+        public float distanceLimit;
         //Self Properties
         public float timeMultiplier;
         public float baseHeight;
@@ -126,7 +127,7 @@ namespace Features
         public void ChargeDash(Vector3 position)
         {
             //Check inner state: if the cooldown is not ready or the player is already dashing interrupt
-            if (dashCooldownTimer > 0 || isDashing || isCharging) return;
+            //if (dashCooldownTimer > 0 || isDashing || isCharging) return;  //Descomentar para habilitar cooldown inicial
 
             dashCharge = StartCoroutine(DashToPosition(position));
         }

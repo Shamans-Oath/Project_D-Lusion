@@ -30,8 +30,14 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     // Stun
     public bool isStunned { get; set; }
 
+    // Dash Distance
+    public float maxDashDistance { get; set; }
+
+
+
     [Header("Components")]
     public Transform dashPoint;
+    public Camera_System cameraSys;
 
     private void OnEnable()
     {
@@ -66,8 +72,20 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         if (context.performed)
         {
             // SearchFeature<Rotation>().RotateTo(dashPoint.position);
-            CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+            //CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
             //CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+            SearchFeature<TimeFocusMode>().EnableFocus();
+        }
+        if(context.canceled)
+        {
+            SearchFeature<TimeFocusMode>().DisableFocus();
+            if (maxDashDistance <= 0) maxDashDistance = 15;
+            if (cameraSys.GetCameraLookat(maxDashDistance).HasValue)
+            {
+                dashPoint.position = cameraSys.GetCameraLookat(maxDashDistance).Value;
+                CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+            }
+            
         }
     }
 

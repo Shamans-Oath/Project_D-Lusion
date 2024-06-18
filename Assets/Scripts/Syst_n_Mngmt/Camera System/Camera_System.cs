@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Camera_System : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineFreeLook cmp_playerCamera;
     [SerializeField] private float defaultFOV;
     [SerializeField] private List<float> defaultRadius = new List<float>();
@@ -12,9 +13,19 @@ public class Camera_System : MonoBehaviour
 
     public CameraShakeScriptable[] shakeBehaviors;
     [SerializeField] private CinemachineImpulseSource cmp_CIS;
+
+    [Header("Lock System")]
+    public TargetLock lockSys;
     // Start is called before the first frame update
     void Start()
     {
+        if (lockSys)
+        {
+            lockSys.camSys = this;
+            lockSys.cinemachineFreeLook = cmp_playerCamera;
+            lockSys.mainCamera = mainCamera;
+        }
+
         defaultFOV = cmp_playerCamera.m_Lens.FieldOfView;
 
         for(int i = 0; i < cmp_playerCamera.m_Orbits.Length; i++)
@@ -219,4 +230,14 @@ public class Camera_System : MonoBehaviour
         }
     }
     #endregion
+
+    public Vector3? GetCameraLookat(float maxDistance)
+    {
+        if (mainCamera == null) return null;
+
+        if (lockSys.currentTarget != null) return lockSys.currentTarget.transform.position;
+        
+        Vector3 point = mainCamera.transform.position + (mainCamera.transform.forward * maxDistance);
+        return point;
+    }
 }
