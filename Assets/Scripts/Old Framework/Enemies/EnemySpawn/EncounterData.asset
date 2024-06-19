@@ -13,21 +13,24 @@ MonoBehaviour:
   m_Name: EncounterData
   m_EditorClassIdentifier: 
   waves:
-  - waveInfo:
+  - enemyThreshold: 2
+    waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 3
     - poolIndex: 1
       enemyName: TestEnemy2
       numberOfEnemies: 2
-  - waveInfo:
+  - enemyThreshold: 3
+    waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 2
     - poolIndex: 1
       enemyName: TestEnemy2
       numberOfEnemies: 3
-  - waveInfo:
+  - enemyThreshold: 0
+    waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 5

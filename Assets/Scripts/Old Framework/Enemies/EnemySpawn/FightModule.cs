@@ -6,6 +6,7 @@ public class FightModule : MonoBehaviour
 {
     public EncounterScriptable Info;
     public Transform[] spawnPoints;
+    public Transform[] subModule;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +17,10 @@ public class FightModule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             LoadFight();
-        }*/
+        }
     }
 
     public void LoadFight()

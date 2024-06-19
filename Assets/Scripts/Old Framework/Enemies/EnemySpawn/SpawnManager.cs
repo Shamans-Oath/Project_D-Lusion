@@ -18,6 +18,7 @@ public class SpawnManager : MonoBehaviour
     [HideInInspector]
     public float waveCooldown;
     public int currentWave = 0;
+    public int enemyThreshold;
 
     void Awake()
     {
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     {
         if(isActive)
         {
-            if(remainingEnemies.Count == 0) 
+            if(remainingEnemies.Count <= enemyThreshold) 
             {
                 if(currentWave == currentEncounter.waves.Length - 1)
                 {
@@ -60,6 +61,8 @@ public class SpawnManager : MonoBehaviour
 
     public void ReadEncounter(int waveIndex)
     {
+        enemyThreshold = currentEncounter.waves[waveIndex].enemyThreshold;
+
         for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
             pool.UpdatePool(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies, currentEncounter.waves[waveIndex].waveInfo[x].enemyName);
@@ -95,15 +98,21 @@ public class SpawnManager : MonoBehaviour
 
     public void PlaceEnemies()
     {
-        int leftoverPoints = currentModule.spawnPoints.Length - remainingEnemies.Count;
+        int x = 0;
 
-        for (int i = 0; i < currentModule.spawnPoints.Length - leftoverPoints; ++i)
+        for (int i = 0; i < remainingEnemies.Count; ++i)
         {
-            remainingEnemies[i].transform.position = currentModule.spawnPoints[i].position;
+            if(x >= currentModule.spawnPoints.Length)
+            {
+                x = 0;
+            }
+
+            remainingEnemies[i].transform.position = currentModule.spawnPoints[x].position;
+            x++;
         }
     }
 
-    public void SpawnEnemySingle(int poolIndex, string enemyName, int spawnIndex)
+    public GameObject SpawnEnemySingle(int poolIndex, string enemyName, int spawnIndex)
     {
         bool listCheck()
         {
@@ -132,5 +141,45 @@ public class SpawnManager : MonoBehaviour
         }
 
         enemy.transform.position = currentModule.spawnPoints[spawnIndex].position;
+
+        return enemy;
+    }
+
+    public GameObject SpawnEnemySingle(int poolIndex, string enemyName, Transform spawnPoint)
+    {
+        bool listCheck()
+        {
+            for (int i = 0; i < pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies.Count; i++)
+            {
+                if (!pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies[i].activeInHierarchy)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        if (listCheck() == true)
+        {
+            pool.UpdatePool(poolIndex, pool.poolList.Find((x) => x.listName == enemyName).pooledEnemies.Count + 1, enemyName);
+        }
+
+        GameObject enemy = pool.GetPooledObject(enemyName);
+
+        if (enemy != null)
+        {
+            enemy.SetActive(true);
+            remainingEnemies.Add(enemy);
+        }
+
+        enemy.transform.position = spawnPoint.position;
+
+        return enemy;
+    }
+
+    public GameObject GetEnemy(int index)
+    {
+        return remainingEnemies[index];
     }
 }

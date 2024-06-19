@@ -12,12 +12,13 @@ public class EncounterScriptable : ScriptableObject
 [System.Serializable]
 public class Waves
 {
+    public int enemyThreshold;
     public WaveInfo[] waveInfo;
 }
 
 [System.Serializable]
 public class WaveInfo
-{
+{    
     public int poolIndex;
     public string enemyName;
     public int numberOfEnemies;
