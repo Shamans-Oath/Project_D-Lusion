@@ -32,6 +32,8 @@ namespace Features
         public CombatAnimator combatAnimator;
         public List<Attack> possibleAttacks;
         public ISubcontroller movement;
+        public ISubcontroller movementAI;
+        public FaceTarget faceTarget;
         [Header("Components")]
         public Animator cmp_animator;
 
@@ -42,10 +44,12 @@ namespace Features
 
             //Setup References
             combatAnimator = GetComponent<CombatAnimator>();
+            faceTarget = GetComponent<FaceTarget>();
+            movement = GetComponent<Movement>() as ISubcontroller;
+            movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
 
             //Setup Components
-            if(cmp_animator == null) cmp_animator = GetComponent<Animator>();
-            movement = GetComponent<Movement>() as ISubcontroller;
+            if (cmp_animator == null) cmp_animator = GetComponent<Animator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -150,7 +154,7 @@ namespace Features
                 SetupAttack(attackQueue.Dequeue());
             } 
 
-            else if(attackTimer <= .2f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
+            else if(attackTimer <= .15f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
             {
                 StopAttack();
             }
@@ -160,6 +164,8 @@ namespace Features
         public void SetupAttack(AttackPreset attack)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
+            if(movementAI != null) movementAI.ToggleActiveSubcontroller(false);
+            if (faceTarget != null) faceTarget.ToggleActive(true);
 
             actualAttack = attack;
             attackTimer = attack.animationClip.length;
@@ -188,8 +194,10 @@ namespace Features
         private void StopAttack()
         {
             if (movement != null) movement.ToggleActiveSubcontroller(true);
+            if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);
+            if (faceTarget != null) faceTarget.ToggleActive(false);
 
-            for(int i = 0; i < possibleAttacks.Count; i++)
+            for (int i = 0; i < possibleAttacks.Count; i++)
             {
                 EndAttack(i);
             }

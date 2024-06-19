@@ -22,6 +22,7 @@ namespace Features
         public Life life;
         public Stun stun;
         public MovementIntelligence movementIntel;
+        public CombatAnimator combatAnimator;
         //Componentes
         [Header("Components")]
         public Animator animator;
@@ -32,6 +33,7 @@ namespace Features
             //Get References
             life = GetComponent<Life>();
             stun = GetComponent<Stun>();
+            combatAnimator = GetComponent<CombatAnimator>();
             if (movementIntel == null) movementIntel = GetComponent<MovementIntelligence>();
 
             //Get Components
@@ -64,6 +66,8 @@ namespace Features
             if (!active) return;
 
             if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
+
+            if (combatAnimator != null) combatAnimator.InputConditon("stop");
 
             Enemy meEnemy = controller as Enemy;
             if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)

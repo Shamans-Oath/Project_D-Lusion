@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, CombatEntity, FurryEntity, LivingEntity, StunEntity
+public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, CombatEntity, FurryEntity, LivingEntity, StunEntity, FollowEntity
 {
     //States
     //Input
@@ -33,6 +33,8 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     // Dash Distance
     public float maxDashDistance { get; set; }
 
+    //Follow Entity
+    public GameObject target {  get; set; }
 
 
     [Header("Components")]

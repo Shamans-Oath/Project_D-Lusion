@@ -137,8 +137,7 @@ namespace Features
         {
             if(camera == null) return Vector3.zero;
 
-            Vector3 cameraPosition = camera.transform.position;
-            Vector3 cameraForward = (transform.position - cameraPosition).normalized;
+            Vector3 cameraForward = camera.transform.forward;
             Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraForward);
 
             // Calculate the movement direction based on the camera's forward direction
