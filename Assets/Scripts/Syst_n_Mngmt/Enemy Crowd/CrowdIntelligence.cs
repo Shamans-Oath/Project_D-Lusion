@@ -124,13 +124,16 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
 
         if (follow == null) return;
 
+        Life unitLife = unit.SearchFeature<Life>();
+        MovementIntelligence unitIntel = unit.SearchFeature<MovementIntelligence>();
+
         Unit unitData = new Unit
         {
-            defeated = unit.SearchFeature<Life>().CurrentHealth <= 0,
-            hostile = unit.SearchFeature<MovementIntelligence>().Hostile,
-            available = unit.SearchFeature<MovementIntelligence>().Available,
+            defeated = unitLife.CurrentHealth <= 0,
+            hostile = unitIntel.Hostile,
+            available = unitIntel.Available,
             conscious = follow.target != null,
-            intel = unit.SearchFeature<MovementIntelligence>()
+            intel = unitIntel
         };
 
         unit.SearchFeature<Life>().OnDeath += () => SetUnitDefeated(unit);

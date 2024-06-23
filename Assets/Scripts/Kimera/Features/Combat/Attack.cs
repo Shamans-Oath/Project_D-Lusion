@@ -107,7 +107,10 @@ namespace Features
 
             if (attackFollowMove == 0) return;
 
-            playerRigidbody.AddForce(-transform.forward * (float)attackFollowMove, ForceMode.Acceleration);
+            Vector3 playerSpeed = playerRigidbody.velocity;
+            playerSpeed.y = 0;
+
+            playerRigidbody.AddForce(-playerSpeed * (float)attackFollowMove, ForceMode.Acceleration);
         }
 
         private void AttackFollowVerticalForce(Settings attackSettings, KineticEntity kinetic)

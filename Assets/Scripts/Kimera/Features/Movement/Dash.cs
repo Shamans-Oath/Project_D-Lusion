@@ -173,6 +173,12 @@ namespace Features
                 if(isDashing) DashState(false);
             }
 
+            if(float.IsNaN(speed.x) || float.IsNaN(speed.y) || float.IsNaN(speed.z))
+            {
+                DashState(false);
+                return;
+            }
+
             float timeDelta = Time.deltaTime * timeMultiplier;
 
             float gravity = -Mathf.Abs(gravityValue);

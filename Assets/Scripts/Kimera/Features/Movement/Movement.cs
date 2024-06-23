@@ -6,6 +6,8 @@ namespace Features
 {
     public class Movement : MonoBehaviour, IActivable, IFeatureSetup, IFeatureFixedUpdate, IFeatureAction, ISubcontroller
     {
+        private const float DEFAULT_DEACTIVATION_SPEED_RATIO = .5f;
+
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -19,6 +21,7 @@ namespace Features
         [Header("Properties")]
         public float maxSpeed;
         public float acceleration;
+        public float deactivationSpeedRatio;
         //References
         [Header("References")]
         [SerializeField] private List<TerrainModifier> terrains;
@@ -50,6 +53,9 @@ namespace Features
             //Setup Properties
             maxSpeed = settings.Search("maxSpeed");
             acceleration = settings.Search("acceleration");
+            dynamic tempDeactivationSpeedRatio = settings.Search("deactivationSpeedRatio");
+            if (tempDeactivationSpeedRatio == null) deactivationSpeedRatio = DEFAULT_DEACTIVATION_SPEED_RATIO;
+            else deactivationSpeedRatio = tempDeactivationSpeedRatio;
 
             ToggleActive(true);
         }
@@ -161,8 +167,8 @@ namespace Features
             if (active) return;
             if(cmp_rigidbody.velocity == Vector3.zero) return;
 
-            cmp_rigidbody.velocity = Vector3.zero;
             speed = Vector3.zero;
+            cmp_rigidbody.velocity *= deactivationSpeedRatio;
         }
 
         public void ToggleActiveSubcontroller(bool active)

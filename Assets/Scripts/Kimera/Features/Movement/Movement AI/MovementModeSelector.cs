@@ -120,15 +120,23 @@ namespace Features
         {
             this.active = active;
 
-            if (agent == null) return;
-
-            agent.enabled = active;
+            if (agent != null)
+            {
+                if (!active)
+                {
+                    agent.destination = transform.position;
+                    agent.isStopped = true;
+                    agent.enabled = false;
+                } else
+                {
+                    agent.enabled = true;
+                    agent.isStopped = false;
+                }
+            }
 
             if(rb == null) return;
 
-            if(!rb.isKinematic)rb.velocity = Vector3.zero;
             rb.isKinematic = active;
-            if(!rb.isKinematic)rb.velocity = Vector3.zero;
         }
 
         public void ToggleActiveSubcontroller(bool active)
