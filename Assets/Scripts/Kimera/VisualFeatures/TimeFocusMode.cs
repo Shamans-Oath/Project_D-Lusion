@@ -48,7 +48,7 @@ namespace Features
             if (camSys)
             {
                 if (instantModify) camSys.SetFOV(overrideFOV);
-                else StartCoroutine(camSys.FOVLerp(overrideFOV, duration));
+                else camSys.FOVLerpInvoke(overrideFOV, duration);
 
                 if (camSys.lockSys)
                 {

@@ -124,7 +124,13 @@ public class Camera_System : MonoBehaviour
     {
         cmp_playerCamera.m_Lens.FieldOfView = FOV;
     }
+    private  Coroutine fovCorrutine;
 
+    public void FOVLerpInvoke(float targetFOV, float lerpDuration)
+    {
+        if (fovCorrutine != null) StopCoroutine(fovCorrutine);
+        fovCorrutine = StartCoroutine(FOVLerp(targetFOV, lerpDuration));
+    }
     public IEnumerator FOVLerp(float targetFOV, float lerpDuration)
     {
         float t = 0;
@@ -151,7 +157,8 @@ public class Camera_System : MonoBehaviour
 
     public void ResetFOVLerp(float lerpDuration)
     {
-        StartCoroutine(FOVLerp(defaultFOV, lerpDuration));
+        if (fovCorrutine != null) StopCoroutine(fovCorrutine);
+        fovCorrutine=StartCoroutine(FOVLerp(defaultFOV, lerpDuration));
     }
     #endregion
 

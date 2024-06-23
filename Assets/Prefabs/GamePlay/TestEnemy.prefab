@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 1196963227926865447}
   - component: {fileID: 4471502756704339409}
   - component: {fileID: 204981476069002227}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.953717, z: 0, w: 0.30070582}
   m_LocalPosition: {x: -4.73, y: 15.7, z: 36.76}
-  m_LocalScale: {x: 0.61109, y: 0.61109, z: 0.61109}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 824862076885888123}
@@ -693,6 +693,7 @@ MonoBehaviour:
   - {fileID: 1572979470681144160}
   - {fileID: 1083152010759011108}
   - {fileID: 6995622970584493136}
+  faceTarget: {fileID: 0}
   cmp_animator: {fileID: 0}
 --- !u!114 &8722753730121016745
 MonoBehaviour:
@@ -713,6 +714,7 @@ MonoBehaviour:
   life: {fileID: 0}
   stun: {fileID: 0}
   movementIntel: {fileID: 0}
+  combatAnimator: {fileID: 0}
   animator: {fileID: 0}
   enemyCrowd: {fileID: 0}
 --- !u!114 &2710956886674766263
@@ -751,6 +753,7 @@ MonoBehaviour:
   activeMoveMode: {fileID: 0}
   defaultMoveMode: 
   reachDestinationDistance: 0
+  rotation: {fileID: 0}
   agent: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &3504372461362882509
