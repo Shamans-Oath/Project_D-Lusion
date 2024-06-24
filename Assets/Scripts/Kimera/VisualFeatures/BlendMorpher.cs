@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class BlendMorpher :  MonoBehaviour, IActivable, IFeatureSetup //Other channels
+    public class BlendMorpher :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -17,6 +17,7 @@ namespace Features
         public SkinnedMeshRenderer cmp_smr;
         [Range(0.5f,10)]
         public float changeSpeed;
+        [SerializeField]
         private float blendValue=0;
         private float time;
         public float maxValue = 100;
@@ -44,19 +45,30 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
+            Debug.Log("Test");
+
+            FurryEntity furryEntity = controller as FurryEntity;
+
+            blendValue = furryEntity.furryCount;
+
             if (cmp_smr == null) return;
-            if(cmp_smr.GetBlendShapeWeight(0)!=blendValue && time < changeSpeed)
-            {
-                time += Time.deltaTime;
+            /*if(cmp_smr.GetBlendShapeWeight(0)!=blendValue && time < changeSpeed)
+            {                
                 float currentWeight = cmp_smr.GetBlendShapeWeight(0);
                 currentWeight = Mathf.Lerp(currentWeight, blendValue, time / changeSpeed);
                 cmp_smr.SetBlendShapeWeight(0, currentWeight);
-            }
+
+                time += Time.deltaTime;
+            }*/
+
+            BlendChange(blendValue);
         }
 
         public void BlendChange(float value)
         {
-            blendValue = value;
+            float currentWeight = cmp_smr.GetBlendShapeWeight(0);
+            currentWeight = Mathf.Lerp(currentWeight, value, changeSpeed);
+            cmp_smr.SetBlendShapeWeight(0, currentWeight);
         }
 
     }
