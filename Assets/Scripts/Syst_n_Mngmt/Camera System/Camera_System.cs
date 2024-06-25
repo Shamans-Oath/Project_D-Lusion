@@ -243,8 +243,11 @@ public class Camera_System : MonoBehaviour
         if (mainCamera == null) return null;
 
         if (lockSys.currentTarget != null) return lockSys.currentTarget.transform.position;
-        
-        Vector3 point = mainCamera.transform.position + (mainCamera.transform.forward * maxDistance);
-        return point;
+        else return null;
+
+        //Descomentar para permitir autotarget a la nada
+
+        /*Vector3 point = mainCamera.transform.position + (mainCamera.transform.forward * maxDistance);
+        return point;*/
     }
 }
