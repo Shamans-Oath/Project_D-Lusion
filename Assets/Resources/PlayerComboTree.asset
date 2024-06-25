@@ -31,14 +31,20 @@ MonoBehaviour:
     - comboKey: B
       condition: attack-special
       GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
+  - NodeGUID: a6cab192-7c76-4154-bcf2-ccffb39562ac
+    position: {x: 474, y: 60}
+    comboKey: C
+    condition: attack-counter
+    attackKeys: C,C
+    interruptions: []
   nodeLinkData:
-  - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
-    PortName: f501e49a-1555-49fc-92d3-10e4dc10e375
-    TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
-    condition: attack-special
-    comboKey: B
   - BaseNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
     PortName: 4f6083ac-8319-476b-ac11-2e03f73aa915
     TargetNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
     condition: attack-normal
     comboKey: A
+  - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    PortName: f501e49a-1555-49fc-92d3-10e4dc10e375
+    TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    condition: attack-special
+    comboKey: B

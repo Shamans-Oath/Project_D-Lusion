@@ -191,8 +191,10 @@ namespace Features
             possibleAttacks[i].EndAttackBox();
         }
 
-        private void StopAttack()
+        public void StopAttack()
         {
+            Debug.Log("TestStop" + this.gameObject);
+
             if (movement != null) movement.ToggleActiveSubcontroller(true);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);
             if (faceTarget != null) faceTarget.ToggleActive(false);

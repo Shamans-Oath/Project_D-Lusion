@@ -21,6 +21,8 @@ namespace Features
         private float blockTimer;
         //Properties
         [Header("Properties")]
+        public int blockHealth;
+        public int maxBlock;
         public float parryTime;
         public float blockTime;
         //References
@@ -38,6 +40,8 @@ namespace Features
             settings = controller.settings;
 
             //Setup Properties
+            blockHealth = settings.Search("blockHealth");
+            maxBlock = settings.Search("maxBlock");
             parryTime = settings.Search("parryTime");
             blockTime = settings.Search("blockTime");
 
@@ -68,7 +72,7 @@ namespace Features
 
         public void StartBlock()
         {
-            block = true;
+            if(blockHealth != 0) block = true;
             parry = true;
             blockTimer = blockTime;
             parryTimer = parryTime;
@@ -81,6 +85,22 @@ namespace Features
             parry = false;
             blockTimer = 0;
             parryTimer = 0;
+        }
+
+        public void ChangeBlock(int value)
+        {
+            blockHealth += value;
+
+            if(blockHealth > maxBlock)
+            {
+                blockHealth = maxBlock;
+            }
+
+            if (blockHealth <= 0) 
+            {
+                blockHealth = 0;
+                EndBlock();
+            }
         }
 
         public bool GetActive()

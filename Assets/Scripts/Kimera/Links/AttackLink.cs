@@ -26,6 +26,12 @@ namespace Features
                 return;
             }
 
+            if (reactorCombat == null)
+            {
+                Unlink();
+                return;
+            }
+
             int damage = actorCombat.attack;
 
             if(attack != null)
@@ -38,9 +44,9 @@ namespace Features
                 }
             }
 
-            bool damaged = reactorCombat != null ? !reactorCombat.block && !reactorCombat.parry : true;
+            //bool damaged = reactorCombat != null ? !reactorCombat.block && !reactorCombat.parry : true;
 
-            if (damaged)
+            if (!reactorCombat.block && !reactorCombat.parry)
             {
                 reactorLife.Health(-damage);
                 if(furry != null) furry.IncreaseFurryCount();
@@ -61,6 +67,22 @@ namespace Features
 
                 Unlink();
                 return;
+            }
+            else
+            {
+                actor.SearchFeature<Combat>().StopAttack();
+
+                if(reactorCombat.parry)
+                {
+                    Debug.Log("TestCombate");
+                    reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
+                    reactor.SearchFeature<Block>().ChangeBlock(1);
+                }
+                else
+                {
+                    reactor.SearchFeature<Block>().ChangeBlock(-1);
+                }
+
             }
 
             //Añadir efectos de bloques
