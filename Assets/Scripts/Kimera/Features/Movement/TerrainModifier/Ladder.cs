@@ -76,7 +76,9 @@ namespace Features
             Vector3 originStep = transform.position + transform.up * stepHeight + direction * stepDepth;
             Vector3 originHip = transform.position + transform.up * hipHeight;
 
-            hipBlocked = Physics.OverlapBox(originHip, hipSize, transform.rotation, terrainLayer).Length > 0;
+            Collider[] hipCollisions = Physics.OverlapBox(originHip, hipSize, transform.rotation, terrainLayer);
+
+            hipBlocked = hipCollisions.Length > 0;
             feetBlocked = Physics.BoxCast(originStep, feetSize / 2, direction, out stepHit, transform.rotation, stepDistance, terrainLayer);
 
             if (hipBlocked)
