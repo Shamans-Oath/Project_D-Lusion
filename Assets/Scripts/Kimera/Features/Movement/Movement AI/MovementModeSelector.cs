@@ -39,7 +39,6 @@ namespace Features
             //Setup components
             if(rb == null) rb = GetComponent<Rigidbody>();
             if(agent == null) agent = GetComponent<NavMeshAgent>();
-            if (agent != null) agent.destination = transform.position;
         }
 
         public void SetupFeature(Controller controller)
@@ -91,6 +90,9 @@ namespace Features
 
             activeMoveMode = moveModes[mode];
             agent.speed = activeMoveMode.modeSpeed;
+
+            if (!agent.enabled) return;
+            
             agent.destination = transform.position;
         }
 
@@ -124,9 +126,12 @@ namespace Features
             {
                 if (!active)
                 {
-                    agent.destination = transform.position;
-                    agent.isStopped = true;
-                    agent.enabled = false;
+                    if (agent.enabled)
+                    {
+                        agent.destination = transform.position;
+                        agent.isStopped = true;
+                        agent.enabled = false;
+                    }
                 } else
                 {
                     agent.enabled = true;

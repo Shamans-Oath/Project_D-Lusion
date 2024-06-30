@@ -1,3 +1,4 @@
+using Features;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class SpawnPool : MonoBehaviour
 {
     public List<PoolableEnemies> poolList = new List<PoolableEnemies>();
     public GameObject[] objectsToPool;
+    public CrowdEnemy crowdEnemy;
     
 
     // Start is called before the first frame update
@@ -119,6 +121,10 @@ public class SpawnPool : MonoBehaviour
                 {
                     if (!poolList[i].pooledEnemies[x].activeInHierarchy)
                     {
+                        GameObject enemyGO = poolList[i].pooledEnemies[x];
+                        Features.Enemy enemy = enemyGO.GetComponent<Features.Enemy>();
+                        crowdEnemy.AddUnitToCrowd(enemy);
+
                         return poolList[i].pooledEnemies[x];
                     }
                 }

@@ -116,7 +116,7 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
         }
     }
 
-    public void AddUnitToCrowd(T unit)
+    public virtual void AddUnitToCrowd(T unit)
     {
         if (unit == null) return;
 
