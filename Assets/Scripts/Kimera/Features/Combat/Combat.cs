@@ -158,6 +158,10 @@ namespace Features
             {
                 StopAttack();
             }
+
+            FurryEntity furry = controller as FurryEntity;
+
+            if(furry != null) cmp_animator.SetFloat("Blend", furry.furryCount / 100);
         }
 
 
