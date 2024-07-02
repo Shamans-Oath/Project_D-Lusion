@@ -18,13 +18,13 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.15
+    m_Value: 0.25
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 2.17
   scatter:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0.91
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -46,7 +46,7 @@ MonoBehaviour:
     dimension: 1
   dirtIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.75
 --- !u!114 &-4954781344190747302
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -67,8 +67,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 33.5
   gaussianEnd:
-    m_OverrideState: 0
-    m_Value: 30
+    m_OverrideState: 1
+    m_Value: 52.3
   gaussianMaxRadius:
     m_OverrideState: 0
     m_Value: 1
@@ -76,8 +76,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   focusDistance:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 20
   aperture:
     m_OverrideState: 0
     m_Value: 5.6
@@ -111,7 +111,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3.3
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 0.2716714, g: 0.31175572, b: 0.5188679, a: 1}
@@ -142,10 +142,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.248
+    m_Value: 0.241
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.307
+    m_Value: 1
   rounded:
     m_OverrideState: 0
     m_Value: 1
@@ -223,4 +223,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.16
+    m_Value: 0.217
