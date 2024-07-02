@@ -22,15 +22,15 @@ namespace Features
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-            if (uiBars.Length <= 0) return;
 
             //Setup Properties
 
             //This is hardcode, it would be better to call specific array values from the controller
             //Life 
-            if (uiBars[0]!=null) uiBars[0].maxValue = controller.SearchFeature<Life>().maxHealth;
+            if (uiBars.Length > 0 && uiBars[0] != null) uiBars[0].maxValue = controller.SearchFeature<Life>().maxHealth;
+
             //Fury
-            if (uiBars[1] != null) uiBars[1].maxValue = controller.SearchFeature<Furry>().furryMax;
+            if (uiBars.Length > 1 && uiBars[1] != null) uiBars[1].maxValue = controller.SearchFeature<Furry>().furryMax;
 
 
 
@@ -47,9 +47,9 @@ namespace Features
             FurryEntity furry = controller as FurryEntity;
             LivingEntity life = controller as LivingEntity;
             //Life 
-            if (uiBars[0] != null) FillAmount(uiBars[0], life.currentHealth);
+            if (uiBars.Length > 0 && uiBars[0] != null) FillAmount(uiBars[0], life.currentHealth);
             //Fury
-            if (uiBars[1] != null) FillAmount(uiBars[1], furry.furryCount);
+            if (uiBars.Length > 1 && uiBars[1] != null) FillAmount(uiBars[1], furry.furryCount);
         }
 
         public void ToggleActive(bool active)
