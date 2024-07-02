@@ -111,7 +111,7 @@ MonoBehaviour:
     end: 0
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
-  rb: {fileID: 0}
+  rb: {fileID: 8534706837684945161}
   debug: 1
 --- !u!114 &8987081011312297799
 MonoBehaviour:
@@ -245,7 +245,7 @@ MonoBehaviour:
     end: 0
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
-  rb: {fileID: 0}
+  rb: {fileID: 812472315721240974}
   debug: 1
 --- !u!114 &3914697773376791816
 MonoBehaviour:
@@ -495,7 +495,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 044c3d97a32be384cb3c7e205860e4f4, type: 2}
   additionalGameObjectFeatures:
+  - {fileID: 63755558269399999}
   - {fileID: 4755024165486332493}
+  - {fileID: 3732577423377676449}
+  - {fileID: 7362127228096595051}
+  - {fileID: 24328050031204868}
 --- !u!114 &1119332842073681313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,6 +689,10 @@ MonoBehaviour:
   combatAnimator: {fileID: 0}
   possibleAttacks:
   - {fileID: 2675780424105443923}
+  - {fileID: 8920748631790589407}
+  - {fileID: 1572979470681144160}
+  - {fileID: 1083152010759011108}
+  - {fileID: 6995622970584493136}
   faceTarget: {fileID: 0}
   cmp_animator: {fileID: 0}
 --- !u!114 &8722753730121016745
@@ -1143,7 +1151,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1172,7 +1180,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -1274,7 +1282,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1303,7 +1311,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -2197,7 +2205,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2226,7 +2234,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -2612,7 +2620,7 @@ MonoBehaviour:
     end: 0
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
-  rb: {fileID: 0}
+  rb: {fileID: 5867850406110256580}
   debug: 1
 --- !u!114 &4283286348515478506
 MonoBehaviour:
@@ -2975,7 +2983,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -3002,7 +3010,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -3184,7 +3192,7 @@ MonoBehaviour:
     end: 0
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
-  rb: {fileID: 0}
+  rb: {fileID: 2917202757090379282}
   debug: 1
 --- !u!114 &2810795673946880033
 MonoBehaviour:
@@ -3350,7 +3358,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -3379,7 +3387,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4155,7 +4163,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -4184,7 +4192,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4318,7 +4326,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -4345,7 +4353,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -4573,7 +4581,7 @@ MonoBehaviour:
     end: 0
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
-  rb: {fileID: 0}
+  rb: {fileID: 6068328991499465812}
   debug: 1
 --- !u!114 &4258601346078323071
 MonoBehaviour:
@@ -4904,7 +4912,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -4933,7 +4941,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -5035,7 +5043,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5064,7 +5072,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -5231,7 +5239,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5260,7 +5268,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -5459,7 +5467,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -5486,7 +5494,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
