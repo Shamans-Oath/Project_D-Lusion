@@ -26,13 +26,14 @@ namespace Features
         [SerializeField] private BoxCollider cmp_collider;
         [SerializeField] private Rigidbody cmp_rigidbody;
 
-        private void Awake()
+        /*private void Awake()
         {
             tagsToInteract = new List<string>();
-        }
+        }*/
 
         public virtual void SetupFeature(Controller controller)
         {
+            tagsToInteract = new List<string>();
             settings = controller.settings;
             this.controller = controller;
 
