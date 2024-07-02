@@ -29,7 +29,7 @@ public class TargetLock : MonoBehaviour
  
     [SerializeField] private Vector2 targetLockOffset;
     [SerializeField] private float minDistance; 
-    [SerializeField] private float maxDistance;
+    
     
     public bool isTargeting;
     public Transform currentTarget;
@@ -74,7 +74,7 @@ public class TargetLock : MonoBehaviour
                 cinemachineFreeLook.m_YAxis.m_InputAxisValue);
 
             
-            if ((Mathf.Abs(mousePos.x) + Mathf.Abs(mousePos.y)) * 4.5f > (detectRadius/2))
+            if ((Mathf.Abs(mousePos.x) + Mathf.Abs(mousePos.y)) * 4.5f > (detectRadius/2) || Vector3.Distance(currentTarget.transform.position, mainCamera.transform.position) <= minDistance)
             {
                 AssignTarget();
 
@@ -122,7 +122,6 @@ public class TargetLock : MonoBehaviour
         if(aimIcon)
             aimIcon.transform.position = mainCamera.WorldToScreenPoint(target.position);
 
-        if ((target.position - baseReference.position).magnitude < minDistance) return;
         float tmpX;
         if(Mathf.Abs(Input.GetAxis("Mouse X")) > 0.1f) tmpX = Mathf.Lerp((viewPos.x - 0.5f + targetLockOffset.x) * adjustmentSpeed, Input.GetAxis("Mouse X"), mouseInfluence);
         else tmpX = (viewPos.x - 0.5f + targetLockOffset.x) * adjustmentSpeed;
@@ -135,34 +134,6 @@ public class TargetLock : MonoBehaviour
         mouseX = tmpX;            
         mouseY = tmpY;             
     }
-
-
-    //private GameObject ClosestTarget() 
-    //{
-    //    GameObject[] gos;
-    //    gos = GameObject.FindGameObjectsWithTag(targetTag);
-    //    GameObject closest = null;
-    //    float distance = maxDistance;
-    //    float currAngle = maxAngle;
-    //    Vector3 position = baseReference.position;
-    //    foreach (GameObject go in gos)
-    //    {
-    //        Vector3 diff = go.transform.position - position;
-    //        float curDistance = diff.magnitude;
-    //        if (curDistance < distance)
-    //        {
-    //            Vector3 viewPos = mainCamera.WorldToViewportPoint(go.transform.position);
-    //            Vector2 newPos = new Vector3(viewPos.x - 0.5f, viewPos.y - 0.5f);
-    //            if (Vector3.Angle(diff.normalized, mainCamera.transform.forward) < maxAngle)
-    //            {
-    //                closest = go;
-    //                currAngle = Vector3.Angle(diff.normalized, mainCamera.transform.forward.normalized);
-    //                distance = curDistance;
-    //            }
-    //        }
-    //    }
-    //    return closest;
-    //}
 
     private GameObject SphereCast()
     {
@@ -183,24 +154,20 @@ public class TargetLock : MonoBehaviour
             return null;
         }
 
-
-        if (hits[0].collider.gameObject.transform != currentTarget || hits.Length == 1)
+        for(int i = 0;i< hits.Length;i++)
         {
-            
-            returnObj = hits[0].collider.gameObject;
-            
-        }
-        else 
-        {
-            returnObj = hits[1].collider.gameObject;
-         
+            if(hits[i].collider.gameObject.transform != currentTarget && Vector3.Distance(hits[i].collider.gameObject.transform.position, mainCamera.transform.position) > minDistance)
+            {
+                returnObj = hits[i].collider.gameObject;
+                UpdatedTarget.Invoke(returnObj);
+                return returnObj;
+            }
         }
 
-        //currentTarget = returnObj.transform;
-        if (returnObj != currentTarget) UpdatedTarget.Invoke(returnObj);
-        return returnObj;
-        
-        
+        if (currentTarget != null) UpdatedTarget.Invoke(null);
+        currentTarget = null;
+        RemoveTarget();
+        return null;
     }
 
     private void OnDrawGizmos()
@@ -218,11 +185,7 @@ public class TargetLock : MonoBehaviour
         }
         Gizmos.DrawWireSphere(drawPoint, detectRadius);
         Gizmos.DrawLine(mainCamera.transform.position, drawPoint);
-        
-        //Gizmos.DrawWireSphere(mainCamera.transform.position, detectRadius);
-        //Gizmos.Draw
-        //if (Physics.SphereCast(mainCamera.transform.position, detectRadius, mainCamera.transform.forward * distance, out hit, distance, layerMask))
-            //Gizmos.DrawWireSphere(SphereCase(), detectRadius);
+       
     }
 
 }
