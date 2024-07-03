@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Camera_System : MonoBehaviour
 {
+    public static Camera_System instance;
+
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private CinemachineFreeLook cmp_playerCamera;
-    [SerializeField] private float defaultFOV;
+    public CinemachineFreeLook cmp_playerCamera;
+    public float defaultFOV;
     [SerializeField] private List<float> defaultRadius = new List<float>();
     [SerializeField] private Timeline_Manager _timelineManager;
 
@@ -16,6 +18,12 @@ public class Camera_System : MonoBehaviour
 
     [Header("Lock System")]
     public TargetLock lockSys;
+
+     void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +45,7 @@ public class Camera_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        /*if(Input.GetKeyDown(KeyCode.C))
         {
             CameraShake("TestExplosion");
         }
@@ -100,7 +108,7 @@ public class Camera_System : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             GlobalRadiusResetLerp(2.5f);
-        }
+        }*/
     }
 
     public void CameraShake(string name)
@@ -133,6 +141,7 @@ public class Camera_System : MonoBehaviour
     }
     public IEnumerator FOVLerp(float targetFOV, float lerpDuration)
     {
+        Debug.Log("TestLerp");
         float t = 0;
         float currentFOV = cmp_playerCamera.m_Lens.FieldOfView;
 
