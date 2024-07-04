@@ -10,6 +10,7 @@ public class Camera_System : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     public CinemachineFreeLook cmp_playerCamera;
     public float defaultFOV;
+    bool midChange;
     [SerializeField] private List<float> defaultRadius = new List<float>();
     [SerializeField] private Timeline_Manager _timelineManager;
 
@@ -155,6 +156,24 @@ public class Camera_System : MonoBehaviour
             if (t > lerpDuration)
             {
                 break;
+            }
+        }
+    }
+
+    public void FOVLerpVoid(float targetFOV, float lerpDuration)
+    {
+        Debug.Log("TestLerp");
+        midChange = true;
+
+        float currentFOV = cmp_playerCamera.m_Lens.FieldOfView;
+
+        if (midChange == true)
+        {
+            cmp_playerCamera.m_Lens.FieldOfView = Mathf.Lerp(currentFOV, targetFOV, lerpDuration * Time.deltaTime);
+
+            if (currentFOV == targetFOV)
+            {
+                midChange = false;
             }
         }
     }

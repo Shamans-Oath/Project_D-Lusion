@@ -134,7 +134,7 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
-            if(attackTimer > 0) attackTimer -= Time.deltaTime;
+            if (attackTimer > 0) attackTimer -= Time.deltaTime;
 
             if (!active) return;
 
@@ -149,19 +149,31 @@ namespace Features
                 if (attack.ActiveAttack) activeAttack = true;
             });
 
-            if(!activeAttack && attackTimer <= .3f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
+            if (!activeAttack && attackTimer <= .3f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
-            } 
+            }
 
-            else if(attackTimer <= .15f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
+            else if (attackTimer <= .15f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
             {
                 StopAttack();
             }
 
             FurryEntity furry = controller as FurryEntity;
 
-            if(furry != null) cmp_animator.SetFloat("Blend", furry.furryCount / 100);
+            if (furry != null)
+            {
+                cmp_animator.SetFloat("Blend", furry.furryCount / 100);
+
+                if(furry.furryCount == 100)
+                {
+                    attack = settings.Search("enhancedAttack");
+                }
+                else
+                {
+                    attack = settings.Search("attack");
+                }
+            }
         }
 
 
