@@ -6,6 +6,7 @@ namespace Features
 {
     public class Enemy : Controller, LivingEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, FollowEntity, CombatEntity
     {
+        private const float DESPAWN_TIME = 5.5f;
 
         //Living
         public int currentHealth { get; set; }
@@ -41,7 +42,14 @@ namespace Features
         {
             CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
             ToggleActive(false);
-            //Destroy(gameObject);
+            Invoke("ReanimateAndSave", DESPAWN_TIME);
+        }
+
+        public void ReanimateAndSave()
+        {
+            ToggleActive(true);
+            CallFeature<Ragdoll>(new Setting("ragdollActivation", false, Setting.ValueType.Bool));
+            gameObject.SetActive(false);
         }
     }
 }

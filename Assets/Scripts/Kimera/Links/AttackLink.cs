@@ -6,6 +6,7 @@ namespace Features
 {
     public class AttackLink : Link //Other Link channels
     {
+        private const int LIFE_STEAL = 10;
 
         //States
         //Properties
@@ -18,7 +19,9 @@ namespace Features
             Rigidbody reactorRigidbody = reactor.gameObject.GetComponent<Rigidbody>();
             Furry furry = actor.SearchFeature<Furry>();
 
+            CombatReactions actorReaction = actor.SearchFeature<CombatReactions>();
             Life reactorLife = reactor.SearchFeature<Life>();
+            Life actorLife = actor.SearchFeature<Life>();
 
             if (reactorLife == null)
             {
@@ -51,6 +54,9 @@ namespace Features
                 reactorLife.Health(-damage);
                 if(furry != null) furry.IncreaseFurryCount();
                 //Añadir efectos de ataque
+
+                if (actorReaction != null) actorReaction.PassTurn();
+
                 if (attack != null)
                 {
                     Vector3? attackKnockback = attack.Search("attackKnockback");
@@ -64,6 +70,8 @@ namespace Features
                     }
                 }
 
+                //Efectos al matar enemigo
+                if (reactorLife.CurrentHealth <= 0 && actorLife != null) actorLife.HealthPercentual(LIFE_STEAL, true);
 
                 Unlink();
                 return;

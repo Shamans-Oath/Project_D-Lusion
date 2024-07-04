@@ -105,7 +105,7 @@ namespace Features
 
         private int PercentageToAmount(int percentage)
         {
-            return (int)(maxHealth * Mathf.Clamp01(percentage / 100));
+            return (int)(maxHealth * Mathf.Clamp01((float)percentage / 100));
         }
 
         public void ToggleActive(bool active)

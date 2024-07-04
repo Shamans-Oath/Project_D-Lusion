@@ -79,6 +79,17 @@ namespace Features
             }
         }
 
+        public void PassTurn()
+        {
+            if (!active) return;
+
+            Enemy meEnemy = controller as Enemy;
+            if (enemyCrowd != null && meEnemy != null)
+            {
+                enemyCrowd.SetUnitOutOfBattle(meEnemy);
+            }
+        }
+
         public bool GetActive()
         {
             return active;
