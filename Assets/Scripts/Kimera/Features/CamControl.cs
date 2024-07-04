@@ -17,6 +17,7 @@ namespace Features
         //Properties
         float camLerpDuration;
         float currentFury;
+        bool midChange;
         //References
         //Componentes
 
@@ -54,9 +55,8 @@ namespace Features
             float f = Mathf.InverseLerp(0, 100, fury);
             float fov = Mathf.Lerp(Camera_System.instance.defaultFOV, 100, f);
            
-
-            Camera_System.instance.SetFOV(fov);
-            //Camera_System.instance.FOVLerpInvoke(fov, camLerpDuration);
+            if(Camera_System.instance.cmp_playerCamera.m_Lens.FieldOfView != fov)
+            Camera_System.instance.FOVLerpVoid(fov, camLerpDuration);
         }
     }
 }

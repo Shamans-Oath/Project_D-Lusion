@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5da1c8390ce89a14bbffac9a4f1761bc, type: 3}
-  m_Name: CamShakeSettings
+  m_Name: DamageEnemy
   m_EditorClassIdentifier: 
-  Name: TestExplosion
+  Name: DamageEnemy
   impulseDefinition:
     m_ImpulseChannel: 1
-    m_ImpulseShape: 3
+    m_ImpulseShape: 4
     m_CustomImpulseShape:
       serializedVersion: 2
       m_Curve: []
@@ -53,5 +53,5 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  defaultVelocity: {x: 1, y: -1, z: 0}
+  defaultVelocity: {x: 0, y: -1, z: 0}
   impulseForce: 1

@@ -77,6 +77,17 @@ namespace Features
                     enemyCrowd.SetUnitOutOfBattle(meEnemy);
                 }
             }
+
+            if(meEnemy != null) 
+            {
+                Camera_System.instance.CameraShake("DamageEnemy");
+            }
+
+            Player mePlayer = controller as Player;
+            if(mePlayer != null)
+            {
+                Camera_System.instance.CameraShake("Damage");
+            }
         }
 
         public bool GetActive()
