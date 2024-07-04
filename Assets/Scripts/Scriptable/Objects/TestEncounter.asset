@@ -17,10 +17,20 @@ MonoBehaviour:
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 3
+      numberOfEnemies: 5
   - enemyThreshold: 2
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 3
+      numberOfEnemies: 5
+  - enemyThreshold: 2
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
+      numberOfEnemies: 5
+  - enemyThreshold: 1
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
+      numberOfEnemies: 5
   timeBetweenWaves: 3
