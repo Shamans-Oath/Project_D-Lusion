@@ -132,25 +132,37 @@ namespace Features
             dashCharge = StartCoroutine(DashToPosition(position));
         }
 
-        private IEnumerator DashToPosition(Vector3 position)
+        private IEnumerator DashToPosition(Vector3 endPosition)
         {
             isCharging = true;
 
             //Start Calculations
             Vector3 startPosition = transform.position;
-            Vector3 direction = position - startPosition;
+            Vector3 direction = endPosition - startPosition;
             direction.y = 0f;
 
-            float height = baseHeight + (position - startPosition).y;
+            float heightUpHill, heightDownHill;
 
-            float flightTime = ProjectileMotion.GetFlightTime(height, gravityValue * gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(baseHeight, gravityValue * gravityMultiplierDownHill);
+            bool IsGoingUpOrSameLevel = endPosition.y >= startPosition.y;
+
+            if (IsGoingUpOrSameLevel)
+            {
+                heightUpHill = baseHeight + (endPosition - startPosition).y;
+                heightDownHill = baseHeight;
+            } else
+            {
+                heightUpHill = baseHeight;
+                heightDownHill = baseHeight + (startPosition - endPosition).y;
+            }
+
+            float flightTime = ProjectileMotion.GetFlightTime(heightUpHill, gravityValue * gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(heightDownHill, gravityValue * gravityMultiplierDownHill);
 
             float length = direction.magnitude;
 
             float newHorizontalSpeed = length / flightTime;
 
             //Get the speed to reach the target position
-            speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed, gravityValue * gravityMultiplierUpHill);
+            speed = ProjectileMotion.GetStartSpeed(direction.normalized, heightUpHill, newHorizontalSpeed, gravityValue * gravityMultiplierUpHill);
 
             //Disable movement while dashing and charging
             DashState(true);
