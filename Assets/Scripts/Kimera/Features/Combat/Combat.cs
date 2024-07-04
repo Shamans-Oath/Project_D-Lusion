@@ -209,7 +209,7 @@ namespace Features
 
         public void StopAttack()
         {
-            Debug.Log("TestStop" + this.gameObject);
+            //Debug.Log("TestStop" + this.gameObject);
 
             if (movement != null) movement.ToggleActiveSubcontroller(true);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);

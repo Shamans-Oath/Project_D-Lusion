@@ -6,7 +6,7 @@ namespace Features
 {
     public class AttackLink : Link //Other Link channels
     {
-        private const int LIFE_STEAL = 25;
+        private const int LIFE_STEAL = 35;  
 
         //States
         //Properties

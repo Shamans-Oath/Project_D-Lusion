@@ -18,6 +18,7 @@ namespace Features
         [SerializeField] private Vector3 boxSize;
         [SerializeField] private Vector3 boxOffset;
         [SerializeField] protected List<string> tagsToInteract;
+        [SerializeField] private bool isInteracted;
         //Properties
         //References
         //Componentes
@@ -51,11 +52,15 @@ namespace Features
         {
             if(tagsToInteract.Contains(other.tag))
             {
+                if (isInteracted) return;
+
                 //Logica Link
                 Controller otherController = other.GetComponent<Controller>();
                 if (otherController != null) InteractEntity(otherController);
                 //Logica otros sistemas
                 else InteractObject(other.gameObject);
+
+                isInteracted = true;
             }
         }
 
@@ -82,6 +87,8 @@ namespace Features
 
             cmp_collider.enabled = active;
             cmp_rigidbody.isKinematic = !active;
+
+            if(active) isInteracted = false;
         }
     }
 }
