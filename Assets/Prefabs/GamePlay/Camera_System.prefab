@@ -1234,7 +1234,10 @@ MonoBehaviour:
   defaultFOV: 0
   defaultRadius: []
   _timelineManager: {fileID: 7624379103222246053}
-  shakeBehaviors: []
+  shakeBehaviors:
+  - {fileID: 11400000, guid: 55fa5a4026960fa4c912eb93686f68a9, type: 2}
+  - {fileID: 11400000, guid: b86e0fea23a67154980246a4daceb564, type: 2}
+  - {fileID: 11400000, guid: 63986c7d374a9fd40b172c22007d069f, type: 2}
   cmp_CIS: {fileID: 2509927044858111631}
   lockSys: {fileID: 1596920161119395451}
 --- !u!114 &1596920161119395451
