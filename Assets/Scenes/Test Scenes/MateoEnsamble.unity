@@ -23603,6 +23603,18 @@ PrefabInstance:
       propertyPath: aimIcon
       value: 
       objectReference: {fileID: 977457717}
+    - target: {fileID: 2257933964333450746, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: distance
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257933964333450746, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257933964333450746, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: mouseInfluence
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3005596983557886564, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: settings
       value: 
@@ -23691,6 +23703,10 @@ PrefabInstance:
       propertyPath: camSys
       value: 
       objectReference: {fileID: 1625984186}
+    - target: {fileID: 5955681182795471340, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6574506497152204678, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: field of view
       value: 50
