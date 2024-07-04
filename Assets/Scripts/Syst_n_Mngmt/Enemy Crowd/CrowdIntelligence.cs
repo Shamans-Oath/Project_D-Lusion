@@ -137,8 +137,8 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
         };
 
         unit.SearchFeature<Life>().OnDeath += () => SetUnitDefeated(unit);
+        if(!crowd.ContainsKey(unit)) crowd.Add(unit, unitData);
 
-        crowd.Add(unit, unitData);
     }
 
     public void CrowdAlert()

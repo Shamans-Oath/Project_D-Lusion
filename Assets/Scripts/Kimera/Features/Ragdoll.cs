@@ -78,7 +78,7 @@ public class Ragdoll :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction
 
         public void FeatureAction(Controller controller, params Setting[] settings)
         {
-            if(!active) return;
+            //if(!active) return;
 
             if(settings.Length <= 0) return;
 
