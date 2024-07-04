@@ -13893,6 +13893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEnemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 270489431914573047, guid: 482f87485d39a264b82b46da45455466, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1320887339390431927, guid: 482f87485d39a264b82b46da45455466, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -23717,6 +23721,10 @@ PrefabInstance:
       propertyPath: cameraSys
       value: 
       objectReference: {fileID: 1625984186}
+    - target: {fileID: 3005596983557886564, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3046919428194465419, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.00000059459205
@@ -23841,6 +23849,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 8910038366316001742, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: shakeBehaviors.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910038366316001742, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: shakeBehaviors.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 63986c7d374a9fd40b172c22007d069f, type: 2}
+    - target: {fileID: 8910038366316001742, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: shakeBehaviors.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 55fa5a4026960fa4c912eb93686f68a9, type: 2}
+    - target: {fileID: 8910038366316001742, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: shakeBehaviors.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: b86e0fea23a67154980246a4daceb564, type: 2}
     - target: {fileID: 9126937476232506617, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: possibleAttacks.Array.size
       value: 1

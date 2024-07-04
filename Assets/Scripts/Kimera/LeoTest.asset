@@ -719,7 +719,7 @@ MonoBehaviour:
   - key: furryIncrement
     boolValue: 0
     intValue: 0
-    floatValue: 3
+    floatValue: 7
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -742,7 +742,7 @@ MonoBehaviour:
   - key: furryDecrement
     boolValue: 0
     intValue: 0
-    floatValue: 5
+    floatValue: 7
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -811,7 +811,7 @@ MonoBehaviour:
   - key: parryTime
     boolValue: 0
     intValue: 0
-    floatValue: 0.5
+    floatValue: 4
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1293,7 +1293,7 @@ MonoBehaviour:
     valueType: 1
   - key: attack
     boolValue: 0
-    intValue: 10
+    intValue: 15
     floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
@@ -1314,3 +1314,26 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 1
+  - key: camLerpDuration
+    boolValue: 0
+    intValue: 0
+    floatValue: 2.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: TestEncounter
   m_EditorClassIdentifier: 
   waves:
+  - enemyThreshold: 0
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
+      numberOfEnemies: 3
   - enemyThreshold: 2
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 3
-  - enemyThreshold: 0
-    waveInfo:
-    - poolIndex: 0
-      enemyName: TestEnemy
-      numberOfEnemies: 2
-  timeBetweenWaves: 0
+  timeBetweenWaves: 3
