@@ -131,6 +131,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -265,6 +266,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -367,6 +369,7 @@ GameObject:
   - component: {fileID: 927440008731475727}
   - component: {fileID: 5598220734700180682}
   - component: {fileID: 7038469369992856010}
+  - component: {fileID: 3224052788435961124}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -735,6 +738,7 @@ MonoBehaviour:
   rotation: {fileID: 0}
   jump: {fileID: 0}
   friction: {fileID: 0}
+  anim: {fileID: 6893883958289241529}
   cmp_rigidbody: {fileID: 0}
 --- !u!114 &7757264760355797440
 MonoBehaviour:
@@ -1105,6 +1109,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+--- !u!114 &3224052788435961124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d128b123e8d447648b5863819ad9e36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intrTag: Interactable
+  interactObj: {fileID: 0}
 --- !u!1 &373831292614539953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2881,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -3435,6 +3454,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -4824,6 +4844,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}

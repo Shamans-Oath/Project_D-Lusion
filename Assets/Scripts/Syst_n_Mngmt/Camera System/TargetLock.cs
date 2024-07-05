@@ -64,6 +64,7 @@ public class TargetLock : MonoBehaviour
         if (currentTarget == null)
         {
             AssignTarget();
+            if (aimIcon) aimIcon.transform.position = mainCamera.WorldToScreenPoint(new Vector3(Screen.width, Screen.height,0));
         }
         else
         {
@@ -84,13 +85,16 @@ public class TargetLock : MonoBehaviour
         if (isTargeting)
         {
             NewInputTarget(currentTarget);
-            if (aimIcon)
-                aimIcon.gameObject.SetActive(isTargeting);
+            /*if (aimIcon)
+                aimIcon.gameObject.SetActive(isTargeting);*/
             cinemachineFreeLook.m_XAxis.m_InputAxisValue = mouseX;
             cinemachineFreeLook.m_YAxis.m_InputAxisValue = mouseY;
         }
     }
-
+    public void AimVisual(bool active)
+    {
+        if (aimIcon) aimIcon.gameObject.SetActive(active);
+    }
     private void AssignTarget()
     {
         if (SphereCast())

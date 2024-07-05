@@ -77,9 +77,11 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
             //CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
             //CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
             SearchFeature<TimeFocusMode>().EnableFocus();
+            cameraSys.lockSys.AimVisual(true);
         }
         if(context.canceled)
         {
+            cameraSys.lockSys.AimVisual(false);
             SearchFeature<TimeFocusMode>().DisableFocus();
             if (maxDashDistance <= 0) maxDashDistance = 15;
             if (cameraSys.GetCameraLookat(maxDashDistance).HasValue)

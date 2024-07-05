@@ -28,6 +28,7 @@ namespace Features
         [SerializeField] private Rotation rotation;
         [SerializeField] private Jump jump;
         [SerializeField] private Friction friction;
+        public Animator anim;
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody cmp_rigidbody;
@@ -72,6 +73,8 @@ namespace Features
             Vector2 direction = input.inputDirection;
 
             Move(direction, kinetic, input);
+
+            if (anim) anim.SetFloat("Speed", Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z));
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
