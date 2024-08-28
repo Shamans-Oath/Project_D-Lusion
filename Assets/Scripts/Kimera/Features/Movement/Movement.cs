@@ -158,6 +158,16 @@ namespace Features
             return projection;
         }
 
+        public void SetAcceleration(float acceleration)
+        {
+            this.acceleration = acceleration;
+        }
+
+        public void SetMaxSpeed(float maxSpeed)
+        {
+            this.maxSpeed = maxSpeed;
+        }
+
         public bool GetActive()
         {
             return active;

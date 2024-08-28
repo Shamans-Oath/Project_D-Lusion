@@ -233,6 +233,11 @@ namespace Features
             return active;
         }
 
+        public void SetAttack(int attack)
+        {
+            this.attack = attack;
+        }
+
         public void ToggleActive(bool active)
         {
             this.active = active;

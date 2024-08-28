@@ -43,6 +43,8 @@ namespace Features
         {
             FurryEntity furry = controller as FurryEntity;
 
+            if (furry != null) furry.maxFurryCount = furryMax;
+
             if (!active)
             {
                 if(furry != null) furry.furryCount = 0;

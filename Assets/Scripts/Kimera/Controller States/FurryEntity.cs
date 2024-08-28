@@ -5,4 +5,5 @@ using UnityEngine;
 public interface FurryEntity
 {
     public float furryCount { get; set; }
+    public float maxFurryCount { get; set; }
 }

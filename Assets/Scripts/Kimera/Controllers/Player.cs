@@ -24,6 +24,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public int attack { get; set; }
     //Furry
     public float furryCount { get; set; }
+    public float maxFurryCount { get; set; }
     //Living
     public int currentHealth { get; set; }
     public int maxHealth { get; set; }
