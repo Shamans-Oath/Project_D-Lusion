@@ -63,13 +63,13 @@ namespace Features
 
         public void FixedUpdateFeature(Controller controller)
         {
-            if(!active) return;
+            if (!active) return;
 
             KineticEntity kinetic = controller as KineticEntity;
-            if(kinetic != null) kinetic.currentSpeed = speed.magnitude;
+            if (kinetic != null) kinetic.currentSpeed = speed.magnitude;
 
             InputEntity input = controller as InputEntity;
-            if(input == null) return;
+            if (input == null) return;
             Vector2 direction = input.inputDirection;
 
             Move(direction, kinetic, input);
@@ -79,16 +79,16 @@ namespace Features
 
         public void FeatureAction(Controller controller, params Setting[] settings)
         {
-            if(!active) return;
+            if (!active) return;
 
-            if(settings.Length < 1) return;
+            if (settings.Length < 1) return;
 
             Vector2 direction = settings[0].vector2Value;
 
-            if(direction == Vector2.zero) return;
+            if (direction == Vector2.zero) return;
 
             KineticEntity kinetic = controller as KineticEntity;
-            if(kinetic == null) return;
+            if (kinetic == null) return;
 
             InputEntity input = controller as InputEntity;
 
@@ -97,16 +97,16 @@ namespace Features
 
         public void Move(Vector2 direction, KineticEntity kinetic, InputEntity input)
         {
-            if(!active) return;
-            if(cmp_rigidbody == null) return;
+            if (!active) return;
+            if (cmp_rigidbody == null) return;
 
-            if(direction == Vector2.zero) return;
+            if (direction == Vector2.zero) return;
 
             Vector3 movement = ProjectOnCameraFlattenPlane(new Vector3(direction.x, 0f, direction.y), input.playerCamera);
-            
-            if(input != null) input.playerForward = movement.normalized;
 
-            terrains.Sort(TerrainModifier.CompareByOrder);
+            if (input != null) input.playerForward = movement.normalized;
+
+            /*terrains.Sort(TerrainModifier.CompareByOrder);
             if (terrains.Count > 0)
             {
                 foreach (TerrainModifier terrain in terrains)
@@ -115,9 +115,9 @@ namespace Features
 
                     movement = terrain.ProjectOnTerrain(movement);
                 }
-            }
-
-            if (movement != Vector3.zero) cmp_rigidbody.AddForce(movement.normalized * acceleration * 10f);
+            }*/
+            movement = movement.normalized * acceleration * 10f;
+            if (movement != Vector3.zero) cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
 
             LimitSpeed();
 
@@ -127,24 +127,27 @@ namespace Features
 
         private void LimitSpeed()
         {
-            Vector3 velocity = cmp_rigidbody.velocity;
+            Vector3 velocity = new Vector3(cmp_rigidbody.velocity.x, 0, cmp_rigidbody.velocity.z);
 
             if (velocity == Vector3.zero) return;
 
             terrains.Sort(TerrainModifier.CompareByOrder);
             if (terrains.Count > 0) if (terrains[terrains.Count - 1].OnTerrain) velocity = terrains[terrains.Count - 1].ProjectOnTerrain(velocity);
 
-            Vector3 diffVelocity = cmp_rigidbody.velocity - velocity;
+            Vector3 diffVelocity = new Vector3(cmp_rigidbody.velocity.x, 0, cmp_rigidbody.velocity.z) - velocity;
+
+            Debug.Log(velocity.magnitude);
 
             if (velocity.magnitude > maxSpeed)
             {
-                cmp_rigidbody.velocity = velocity.normalized * maxSpeed + diffVelocity;
+                velocity = velocity.normalized * maxSpeed + diffVelocity;
+                cmp_rigidbody.velocity = new Vector3(velocity.x, cmp_rigidbody.velocity.y, velocity.z);
             }
         }
 
         private Vector3 ProjectOnCameraFlattenPlane(Vector3 direction, Camera camera)
         {
-            if(camera == null) return Vector3.zero;
+            if (camera == null) return Vector3.zero;
 
             Vector3 cameraForward = camera.transform.forward;
             Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraForward);
@@ -178,7 +181,7 @@ namespace Features
             this.active = active;
 
             if (active) return;
-            if(cmp_rigidbody.velocity == Vector3.zero) return;
+            if (cmp_rigidbody.velocity == Vector3.zero) return;
 
             speed = Vector3.zero;
             cmp_rigidbody.velocity *= deactivationSpeedRatio;
