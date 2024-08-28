@@ -115,7 +115,7 @@ namespace Features
             if(movement == null) return;
 
             movement.SetAcceleration(startAcceleration + furryCount * accelerationIncrementPerFurry);
-            movement.SetAcceleration(startMaxSpeed + furryCount * maxSpeedIncrementPerFurry);
+            movement.SetMaxSpeed(startMaxSpeed + furryCount * maxSpeedIncrementPerFurry);
         }
 
         private void UpdateLifeStats(Life life, float furryCount)

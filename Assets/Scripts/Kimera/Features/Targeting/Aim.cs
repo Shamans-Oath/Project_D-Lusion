@@ -103,14 +103,15 @@ namespace Features
         
             GameObject closestTarget = tempTargets[0];
             float angleDistance = DistanceAngle(closestTarget);
+            float distanceBetween = DistanceBetween(closestTarget);
 
             foreach (GameObject target in tempTargets)
             {
-                float distance = DistanceAngle(target);
+                float distance = DistanceBetween(target);
 
-                if(distance > angleDistance) continue;
+                if(distance > distanceBetween) continue;
 
-                angleDistance = distance;
+                distanceBetween = distance;
                 closestTarget = target;
             }
 
@@ -128,6 +129,14 @@ namespace Features
             float angleBetween = Vector3.Angle(transform.forward, directionToTarget);
 
             return angleBetween;
+        }
+
+        private float DistanceBetween(GameObject target)
+        {
+            Vector3 directionToTarget = target.transform.position - transform.position;
+            directionToTarget.y = 0;
+
+            return directionToTarget.magnitude;
         }
 
         public void ToggleActive(bool active)
