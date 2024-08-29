@@ -12,8 +12,8 @@ namespace Features
         private const float DEFAULT_START_MAX_SPEED = 15f;
         private const float DEFAULT_ATTACK_INCREMENT = .35f;
         private const float DEFAULT_MAX_HEALTH_INCREMENT = 1f;
-        private const float DEFAULT_ACCELERATION_INCREMENT = .5f;
-        private const float DEFAULT_MAX_SPEED_INCREMENT = .25f;
+        private const float DEFAULT_ACCELERATION_INCREMENT = .05f;
+        private const float DEFAULT_MAX_SPEED_INCREMENT = .05f;
         private const int DEFAULT_STAT_STATES_COUNT = 6;
 
         //Configuration
@@ -98,9 +98,9 @@ namespace Features
             Movement movement = controller.SearchFeature<Movement>();
             Life life = controller.SearchFeature<Life>();
 
-            UpdateCombatAttack(combat, furryState * furry.maxFurryCount);
-            UpdateMovementStats(movement, furryState * furry.maxFurryCount);
-            UpdateLifeStats(life, furryState * furry.maxFurryCount);
+            UpdateCombatAttack(combat, (furryState / (statStatesCount - 1)) * furry.maxFurryCount);
+            UpdateMovementStats(movement, (furryState / (statStatesCount - 1)) * furry.maxFurryCount);
+            UpdateLifeStats(life, (furryState / (statStatesCount - 1)) * furry.maxFurryCount);
         }
 
         private void UpdateCombatAttack(Combat combat, float furryCount)

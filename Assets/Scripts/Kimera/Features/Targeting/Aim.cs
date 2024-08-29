@@ -89,8 +89,9 @@ namespace Features
 
             GameObject targetController = follow.target;
             float angleToTarget = DistanceAngle(targetController);
+            float distanceToTarget = DistanceBetween(targetController);
 
-            if (angleToTarget < aimMaxAngle / 2) return;
+            if (distanceToTarget <= aimRadius && angleToTarget < aimMaxAngle / 2) return;
 
             follow.target = null;
         }
@@ -142,6 +143,14 @@ namespace Features
         public void ToggleActive(bool active)
         {
             this.active = active;
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!Application.isPlaying) return;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, aimRadius);
         }
     }
 }
