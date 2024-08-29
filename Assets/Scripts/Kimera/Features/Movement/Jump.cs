@@ -47,6 +47,7 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             if (jumpTimer > 0) jumpTimer -= Time.deltaTime;
+            if(jumpTimer < 0) jumpTimer = 0;
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
@@ -58,7 +59,7 @@ namespace Features
             if(cmp_rigidbody == null) return;
             if (jumpTimer > 0) return;
             if(terrain.onGround == false) return;
-            cmp_rigidbody.AddForce(new Vector2(cmp_rigidbody.velocity.x, jumpForce), ForceMode.Impulse);
+            cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
             jumpTimer = jumpCooldown;
             StartCoroutine(gravity.ReturnGravity(jumpCooldown));
         }
