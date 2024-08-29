@@ -22,6 +22,7 @@ namespace Features
         //Properties / Time Management
         public float jumpCooldown;
         //References
+        public Gravity gravity;
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody cmp_rigidbody;
@@ -46,17 +47,21 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             if (jumpTimer > 0) jumpTimer -= Time.deltaTime;
+            if(jumpTimer < 0) jumpTimer = 0;
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
         {
+            TerrainEntity terrain = controller as TerrainEntity;
+
             if (!active) return;
 
             if(cmp_rigidbody == null) return;
             if (jumpTimer > 0) return;
-
+            if(terrain.onGround == false) return;
             cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
             jumpTimer = jumpCooldown;
+            StartCoroutine(gravity.ReturnGravity(jumpCooldown));
         }
 
         public bool GetActive()

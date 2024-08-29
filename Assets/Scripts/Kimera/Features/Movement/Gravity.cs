@@ -94,6 +94,25 @@ namespace Features
 
             cmp_rigidbody.velocity = new Vector3(cmp_rigidbody.velocity.x, maxVerticalSpeed * Mathf.Sign(cmp_rigidbody.velocity.y), cmp_rigidbody.velocity.z);
         }
+
+        public IEnumerator ReturnGravity(float duration)
+        {
+            float t = 0;
+            float targetGravity = gravityValue;
+            gravityValue = gravityValue * -1f;
+            while (true) 
+            {
+                yield return null;
+                gravityValue = Mathf.Lerp(gravityValue, targetGravity, t / duration);
+
+                t += Time.deltaTime;
+
+                if (t > duration)
+                {
+                    break;
+                }
+            }
+        }
     }
 }
 
