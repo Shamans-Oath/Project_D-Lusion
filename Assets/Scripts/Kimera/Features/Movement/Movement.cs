@@ -136,7 +136,7 @@ namespace Features
 
             Vector3 diffVelocity = new Vector3(cmp_rigidbody.velocity.x, 0, cmp_rigidbody.velocity.z) - velocity;
 
-            Debug.Log(velocity.magnitude);
+            //Debug.Log(velocity.magnitude);
 
             if (velocity.magnitude > maxSpeed)
             {

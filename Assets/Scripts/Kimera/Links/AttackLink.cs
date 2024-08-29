@@ -79,6 +79,7 @@ namespace Features
             else
             {
                 actor.SearchFeature<Combat>().StopAttack();
+                actor.CallFeature<Stun>();
 
                 if(reactorCombat.parry)
                 {
