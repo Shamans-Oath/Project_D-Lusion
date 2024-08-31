@@ -99,7 +99,7 @@ namespace Features
         {
             float t = 0;
             float targetGravity = gravityValue;
-            gravityValue = gravityValue * -1f;
+            gravityValue = 0;
             while (true) 
             {
                 yield return null;
