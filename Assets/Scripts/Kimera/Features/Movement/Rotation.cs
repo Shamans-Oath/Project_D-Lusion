@@ -84,6 +84,7 @@ namespace Features
                     forward.Normalize();
 
                     RotateTo(forward);
+
                     return;
                 }
             }

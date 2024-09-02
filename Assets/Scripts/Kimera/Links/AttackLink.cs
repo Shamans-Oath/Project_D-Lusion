@@ -37,11 +37,20 @@ namespace Features
 
             int damage = actorCombat.attack;
 
+
+
             if(attack != null)
             {
+                float? attackPotential = attack.Search("attackPotential");
+
+                if (attackPotential.HasValue)
+                {
+                    damage = (int) (attackPotential * damage);
+                }
+
                 int? attackExtra = attack.Search("attackExtra");
 
-                if (attackExtra != null)
+                if (attackExtra.HasValue)
                 {
                     damage += (int)attackExtra;
                 }

@@ -31,10 +31,12 @@ namespace Features
             if (!active) return;
 
             FollowEntity follow = controller as FollowEntity;
-            FaceTo(follow);
+            InputEntity input = controller as InputEntity;
+
+            FaceTo(follow, input);
         }
 
-        private void FaceTo(FollowEntity follow)
+        private void FaceTo(FollowEntity follow, InputEntity input)
         {
             if(follow == null) return;
 
@@ -44,6 +46,10 @@ namespace Features
             directionToTarget.y = transform.position.y;
 
             transform.LookAt(directionToTarget);
+
+            if (input == null) return;
+
+            input.playerForward = (directionToTarget - transform.position).normalized;
         }
 
         public bool GetActive()
