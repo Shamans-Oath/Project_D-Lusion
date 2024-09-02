@@ -21,6 +21,7 @@ namespace Features
         public float jumpForce;
         //Properties / Time Management
         public float jumpCooldown;
+        public bool reachedApex = false;
         //References
         public Gravity gravity;
         //Componentes
@@ -46,8 +47,21 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
+            TerrainEntity terrain = controller as TerrainEntity;
+
             if (jumpTimer > 0) jumpTimer -= Time.deltaTime;
             if(jumpTimer < 0) jumpTimer = 0;
+
+            if(cmp_rigidbody.velocity.y < 0 && terrain.onGround == false && reachedApex == false)
+            {
+                reachedApex = true;
+                StartCoroutine(gravity.ReturnGravity(jumpCooldown));
+            }
+
+            if(terrain.onGround == true)
+            {
+                reachedApex = false;
+            }
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
@@ -57,12 +71,11 @@ namespace Features
             if (!active) return;
 
             if(cmp_rigidbody == null) return;
-            if (jumpTimer > 0) return;
+            //if (jumpTimer > 0) return;
             if(terrain.onGround == false) return;
             cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
-            jumpTimer = jumpCooldown;
-            StartCoroutine(gravity.ReturnGravity(jumpCooldown));
-        }
+            jumpTimer = jumpCooldown;            
+        }        
 
         public bool GetActive()
         {
