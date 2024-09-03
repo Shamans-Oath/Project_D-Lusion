@@ -7,6 +7,8 @@ namespace Features
 {
     public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, ISubcontroller //Other channels
     {
+        private const float DEFAULT_ATTACK_COOLDOWN = .75f;
+
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -23,10 +25,12 @@ namespace Features
         [SerializeField] private ComboPreset actualCombo;
         //States / Time Management
         [SerializeField] private float attackTimer;
+        [SerializeField] private float attackCooldownTimer;
         //Properties
         [Header("Properties")]
         public List<ComboPreset> defaultCombos;
         public int attack;
+        public float attackCooldown;
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
@@ -73,6 +77,10 @@ namespace Features
             if (combo4 != null) defaultCombos.Add(combo4);
             if (combo5 != null) defaultCombos.Add(combo5);
 
+            float? tempAttackCooldown = settings.Search("attackCooldown");
+            if (tempAttackCooldown.HasValue) attackCooldown = tempAttackCooldown.Value;
+            else attackCooldown = DEFAULT_ATTACK_COOLDOWN;
+
             ToggleActive(true);
         }
 
@@ -86,12 +94,13 @@ namespace Features
                 return;
             }
 
-            if(attackQueue.Count <= 0 && !activeAttack)
+            if (attackQueue.Count <= 0 && !activeAttack && attackTimer <= .1f && actualCombo != null)
             {
                 actualCombo = null;
+                attackCooldownTimer = attackCooldown;
             }
 
-            if (actualCombo == null)
+            if (actualCombo == null && attackCooldownTimer <= 0)
             {
                 for(int i = 0; i < defaultCombos.Count; i++)
                 {
@@ -135,6 +144,7 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             if (attackTimer > 0) attackTimer -= Time.deltaTime;
+            if(attackCooldownTimer > 0) attackCooldownTimer -= Time.deltaTime;
 
             if (!active) return;
 
@@ -149,23 +159,25 @@ namespace Features
                 if (attack.ActiveAttack) activeAttack = true;
             });
 
-            if (!activeAttack && attackTimer <= .3f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
+            if (!activeAttack && attackTimer <= .3f && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
             }
 
-            else if (attackTimer <= .15f && !activeAttack && actualAttack != null && !combatAnimator.CheckCondition(actualCombo.condition))
+            else if (attackTimer <= .15f && !activeAttack && actualAttack != null)
             {
-                StopAttack();
+                attackCooldownTimer = attackCooldown;
+
+                if (!combatAnimator.CheckCondition(actualCombo.condition)) StopAttack();
             }
 
             FurryEntity furry = controller as FurryEntity;
 
             if (furry != null)
             {
-                cmp_animator.SetFloat("Blend", furry.furryCount / 100);
+                cmp_animator.SetFloat("Blend", furry.furryCount / furry.maxFurryCount);
 
-                if(furry.furryCount == 100)
+                if(furry.furryCount == furry.maxFurryCount)
                 {
                     attack = settings.Search("enhancedAttack");
                 }
