@@ -131,6 +131,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -265,6 +266,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -363,6 +365,7 @@ GameObject:
   - component: {fileID: 1196963227926865447}
   - component: {fileID: 4471502756704339409}
   - component: {fileID: 204981476069002227}
+  - component: {fileID: 2680513746709333406}
   m_Layer: 0
   m_Name: TestEnemy 1
   m_TagString: Enemy
@@ -398,7 +401,7 @@ Animator:
   m_GameObject: {fileID: 270489431914573047}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46c517c89b454984c844a918ca73b290, type: 2}
+  m_Controller: {fileID: 9100000, guid: d5e85bcfb2c6a474aaa6113ed332d10d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -493,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffbd9c405c774d46a8b7db4089ede12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: 044c3d97a32be384cb3c7e205860e4f4, type: 2}
+  settings: {fileID: 11400000, guid: bb7868d1c98a4034db5383d272dda2f2, type: 2}
   additionalGameObjectFeatures:
   - {fileID: 63755558269399999}
   - {fileID: 4755024165486332493}
@@ -693,6 +696,7 @@ MonoBehaviour:
   - {fileID: 1572979470681144160}
   - {fileID: 1083152010759011108}
   - {fileID: 6995622970584493136}
+  faceTarget: {fileID: 0}
   cmp_animator: {fileID: 0}
 --- !u!114 &8722753730121016745
 MonoBehaviour:
@@ -713,6 +717,7 @@ MonoBehaviour:
   life: {fileID: 0}
   stun: {fileID: 0}
   movementIntel: {fileID: 0}
+  combatAnimator: {fileID: 0}
   animator: {fileID: 0}
   enemyCrowd: {fileID: 0}
 --- !u!114 &2710956886674766263
@@ -751,6 +756,7 @@ MonoBehaviour:
   activeMoveMode: {fileID: 0}
   defaultMoveMode: 
   reachDestinationDistance: 0
+  rotation: {fileID: 0}
   agent: {fileID: 0}
   rb: {fileID: 0}
 --- !u!114 &3504372461362882509
@@ -879,6 +885,27 @@ MonoBehaviour:
   box: {fileID: 0}
   escapeDistance: 0
   escapeSpeed: 0
+--- !u!114 &2680513746709333406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ac30771c3780904684e116f2722afbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  poolIndex: 0
+  enemyName: 
+  spawnIndex: 0
+  distanceThreshold: 0
+  enemySpawned: 0
+  spawnPoints: []
+  storedEnemy: {fileID: 0}
 --- !u!1 &373831292614539953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2664,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -3209,6 +3237,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -4598,6 +4627,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}

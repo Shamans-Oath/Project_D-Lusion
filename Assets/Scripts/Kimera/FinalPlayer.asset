@@ -1291,10 +1291,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 1
-  - key: jumpCooldown
+  - key: jumpForce
     boolValue: 0
     intValue: 0
-    floatValue: 1
+    floatValue: 22
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1314,10 +1314,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 2
-  - key: jumpForce
+  - key: jumpCooldown
     boolValue: 0
     intValue: 0
-    floatValue: 22
+    floatValue: 1
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}

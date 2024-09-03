@@ -106,7 +106,7 @@ namespace Features
 
             if (input != null) input.playerForward = movement.normalized;
 
-            /*terrains.Sort(TerrainModifier.CompareByOrder);
+            terrains.Sort(TerrainModifier.CompareByOrder);
             if (terrains.Count > 0)
             {
                 foreach (TerrainModifier terrain in terrains)
@@ -115,7 +115,7 @@ namespace Features
 
                     movement = terrain.ProjectOnTerrain(movement);
                 }
-            }*/
+            }
             movement = movement.normalized * acceleration * 10f;
             if (movement != Vector3.zero) cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
 

@@ -354,8 +354,6 @@ GameObject:
   - component: {fileID: 7757264760355797440}
   - component: {fileID: 7195603978860619294}
   - component: {fileID: 7429082214247552102}
-  - component: {fileID: 9140238939135494083}
-  - component: {fileID: 2514947169861610297}
   - component: {fileID: 8547295830968792017}
   - component: {fileID: 1673390093878442106}
   - component: {fileID: 6137916988852556588}
@@ -799,63 +797,6 @@ MonoBehaviour:
   extraDistanceGround: 0
   offsetGround: {x: 0, y: 0}
   feetSize: {x: 0, y: 0, z: 0}
---- !u!114 &9140238939135494083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270489431914573047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a32851b10f158394d9238ede001e48c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 0}
-  active: 0
-  onTerrain: 0
-  terrainOrder: 0
-  terrainLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  extraDistanceSlope: 0
-  maxAngleSlope: 0
---- !u!114 &2514947169861610297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270489431914573047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dc7f2f8cc8ae4044ad222f8abbd1f49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 0}
-  active: 0
-  onTerrain: 0
-  terrainOrder: 0
-  terrainLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  hipBlocked: 0
-  feetBlocked: 0
-  stepDistance: 0
-  stepHeight: 0
-  stepDepth: 0
-  hipHeight: 0
-  feetSize: {x: 0, y: 0, z: 0}
-  hipSize: {x: 0, y: 0, z: 0}
-  stepCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  timeToStep: 0
-  slope: {fileID: 0}
-  debug: 0
 --- !u!114 &8547295830968792017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,7 +813,10 @@ MonoBehaviour:
   active: 0
   jumpTimer: 0
   jumpForce: 0
+  hasJumped: 0
   jumpCooldown: 0
+  reachedApex: 0
+  gravity: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
 --- !u!114 &1673390093878442106
 MonoBehaviour:

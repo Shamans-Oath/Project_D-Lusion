@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26059a6d31ee00c44927dc25f57de314, type: 3}
+  m_Name: EnemyComboTree
+  m_EditorClassIdentifier: 
+  comboNodeData:
+  - NodeGUID: a6cab192-7c76-4154-bcf2-ccffb39562ac
+    position: {x: -65, y: -69}
+    comboKey: C
+    condition: attack-counter
+    attackKeys: C,C
+    interruptions: []
+  - NodeGUID: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    position: {x: -63, y: 182}
+    comboKey: B
+    condition: attack-special
+    attackKeys: B,B,A
+    interruptions:
+    - comboKey: A
+      condition: attack-normal
+      GUID: 4f6083ac-8319-476b-ac11-2e03f73aa915
+  - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    position: {x: 276, y: 268}
+    comboKey: A
+    condition: attack-normal
+    attackKeys: A,A,B
+    interruptions:
+    - comboKey: B
+      condition: attack-special
+      GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
+  nodeLinkData:
+  - BaseNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    PortName: 4f6083ac-8319-476b-ac11-2e03f73aa915
+    TargetNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    condition: attack-normal
+    comboKey: A
+  - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    PortName: f501e49a-1555-49fc-92d3-10e4dc10e375
+    TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    condition: attack-special
+    comboKey: B

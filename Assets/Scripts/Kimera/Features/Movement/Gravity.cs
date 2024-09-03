@@ -15,6 +15,8 @@ namespace Features
         //States
         //Properties
         [Header("Properties")]
+        [HideInInspector]
+        public Coroutine gravityCoroutine;
         public float gravityValue;
         public float maxVerticalSpeed;
         //References
@@ -95,21 +97,29 @@ namespace Features
             cmp_rigidbody.velocity = new Vector3(cmp_rigidbody.velocity.x, maxVerticalSpeed * Mathf.Sign(cmp_rigidbody.velocity.y), cmp_rigidbody.velocity.z);
         }
 
+        
         public IEnumerator ReturnGravity(float duration)
         {
+            
             float t = 0;
-            float targetGravity = gravityValue;
+            float targetGravity = settings.Search("gravityValue");
+            //gravityValue = targetGravity;
+           
             gravityValue = 0;
-            while (true) 
+            while (true)
             {
                 yield return null;
-                gravityValue = Mathf.Lerp(gravityValue, targetGravity, t / duration);
-
+                
+                //Debug.Log(duration.ToString()+ " / " + t.ToString() + " / " + gravityValue.ToString());
                 t += Time.deltaTime;
+                gravityValue = Mathf.Lerp(gravityValue, targetGravity, t / duration);                
 
                 if (t > duration)
                 {
+
+                    gravityCoroutine = null;
                     break;
+
                 }
             }
         }

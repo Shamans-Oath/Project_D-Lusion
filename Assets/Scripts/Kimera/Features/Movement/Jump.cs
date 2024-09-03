@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Features
         [Header("Properties")]
         public float jumpForce;
         //Properties / Time Management
+        public bool hasJumped;
         public float jumpCooldown;
         public bool reachedApex = false;
         //References
@@ -47,20 +49,30 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
+            if (jumpTimer > 0) jumpTimer -= Time.deltaTime;
+            if (jumpTimer < 0) jumpTimer = 0;
+
             TerrainEntity terrain = controller as TerrainEntity;
 
-            if (jumpTimer > 0) jumpTimer -= Time.deltaTime;
-            if(jumpTimer < 0) jumpTimer = 0;
-
-            if(cmp_rigidbody.velocity.y < 0 && terrain.onGround == false && reachedApex == false)
+            if (cmp_rigidbody.velocity.y < 0 && terrain.onGround == false && reachedApex == false && hasJumped == true)
             {
                 reachedApex = true;
-                StartCoroutine(gravity.ReturnGravity(jumpCooldown));
+
+
+                if (gravity.gravityCoroutine != null)
+                {
+                    StopCoroutine(gravity.gravityCoroutine);
+                    gravity.gravityCoroutine = null;
+                }
+                
+                gravity.gravityCoroutine = StartCoroutine(gravity.ReturnGravity(jumpCooldown));
             }
 
-            if(terrain.onGround == true)
+            if (terrain.onGround == true && jumpTimer < 4 * jumpCooldown/5)
             {
+                jumpTimer = 0;
                 reachedApex = false;
+                hasJumped = false;
             }
         }
 
@@ -71,10 +83,11 @@ namespace Features
             if (!active) return;
 
             if(cmp_rigidbody == null) return;
-            //if (jumpTimer > 0) return;
-            if(terrain.onGround == false) return;
-            cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
-            jumpTimer = jumpCooldown;            
+            if (jumpTimer > 0) return;
+            if (terrain.onGround == false) return;
+            hasJumped = true;
+            jumpTimer = jumpCooldown;
+            cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);         
         }        
 
         public bool GetActive()

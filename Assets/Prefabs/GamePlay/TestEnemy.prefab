@@ -131,6 +131,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 6353012718249098835}
   cmp_rigidbody: {fileID: 8534706837684945161}
   attack: {fileID: 0}
@@ -265,6 +266,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 1320887339390431927}
   cmp_rigidbody: {fileID: 812472315721240974}
   attack: {fileID: 0}
@@ -400,7 +402,7 @@ Animator:
   m_GameObject: {fileID: 270489431914573047}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46c517c89b454984c844a918ca73b290, type: 2}
+  m_Controller: {fileID: 9100000, guid: d5e85bcfb2c6a474aaa6113ed332d10d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2758,6 +2760,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 5478170687521043110}
   cmp_rigidbody: {fileID: 5867850406110256580}
   attack: {fileID: 0}
@@ -3481,6 +3484,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 7124831526948071157}
   cmp_rigidbody: {fileID: 2917202757090379282}
   attack: {fileID: 0}
@@ -4870,6 +4874,7 @@ MonoBehaviour:
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
+  isInteracted: 0
   cmp_collider: {fileID: 4510897034455460311}
   cmp_rigidbody: {fileID: 6068328991499465812}
   attack: {fileID: 0}
