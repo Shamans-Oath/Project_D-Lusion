@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comboNodeData:
   - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
-    position: {x: 16, y: -188}
+    position: {x: 0, y: 0}
     comboKey: A
     condition: attack-normal
     attackKeys: A,A,A
@@ -29,7 +29,7 @@ MonoBehaviour:
     attackKeys: B
     interruptions: []
   - NodeGUID: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
-    position: {x: 16, y: 49}
+    position: {x: 0, y: -206}
     comboKey: C
     condition: attack-counter
     attackKeys: C

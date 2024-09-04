@@ -7,7 +7,7 @@ namespace Features
 {
     public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, ISubcontroller //Other channels
     {
-        private const float DEFAULT_ATTACK_COOLDOWN = .75f;
+        private const float DEFAULT_ATTACK_COOLDOWN = 1.25f;
 
         //Configuration
         [Header("Settings")]
@@ -94,7 +94,7 @@ namespace Features
                 return;
             }
 
-            if (attackQueue.Count <= 0 && !activeAttack && attackTimer <= .1f && actualCombo != null)
+            if (attackQueue.Count <= 0 && !activeAttack && attackTimer <= 0f && actualCombo != null)
             {
                 actualCombo = null;
                 attackCooldownTimer = attackCooldown;
@@ -102,43 +102,45 @@ namespace Features
 
             if (actualCombo == null && attackCooldownTimer <= 0)
             {
-                for(int i = 0; i < defaultCombos.Count; i++)
+                for (int i = 0; i < defaultCombos.Count; i++)
                 {
                     var combo = defaultCombos[i];
 
-                    if(conditions.Contains(combo.condition) && combo.attackChain.Length > 0)
+                    if (conditions.Contains(combo.condition) && combo.attackChain.Length > 0)
                     {
                         actualCombo = combo;
-                        
-                        for(int j = 0; j < combo.attackChain.Length; j++)
+
+                        for (int j = 0; j < combo.attackChain.Length; j++)
                         {
                             attackQueue.Enqueue(combo.attackChain[j]);
                         }
                         break;
                     }
                 }
-            } else if (actualCombo.interruptions.Length > 0)
-            {
-                for (int i = 0; i < actualCombo.interruptions.Length; i++)
+            } else if (actualCombo != null) {
+                if (actualCombo.interruptions.Length > 0)
                 {
-                    var interruption = actualCombo.interruptions[i];
-
-                    if (conditions.Contains(interruption.condition) && interruption.nextCombo != null)
+                    for (int i = 0; i < actualCombo.interruptions.Length; i++)
                     {
-                        actualCombo = interruption.nextCombo;
+                        var interruption = actualCombo.interruptions[i];
 
-                        if(actualCombo.attackChain.Length == 0 || !conditions.Contains(actualCombo.condition)) continue;
-
-                        attackQueue.Clear();
-
-                        for (int j = 0; j < actualCombo.attackChain.Length; j++)
+                        if (conditions.Contains(interruption.condition) && interruption.nextCombo != null)
                         {
-                            attackQueue.Enqueue(actualCombo.attackChain[j]);
+                            actualCombo = interruption.nextCombo;
+
+                            if (actualCombo.attackChain.Length == 0 || !conditions.Contains(actualCombo.condition)) continue;
+
+                            attackQueue.Clear();
+
+                            for (int j = 0; j < actualCombo.attackChain.Length; j++)
+                            {
+                                attackQueue.Enqueue(actualCombo.attackChain[j]);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
-            }
+            } 
         }
 
         public void UpdateFeature(Controller controller)
@@ -164,11 +166,9 @@ namespace Features
                 SetupAttack(attackQueue.Dequeue());
             }
 
-            else if (attackTimer <= .15f && !activeAttack && actualAttack != null)
+            else if (attackTimer <= .05f && !activeAttack && actualAttack != null)
             {
-                attackCooldownTimer = attackCooldown;
-
-                if (!combatAnimator.CheckCondition(actualCombo.condition)) StopAttack();
+                StopAttack();
             }
 
             FurryEntity furry = controller as FurryEntity;
@@ -234,6 +234,7 @@ namespace Features
 
             actualAttack = null;
             actualCombo = null;
+            attackCooldownTimer = attackCooldown;
             activeAttack = false;
             attackQueue.Clear();
 
