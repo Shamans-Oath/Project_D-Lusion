@@ -130,7 +130,7 @@ public class PlayerDash : MonoBehaviour
 
         float newHorizontalSpeed = length / flightTime;
 
-        //Get the speed to reach the target position
+        //Get the speed to reach the target Position
         _speed = ProjectileMotion.GetStartSpeed(direction.normalized, height, newHorizontalSpeed, gravity * gravityMultiplierUpHill);
 
         //Disable movement while dashing and charging

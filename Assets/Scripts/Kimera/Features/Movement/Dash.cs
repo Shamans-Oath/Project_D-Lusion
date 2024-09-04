@@ -161,7 +161,7 @@ namespace Features
 
             float newHorizontalSpeed = length / flightTime;
 
-            //Get the speed to reach the target position
+            //Get the speed to reach the target Position
             speed = ProjectileMotion.GetStartSpeed(direction.normalized, heightUpHill, newHorizontalSpeed, gravityValue * gravityMultiplierUpHill);
 
             //Disable movement while dashing and charging

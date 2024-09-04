@@ -275,7 +275,7 @@ public class Camera_System : MonoBehaviour
 
         //Descomentar para permitir autotarget a la nada
 
-        /*Vector3 point = mainCamera.transform.position + (mainCamera.transform.forward * maxDistance);
+        /*Vector3 point = mainCamera.transform.Position + (mainCamera.transform.forward * maxDistance);
         return point;*/
     }
 }

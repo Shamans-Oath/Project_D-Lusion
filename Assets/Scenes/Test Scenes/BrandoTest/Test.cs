@@ -121,7 +121,7 @@ namespace Features
             
         }
 
-    // Check if the foot has moved a certain distance away from its previous position
+    // Check if the foot has moved a certain distance away from its previous Position
     void CheckStride(GameObject foot, Transform target, ref Vector3 previousPosition, ref float strideProgress)
     {
         Debug.Log("tampon camina");
@@ -141,13 +141,13 @@ namespace Features
                 // Evaluate the animation curve
                 float curveValue = strideCurve.Evaluate(strideProgress);
 
-                // Calculate the target position
+                // Calculate the target Position
                 Vector3 targetPosition = Vector3.Lerp(previousPosition, hit.point, curveValue);
 
-                // Set the target position
+                // Set the target Position
                 target.position = targetPosition;
 
-                // Update the previous position
+                // Update the previous Position
                 previousPosition = foot.transform.position;
             }
         }
