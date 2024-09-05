@@ -18,23 +18,35 @@ MonoBehaviour:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 3
+      usesSubmodule: 0
+      submoduleIndex: 0
     - poolIndex: 1
       enemyName: TestEnemy2
       numberOfEnemies: 2
+      usesSubmodule: 0
+      submoduleIndex: 0
   - enemyThreshold: 3
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 2
+      usesSubmodule: 0
+      submoduleIndex: 0
     - poolIndex: 1
       enemyName: TestEnemy2
       numberOfEnemies: 3
+      usesSubmodule: 0
+      submoduleIndex: 0
   - enemyThreshold: 0
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 5
+      usesSubmodule: 0
+      submoduleIndex: 0
     - poolIndex: 1
       enemyName: TestEnemy2
       numberOfEnemies: 4
+      usesSubmodule: 0
+      submoduleIndex: 0
   timeBetweenWaves: 3

@@ -62,19 +62,30 @@ public class SpawnManager : MonoBehaviour
 
     public void ReadEncounter(int waveIndex)
     {
+        int enemyCount = remainingEnemies.Count;
+
         enemyThreshold = currentEncounter.waves[waveIndex].enemyThreshold;
 
         for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
-            pool.UpdatePool(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies, currentEncounter.waves[waveIndex].waveInfo[x].enemyName);
+            pool.UpdatePool(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies + enemyCount, currentEncounter.waves[waveIndex].waveInfo[x].enemyName);
         }
     }
 
     public IEnumerator LoadEncounter(int waveIndex)
     {
+        int enemyCount = remainingEnemies.Count;
+
         for(int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
-            SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies);
+            if(!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
+            {
+                SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies + enemyCount);
+            }
+            /*else
+            {
+                SpawnEnemySingle(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentModule.subModule[currentEncounter.waves[waveIndex].waveInfo[x].submoduleIndex]);
+            }*/
         }
 
         yield return new WaitForEndOfFrame();

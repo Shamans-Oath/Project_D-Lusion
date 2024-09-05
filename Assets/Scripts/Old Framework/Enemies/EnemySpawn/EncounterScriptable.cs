@@ -22,4 +22,6 @@ public class WaveInfo
     public int poolIndex;
     public string enemyName;
     public int numberOfEnemies;
+    public bool usesSubmodule;
+    public int submoduleIndex;
 }
