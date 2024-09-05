@@ -14,9 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackChain:
   - {fileID: 11400000, guid: eae3715fd58bcc542ba7af1bbc54d33f, type: 2}
-  - {fileID: 11400000, guid: eae3715fd58bcc542ba7af1bbc54d33f, type: 2}
-  - {fileID: 11400000, guid: 04625dfe9f4dde54699030863a4d1cb0, type: 2}
   condition: attack-special
-  interruptions:
-  - condition: attack-normal
-    nextCombo: {fileID: 11400000, guid: d3228fa62621844469ba78ab3f60bf41, type: 2}
+  interruptions: []

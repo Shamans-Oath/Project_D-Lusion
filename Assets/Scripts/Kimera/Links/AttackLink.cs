@@ -92,7 +92,7 @@ namespace Features
 
                 if(reactorCombat.parry)
                 {
-                    Debug.Log("TestCombate");
+                    //Debug.Log("TestCombate");
                     Camera_System.instance.CameraShake("Parry");
                     reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
                     reactor.SearchFeature<Block>().ChangeBlock(1);
