@@ -176,15 +176,6 @@ namespace Features
             if (furry != null)
             {
                 cmp_animator.SetFloat("Blend", furry.furryCount / furry.maxFurryCount);
-
-                if(furry.furryCount == furry.maxFurryCount)
-                {
-                    attack = settings.Search("enhancedAttack");
-                }
-                else
-                {
-                    attack = settings.Search("attack");
-                }
             }
         }
 
