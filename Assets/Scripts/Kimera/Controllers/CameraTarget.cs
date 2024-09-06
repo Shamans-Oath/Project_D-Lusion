@@ -6,38 +6,19 @@ using System.Linq;
 
 namespace Features
 {
-    public class CameraTarget :  MonoBehaviour, IActivable, IFeatureSetup //Other channels
+    public class CameraTarget :  MonoBehaviour
     {
-        //Configuration
-        [Header("Settings")]
-        public Settings settings;
-        //Control
-        [Header("Control")]
-        [SerializeField] private bool active;
-        //States
-        //Properties
-        [Header("Properties")]
         [SerializeField] float enemyWeightTarget;
         [SerializeField] float enemyRadius;
-        [SerializeField] float radius;
+        [SerializeField] float radiusDetectEnemy;
         [SerializeField] LayerMask mask;
         [SerializeField] CinemachineTargetGroup targetGroup;
-        //References
-        //Componentes
-
-        public void SetupFeature(Controller controller)
-        {
-            settings = controller.settings;
-
-            //Setup Properties
-
-            ToggleActive(true);
-        }
+        [SerializeField] Camera camera;
+        [SerializeField] float angle;
 
         public void Update()
         {     
             DetectEnemy();
-            
         }
 
         public void AddEnemy(Transform enemy)
@@ -60,11 +41,19 @@ namespace Features
             {
                 enemyWeight += Time.deltaTime * 0.5f;
                 
-                targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeight;
-                targetGroup.DoUpdate();
+                if(targetGroup.FindMember(enemy) != -1)
+                {
+                    targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeight;
+                    targetGroup.DoUpdate();
+                }
+                else
+                {
+                    enemyWeight = enemyWeightTarget+0.1f;
+                }
                 yield return null;
             }
 
+            if(targetGroup.FindMember(enemy) != -1)
             targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeightTarget;
             targetGroup.DoUpdate();
         }
@@ -76,36 +65,42 @@ namespace Features
             while(enemyWeight > 0)
             {
                 enemyWeight -= Time.deltaTime * 0.5f;
-                
-                targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeight;
-                targetGroup.DoUpdate();
+
+                if(targetGroup.FindMember(enemy) != -1)
+                {
+                    targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeight;
+                    targetGroup.DoUpdate();
+                }
+                else
+                {
+                    enemyWeight = -1;
+                }
                 yield return null;
             }
 
+            if(targetGroup.FindMember(enemy) != -1)
             targetGroup.RemoveMember(enemy);
         }
 
         public void DetectEnemy()
         {
-            Collider[] enemyTarget = Physics.OverlapSphere(transform.position, radius, mask);
+            Collider[] enemyTarget = Physics.OverlapSphere(transform.position, radiusDetectEnemy, mask);
+            
 
             foreach (Collider target in enemyTarget)
             {
-                if((target.transform.position -transform.position).magnitude < radius)
-                AddEnemy(target.transform);
+                float distance = (target.transform.position -transform.position).magnitude;
+                if(distance < radiusDetectEnemy)
+                {
+                    float angleTarget = Vector3.Angle(camera.transform.forward,target.transform.position-camera.transform.position);
+                    if(angleTarget < angle-5)
+                    AddEnemy(target.transform);
+                    else if(angleTarget > angle+5)
+                    RemoveEnemy(target.transform);
+                }
                 else
                 RemoveEnemy(target.transform);
             }
-        }
-
-        public bool GetActive()
-        {
-            return active;
-        }
-
-        public void ToggleActive(bool active)
-        {
-            this.active = active;
         }
     }
 }
