@@ -8,7 +8,8 @@ namespace Features
     [CreateAssetMenu(fileName = "New Attack Preset", menuName = "Combat System/Attack Preset")]
     public class AttackPreset : ScriptableObject
     {
-        public AnimationClip animationClip;
+        public AnimationClip animationClipHuman;
+        public AnimationClip animationClipBeast;
         public AttackSwing[] swings;
 
 
@@ -21,19 +22,20 @@ namespace Features
             {
                 AnimationEvent startEvent = new AnimationEvent();
                 startEvent.functionName = "StartAttack";
-                startEvent.time = Mathf.Clamp(swings[i].start, 0, animationClip.length);
+                startEvent.time = Mathf.Clamp(swings[i].start, 0, animationClipHuman.length);
                 startEvent.intParameter = i;
 
                 AnimationEvent endEvent = new AnimationEvent();
                 endEvent.functionName = "EndAttack";
-                endEvent.time = Mathf.Clamp(swings[i].end, 0, animationClip.length);
+                endEvent.time = Mathf.Clamp(swings[i].end, 0, animationClipHuman.length);
                 endEvent.intParameter = i;
 
                 clipEvents[i * 2] = startEvent;
                 clipEvents[i * 2 + 1] = endEvent;
             }
 
-            AnimationUtility.SetAnimationEvents(animationClip, clipEvents);
+            AnimationUtility.SetAnimationEvents(animationClipHuman, clipEvents);
+            AnimationUtility.SetAnimationEvents(animationClipBeast, clipEvents);
         }
 #endif
     }

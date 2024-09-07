@@ -72,14 +72,14 @@ public class AttackPresetEditor : Editor
             if (evt.previousValue == null)
                 return;
 
-            attackPreset.animationClip = (AnimationClip)evt.newValue;
+            attackPreset.animationClipHuman = (AnimationClip)evt.newValue;
 
             for (int i = 0; i < serializedObject.FindProperty("swings").arraySize; i++)
             {
                 var property = serializedObject.FindProperty("swings").GetArrayElementAtIndex(i);
-                property.FindPropertyRelative("duration").floatValue = attackPreset.animationClip.length;
+                property.FindPropertyRelative("duration").floatValue = attackPreset.animationClipHuman.length;
                 property.FindPropertyRelative("start").floatValue = 0;
-                property.FindPropertyRelative("end").floatValue = attackPreset.animationClip.length;
+                property.FindPropertyRelative("end").floatValue = attackPreset.animationClipHuman.length;
 
             }
 
@@ -87,9 +87,9 @@ public class AttackPresetEditor : Editor
 
             swingSliders.ToList().ForEach((slider) =>
             {
-                slider.highLimit = attackPreset.animationClip.length;
+                slider.highLimit = attackPreset.animationClipHuman.length;
                 slider.minValue = 0;
-                slider.maxValue = attackPreset.animationClip.length;
+                slider.maxValue = attackPreset.animationClipHuman.length;
                 slider.lowLimit = 0;
             });
 

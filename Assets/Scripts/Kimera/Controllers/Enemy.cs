@@ -27,6 +27,7 @@ namespace Features
         public bool block { get; set; }
         public bool parry { get; set; }
         public int attack {  get; set; }
+        public int comboCount { get; set; }
 
         private void OnEnable()
         {

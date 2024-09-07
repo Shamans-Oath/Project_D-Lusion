@@ -22,6 +22,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public bool block { get; set; }
     public bool parry { get; set; }
     public int attack { get; set; }
+    public int comboCount { get; set; }
     //Furry
     public float furryCount { get; set; }
     public float maxFurryCount { get; set; }

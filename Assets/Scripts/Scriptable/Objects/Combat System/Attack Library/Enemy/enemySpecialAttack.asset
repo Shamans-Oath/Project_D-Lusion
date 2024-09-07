@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
   m_Name: enemySpecialAttack
   m_EditorClassIdentifier: 
-  animationClip: {fileID: 7400000, guid: 93a46ea8df26042448c245439e2f4a41, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: 37b56d0370021ed4ea63494fe96097d1, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 1f075ed5b0dbc784ea17f340f59c5ffe, type: 2}
   swings:
   - swingName: KickMMA
     size: {x: 1, y: 2, z: 1}

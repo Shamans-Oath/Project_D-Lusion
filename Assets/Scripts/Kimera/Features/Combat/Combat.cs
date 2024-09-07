@@ -164,11 +164,13 @@ namespace Features
             if (!activeAttack && attackTimer <= .3f && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
+                combat.comboCount++;
             }
 
             else if (attackTimer <= .05f && !activeAttack && actualAttack != null)
             {
                 StopAttack();
+                combat.comboCount = 0;
             }
 
             FurryEntity furry = controller as FurryEntity;
@@ -187,11 +189,14 @@ namespace Features
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
             actualAttack = attack;
-            attackTimer = attack.animationClip.length;
+            attackTimer = attack.animationClipHuman.length;
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
-            animatorOverride["Box"] = attack.animationClip;
+            animatorOverride["AnimTest1"] = attack.animationClipHuman;
+            animatorOverride["AnimTest2"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
             cmp_animator.SetBool("Attack", true);
+
+
         }
 
         public void StartAttack(int i)
