@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313693a6a351ece4a85ec31d778cd8da, type: 3}
   m_Name: enemyCombo
   m_EditorClassIdentifier: 
-  attackChain: []
-  condition: 
+  attackChain:
+  - {fileID: 11400000, guid: 5d75f3fb7c5881641917f31f9d4e357a, type: 2}
+  - {fileID: 11400000, guid: 5d75f3fb7c5881641917f31f9d4e357a, type: 2}
+  condition: attack-normal
   interruptions: []

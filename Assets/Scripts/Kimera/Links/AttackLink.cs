@@ -87,21 +87,18 @@ namespace Features
             }
             else
             {
-                actor.SearchFeature<Combat>().StopAttack();
-                actor.CallFeature<Stun>();
-
                 if(reactorCombat.parry)
                 {
                     //Debug.Log("TestCombate");
+                    actor.SearchFeature<Combat>().StopAttack();
+                    actor.CallFeature<Stun>();
                     Camera_System.instance.CameraShake("Parry");
                     reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
-                    reactor.SearchFeature<Block>().ChangeBlock(1);
                 }
                 else
                 {
-                    reactor.SearchFeature<Block>().ChangeBlock(-1);
+                    reactorLife.Health(-damage/2);
                 }
-
             }
 
             //Añadir efectos de bloques

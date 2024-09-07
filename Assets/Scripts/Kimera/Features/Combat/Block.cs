@@ -18,21 +18,21 @@ namespace Features
         public bool parry;
         //States / Time Management
         private float parryTimer;
-        private float blockTimer;
+        private float parryCooldownTimer;
         //Properties
         [Header("Properties")]
-        public int blockHealth;
-        public int maxBlock;
         public float parryTime;
-        public float blockTime;
+        public float parryCooldown;
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
+        public ISubcontroller movement;
         //Componentes
 
         private void Awake()
         {
             combatAnimator = GetComponent<CombatAnimator>();
+            movement = GetComponent<Movement>() as ISubcontroller;
         }
 
         public void SetupFeature(Controller controller)
@@ -40,10 +40,8 @@ namespace Features
             settings = controller.settings;
 
             //Setup Properties
-            blockHealth = settings.Search("blockHealth");
-            maxBlock = settings.Search("maxBlock");
             parryTime = settings.Search("parryTime");
-            blockTime = settings.Search("blockTime");
+            parryCooldown = settings.Search("parryCooldown");
 
             ToggleActive(true);
         }
@@ -51,14 +49,13 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             if(parryTimer > 0) parryTimer -= Time.deltaTime;
-            else
+            else if(parryTimer <= 0 && parry == true)
             {
                 parry = false;
+                InvokeEnd();
             }
-            if (blockTimer > 0) blockTimer -= Time.deltaTime;
-            {
-                blockTimer = 0;
-            }
+
+            if (parryCooldownTimer > 0) parryCooldownTimer-= Time.deltaTime;
 
             if (!active) return;
 
@@ -72,35 +69,31 @@ namespace Features
 
         public void StartBlock()
         {
-            if(blockHealth != 0) block = true;
-            parry = true;
-            blockTimer = blockTime;
-            parryTimer = parryTime;
-            combatAnimator.InputConditon("stop");
+            if(parry == false && parryCooldownTimer <= 0)
+            {               
+                parry = true;
+                block = true;
+                parryTimer = parryTime;
+                combatAnimator.InputConditon("stop");
+            }                
         }
 
         public void EndBlock()
-        {
-            block = false;
-            parry = false;
-            blockTimer = 0;
-            parryTimer = 0;
+        {   
+            if(block)
+            {
+                block = false;
+                InvokeEnd();
+            }            
         }
 
-        public void ChangeBlock(int value)
+        public void InvokeEnd()
         {
-            blockHealth += value;
-
-            if(blockHealth > maxBlock)
+            if(!parry && !block)
             {
-                blockHealth = maxBlock;
-            }
-
-            if (blockHealth <= 0) 
-            {
-                blockHealth = 0;
-                EndBlock();
-            }
+                if (movement != null) movement.ToggleActiveSubcontroller(true);
+                parryCooldownTimer = parryCooldown;
+            }            
         }
 
         public bool GetActive()
@@ -115,6 +108,7 @@ namespace Features
 
         public void FeatureAction(Controller controller, params Setting[] settings)
         {
+            if (parryCooldownTimer > 0) return;
             if(settings.Length <= 0) return;
 
             bool value = settings[0].boolValue;
@@ -122,9 +116,10 @@ namespace Features
             if (value)
             {
                 StartBlock();
+                if (movement != null) movement.ToggleActiveSubcontroller(false);
                 return;
             }
-
+            
             EndBlock();
         }
     }
