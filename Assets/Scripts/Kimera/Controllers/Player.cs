@@ -68,11 +68,13 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (block) return;
         if (context.performed) CallFeature<Features.Jump>();
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
+        if (block) return;
         if (context.performed)
         {
             // SearchFeature<Rotation>().RotateTo(dashPoint.Position);
@@ -103,11 +105,13 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (block) return;
         if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext context)
     {
+        if (block) return;
         if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-special", Setting.ValueType.String));
     }
 

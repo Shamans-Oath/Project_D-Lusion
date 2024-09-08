@@ -26,13 +26,18 @@ namespace Features
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
-        public ISubcontroller movement;
+        public IActivable movement, jump, rotation, combat, stun, dash;
         //Componentes
 
         private void Awake()
         {
             combatAnimator = GetComponent<CombatAnimator>();
-            movement = GetComponent<Movement>() as ISubcontroller;
+            movement = GetComponent<Movement>() as IActivable;
+            jump = GetComponent<Jump>() as IActivable;
+            rotation = GetComponent<Rotation>() as IActivable;
+            stun = GetComponent<Stun>() as IActivable;
+            combat = GetComponent<Combat>() as IActivable;
+            dash = GetComponent<Dash>() as IActivable;
         }
 
         public void SetupFeature(Controller controller)
@@ -68,9 +73,12 @@ namespace Features
         }
 
         public void StartBlock()
-        {
-            if(parry == false && parryCooldownTimer <= 0)
-            {               
+        {            
+            if (parry == false && parryCooldownTimer <= 0)
+            {                
+                //if (combat != null) combat.ToggleActiveSubcontroller(false);
+                if (stun != null) stun.ToggleActive(false);
+                if (dash != null) dash.ToggleActive(false);
                 parry = true;
                 block = true;
                 parryTimer = parryTime;
@@ -91,7 +99,12 @@ namespace Features
         {
             if(!parry && !block)
             {
-                if (movement != null) movement.ToggleActiveSubcontroller(true);
+                if (movement != null) movement.ToggleActive(true);
+                if (rotation != null) rotation.ToggleActive(true);
+                if (jump != null) jump.ToggleActive(true);
+                //if (combat != null) combat.ToggleActiveSubcontroller(true);
+                if (stun != null) stun.ToggleActive(true);
+                if (dash != null) dash.ToggleActive(true);
                 parryCooldownTimer = parryCooldown;
             }            
         }
@@ -116,7 +129,9 @@ namespace Features
             if (value)
             {
                 StartBlock();
-                if (movement != null) movement.ToggleActiveSubcontroller(false);
+                if (movement != null) movement.ToggleActive(false);
+                if (rotation != null) rotation.ToggleActive(false);
+                if (jump != null) jump.ToggleActive(false);
                 return;
             }
             

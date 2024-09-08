@@ -86,7 +86,14 @@ namespace Features
             Player mePlayer = controller as Player;
             if(mePlayer != null)
             {
-                Camera_System.instance.CameraShake("Damage");
+                if(mePlayer.block)
+                {
+                    Camera_System.instance.CameraShake("Block");
+                }
+                else
+                {
+                    Camera_System.instance.CameraShake("Damage");
+                }                
             }
         }
 

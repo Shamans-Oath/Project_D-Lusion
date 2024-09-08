@@ -146,9 +146,31 @@ namespace Features
             return active;
         }
 
+        int activeCount = 0;
         public void ToggleActive(bool active)
         {
-            this.active = active;
+            if (activeCount < 0)
+            {
+                activeCount = 0;
+            }
+
+            if (!active)
+            {
+                activeCount++;
+            }
+            else
+            {
+                activeCount--;
+            }
+
+            if (activeCount > 0)
+            {
+                this.active = false;
+            }
+            else
+            {
+                this.active = true;
+            }
         }
     }
 }
