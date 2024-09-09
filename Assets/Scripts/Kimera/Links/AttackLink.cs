@@ -18,6 +18,7 @@ namespace Features
             CombatEntity reactorCombat = reactor as CombatEntity;
             Rigidbody reactorRigidbody = reactor.gameObject.GetComponent<Rigidbody>();
             Furry furry = actor.SearchFeature<Furry>();
+            FurryEntity furryEntity = actor as FurryEntity;
 
             CombatReactions actorReaction = actor.SearchFeature<CombatReactions>();
             Life reactorLife = reactor.SearchFeature<Life>();
@@ -61,7 +62,8 @@ namespace Features
             if (!reactorCombat.block && !reactorCombat.parry)
             {
                 reactorLife.Health(-damage);
-                if(furry != null) furry.IncreaseFurryCount();
+                if (furry != null) furry.IncreaseFurryCount();
+                if (furryEntity != null) furryEntity.furryCombo++;
                 //Añadir efectos de ataque
 
                 if (actorReaction != null) actorReaction.PassTurn();

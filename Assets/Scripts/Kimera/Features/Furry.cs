@@ -56,6 +56,7 @@ namespace Features
             if (lastFurryPunchTime + furryExtension < Time.time)
             {
                 DecreaseFurryCount();
+                if (furry != null) furry.furryCombo = 0;
             }
         }
 

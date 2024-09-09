@@ -14,6 +14,7 @@ namespace Features
         [SerializeField] private bool active;
         //States
         [SerializeField] private int comboCount;
+        [SerializeField] private int bloodyComboCount;
         //Properties
         //References
         //Componentes
@@ -42,10 +43,10 @@ namespace Features
             if (!active) return;
 
             CombatEntity combat = controller as CombatEntity;
+            FurryEntity furry = controller as FurryEntity;
 
-            if (combat == null) return;
-
-            comboCount = combat.comboCount;
+            if (combat != null) comboCount = combat.comboCount;
+            if (furry != null) bloodyComboCount = furry.furryCombo;
         }
     }
 }

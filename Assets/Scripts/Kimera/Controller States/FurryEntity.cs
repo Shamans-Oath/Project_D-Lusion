@@ -6,4 +6,5 @@ public interface FurryEntity
 {
     public float furryCount { get; set; }
     public float maxFurryCount { get; set; }
+    public int furryCombo { get; set; }
 }
