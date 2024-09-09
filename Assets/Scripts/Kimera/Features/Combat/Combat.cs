@@ -25,7 +25,7 @@ namespace Features
         [SerializeField] private ComboPreset actualCombo;
         //States / Time Management
         [SerializeField] private float attackTimer;
-        [SerializeField] private float attackCooldownTimer;
+        [SerializeField] public float attackCooldownTimer;
         //Properties
         [Header("Properties")]
         public List<ComboPreset> defaultCombos;

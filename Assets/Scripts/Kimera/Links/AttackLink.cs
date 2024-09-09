@@ -89,21 +89,23 @@ namespace Features
             }
             else
             {
-                actor.SearchFeature<Combat>().StopAttack();
-                actor.CallFeature<Stun>();
-
                 if(reactorCombat.parry)
                 {
                     //Debug.Log("TestCombate");
+                    actor.SearchFeature<Combat>().StopAttack();
+                    actor.CallFeature<Stun>();
+                    reactor.SearchFeature<Friction>().ToggleActive(true);
+                    reactor.SearchFeature<Block>().block = false;
+                    reactor.SearchFeature<Block>().InvokeEnd();
+
                     Camera_System.instance.CameraShake("Parry");
-                    reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
-                    reactor.SearchFeature<Block>().ChangeBlock(1);
+                    reactor.SearchFeature<Combat>().attackCooldownTimer = 0;
+                    reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-counter", Setting.ValueType.String));
                 }
                 else
                 {
-                    reactor.SearchFeature<Block>().ChangeBlock(-1);
+                    reactorLife.Health(-damage/2);
                 }
-
             }
 
             //Añadir efectos de bloques

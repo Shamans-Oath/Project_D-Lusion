@@ -45,7 +45,7 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
-            Debug.Log("Test");
+            //Debug.Log("Test");
 
             FurryEntity furryEntity = controller as FurryEntity;
 

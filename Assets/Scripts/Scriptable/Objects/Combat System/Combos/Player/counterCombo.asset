@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 313693a6a351ece4a85ec31d778cd8da, type: 3}
-  m_Name: enemyCombo
+  m_Name: counterCombo
   m_EditorClassIdentifier: 
   attackChain:
-  - {fileID: 11400000, guid: 5d75f3fb7c5881641917f31f9d4e357a, type: 2}
-  - {fileID: 11400000, guid: 5d75f3fb7c5881641917f31f9d4e357a, type: 2}
-  condition: attack-normal
+  - {fileID: 11400000, guid: 738937dcc56b60448be40d5122695ee8, type: 2}
+  condition: attack-counter
   interruptions: []
