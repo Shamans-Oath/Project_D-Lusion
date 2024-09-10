@@ -6,6 +6,8 @@ namespace Features
 {
     public class Furry : MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
+        private const float DEFAULT_FURRY_EXTENSION_MAX = 3f;
+
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -16,13 +18,15 @@ namespace Features
         [Header("States")]
         [SerializeField] private float furryCount;
         [SerializeField] private float lastFurryPunchTime;
+        [SerializeField] private float furryExtensionActual;
         //Properties
         [Header("Properties")]
         public float furryIncrement;
         public float furryDecrement;
         public float furryMax;
         //Properties / Time Management
-        public float furryExtension;
+        public float furryExtensionBase;
+        public float furryExtensionMax;
         //References
         //Componentes
 
@@ -34,7 +38,11 @@ namespace Features
             furryIncrement = settings.Search("furryIncrement");
             furryDecrement = settings.Search("furryDecrement");
             furryMax = settings.Search("furryMax");
-            furryExtension = settings.Search("furryExtension");
+            furryExtensionBase = settings.Search("furryExtension");
+            float? tempFurryExtensionMax = settings.Search("furryExtensionMax");
+
+            if (tempFurryExtensionMax.HasValue) furryExtensionMax = tempFurryExtensionMax.Value;
+            else furryExtensionMax = DEFAULT_FURRY_EXTENSION_MAX;
 
             ToggleActive(true);
         }
@@ -51,13 +59,24 @@ namespace Features
                 return;
             }
 
-            if (furry != null) furry.furryCount = furryCount;
+            if (furry != null)
+            {
+                furry.furryCount = furryCount;
+                UpdateFurryExtension(furry);
+            }
 
-            if (lastFurryPunchTime + furryExtension < Time.time)
+            if (lastFurryPunchTime + furryExtensionActual < Time.time)
             {
                 DecreaseFurryCount();
                 if (furry != null) furry.furryCombo = 0;
             }
+        }
+
+        private void UpdateFurryExtension(FurryEntity furry)
+        {
+            if (furry == null) return;
+
+            furryExtensionActual = furryExtensionBase + furryExtensionMax * (furry.maxFurryCount / (furry.maxFurryCount + furry.furryCount));
         }
 
         public void IncreaseFurryCount()
