@@ -23,6 +23,8 @@ namespace Features
         [Header("Properties")]
         public float parryTime;
         public float parryCooldown;
+
+        public float blockingDamageMultiplier;
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
@@ -47,6 +49,7 @@ namespace Features
             //Setup Properties
             parryTime = settings.Search("parryTime");
             parryCooldown = settings.Search("parryCooldown");
+            blockingDamageMultiplier = settings.Search("blockingDamageMultiplier");
 
             ToggleActive(true);
         }

@@ -104,7 +104,7 @@ namespace Features
                 }
                 else
                 {
-                    reactorLife.Health(-damage/2);
+                    reactorLife.Health((int)(-damage * reactor.SearchFeature<Block>().blockingDamageMultiplier));
                 }
             }
 
