@@ -23,6 +23,7 @@ namespace Features
         [Header("Properties")]
         //Properties / Time Management
         public float stunDuration;
+        
         //References
         [Header("References")]
         [SerializeField] private List<ISubcontroller> subcontrollers;

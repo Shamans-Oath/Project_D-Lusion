@@ -93,7 +93,7 @@ namespace Features
                 {
                     //Debug.Log("TestCombate");
                     actor.SearchFeature<Combat>().StopAttack();
-                    actor.CallFeature<Stun>();
+                    
                     reactor.SearchFeature<Friction>().ToggleActive(true);
                     reactor.SearchFeature<Block>().block = false;
                     reactor.SearchFeature<Block>().InvokeEnd();
@@ -101,6 +101,7 @@ namespace Features
                     Camera_System.instance.CameraShake("Parry");
                     reactor.SearchFeature<Combat>().attackCooldownTimer = 0;
                     reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-counter", Setting.ValueType.String));
+                    actor.SearchFeature<Stun>().StunSomeTime(reactor.settings.Search("parryStunDuration"));
                 }
                 else
                 {
