@@ -10,11 +10,12 @@ namespace Features
     {
         [SerializeField] float enemyWeightTarget;
         [SerializeField] float enemyRadius;
+        [Header("Detection Enemies")]
         [SerializeField] float radiusDetectEnemy;
+        [SerializeField] float angle;
         [SerializeField] LayerMask mask;
         [SerializeField] CinemachineTargetGroup targetGroup;
         [SerializeField] Camera camera;
-        [SerializeField] float angle;
 
         public void Update()
         {     

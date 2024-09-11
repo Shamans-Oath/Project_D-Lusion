@@ -25797,7 +25797,7 @@ PrefabInstance:
       objectReference: {fileID: 977457717}
     - target: {fileID: 3046919428194465419, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96645665
+      value: 0.9664568
       objectReference: {fileID: 0}
     - target: {fileID: 3046919428194465419, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.x
@@ -25805,11 +25805,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3046919428194465419, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.10673182
+      value: -0.10673177
       objectReference: {fileID: 0}
     - target: {fileID: 3046919428194465419, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.025642205
+      value: 0.025642194
+      objectReference: {fileID: 0}
+    - target: {fileID: 3358610366734130782, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
+      propertyPath: m_SplineCurvature
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6574506497152204678, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: field of view

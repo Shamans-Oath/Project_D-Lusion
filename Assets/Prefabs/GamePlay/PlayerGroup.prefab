@@ -411,12 +411,12 @@ MonoBehaviour:
   enemyWeightTarget: 0.3
   enemyRadius: 0.5
   radiusDetectEnemy: 10
+  angle: 45
   mask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
   targetGroup: {fileID: 7489355968815774411}
   camera: {fileID: 6574506497152204678}
-  angle: 45
 --- !u!1 &4153982857862235252
 GameObject:
   m_ObjectHideFlags: 0
