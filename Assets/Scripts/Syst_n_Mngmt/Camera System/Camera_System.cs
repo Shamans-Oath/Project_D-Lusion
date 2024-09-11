@@ -8,8 +8,10 @@ public class Camera_System : MonoBehaviour
     public static Camera_System instance;
 
     [SerializeField] private Camera mainCamera;
+    
     public CinemachineFreeLook cmp_playerCamera;
     public float defaultFOV;
+    [SerializeField] float deadZoneWidth;
     bool midChange;
     [SerializeField] private List<float> defaultRadius = new List<float>();
     [SerializeField] private Timeline_Manager _timelineManager;
@@ -33,6 +35,12 @@ public class Camera_System : MonoBehaviour
             lockSys.camSys = this;
             lockSys.cinemachineFreeLook = cmp_playerCamera;
             lockSys.mainCamera = mainCamera;
+        }
+
+        //definir valor de la deadzone
+        for (int i = 0; i < 3; i++)
+        {
+            cmp_playerCamera.GetRig(i).GetCinemachineComponent<CinemachineComposer>().m_DeadZoneWidth = deadZoneWidth;
         }
 
         defaultFOV = cmp_playerCamera.m_Lens.FieldOfView;
