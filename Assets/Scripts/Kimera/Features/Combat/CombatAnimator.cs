@@ -19,6 +19,7 @@ namespace Features
         private Dictionary<string, bool> conditions;
         private Dictionary<string, Coroutine> coroutinesInput;
         [SerializeField] private string currentCondition;
+        [SerializeField] private string lastCondition;
         //Properties
         [Header("Properties")]
         public float inputPermanenceTime;
@@ -94,6 +95,7 @@ namespace Features
 
             if (coroutinesInput.ContainsKey(condition))
             {
+                lastCondition = condition;
                 if (coroutinesInput[condition] != null) StopCoroutine(coroutinesInput[condition]);
                 coroutinesInput[condition] = StartCoroutine(FlipFlopInputCondition(condition));
             }
@@ -121,6 +123,14 @@ namespace Features
             return activeCondtions;
         }
 
+        public List<string> GetActiveLastCondition()
+        {
+            if (!conditions.ContainsKey(lastCondition)) return new List<string>();
+            if (conditions[lastCondition] == false) return new List<string>();
+
+            return new List<string>() { lastCondition };
+        }
+
         public bool GetActive()
         {
             return active;
@@ -145,6 +155,11 @@ namespace Features
         {
             currentCondition = ""; 
             GetActiveConditions().ForEach(x => currentCondition += $"{x} ");
+
+            if (conditions.ContainsKey(lastCondition))
+            {
+                if (!conditions[lastCondition]) lastCondition = string.Empty;
+            }
         }
     }
 }

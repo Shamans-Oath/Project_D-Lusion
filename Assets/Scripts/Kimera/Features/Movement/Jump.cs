@@ -34,6 +34,7 @@ namespace Features
         {
             //Setup Components
             cmp_rigidbody = GetComponent<Rigidbody>();
+            gravity = GetComponent<Gravity>();
         }
 
         public void SetupFeature(Controller controller)

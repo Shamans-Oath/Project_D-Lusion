@@ -150,7 +150,8 @@ namespace Features
 
             if (!active) return;
 
-            StartCombo(combatAnimator.GetActiveConditions());
+            //StartCombo(combatAnimator.GetActiveConditions());
+            StartCombo(combatAnimator.GetActiveLastCondition());
 
             CombatEntity combat = controller as CombatEntity;
             if (combat != null) combat.attack = attack;
