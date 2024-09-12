@@ -162,6 +162,7 @@ namespace Features
                 if (attack.ActiveAttack) activeAttack = true;
             });
 
+            // SR: * MULTIPLICADOR PERO CHEQUEAR
             if (!activeAttack && attackTimer <= .3f && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
@@ -190,14 +191,14 @@ namespace Features
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
             actualAttack = attack;
-            attackTimer = attack.animationClipHuman.length;
+            attackTimer = attack.animationClipHuman.length; // SR: * MULTIPLICADOR
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
             animatorOverride["AnimTest1"] = attack.animationClipHuman;
             animatorOverride["AnimTest2"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
             cmp_animator.SetBool("Attack", true);
 
-
+            combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length); // SR: * MULTIPLICADOR
         }
 
         public void StartAttack(int i)
@@ -236,6 +237,7 @@ namespace Features
             attackQueue.Clear();
 
             cmp_animator.SetBool("Attack", false);
+            combatAnimator.SetVariableInputPermanenceTime(0f);
         }
 
         public bool GetActive()

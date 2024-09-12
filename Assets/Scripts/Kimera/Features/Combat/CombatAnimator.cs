@@ -8,6 +8,8 @@ namespace Features
 {
     public class CombatAnimator :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureAction, IFeatureUpdate, ICombatAnimator //Other channels
     {
+        private const float DEFAULT_ANIMATION_CLIP_BUFFER_RATIO = .5f;
+
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -20,9 +22,11 @@ namespace Features
         private Dictionary<string, Coroutine> coroutinesInput;
         [SerializeField] private string currentCondition;
         [SerializeField] private string lastCondition;
+        [SerializeField] private float variableInputPermanenceTime;
         //Properties
         [Header("Properties")]
         public float inputPermanenceTime;
+        public float animationClipBufferRatio;
         //References
         //Componentes
 
@@ -36,6 +40,10 @@ namespace Features
 
             //Setup Properties
             inputPermanenceTime = settings.Search("inputPermanenceTime");
+
+            float? tempAnimationClipBufferRatio = settings.Search("animationClipBufferRatio");
+            if (tempAnimationClipBufferRatio.HasValue) animationClipBufferRatio = tempAnimationClipBufferRatio.Value;
+            else animationClipBufferRatio = DEFAULT_ANIMATION_CLIP_BUFFER_RATIO;
 
             string condition1 = settings.Search("combatCondition1");
             string condition2 = settings.Search("combatCondition2");
@@ -106,7 +114,7 @@ namespace Features
             if (conditions.ContainsKey(condition))
             {
                 conditions[condition] = true;
-                yield return new WaitForSeconds(inputPermanenceTime);
+                yield return new WaitForSeconds(inputPermanenceTime + variableInputPermanenceTime);
                 conditions[condition] = false;
             }
         }
@@ -129,6 +137,11 @@ namespace Features
             if (conditions[lastCondition] == false) return new List<string>();
 
             return new List<string>() { lastCondition };
+        }
+
+        public void SetVariableInputPermanenceTime(float animationClipLength)
+        {
+            variableInputPermanenceTime = animationClipLength * animationClipBufferRatio;
         }
 
         public bool GetActive()
