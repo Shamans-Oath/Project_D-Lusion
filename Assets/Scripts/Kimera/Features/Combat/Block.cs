@@ -18,7 +18,8 @@ namespace Features
         public bool parry;
         //States / Time Management
         private float parryTimer;
-        private float parryCooldownTimer;
+        [HideInInspector]
+        public float parryCooldownTimer;
         //Properties
         [Header("Properties")]
         public float parryTime;
@@ -59,11 +60,16 @@ namespace Features
             if(parryTimer > 0) parryTimer -= Time.deltaTime;
             else if(parryTimer <= 0 && parry == true)
             {
+                parryTimer = 0;
                 parry = false;
                 InvokeEnd();
             }
 
             if (parryCooldownTimer > 0) parryCooldownTimer-= Time.deltaTime;
+            else
+            {
+                parryCooldownTimer = 0;
+            }
 
             if (!active) return;
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Features
@@ -15,6 +16,8 @@ namespace Features
         [SerializeField] private bool active;
         //States
         //Properties
+        int currentHealth, maxHealth;
+        float parryCooldown, parryCooldownTimer;
         //References
         //Componentes
 
@@ -22,15 +25,28 @@ namespace Features
         {
             settings = controller.settings;
 
+            parryCooldown = controller.SearchFeature<Block>().parryCooldown;
             //Setup Properties
 
             ToggleActive(true);
-            hudCurrentFurry=controller.SearchFeature<StatsHandler>().currentFurry;
+            //hudCurrentFurry=controller.SearchFeature<StatsHandler>();
         }
         public void UpdateFeature(Controller controller)
         {
-            
+            LivingEntity Life = controller as LivingEntity;
+
+            currentHealth = Life.currentHealth;
+            maxHealth = Life.maxHealth;
+            HUDController.instance.UpdateLifeBar(currentHealth, maxHealth);
+
+            parryCooldownTimer = controller.SearchFeature<Block>().parryCooldownTimer;
+            HUDController.instance.UpdateParryCooldown(parryCooldownTimer, parryCooldown);
         }
+
+        /*public void UpdateLife()
+        {
+            HUDController.instance.UpdateLifeBar(currentHealth, maxHealth);
+        }*/
 
         public bool GetActive()
         {
