@@ -106,12 +106,12 @@ namespace Features
         public void ToggleActive(bool active)
         {
             //this.active = active;
-            if(activeCount < 0)
+            if (activeCount < 0)
             {
                 activeCount = 0;
             }
 
-            if(!active)
+            if (!active)
             {
                 activeCount++;
             }
@@ -120,16 +120,17 @@ namespace Features
                 activeCount--;
             }
 
-            if(activeCount > 0)
+            if (activeCount > 0)
             {
                 this.active = false;
             }
             else
             {
+                activeCount = 0;
                 this.active = true;
             }
 
-            if(!this.active) CleanseStun();
+            if (!this.active) CleanseStun();
         }
     }
 }

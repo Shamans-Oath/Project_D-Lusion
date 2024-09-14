@@ -199,7 +199,7 @@ namespace Features
             }
             else
             {
-                activeCount = 0;
+                
                 this.active = true;
             }
 
@@ -210,18 +210,21 @@ namespace Features
             cmp_rigidbody.velocity *= deactivationSpeedRatio;
         }
 
-        public void SetActiveZero()
+        public void AttackFailsafe()
         {
-            activeCount = 0;
+            activeCount = 1;
         }
 
         public void ToggleActiveSubcontroller(bool active)
         {
             if (rotation != null) rotation.ToggleActive(active);
+            rotation.AttackFailsafe();
             if (jump != null) jump.ToggleActive(active);
+            jump.AttackFailsafe();
             if (friction != null) friction.ToggleActive(active);
 
             ToggleActive(active);
+            AttackFailsafe();
         }
     }
 }

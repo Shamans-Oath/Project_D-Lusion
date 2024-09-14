@@ -235,6 +235,7 @@ namespace Features
             }
             else
             {
+                activeCount = 0;
                 this.active = true;
             }
 

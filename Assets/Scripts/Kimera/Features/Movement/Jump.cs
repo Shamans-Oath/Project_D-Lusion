@@ -119,8 +119,14 @@ namespace Features
             }
             else
             {
+                
                 this.active = true;
             }
+        }
+
+        public void AttackFailsafe()
+        {
+            activeCount = 1;
         }
     }
 }

@@ -35,11 +35,12 @@ namespace Features
         [Header("References")]
         public CombatAnimator combatAnimator;
         public List<Attack> possibleAttacks;
-        public ISubcontroller movement;
+        public ISubcontroller movement;       
         public ISubcontroller movementAI;
         public FaceTarget faceTarget;
         [Header("Components")]
         public Animator cmp_animator;
+        Movement cmp_movement;
 
 
         private void Awake()
@@ -50,6 +51,7 @@ namespace Features
             combatAnimator = GetComponent<CombatAnimator>();
             faceTarget = GetComponent<FaceTarget>();
             movement = GetComponent<Movement>() as ISubcontroller;
+            cmp_movement = GetComponent<Movement>();
             movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
 
             //Setup Components
@@ -221,8 +223,7 @@ namespace Features
         {
             //Debug.Log("TestStop" + this.gameObject);
 
-            if (movement != null) movement.ToggleActiveSubcontroller(true);
-            
+            if (movement != null) movement.ToggleActiveSubcontroller(true);            
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);
             if (faceTarget != null) faceTarget.ToggleActive(false);
 
