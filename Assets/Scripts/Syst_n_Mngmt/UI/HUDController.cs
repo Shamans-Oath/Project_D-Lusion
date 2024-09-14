@@ -7,7 +7,7 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController instance;
 
-    public Image lifeBar, parryIcon;
+    public Image lifeBar, parryIcon, dashIcon;
     public float lerpDuration;
 
     void Awake()
@@ -31,6 +31,12 @@ public class HUDController : MonoBehaviour
     {
         float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
         parryIcon.fillAmount = cooldownRatio;
+    }
+
+    public void UpdateDashCooldown(float timer, float duration)
+    {
+        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
+        dashIcon.fillAmount = cooldownRatio;
     }
 
     public void UpdateLifeBar(int currentHealth, int maxHealth)

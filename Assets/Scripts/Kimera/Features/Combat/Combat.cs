@@ -222,6 +222,7 @@ namespace Features
             //Debug.Log("TestStop" + this.gameObject);
 
             if (movement != null) movement.ToggleActiveSubcontroller(true);
+            
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);
             if (faceTarget != null) faceTarget.ToggleActive(false);
 

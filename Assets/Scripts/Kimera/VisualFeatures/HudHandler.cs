@@ -18,6 +18,8 @@ namespace Features
         //Properties
         int currentHealth, maxHealth;
         float parryCooldown, parryCooldownTimer;
+        float dashCooldown, dashCooldownTimer;
+        bool isDashing;
         //References
         //Componentes
 
@@ -26,6 +28,7 @@ namespace Features
             settings = controller.settings;
 
             parryCooldown = controller.SearchFeature<Block>().parryCooldown;
+            dashCooldown = settings.Search("dashCooldownSeconds");
             //Setup Properties
 
             ToggleActive(true);
@@ -35,12 +38,22 @@ namespace Features
         {
             LivingEntity Life = controller as LivingEntity;
 
-            currentHealth = Life.currentHealth;
-            maxHealth = Life.maxHealth;
-            HUDController.instance.UpdateLifeBar(currentHealth, maxHealth);
+            if(HUDController.instance != null)
+            {
+                currentHealth = Life.currentHealth;
+                maxHealth = Life.maxHealth;
+                HUDController.instance.UpdateLifeBar(currentHealth, maxHealth);
 
-            parryCooldownTimer = controller.SearchFeature<Block>().parryCooldownTimer;
-            HUDController.instance.UpdateParryCooldown(parryCooldownTimer, parryCooldown);
+                parryCooldownTimer = controller.SearchFeature<Block>().parryCooldownTimer;
+                HUDController.instance.UpdateParryCooldown(parryCooldownTimer, parryCooldown);
+
+                dashCooldownTimer = controller.SearchFeature<Dash>().realDashCooldown;
+                isDashing = controller.SearchFeature<Dash>().IsDashing;
+                if(!isDashing)
+                {
+                    HUDController.instance.UpdateDashCooldown(dashCooldownTimer, dashCooldown);
+                }                
+            }                
         }
 
         /*public void UpdateLife()

@@ -199,6 +199,7 @@ namespace Features
             }
             else
             {
+                activeCount = 0;
                 this.active = true;
             }
 
@@ -207,6 +208,11 @@ namespace Features
 
             speed = Vector3.zero;
             cmp_rigidbody.velocity *= deactivationSpeedRatio;
+        }
+
+        public void SetActiveZero()
+        {
+            activeCount = 0;
         }
 
         public void ToggleActiveSubcontroller(bool active)
