@@ -16,7 +16,7 @@ namespace Features
         [SerializeField] private bool active;
         //States
         [Header("States")]
-        [SerializeField] private float furryCount;
+        [SerializeField] public float furryCount;
         [SerializeField] private float lastFurryPunchTime;
         [SerializeField] private float furryExtensionActual;
         //Properties

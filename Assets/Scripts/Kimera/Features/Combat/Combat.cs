@@ -42,6 +42,9 @@ namespace Features
         public Animator cmp_animator;
         Movement cmp_movement;
 
+        [Header("Furry Stuff")]
+        public float currentFurry = 0;
+        public float attackSpeedModifier= 1.5f;
 
         private void Awake()
         {
@@ -192,15 +195,17 @@ namespace Features
             if(movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
+            currentFurry = gameObject.GetComponent<Furry>().furryCount/100;
             actualAttack = attack;
-            attackTimer = attack.animationClipHuman.length; // SR: * MULTIPLICADOR
+            attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier)));
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
             animatorOverride["AnimTest1"] = attack.animationClipHuman;
             animatorOverride["AnimTest2"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
+            cmp_animator.speed = (1 + (currentFurry * attackSpeedModifier));
             cmp_animator.SetBool("Attack", true);
 
-            combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length); // SR: * MULTIPLICADOR
+            combatAnimator.SetVariableInputPermanenceTime((attack.animationClipHuman.length) / (1 + (currentFurry * attackSpeedModifier)));
         }
 
         public void StartAttack(int i)
