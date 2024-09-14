@@ -38,6 +38,7 @@ namespace Features
         public ISubcontroller movement;       
         public ISubcontroller movementAI;
         public FaceTarget faceTarget;
+        public Friction friction;
         [Header("Components")]
         public Animator cmp_animator;
         Movement cmp_movement;
@@ -56,6 +57,7 @@ namespace Features
             movement = GetComponent<Movement>() as ISubcontroller;
             cmp_movement = GetComponent<Movement>();
             movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
+            friction = GetComponent<Friction>();
 
             //Setup Components
             if (cmp_animator == null) cmp_animator = GetComponent<Animator>();
@@ -192,7 +194,8 @@ namespace Features
         public void SetupAttack(AttackPreset attack)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
-            if(movementAI != null) movementAI.ToggleActiveSubcontroller(false);
+            if (friction != null) friction.ToggleActive(false);
+            if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
             currentFurry = gameObject.GetComponent<Furry>().furryCount/100;
@@ -227,8 +230,14 @@ namespace Features
         public void StopAttack()
         {
             //Debug.Log("TestStop" + this.gameObject);
+            Player player = this.gameObject.GetComponent<Player>();
 
-            if (movement != null) movement.ToggleActiveSubcontroller(true);            
+            if (player != null && !player.block)
+            {
+                if (movement != null) movement.ToggleActiveSubcontroller(true);
+            }
+            if (friction != null) friction.ToggleActive(true);
+
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);
             if (faceTarget != null) faceTarget.ToggleActive(false);
 

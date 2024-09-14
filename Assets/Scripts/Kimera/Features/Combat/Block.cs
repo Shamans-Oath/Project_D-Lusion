@@ -29,8 +29,11 @@ namespace Features
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
-        public IActivable movement, jump, rotation, combat, stun, dash;
+        public IActivable movement, jump, rotation, combat, stun, dash, friction;
         //Componentes
+        Movement cmp_movement;
+        Jump cmp_jump;
+        Rotation cmp_rotation;
 
         private void Awake()
         {
@@ -41,6 +44,11 @@ namespace Features
             stun = GetComponent<Stun>() as IActivable;
             combat = GetComponent<Combat>() as IActivable;
             dash = GetComponent<Dash>() as IActivable;
+            friction = GetComponent<Friction>() as IActivable;
+
+            cmp_movement = GetComponent<Movement>();
+            cmp_jump = GetComponent<Jump>();
+            cmp_rotation = GetComponent<Rotation>();
         }
 
         public void SetupFeature(Controller controller)
@@ -108,12 +116,13 @@ namespace Features
         {
             if(!parry && !block)
             {
-                if (movement != null) movement.ToggleActive(true);
-                if (rotation != null) rotation.ToggleActive(true);
-                if (jump != null) jump.ToggleActive(true);
+                if (movement != null) movement.ToggleActive(true);                
+                if (rotation != null) rotation.ToggleActive(true);                
+                if (jump != null) jump.ToggleActive(true);                
                 //if (combat != null) combat.ToggleActiveSubcontroller(true);
                 if (stun != null) stun.ToggleActive(true);
                 if (dash != null) dash.ToggleActive(true);
+                if(friction != null) friction.ToggleActive(true);
                 parryCooldownTimer = parryCooldown;
             }            
         }
@@ -139,8 +148,11 @@ namespace Features
             {
                 StartBlock();
                 if (movement != null) movement.ToggleActive(false);
+                cmp_movement.AttackFailsafe();
                 if (rotation != null) rotation.ToggleActive(false);
+                cmp_rotation.AttackFailsafe();
                 if (jump != null) jump.ToggleActive(false);
+                cmp_jump.AttackFailsafe();
                 return;
             }
             

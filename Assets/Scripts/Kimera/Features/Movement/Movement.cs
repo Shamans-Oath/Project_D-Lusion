@@ -221,7 +221,7 @@ namespace Features
             rotation.AttackFailsafe();
             if (jump != null) jump.ToggleActive(active);
             jump.AttackFailsafe();
-            if (friction != null) friction.ToggleActive(active);
+            //if (friction != null) friction.ToggleActive(active);
 
             ToggleActive(active);
             AttackFailsafe();
