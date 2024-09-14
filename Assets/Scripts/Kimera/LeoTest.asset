@@ -173,7 +173,7 @@ MonoBehaviour:
     boolValue: 0
     intValue: 0
     floatValue: 0
-    vector3Value: {x: 0.6, y: 0.9, z: 0.9}
+    vector3Value: {x: 0.25, y: 0.25, z: 0.25}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
     stringValue: 
@@ -333,7 +333,7 @@ MonoBehaviour:
   - key: stepDistance
     boolValue: 0
     intValue: 0
-    floatValue: 0.9
+    floatValue: 0.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -356,7 +356,7 @@ MonoBehaviour:
   - key: stepHeight
     boolValue: 0
     intValue: 0
-    floatValue: 0.2
+    floatValue: 0.4
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -379,7 +379,7 @@ MonoBehaviour:
   - key: stepDepth
     boolValue: 0
     intValue: 0
-    floatValue: 0.5
+    floatValue: 0.3
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -467,29 +467,6 @@ MonoBehaviour:
     boolValue: 0
     intValue: 0
     floatValue: 50
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: jumpForce
-    boolValue: 0
-    intValue: 0
-    floatValue: 15
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -670,29 +647,6 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 1
-  - key: stunDurationDefault
-    boolValue: 0
-    intValue: 0
-    floatValue: 2
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
   - key: furryMax
     boolValue: 0
     intValue: 0
@@ -719,7 +673,30 @@ MonoBehaviour:
   - key: furryDecrement
     boolValue: 0
     intValue: 0
-    floatValue: 7
+    floatValue: 5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: furryExtension
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -762,10 +739,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 6
-  - key: parryTime
+  - key: attack
     boolValue: 0
-    intValue: 0
-    floatValue: 4
+    intValue: 15
+    floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -784,30 +761,7 @@ MonoBehaviour:
     audioClipValue: {fileID: 0}
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: blockTime
-    boolValue: 0
-    intValue: 0
-    floatValue: 2
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
+    valueType: 1
   - key: disableTimeAfterHit
     boolValue: 0
     intValue: 0
@@ -923,56 +877,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 6
-  - key: 
+  - key: inputPermanenceTime
     boolValue: 0
     intValue: 0
-    floatValue: 0
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 0
-  - key: jumpCooldown
-    boolValue: 0
-    intValue: 0
-    floatValue: 0
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: acceleration
-    boolValue: 0
-    intValue: 0
-    floatValue: 2.4
+    floatValue: 0.16
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1018,7 +926,7 @@ MonoBehaviour:
   - key: hipHeight
     boolValue: 0
     intValue: 0
-    floatValue: 1.3
+    floatValue: 1.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1061,6 +969,52 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 3
+  - key: aimRadius
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: aimMaxAngle
+    boolValue: 0
+    intValue: 0
+    floatValue: 140
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
   - key: aimTag
     boolValue: 0
     intValue: 0
@@ -1114,7 +1068,7 @@ MonoBehaviour:
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
-    stringValue: Characters
+    stringValue: Target
     layerMaskValue:
       serializedVersion: 2
       m_Bits: 0
@@ -1155,30 +1109,7 @@ MonoBehaviour:
     valueType: 1
   - key: maxBlock
     boolValue: 0
-    intValue: 1
-    floatValue: 0
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 1
-  - key: attack
-    boolValue: 0
-    intValue: 20
+    intValue: 5
     floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
@@ -1222,10 +1153,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 2
-  - key: furryIncrement
+  - key: enhancedAttack
     boolValue: 0
-    intValue: 0
-    floatValue: 12
+    intValue: 20
+    floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1244,11 +1175,34 @@ MonoBehaviour:
     audioClipValue: {fileID: 0}
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: aimMaxAngle
+    valueType: 1
+  - key: combatCondition3
     boolValue: 0
     intValue: 0
-    floatValue: 360
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: attack-counter
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: defaultCombo3
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1266,123 +1220,8 @@ MonoBehaviour:
     spriteValue: {fileID: 0}
     audioClipValue: {fileID: 0}
     prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: aimRadius
-    boolValue: 0
-    intValue: 0
-    floatValue: 5
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: attackCooldown
-    boolValue: 0
-    intValue: 0
-    floatValue: 1
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: parryCooldown
-    boolValue: 0
-    intValue: 0
-    floatValue: 0.2
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: furryExtensionMax
-    boolValue: 0
-    intValue: 0
-    floatValue: 6
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
-  - key: furryExtension
-    boolValue: 0
-    intValue: 0
-    floatValue: -1
-    vector3Value: {x: 0, y: 0, z: 0}
-    vector3IntValue: {x: 0, y: 0, z: 0}
-    vector2Value: {x: 0, y: 0}
-    stringValue: 
-    layerMaskValue:
-      serializedVersion: 2
-      m_Bits: 0
-    animationCurveValue:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorValue: {r: 0, g: 0, b: 0, a: 0}
-    spriteValue: {fileID: 0}
-    audioClipValue: {fileID: 0}
-    prefabValue: {fileID: 0}
-    scriptableObjectValue: {fileID: 0}
-    valueType: 2
+    scriptableObjectValue: {fileID: 11400000, guid: f1546e7de19df0141a1c6e67d1aa0f87, type: 2}
+    valueType: 13
   - key: blockingDamageMultiplier
     boolValue: 0
     intValue: 0
@@ -1406,10 +1245,10 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 2
-  - key: inputPermanenceTime
+  - key: parryStunDuration
     boolValue: 0
     intValue: 0
-    floatValue: 1
+    floatValue: 5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1429,10 +1268,148 @@ MonoBehaviour:
     prefabValue: {fileID: 0}
     scriptableObjectValue: {fileID: 0}
     valueType: 2
-  - key: animationClipBufferRatio
+  - key: jumpForce
+    boolValue: 0
+    intValue: 0
+    floatValue: 18
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: acceleration
+    boolValue: 0
+    intValue: 0
+    floatValue: 4.2
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: parryTime
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.85
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: jumpCooldown
     boolValue: 0
     intValue: 0
     floatValue: 0.4
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: parryCooldown
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.41
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: furryIncrement
+    boolValue: 0
+    intValue: 0
+    floatValue: 15
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: stunDurationDefault
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
