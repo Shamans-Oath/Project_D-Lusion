@@ -726,7 +726,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""43dadf17-4342-4094-a699-9805f36f81ee"",
-                    ""path"": ""<Mouse>/Position"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -737,7 +737,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""531c3031-36d2-4725-b9a7-68d0c46a01fa"",
-                    ""path"": ""<Pen>/Position"",
+                    ""path"": ""<Pen>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -748,7 +748,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eb6e9995-f693-4934-88c0-d89f84b6f781"",
-                    ""path"": ""<Touchscreen>/touch*/Position"",
+                    ""path"": ""<Touchscreen>/touch*/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
