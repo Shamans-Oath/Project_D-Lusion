@@ -101,7 +101,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public void OnDeath()
     {
         CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
-        ToggleActive(false);
+        //ToggleActive(false);
     }
 
     public void OnAttack(InputAction.CallbackContext context)

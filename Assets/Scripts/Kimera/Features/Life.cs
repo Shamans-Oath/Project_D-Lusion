@@ -21,7 +21,7 @@ namespace Features
         //States
         [Header("States")]
         [SerializeField] private int currentHealth;
-        public int CurrentHealth { get => currentHealth; }
+        public int CurrentHealth { get => currentHealth;}
         //Properties
         [Header("Properties")]
         public int maxHealth;
@@ -53,6 +53,11 @@ namespace Features
                 life.currentHealth = currentHealth;
                 life.maxHealth = maxHealth;
             }
+        }
+
+        public void ResetHealth()
+        {
+            currentHealth = maxHealth;
         }
 
         public void Health(int amount, bool triggerEvents = true)
@@ -97,6 +102,7 @@ namespace Features
             MaxHealth(PercentageToAmount(percentage), readjust, triggerEvents);
         }
 
+        [ContextMenu("kill")]
         public void Kill()
         {
             currentHealth = 0;

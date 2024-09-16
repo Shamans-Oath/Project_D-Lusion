@@ -263,6 +263,80 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!1 &1578969991459591562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5690593483907642326}
+  - component: {fileID: 8737071476549485968}
+  - component: {fileID: 1041877318059984637}
+  m_Layer: 0
+  m_Name: CamaraTargetGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5690593483907642326
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578969991459591562}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.3830515, z: -0, w: 0.92372704}
+  m_LocalPosition: {x: 25.399998, y: 6.9395967, z: -3.4400012}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3598857943300903329}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8737071476549485968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578969991459591562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionMode: 0
+  m_RotationMode: 0
+  m_UpdateMethod: 2
+  m_Targets:
+  - target: {fileID: 0}
+    weight: 1
+    radius: 2
+--- !u!114 &1041877318059984637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578969991459591562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8bf2f57253a8740bd79ed79a532626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyWeightTarget: 0.3
+  enemyRadius: 0.5
+  radiusDetectTarget: 10
+  angleDetectTarget: 45
+  centerPositione: {fileID: 0}
+  camera: {fileID: 5927293761876780039}
+  maskTarget:
+    serializedVersion: 2
+    m_Bits: 1024
+  targetGroup: {fileID: 8737071476549485968}
 --- !u!1 &1752071362452570930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1363,7 @@ Transform:
   - {fileID: 2032930139001658500}
   - {fileID: 1951006418111989944}
   - {fileID: 8064215912745084122}
+  - {fileID: 5690593483907642326}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8276063849687360079

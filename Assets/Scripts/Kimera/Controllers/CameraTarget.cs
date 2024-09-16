@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 namespace Features
 {
@@ -10,12 +11,13 @@ namespace Features
     {
         [SerializeField] float enemyWeightTarget;
         [SerializeField] float enemyRadius;
-        [Header("Detection Enemies")]
-        [SerializeField] float radiusDetectEnemy;
-        [SerializeField] float angle;
-        [SerializeField] LayerMask mask;
+        [Header("Detection target")]
+        [SerializeField] float radiusDetectTarget;
+        [SerializeField] float angleDetectTarget;
+        [SerializeField] Transform centerPositione;
+         [SerializeField] Camera camera;
+        [SerializeField] LayerMask maskTarget;
         [SerializeField] CinemachineTargetGroup targetGroup;
-        [SerializeField] Camera camera;
 
         public void Update()
         {     
@@ -85,18 +87,18 @@ namespace Features
 
         public void DetectEnemy()
         {
-            Collider[] enemyTarget = Physics.OverlapSphere(transform.position, radiusDetectEnemy, mask);
+            Collider[] enemyTarget = Physics.OverlapSphere(centerPositione.transform.position, radiusDetectTarget, maskTarget);
             
 
             foreach (Collider target in enemyTarget)
             {
                 float distance = (target.transform.position -transform.position).magnitude;
-                if(distance < radiusDetectEnemy)
+                if(distance < radiusDetectTarget)
                 {
                     float angleTarget = Vector3.Angle(camera.transform.forward,target.transform.position-camera.transform.position);
-                    if(angleTarget < angle-5)
+                    if(angleTarget < angleDetectTarget-5)
                     AddEnemy(target.transform);
-                    else if(angleTarget > angle+5)
+                    else if(angleTarget > angleDetectTarget+5)
                     RemoveEnemy(target.transform);
                 }
                 else
