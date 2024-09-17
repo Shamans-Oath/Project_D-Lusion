@@ -1235,6 +1235,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2298039950257848027}
     - target: {fileID: 2873440339453871583, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
+      propertyPath: m_LookAt
+      value: 
+      objectReference: {fileID: 2298039950257848027}
+    - target: {fileID: 2873440339453871583, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
       propertyPath: m_BindingMode
       value: 5
       objectReference: {fileID: 0}
@@ -1409,6 +1413,10 @@ PrefabInstance:
     - target: {fileID: 5306319846966424560, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
       propertyPath: m_ScreenY
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5690593483907642326, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.939597
       objectReference: {fileID: 0}
     - target: {fileID: 5927293761876780039, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
       propertyPath: field of view

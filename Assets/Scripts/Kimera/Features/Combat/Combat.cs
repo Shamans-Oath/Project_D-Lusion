@@ -42,6 +42,7 @@ namespace Features
         [Header("Components")]
         public Animator cmp_animator;
         Movement cmp_movement;
+        Furry cmp_furry;
 
         [Header("Furry Stuff")]
         public float currentFurry = 0;
@@ -58,6 +59,7 @@ namespace Features
             cmp_movement = GetComponent<Movement>();
             movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
             friction = GetComponent<Friction>();
+            cmp_furry = GetComponent<Furry>();
 
             //Setup Components
             if (cmp_animator == null) cmp_animator = GetComponent<Animator>();
@@ -198,7 +200,9 @@ namespace Features
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
-            currentFurry = gameObject.GetComponent<Furry>().furryCount/100;
+            if(cmp_furry != null)
+            currentFurry = cmp_furry.furryCount/100;
+
             actualAttack = attack;
             attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier)));
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
