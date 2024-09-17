@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
-  m_Name: normalAttack
+  m_Name: normalAttack 2
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 611de52284aed2d47be5e7918b2951c2, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 0fe3d1b5a7b675e44a38e641794c453d, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: 02402eb1be4e8c44b9f27c88d0c2c714, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 54b5c24d9b1b0684b8ced99aa344a8e6, type: 2}
   swings:
   - swingName: BoxPunch1
     size: {x: 0.75, y: 0.75, z: 0.75}
     offset: {x: 0.75, y: 0.5, z: -0.75}
     movement: {x: -3, y: -0.75, z: 5}
     settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
-    duration: 0.46666694
-    start: 0.032608718
-    end: 0.05797106
+    duration: 0.6666665
+    start: 0
+    end: 0.52
   - swingName: BoxPunch2
     size: {x: 0.75, y: 0.75, z: 0.75}
     offset: {x: -0.75, y: 0.5, z: -0.75}
     movement: {x: 3, y: -0.75, z: 5}
     settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
-    duration: 0.46666694
-    start: 0.16014503
-    end: 0.20724648
+    duration: 0.6666665
+    start: 0
+    end: 0.5948854
   - swingName: BoxPunch3
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
     movement: {x: 0, y: 0, z: 2}
     settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
-    duration: 0.46666694
-    start: 0.32971033
-    end: 0.36884078
+    duration: 0.6666665
+    start: 0
+    end: 0.5141318

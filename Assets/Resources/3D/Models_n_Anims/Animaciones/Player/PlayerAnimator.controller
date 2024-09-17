@@ -160,6 +160,21 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
+--- !u!206 &-8113373915722451071
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlendTree
+  m_Childs: []
+  m_BlendParameter: Blend
+  m_BlendParameterY: Blend
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!1109 &-7936685753630350697
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -438,28 +453,6 @@ BlendTree:
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0
---- !u!1101 &-3654118307967089609
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 1
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.84375
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1107 &-3053368119959446315
 AnimatorStateMachine:
   serializedVersion: 6
@@ -768,7 +761,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -6030205221816345765, guid: fadb2ce5e6731f746bae0ceec1c35491, type: 3}
+    m_Motion: {fileID: 7400000, guid: 4b192038ffb10be40804b316ff9b2183, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -776,7 +769,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -5262330172846960455, guid: 0d2360db412848742a95255b47ae1d2c, type: 3}
+    m_Motion: {fileID: 7400000, guid: 9af17d759322e31408b4e8ee34d0caf7, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -845,6 +838,21 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!206 &-1147337364484506570
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BlendTree
+  m_Childs: []
+  m_BlendParameter: Blend
+  m_BlendParameterY: Blend
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!1101 &-1048054285904072751
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -957,7 +965,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -3872685747996277774, guid: 5bc81d66adfc2f547a13c0a7828f6b7c, type: 3}
+    m_Motion: {fileID: 7400000, guid: 12ea79f5f7aadb043a3bb070c8689737, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.07
@@ -965,7 +973,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 2815794634707595900, guid: b1684708f17f8184a827f11d84812f82, type: 3}
+    m_Motion: {fileID: 7400000, guid: 0832c8d21f9020a42b5d8e83b02082d5, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.1
@@ -993,43 +1001,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Ground
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: UpSpd
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: SpecialAttack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Parry
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1398,7 +1406,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -6450370048912559810, guid: ad37633a50a9a0f439bb90889b7ce8fb, type: 3}
+    m_Motion: {fileID: 7400000, guid: 611de52284aed2d47be5e7918b2951c2, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1406,7 +1414,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 1325320592221088536, guid: dcb6e54cdaba38946a0a95c81e81ce6f, type: 3}
+    m_Motion: {fileID: 7400000, guid: 0fe3d1b5a7b675e44a38e641794c453d, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1600,7 +1608,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 3872766667093860395, guid: fa8a5b4790612ae41b94c7bd653f7287, type: 3}
+    m_Motion: {fileID: 7400000, guid: 5947f3dc56de46242addc4a4c1a2b40e, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1608,7 +1616,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 8169990754529908199, guid: cc5d8073eb0e4374ca7dfe4da8c1bd4d, type: 3}
+    m_Motion: {fileID: 7400000, guid: b4f22f58cc925dd4d9124f1bb3d57e3d, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -1633,7 +1641,6 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -3654118307967089609}
   - {fileID: -734352170494688313}
   - {fileID: 5106327060218149718}
   m_StateMachineBehaviours: []
@@ -2186,20 +2193,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -7424845781446912109}
-    second:
-    - {fileID: 6457992503512982674}
-    - {fileID: -967715655767721548}
-    - {fileID: 6548957423187317258}
-    - {fileID: -9193698562583959423}
-    - {fileID: -5684563710213907747}
-  - first: {fileID: 7484567709589941786}
-    second:
-    - {fileID: 285474755107731662}
-    - {fileID: 8524138946607308960}
-    - {fileID: 4722903449156561705}
-    - {fileID: 7550529034042837677}
-    - {fileID: 6151190167802433903}
   - first: {fileID: -8500853265381723497}
     second:
     - {fileID: -7472350492002312033}
@@ -2207,13 +2200,6 @@ AnimatorStateMachine:
     - {fileID: -5768577812966964019}
     - {fileID: 1552894358474234092}
     - {fileID: -7430179300687576307}
-  - first: {fileID: -3053368119959446315}
-    second:
-    - {fileID: -7815063121106210366}
-    - {fileID: 5121580434907908352}
-    - {fileID: 300478604065391734}
-    - {fileID: 8525124934652232629}
-    - {fileID: 1625133625099236073}
   - first: {fileID: -8382655154830773119}
     second:
     - {fileID: -577124792938244725}
@@ -2221,6 +2207,27 @@ AnimatorStateMachine:
     - {fileID: 4648992582885998304}
     - {fileID: 998811302254005036}
     - {fileID: -4861131717025776689}
+  - first: {fileID: -7424845781446912109}
+    second:
+    - {fileID: 6457992503512982674}
+    - {fileID: -967715655767721548}
+    - {fileID: 6548957423187317258}
+    - {fileID: -9193698562583959423}
+    - {fileID: -5684563710213907747}
+  - first: {fileID: -3053368119959446315}
+    second:
+    - {fileID: -7815063121106210366}
+    - {fileID: 5121580434907908352}
+    - {fileID: 300478604065391734}
+    - {fileID: 8525124934652232629}
+    - {fileID: 1625133625099236073}
+  - first: {fileID: 7484567709589941786}
+    second:
+    - {fileID: 285474755107731662}
+    - {fileID: 8524138946607308960}
+    - {fileID: 4722903449156561705}
+    - {fileID: 7550529034042837677}
+    - {fileID: 6151190167802433903}
   - first: {fileID: 8503137443829948405}
     second:
     - {fileID: 3157316782834306886}
