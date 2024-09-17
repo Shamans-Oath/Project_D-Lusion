@@ -13,27 +13,27 @@ MonoBehaviour:
   m_Name: PlayerComboTree
   m_EditorClassIdentifier: 
   comboNodeData:
-  - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
-    position: {x: 0, y: 0}
-    comboKey: A
-    condition: attack-normal
-    attackKeys: A,A,A
-    interruptions:
-    - comboKey: B
-      condition: attack-special
-      GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
-  - NodeGUID: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
-    position: {x: 352, y: -188}
-    comboKey: B
-    condition: attack-special
-    attackKeys: B
-    interruptions: []
   - NodeGUID: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
-    position: {x: 0, y: -176}
+    position: {x: 0, y: -227}
     comboKey: C
     condition: attack-counter
     attackKeys: C
     interruptions: []
+  - NodeGUID: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    position: {x: 281, y: 0}
+    comboKey: B
+    condition: attack-special
+    attackKeys: B
+    interruptions: []
+  - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    position: {x: 0, y: 0}
+    comboKey: A
+    condition: attack-normal
+    attackKeys: A,D,E
+    interruptions:
+    - comboKey: B
+      condition: attack-special
+      GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
   nodeLinkData:
   - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
     PortName: f501e49a-1555-49fc-92d3-10e4dc10e375

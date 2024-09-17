@@ -18,7 +18,8 @@ MonoBehaviour:
   - swingName: BoxPunch1
     size: {x: 0.75, y: 0.75, z: 0.75}
     offset: {x: 0.75, y: 0.5, z: -0.75}
-    movement: {x: -3, y: -0.75, z: 5}
+    movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
     duration: 0.6666665
     start: 0
@@ -26,7 +27,8 @@ MonoBehaviour:
   - swingName: BoxPunch2
     size: {x: 0.75, y: 0.75, z: 0.75}
     offset: {x: -0.75, y: 0.5, z: -0.75}
-    movement: {x: 3, y: -0.75, z: 5}
+    movement: {x: 0, y: 0, z: 0}
+    bodyPart: 1
     settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
     duration: 0.6666665
     start: 0
@@ -35,6 +37,7 @@ MonoBehaviour:
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
     movement: {x: 0, y: 0, z: 2}
+    bodyPart: 0
     settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
     duration: 0.6666665
     start: 0

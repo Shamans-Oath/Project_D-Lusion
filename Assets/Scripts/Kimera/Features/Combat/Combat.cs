@@ -8,6 +8,7 @@ namespace Features
     public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, ISubcontroller //Other channels
     {
         private const float DEFAULT_ATTACK_COOLDOWN = 1.25f;
+        private const float DEFAULT_IN_BETWEEN_ATTACKS_TIME = .4f;
 
         //Configuration
         [Header("Settings")]
@@ -31,6 +32,7 @@ namespace Features
         public List<ComboPreset> defaultCombos;
         public int attack;
         public float attackCooldown;
+        public float inBetweenAttacksTime;
         //References
         [Header("References")]
         public CombatAnimator combatAnimator;
@@ -89,6 +91,10 @@ namespace Features
             float? tempAttackCooldown = settings.Search("attackCooldown");
             if (tempAttackCooldown.HasValue) attackCooldown = tempAttackCooldown.Value;
             else attackCooldown = DEFAULT_ATTACK_COOLDOWN;
+
+            float? tempInBetweenAttacksTime = settings.Search("inBetweenAttacksTime");
+            if (tempInBetweenAttacksTime.HasValue) inBetweenAttacksTime = tempInBetweenAttacksTime.Value;
+            else inBetweenAttacksTime = DEFAULT_IN_BETWEEN_ATTACKS_TIME;
 
             ToggleActive(true);
         }
@@ -172,13 +178,13 @@ namespace Features
             });
 
             // SR: * MULTIPLICADOR PERO CHEQUEAR
-            if (!activeAttack && attackTimer <= .3f && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
+            if (!activeAttack && attackTimer <= inBetweenAttacksTime && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
                 SetupAttack(attackQueue.Dequeue());
                 combat.comboCount++;
             }
 
-            else if (attackTimer <= .05f && !activeAttack && actualAttack != null)
+            else if (attackTimer <= 0f && !activeAttack && actualAttack != null)
             {
                 StopAttack();
                 combat.comboCount = 0;
@@ -201,16 +207,16 @@ namespace Features
             if (faceTarget != null) faceTarget.ToggleActive(true);
 
             if(cmp_furry != null)
-            currentFurry = cmp_furry.furryCount/100;
+            currentFurry = cmp_furry.furryCount/cmp_furry.furryMax;
 
             actualAttack = attack;
-            attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier)));
+            attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier))) + inBetweenAttacksTime;
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
-            animatorOverride["AnimTest1"] = attack.animationClipHuman;
-            animatorOverride["AnimTest2"] = attack.animationClipBeast;
+            animatorOverride["Humano_Strike1"] = attack.animationClipHuman;
+            animatorOverride["Furro_Strike1"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
-            cmp_animator.speed = (1 + (currentFurry * attackSpeedModifier));
-            cmp_animator.SetBool("Attack", true);
+            cmp_animator.SetFloat("SpeedMultiplier", (1 + (currentFurry * attackSpeedModifier)));
+            cmp_animator.SetTrigger("Attack");
 
             combatAnimator.SetVariableInputPermanenceTime((attack.animationClipHuman.length) / (1 + (currentFurry * attackSpeedModifier)));
         }
@@ -255,8 +261,6 @@ namespace Features
             attackCooldownTimer = attackCooldown;
             activeAttack = false;
             attackQueue.Clear();
-
-            cmp_animator.SetBool("Attack", false);
             combatAnimator.SetVariableInputPermanenceTime(0f);
         }
 

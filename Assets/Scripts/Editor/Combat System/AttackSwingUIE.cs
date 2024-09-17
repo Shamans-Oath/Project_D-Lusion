@@ -19,6 +19,7 @@ public class AttackSwingUIE : PropertyDrawer
         var size = new PropertyField(property.FindPropertyRelative("size"));
         var offset = new PropertyField(property.FindPropertyRelative("offset"));
         var movement = new PropertyField(property.FindPropertyRelative("movement"));
+        var bodyPart = new PropertyField(property.FindPropertyRelative("bodyPart"));
 
         var labelEffects = new Label("Effects");
         var settings = new PropertyField(property.FindPropertyRelative("settings"));
@@ -71,6 +72,7 @@ public class AttackSwingUIE : PropertyDrawer
         container.Add(size);
         container.Add(offset);
         container.Add(movement);
+        container.Add(bodyPart);
 
         container.Add(labelEffects);
         container.Add(settings);

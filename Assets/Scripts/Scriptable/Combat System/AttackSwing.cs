@@ -13,6 +13,7 @@ namespace Features
         public Vector3 size;
         public Vector3 offset;
         public Vector3 movement;
+        public CombatAnimatorLinker.BodyParts bodyPart;
 
         [Header("Effects")]
         public Settings settings;

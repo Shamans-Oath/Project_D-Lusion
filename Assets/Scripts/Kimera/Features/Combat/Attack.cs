@@ -8,6 +8,7 @@ namespace Features
     {
         //Configuration
         [Header("Settings")]
+        public Controller controller;
         public Settings settings;
         //Control
         [Header("Control")]
@@ -17,6 +18,7 @@ namespace Features
         [SerializeField] private bool activeAttack;
         [SerializeField] private bool uniqueEffectsTriggered = false;
         [SerializeField] private Vector3 playerForward;
+        [SerializeField] private string linkerGuid;
         public bool ActiveAttack { get => activeAttack; }
         [SerializeField] private AttackSwing actualAttack;
         //Properties
@@ -42,6 +44,7 @@ namespace Features
 
         public void SetupFeature(Controller controller)
         {
+            this.controller = controller;
             settings = controller.settings;
 
             //Setup Properties
@@ -77,6 +80,9 @@ namespace Features
             attackBox.SetBox(attack.size, attack.offset, attackDirection, true);
             attackBox.SetAttack(attack.settings);   
             uniqueEffectsTriggered = false;
+
+            CombatAnimatorLinker linker = controller.SearchFeature<CombatAnimatorLinker>();
+            if (linker != null) linkerGuid = linker.CreateLink(transform, attack.bodyPart);
 
             if (attack.settings != null) attack.settings.AssemblySettings();
         }
@@ -158,6 +164,9 @@ namespace Features
             activeAttack = false;
             attackBox.SetBox();
             attackBox.SetAttack();
+
+            CombatAnimatorLinker linker = controller.SearchFeature<CombatAnimatorLinker>();
+            if (linker != null) linker.DestroyLink(linkerGuid);
         }
 
         public bool GetActive()
