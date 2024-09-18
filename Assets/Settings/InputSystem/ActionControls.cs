@@ -214,7 +214,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2177fa2a-d750-49cb-ba89-7a3395ff112f"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
@@ -301,8 +301,8 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4f2cd8b2-6591-43d0-b7f3-2e6c7b8ad9e6"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""id"": ""5d5b0e81-e992-4efb-b758-5e4d3852333c"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -312,8 +312,8 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d5b0e81-e992-4efb-b758-5e4d3852333c"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""4f2cd8b2-6591-43d0-b7f3-2e6c7b8ad9e6"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
