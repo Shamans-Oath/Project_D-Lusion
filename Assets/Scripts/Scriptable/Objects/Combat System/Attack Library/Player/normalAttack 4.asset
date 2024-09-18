@@ -16,29 +16,11 @@ MonoBehaviour:
   animationClipBeast: {fileID: 7400000, guid: ebdda5c2c29c8e7429b365520711f507, type: 2}
   swings:
   - swingName: BoxPunch1
-    size: {x: 2.5, y: 2.5, z: 1}
-    offset: {x: 0.75, y: 0.5, z: -0.75}
+    size: {x: 0.75, y: 2.5, z: 0.75}
+    offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
     settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
     duration: 1.0666671
-    start: 0.21247204
-    end: 0.9489461
-  - swingName: BoxPunch2
-    size: {x: 2.5, y: 0.75, z: 1}
-    offset: {x: -0.75, y: 0.5, z: -0.75}
-    movement: {x: 0, y: 0, z: 0}
-    bodyPart: 1
-    settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
-    duration: 1.0666671
-    start: 0
-    end: 0.93889666
-  - swingName: BoxPunch3
-    size: {x: 2.5, y: 0.5, z: 1}
-    offset: {x: 0, y: 0, z: 1}
-    movement: {x: 0, y: 0, z: 0}
-    bodyPart: 0
-    settings: {fileID: 11400000, guid: f984e8e569066c24e969c0f33517f1b4, type: 2}
-    duration: 1.0666671
-    start: 0
-    end: 0.8183044
+    start: 0.0911373
+    end: 1.0666671

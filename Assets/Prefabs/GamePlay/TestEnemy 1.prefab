@@ -95,16 +95,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50e89e0dc0bb4499c9b0de9ea168c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   settings: {fileID: 0}
   active: 0
   activeAttack: 0
   uniqueEffectsTriggered: 0
   playerForward: {x: 0, y: 0, z: 0}
+  linkerGuid: 
   actualAttack:
     swingName: 
     size: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -230,16 +233,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50e89e0dc0bb4499c9b0de9ea168c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   settings: {fileID: 0}
   active: 0
   activeAttack: 0
   uniqueEffectsTriggered: 0
   playerForward: {x: 0, y: 0, z: 0}
+  linkerGuid: 
   actualAttack:
     swingName: 
     size: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -472,7 +478,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 0.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -668,7 +674,10 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   currentCondition: 
+  lastCondition: 
+  variableInputPermanenceTime: 0
   inputPermanenceTime: 0
+  animationClipBufferRatio: 0
 --- !u!114 &5558025180867340545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,8 +696,11 @@ MonoBehaviour:
   actualAttack: {fileID: 0}
   actualCombo: {fileID: 0}
   attackTimer: 0
+  attackCooldownTimer: 0
   defaultCombos: []
   attack: 0
+  attackCooldown: 0
+  inBetweenAttacksTime: 0
   combatAnimator: {fileID: 0}
   possibleAttacks:
   - {fileID: 2675780424105443923}
@@ -697,7 +709,10 @@ MonoBehaviour:
   - {fileID: 1083152010759011108}
   - {fileID: 6995622970584493136}
   faceTarget: {fileID: 0}
+  friction: {fileID: 0}
   cmp_animator: {fileID: 0}
+  currentFurry: 0
+  attackSpeedModifier: 1.5
 --- !u!114 &8722753730121016745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2628,16 +2643,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50e89e0dc0bb4499c9b0de9ea168c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   settings: {fileID: 0}
   active: 0
   activeAttack: 0
   uniqueEffectsTriggered: 0
   playerForward: {x: 0, y: 0, z: 0}
+  linkerGuid: 
   actualAttack:
     swingName: 
     size: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -3201,16 +3219,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50e89e0dc0bb4499c9b0de9ea168c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   settings: {fileID: 0}
   active: 0
   activeAttack: 0
   uniqueEffectsTriggered: 0
   playerForward: {x: 0, y: 0, z: 0}
+  linkerGuid: 
   actualAttack:
     swingName: 
     size: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -4591,16 +4612,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e50e89e0dc0bb4499c9b0de9ea168c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   settings: {fileID: 0}
   active: 0
   activeAttack: 0
   uniqueEffectsTriggered: 0
   playerForward: {x: 0, y: 0, z: 0}
+  linkerGuid: 
   actualAttack:
     swingName: 
     size: {x: 0, y: 0, z: 0}
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
+    bodyPart: 0
     settings: {fileID: 0}
     duration: 0
     start: 0
