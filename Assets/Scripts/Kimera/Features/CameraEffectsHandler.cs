@@ -17,12 +17,16 @@ namespace Features
         [SerializeField] private bool active;
         //States
         //Properties
+        [Range(0,1)]
         public float maxChromaIntensity;
+        [Range(0, 1)]
         public float maxVignetteIntensity;
+        public float oscilationValue;
         public float oscilationSpeed;
         float furryValue;
         float chromaValue;
         float vignetteValue;
+        
         //References
         //Componentes
         public CinemachineVolumeSettings volume;
@@ -31,13 +35,16 @@ namespace Features
 
         public void SetupFeature(Controller controller)
         {
-            settings = controller.settings;            
+            settings = controller.settings;
+
+            
 
             volume.m_Profile.TryGet(out chroma);
             volume.m_Profile.TryGet(out vig);
             //Setup Properties
             maxChromaIntensity = settings.Search("maxChromaIntensity");
             maxVignetteIntensity = settings.Search("maxVignetteIntensity");
+            oscilationValue = settings.Search("oscilationValue");
             oscilationSpeed = settings.Search("oscilationSpeed");
 
             ToggleActive(true);
@@ -54,16 +61,23 @@ namespace Features
                 
                 chroma.intensity.value = Mathf.Lerp(0, maxChromaIntensity, furryRatio);
 
+                vig.intensity.value = Mathf.Lerp(0, maxVignetteIntensity, furryRatio);
+
                 if (furryValue >= 40)
                 {
-                    
+                    float originalIntensity = Mathf.Lerp(0, maxChromaIntensity, furryRatio);
+                    float originalVignette = Mathf.Lerp(0, maxVignetteIntensity, furryRatio);
+                    float oscilatingValue = Mathf.Sin(Time.time * oscilationSpeed) * oscilationValue;
+
+                    chroma.intensity.value = originalIntensity + oscilatingValue;
+                    vig.intensity.value = originalVignette + oscilatingValue;
                 }
 
-                vig.intensity.value = Mathf.Lerp(0, maxVignetteIntensity, furryRatio);
+                
             }
         }
 
-
+        
 
         public bool GetActive()
         {
