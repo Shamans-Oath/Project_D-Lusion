@@ -38,11 +38,13 @@ namespace Features
 
             //Setup components
             if(rb == null) rb = GetComponent<Rigidbody>();
-            if(agent == null) agent = GetComponent<NavMeshAgent>();
+            if (agent == null) agent = GetComponent<NavMeshAgent>();
         }
 
         public void SetupFeature(Controller controller)
         {
+            //agent.enabled = false;
+              
             settings = controller.settings;
 
             //Setup Properties
@@ -52,10 +54,16 @@ namespace Features
             ToggleActive(true);
         }
 
+        private void OnEnable()
+        {
+            if (agent) StartCoroutine(FixAgent(agent));
+
+        }
         private void Start()
         {
             //Setup Modes
-
+            //agent.enabled = false;
+            //agent.enabled = true;
             List<MovementMode> moveModesList = new List<MovementMode>(GetComponents<MovementMode>());
             moveModes = new Dictionary<string, MovementMode>();
             foreach (var moveMode in moveModesList)
@@ -150,6 +158,15 @@ namespace Features
             if(rotation != null) rotation.ToggleActive(active);
 
             ToggleActive(active);
+        }
+
+        public IEnumerator FixAgent(NavMeshAgent agent)
+        {
+            agent.enabled = false;
+            //yield return new WaitForSeconds(1);
+            yield return null;
+
+            agent.enabled = true;
         }
     }
 }

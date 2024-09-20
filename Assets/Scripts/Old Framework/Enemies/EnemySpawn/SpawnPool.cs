@@ -123,7 +123,7 @@ public class SpawnPool : MonoBehaviour
                     {
                         GameObject enemyGO = poolList[i].pooledEnemies[x];
                         Features.Enemy enemy = enemyGO.GetComponent<Features.Enemy>();
-                        crowdEnemy.AddUnitToCrowd(enemy);
+                        if(crowdEnemy)crowdEnemy.AddUnitToCrowd(enemy);
 
                         return poolList[i].pooledEnemies[x];
                     }
