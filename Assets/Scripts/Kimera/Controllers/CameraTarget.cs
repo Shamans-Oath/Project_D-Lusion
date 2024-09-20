@@ -18,6 +18,7 @@ namespace Features
          [SerializeField] Camera camera;
         [SerializeField] LayerMask maskTarget;
         [SerializeField] CinemachineTargetGroup targetGroup;
+        [SerializeField] List<GameObject> currentEnemies;
 
         public void Update()
         {     
@@ -59,6 +60,7 @@ namespace Features
             if(targetGroup.FindMember(enemy) != -1)
             targetGroup.m_Targets[targetGroup.FindMember(enemy)].weight = enemyWeightTarget;
             targetGroup.DoUpdate();
+            
         }
 
         IEnumerator SmoothExit(Transform enemy)
@@ -83,14 +85,24 @@ namespace Features
 
             if(targetGroup.FindMember(enemy) != -1)
             targetGroup.RemoveMember(enemy);
+            currentEnemies.Remove(enemy.gameObject);
         }
 
         public void DetectEnemy()
         {
             Collider[] enemyTarget = Physics.OverlapSphere(centerPositione.transform.position, radiusDetectTarget, maskTarget);
             
+            foreach (var target1 in enemyTarget)
+            {
+                float distance1 = (target1.transform.position -transform.position).magnitude;
+                if(distance1 < radiusDetectTarget)
+                {
+                    if(!currentEnemies.Contains(target1.gameObject))
+                    currentEnemies.Add(target1.gameObject);
+                }
+            }
 
-            foreach (Collider target in enemyTarget)
+            foreach (GameObject target in currentEnemies)
             {
                 float distance = (target.transform.position -transform.position).magnitude;
                 if(distance < radiusDetectTarget)
