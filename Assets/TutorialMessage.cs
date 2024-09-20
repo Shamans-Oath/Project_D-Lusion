@@ -19,20 +19,18 @@ public class TutorialMessage : MonoBehaviour
         {
             objectToActivate.SetActive(true);
             isActive = true;
-            timer = activationDuration;
         }
     }
-
-    private void Update()
+    private void OnTriggerExit(Collider other)
     {
         if (isActive)
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                FadeOut();
-            }
+            FadeOut();
         }
+    }
+    private void Update()
+    {
+
     }
     public void FadeOut()
     {
