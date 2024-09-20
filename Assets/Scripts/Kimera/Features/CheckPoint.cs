@@ -21,6 +21,8 @@ namespace Features
         [SerializeField] SpawnPoint spwPoint;
         [SerializeField] Life life;
         [SerializeField] Ragdoll ragdoll;
+        [SerializeField] Transform firstSpine;
+        Vector3 savePos;
         //References
         //Componentes
 
@@ -29,6 +31,7 @@ namespace Features
             settings = controller.settings;
             
             //Setup Properties
+            savePos = firstSpine.localPosition;
             life.OnDeath += () => RespawnPosition();
 
             ToggleActive(true);
@@ -53,6 +56,7 @@ namespace Features
             }
 
             yield return new WaitForSeconds(2);
+            firstSpine.transform.localPosition = savePos;
             ragdoll.RagdollSetActive(false);
             life.ResetHealth();
             transform.position = new Vector3(spwPoint.x,spwPoint.y,spwPoint.z);

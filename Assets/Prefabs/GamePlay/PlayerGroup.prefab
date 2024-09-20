@@ -2830,6 +2830,7 @@ MonoBehaviour:
   spwPoint: {fileID: 11400000, guid: 74b3bc2dc552ba94b94e8157ee5c4819, type: 2}
   life: {fileID: 7396377097564559060}
   ragdoll: {fileID: 4324542481425573977}
+  firstSpine: {fileID: 3567295745938806311}
 --- !u!114 &1389310256177103238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2879,6 +2880,11 @@ MonoBehaviour:
   oscilationValue: 0
   oscilationSpeed: 0
   volume: {fileID: 1203073849388368677}
+--- !u!4 &3567295745938806311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 147180247484077023, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+  m_PrefabInstance: {fileID: 3714193380239984120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4324542481425573977 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1119332842073681313, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
