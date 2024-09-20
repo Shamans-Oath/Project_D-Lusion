@@ -16,10 +16,10 @@ MonoBehaviour:
   animationClipBeast: {fileID: 7400000, guid: 54b5c24d9b1b0684b8ced99aa344a8e6, type: 2}
   swings:
   - swingName: BoxPunch1
-    size: {x: 0.75, y: 0.75, z: 0.75}
+    size: {x: 2, y: 1, z: 2}
     offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
-    bodyPart: 1
+    bodyPart: 0
     settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
     duration: 0.6666665
     start: 0.0911373
