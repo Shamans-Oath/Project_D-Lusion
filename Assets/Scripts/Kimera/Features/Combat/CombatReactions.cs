@@ -70,13 +70,13 @@ namespace Features
             if (combatAnimator != null) combatAnimator.InputConditon("stop");
 
             Enemy meEnemy = controller as Enemy;
-            if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)
-            {
-                if (life.CurrentHealth <= movementIntel.runAwayLife)
-                {
-                    enemyCrowd.SetUnitOutOfBattle(meEnemy);
-                }
-            }
+            //if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)
+            //{
+            //    if (life.CurrentHealth <= movementIntel.runAwayLife)
+            //    {
+            //        enemyCrowd.SetUnitOutOfBattle(meEnemy);
+            //    }
+            //}
 
             if(meEnemy != null) 
             {

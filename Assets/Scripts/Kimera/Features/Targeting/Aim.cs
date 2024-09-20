@@ -33,6 +33,9 @@ namespace Features
             aimTag = settings.Search("aimTag");
             aimLayer = 1 << LayerMask.NameToLayer(settings.Search("aimLayer"));
 
+            var tempAimLayer2 = settings.Search("aimLayer2");
+            if(tempAimLayer2 != null) aimLayer = aimLayer | 1 << LayerMask.NameToLayer(tempAimLayer2);
+
             ToggleActive(true);
         }
 

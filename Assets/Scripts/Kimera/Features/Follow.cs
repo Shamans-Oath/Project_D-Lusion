@@ -93,7 +93,7 @@ namespace Features
             if (enemyCrowd != null)
             {
                 Enemy meEnemy = controller as Enemy;
-                if (meEnemy != null) enemyCrowd.SetUnitConscious(meEnemy);
+                if (meEnemy != null && !enemyCrowd.CrowdAlerted) enemyCrowd.SetUnitConscious(meEnemy);
             }
         }
 

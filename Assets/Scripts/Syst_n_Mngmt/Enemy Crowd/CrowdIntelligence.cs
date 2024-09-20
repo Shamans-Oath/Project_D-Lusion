@@ -20,6 +20,7 @@ public class CrowdIntelligence<T> : MonoBehaviour where T : Controller
     [Header("Crowd")]
     [SerializeField] protected List<T> units;
     [SerializeField] protected bool crowdAlerted = false;
+    public bool CrowdAlerted { get => crowdAlerted; }
     protected Dictionary<T, Unit> crowd;
     [SerializeField] protected List<Unit> crowdList;
 
