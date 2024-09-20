@@ -41,4 +41,11 @@ MonoBehaviour:
       numberOfEnemies: 10
       usesSubmodule: 0
       submoduleIndex: 0
+  - enemyThreshold: 1
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
+      numberOfEnemies: 9
+      usesSubmodule: 0
+      submoduleIndex: 0
   timeBetweenWaves: 2.5
