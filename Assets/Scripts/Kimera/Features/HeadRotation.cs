@@ -17,8 +17,11 @@ namespace Features
         //States
         [Header("Properties")]
         [SerializeField] float angleMin;
-        [SerializeField] TargetLock targetLock;
+        [SerializeField] float radiusDetectTarget;
         [SerializeField] AimConstraint aimConstraint;
+        [SerializeField] LayerMask maskTarget;
+        [SerializeField] List<GameObject> currentEnemies;
+        [SerializeField] GameObject currentTarget;
         ConstraintSource currentConstraint;
         //References
         //Componentes
@@ -34,11 +37,12 @@ namespace Features
 
         public void RotateHead()
         {
-            if(targetLock.currentTarget != null)
+            currentTarget = DetectEnemy();
+            if(currentTarget != null)
             {
-                currentConstraint = new ConstraintSource { sourceTransform = targetLock.currentTarget, weight = 1f };
-                float angleTarget = Vector3.Angle(transform.forward,targetLock.currentTarget.position-transform.position);
-                Debug.Log(angleTarget);
+                currentConstraint = new ConstraintSource { sourceTransform = currentTarget.transform, weight = 1f };
+                float angleTarget = Vector3.Angle(transform.forward,currentTarget.transform.position-transform.position);
+                
                 if(angleTarget < angleMin)
                 {    
                     if (aimConstraint.sourceCount == 0)
@@ -46,6 +50,7 @@ namespace Features
                 }
                 else
                 {
+                    currentTarget = null;
                     if (aimConstraint.sourceCount != 0)
                     aimConstraint.RemoveSource(0);
                 }
@@ -55,6 +60,41 @@ namespace Features
                 if (aimConstraint.sourceCount != 0)
                 aimConstraint.RemoveSource(0);
             }
+        }
+
+        public GameObject DetectEnemy()
+        {
+            Collider[] enemyTarget = Physics.OverlapSphere(transform.transform.position, radiusDetectTarget, maskTarget);
+            
+            if(enemyTarget.Length == 0 ) return null;
+            
+            foreach (var target1 in enemyTarget)
+            {
+                float distance1 = (target1.transform.position -transform.position).magnitude;
+                if(distance1 < radiusDetectTarget)
+                {
+                    if(!currentEnemies.Contains(target1.gameObject))
+                    currentEnemies.Add(target1.gameObject);
+                }
+            }
+
+            foreach (GameObject target in currentEnemies)
+            {
+                float distance = (target.transform.position -transform.position).magnitude;
+                if(distance < radiusDetectTarget)
+                {
+                    float angleTarget = Vector3.Angle(transform.forward,target.transform.position-transform.position);
+                    if(angleTarget < angleMin)
+                    {
+                        if (aimConstraint.sourceCount != 0)
+                        aimConstraint.RemoveSource(0);
+                        
+                        return target;
+                    }
+                    
+                }
+            }
+            return null;
         }
 
         public bool GetActive()
