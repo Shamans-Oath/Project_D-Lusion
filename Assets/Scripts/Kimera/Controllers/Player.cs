@@ -71,6 +71,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         if (block) return;
         if (context.performed) CallFeature<Features.Jump>();
+        StartCoroutine(SearchFeature<Life>().ImmunityCoroutine());
     }
 
     public void OnDash(InputAction.CallbackContext context)

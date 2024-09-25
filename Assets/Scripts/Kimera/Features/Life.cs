@@ -26,6 +26,8 @@ namespace Features
         //Properties
         [Header("Properties")]
         public int maxHealth;
+        public float immunityDuration = 0.5f;
+        public  bool isImmune = false;
         //References
 
         //Componentes
@@ -65,7 +67,7 @@ namespace Features
 
         public void Health(int amount, bool triggerEvents = true, bool ignoreBlock = false)
         {
-            if (!active || amount == 0) return;
+            if (!active || amount == 0 || isImmune) return;
 
             int previousCurrentHealth = currentHealth;
 
@@ -78,6 +80,7 @@ namespace Features
                     if (previousCurrentHealth + amount > maxHealth)
                     {
                         cmp_Controller.SearchFeature<Shield>().ModifyShield((previousCurrentHealth + amount) - maxHealth);
+                        StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
                     }
                 }
             }
@@ -134,6 +137,12 @@ namespace Features
         {
             currentHealth = 0;
             OnDeath?.Invoke();
+        }
+        public IEnumerator ImmunityCoroutine()
+        {
+            isImmune = true;
+            yield return new WaitForSeconds(immunityDuration);
+            isImmune = false;
         }
 
         private int PercentageToAmount(int percentage)
