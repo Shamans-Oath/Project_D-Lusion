@@ -80,7 +80,7 @@ namespace Features
                     if (previousCurrentHealth + amount > maxHealth)
                     {
                         cmp_Controller.SearchFeature<Shield>().ModifyShield((previousCurrentHealth + amount) - maxHealth);
-                        StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
+
                     }
                 }
             }
@@ -93,6 +93,7 @@ namespace Features
                 else 
                 {
                     currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+                    StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
                 }
             }           
 
