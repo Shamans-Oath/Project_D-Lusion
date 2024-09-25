@@ -17,19 +17,22 @@ namespace Features
         public Settings settings;
         //Control
         [Header("Control")]
+        Controller cmp_Controller;
         [SerializeField] private bool active;
         //States
         [Header("States")]
         [SerializeField] private int currentHealth;
-        public int CurrentHealth { get => currentHealth;}
+        public int CurrentHealth { get => currentHealth; }
         //Properties
         [Header("Properties")]
         public int maxHealth;
         //References
+
         //Componentes
 
         public void SetupFeature(Controller controller)
         {
+            cmp_Controller = controller;
             settings = controller.settings;
 
             maxHealth = settings.Search("maxHealth");
@@ -45,7 +48,7 @@ namespace Features
 
         public void UpdateFeature(Controller controller)
         {
-            if(!active) return;
+            if (!active) return;
 
             LivingEntity life = controller as LivingEntity;
             if (life != null)
@@ -60,16 +63,40 @@ namespace Features
             currentHealth = maxHealth;
         }
 
-        public void Health(int amount, bool triggerEvents = true)
+        public void Health(int amount, bool triggerEvents = true, bool ignoreBlock = false)
         {
             if (!active || amount == 0) return;
 
             int previousCurrentHealth = currentHealth;
-            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-            
-            if(!triggerEvents) return;
 
-            int diff = currentHealth - previousCurrentHealth;
+            if(amount > 0)
+            {
+                currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+                if (cmp_Controller.SearchFeature<Shield>() && !ignoreBlock)
+                {
+                    if (previousCurrentHealth + amount > maxHealth)
+                    {
+                        cmp_Controller.SearchFeature<Shield>().ModifyShield((previousCurrentHealth + amount) - maxHealth);
+                    }
+                }
+            }
+            else
+            {
+                if (cmp_Controller.SearchFeature<Shield>() && cmp_Controller.SearchFeature<Shield>().currentShield > 0 && !ignoreBlock)
+                {
+                    cmp_Controller.SearchFeature<Shield>().ModifyShield(amount);
+                }
+                else 
+                {
+                    currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+                }
+            }           
+
+            if (!triggerEvents) return;
+
+            int diff = currentHealth - previousCurrentHealth;            
+
             if (diff > 0) OnHeal?.Invoke();
             else if (diff < 0) OnDamage?.Invoke();
 
@@ -88,7 +115,7 @@ namespace Features
                 float readjustmentRatio = (previousMaxHealth != 0) ? currentHealth / previousMaxHealth : 0;
                 int readJustHealth= (int)(maxHealth * readjustmentRatio);
                 
-                Health(readJustHealth - currentHealth, triggerEvents);
+                Health(readJustHealth - currentHealth, triggerEvents, true);
             }
         }
 
