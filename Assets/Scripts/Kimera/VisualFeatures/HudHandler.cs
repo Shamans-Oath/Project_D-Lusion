@@ -17,6 +17,7 @@ namespace Features
         //States
         //Properties
         int currentHealth, maxHealth;
+        int currentShield, maxShield;
         float parryCooldown, parryCooldownTimer;
         float dashCooldown, dashCooldownTimer;
         bool isDashing;
@@ -43,6 +44,10 @@ namespace Features
                 currentHealth = Life.currentHealth;
                 maxHealth = Life.maxHealth;
                 HUDController.instance.UpdateLifeBar(currentHealth, maxHealth);
+
+                currentShield = controller.SearchFeature<Shield>().currentShield;
+                maxShield = controller.SearchFeature<Shield>().maxShield;
+                HUDController.instance.UpdateShieldBar(currentShield, maxShield);
 
                 parryCooldownTimer = controller.SearchFeature<Block>().parryCooldownTimer;
                 HUDController.instance.UpdateParryCooldown(parryCooldownTimer, parryCooldown);

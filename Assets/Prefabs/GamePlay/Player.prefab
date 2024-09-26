@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 1673390093878442106}
   - component: {fileID: 6137916988852556588}
   - component: {fileID: 2945222215580512892}
+  - component: {fileID: 5104579737851669017}
   - component: {fileID: 983171494854126947}
   - component: {fileID: 6392410177378381092}
   - component: {fileID: 5558025180867340545}
@@ -1041,6 +1042,22 @@ MonoBehaviour:
   isStunned: 0
   stunTimer: 0
   stunDuration: 0
+--- !u!114 &5104579737851669017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082bf56cd80936b4180f466721d95673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  maxShield: 0
+  currentShield: 0
 --- !u!114 &983171494854126947
 MonoBehaviour:
   m_ObjectHideFlags: 0

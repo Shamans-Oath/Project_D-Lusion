@@ -82,7 +82,10 @@ namespace Features
                 }
 
                 //Efectos al matar enemigo
-                if (reactorLife.CurrentHealth <= 0 && actorLife != null) actorLife.HealthPercentual(LIFE_STEAL, true);
+                if (reactorLife.CurrentHealth <= 0 && actorLife != null)
+                {
+                    actorLife.HealthPercentual(LIFE_STEAL, true);
+                }
 
                 Unlink();
                 return;
@@ -102,6 +105,11 @@ namespace Features
                     reactor.SearchFeature<Combat>().attackCooldownTimer = 0;
                     reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-counter", Setting.ValueType.String));
                     actor.SearchFeature<Stun>().StunSomeTime(reactor.settings.Search("parryStunDuration"));
+
+                    if(reactor.SearchFeature<Furry>().furryCount == reactor.SearchFeature<Furry>().furryMax)
+                    {
+                        reactor.SearchFeature<Shield>().HalfShield();
+                    }
                 }
                 else
                 {
