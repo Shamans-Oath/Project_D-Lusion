@@ -15,4 +15,6 @@ MonoBehaviour:
   attackChain:
   - {fileID: 11400000, guid: eae3715fd58bcc542ba7af1bbc54d33f, type: 2}
   condition: attack-special
-  interruptions: []
+  interruptions:
+  - condition: attack-counter
+    nextCombo: {fileID: 11400000, guid: f1546e7de19df0141a1c6e67d1aa0f87, type: 2}

@@ -211,18 +211,23 @@ namespace Features
 
             actualAttack = attack;
             attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier))) + inBetweenAttacksTime;
+            Debug.Log(attackTimer.ToString());
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
             animatorOverride["Humano_Strike1"] = attack.animationClipHuman;
             animatorOverride["Furro_Strike1"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
             cmp_animator.SetFloat("SpeedMultiplier", (1 + (currentFurry * attackSpeedModifier)));
             cmp_animator.SetTrigger("Attack");
+            cmp_animator.SetBool("Attacking", true);
 
             combatAnimator.SetVariableInputPermanenceTime((attack.animationClipHuman.length) / (1 + (currentFurry * attackSpeedModifier)));
+
+            Debug.Log("Attack Setup" + attack.name);
         }
 
         public void StartAttack(int i)
         {
+            //Debug.Log("Start Attack: " + actualAttack.name);
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
             if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i]);
@@ -230,6 +235,7 @@ namespace Features
 
         public void EndAttack(int i)
         {
+            //Debug.Log("End Attack" + actualAttack.name);
             if (i < 0 || i >= possibleAttacks.Count) return;
 
             if (actualAttack == null) return;
@@ -262,6 +268,8 @@ namespace Features
             activeAttack = false;
             attackQueue.Clear();
             combatAnimator.SetVariableInputPermanenceTime(0f);
+
+            cmp_animator.SetBool("Attacking", false);
         }
 
         public bool GetActive()

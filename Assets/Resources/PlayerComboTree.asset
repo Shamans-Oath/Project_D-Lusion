@@ -13,20 +13,8 @@ MonoBehaviour:
   m_Name: PlayerComboTree
   m_EditorClassIdentifier: 
   comboNodeData:
-  - NodeGUID: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
-    position: {x: 0, y: -227}
-    comboKey: C
-    condition: attack-counter
-    attackKeys: C
-    interruptions: []
-  - NodeGUID: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
-    position: {x: 281, y: 0}
-    comboKey: B
-    condition: attack-special
-    attackKeys: B
-    interruptions: []
   - NodeGUID: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
-    position: {x: 0, y: 0}
+    position: {x: 169, y: 47}
     comboKey: A
     condition: attack-normal
     attackKeys: A,D,E
@@ -34,9 +22,53 @@ MonoBehaviour:
     - comboKey: B
       condition: attack-special
       GUID: f501e49a-1555-49fc-92d3-10e4dc10e375
+    - comboKey: C
+      condition: attack-counter
+      GUID: 2a5eca31-1bd9-4aca-b765-1b656040b47a
+  - NodeGUID: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    position: {x: 620, y: 47}
+    comboKey: B
+    condition: attack-special
+    attackKeys: B
+    interruptions:
+    - comboKey: C
+      condition: attack-counter
+      GUID: 887b06b3-908f-4340-a756-32a20892c4c1
+  - NodeGUID: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
+    position: {x: 405, y: 441}
+    comboKey: C
+    condition: attack-counter
+    attackKeys: C
+    interruptions:
+    - comboKey: A
+      condition: attack-normal
+      GUID: 9eddcf39-7d45-480c-8909-d98de317e6c7
+    - comboKey: B
+      condition: attack-special
+      GUID: 7334fb11-4387-4fca-9cee-d3b606d01d8e
   nodeLinkData:
   - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
     PortName: f501e49a-1555-49fc-92d3-10e4dc10e375
+    TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    condition: attack-special
+    comboKey: B
+  - BaseNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    PortName: 2a5eca31-1bd9-4aca-b765-1b656040b47a
+    TargetNodeGuid: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
+    condition: attack-counter
+    comboKey: C
+  - BaseNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
+    PortName: 887b06b3-908f-4340-a756-32a20892c4c1
+    TargetNodeGuid: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
+    condition: attack-counter
+    comboKey: C
+  - BaseNodeGuid: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
+    PortName: 9eddcf39-7d45-480c-8909-d98de317e6c7
+    TargetNodeGuid: 4dbfe6d8-8bbd-473a-9158-b5d8f9dc2ebe
+    condition: attack-normal
+    comboKey: A
+  - BaseNodeGuid: c2c4d49f-7dec-4bfe-981d-bce63f3b62c4
+    PortName: 7334fb11-4387-4fca-9cee-d3b606d01d8e
     TargetNodeGuid: 1fcb91d9-4a15-4560-a1cd-32e4b2eb95d7
     condition: attack-special
     comboKey: B
