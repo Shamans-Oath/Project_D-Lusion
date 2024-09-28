@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f51c653966eb9b047bc450c405e46dd4, type: 3}
-  m_Name: normalAttackSwingEffects
+  m_Name: normalAttackSwingEffects 2
   m_EditorClassIdentifier: 
   settingsList:
   - key: attackFrictionMove
@@ -107,7 +107,7 @@ MonoBehaviour:
     valueType: 2
   - key: attackImpact
     boolValue: 0
-    intValue: 10
+    intValue: 3
     floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}

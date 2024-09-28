@@ -129,7 +129,7 @@ namespace Features
 
             if (attackFollowMove == 0) return;
 
-            playerRigidbody.AddForce(transform.up * (float)attackFollowMove, ForceMode.Acceleration);
+            playerRigidbody.AddForce(controller.transform.up * (float)attackFollowMove, ForceMode.Acceleration);
         }
 
         private void AttackImpulse(Settings attackSettings)
@@ -142,7 +142,7 @@ namespace Features
 
             if (attackImpulse == 0) return;
 
-            playerRigidbody.AddForce(transform.forward * (float)attackImpulse, ForceMode.VelocityChange);
+            playerRigidbody.AddForce(controller.transform.forward * (float)attackImpulse, ForceMode.VelocityChange);
         }
 
         private void VerticalAttackImpulse(Settings attackSettings)

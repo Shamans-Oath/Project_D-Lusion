@@ -10,6 +10,7 @@ namespace Features
     {
         public AnimationClip animationClipHuman;
         public AnimationClip animationClipBeast;
+        public int attackToughness;
         public AttackSwing[] swings;
 
 

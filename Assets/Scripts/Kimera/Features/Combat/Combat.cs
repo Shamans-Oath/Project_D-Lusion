@@ -272,6 +272,15 @@ namespace Features
             cmp_animator.SetBool("Attacking", false);
         }
 
+        public void PriorityBasedCancelAttack(int incomingAttacImpact)
+        {
+            if(actualAttack == null) return;
+
+            int attackToughness = actualAttack.attackToughness;
+
+            if (attackToughness < incomingAttacImpact) StopAttack();
+        }
+
         public bool GetActive()
         {
             return active;

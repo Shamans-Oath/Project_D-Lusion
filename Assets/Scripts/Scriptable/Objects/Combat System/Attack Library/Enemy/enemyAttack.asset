@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationClipHuman: {fileID: 7400000, guid: 1f075ed5b0dbc784ea17f340f59c5ffe, type: 2}
   animationClipBeast: {fileID: 7400000, guid: 37b56d0370021ed4ea63494fe96097d1, type: 2}
+  attackToughness: 3
   swings:
   - swingName: BoxPunch1
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
     movement: {x: 0, y: 0, z: 2}
+    bodyPart: 0
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
     duration: 1.7333335
     start: 0.34358966
@@ -27,6 +29,7 @@ MonoBehaviour:
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
     movement: {x: 0, y: 0, z: 2}
+    bodyPart: 0
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
     duration: 1.7333335
     start: 0.5777778
@@ -35,6 +38,7 @@ MonoBehaviour:
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
     movement: {x: 0, y: 0, z: 2}
+    bodyPart: 0
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
     duration: 1.7333335
     start: 0.8220856

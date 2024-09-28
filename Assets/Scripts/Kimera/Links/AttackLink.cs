@@ -24,6 +24,8 @@ namespace Features
             Life reactorLife = reactor.SearchFeature<Life>();
             Life actorLife = actor.SearchFeature<Life>();
 
+            Combat reactorCombatController = reactor.SearchFeature<Combat>();
+
             if (reactorLife == null)
             {
                 Unlink();
@@ -65,6 +67,16 @@ namespace Features
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
                 //Añadir efectos de ataque
+
+                if(attack != null)
+                {
+                    int? attackImpact = attack.Search("attackImpact");
+
+                    if(attackImpact.HasValue)
+                    {
+                        reactorCombatController.PriorityBasedCancelAttack(attackImpact.Value);
+                    }
+                }
 
                 if (actorReaction != null) actorReaction.PassTurn();
 

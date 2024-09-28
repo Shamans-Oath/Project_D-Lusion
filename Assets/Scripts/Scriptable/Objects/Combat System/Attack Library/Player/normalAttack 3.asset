@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationClipHuman: {fileID: 7400000, guid: adf799f32cee2614a9cf3c11ec310c1a, type: 2}
   animationClipBeast: {fileID: 7400000, guid: ebdda5c2c29c8e7429b365520711f507, type: 2}
+  attackToughness: 3
   swings:
   - swingName: BoxPunch1
     size: {x: 2, y: 1, z: 2}
     offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
-    settings: {fileID: 11400000, guid: f5f33b810822871418bdb00dc6c2fa5b, type: 2}
+    settings: {fileID: 11400000, guid: 404dbd274aedf6349a873c0a71d8db9d, type: 2}
     duration: 1.0666671
     start: 0.05941481
     end: 1.0349445

@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/Styles/HorizontalGroup.uss?fileID=7433441132597879392&amp;guid=d008cab1c76c4a840a34894416291b23&amp;type=3#HorizontalGroup" />
     <ui:VisualElement style="flex-grow: 1;">
+        <ui:IntegerField binding-path="attackToughness" label="Attack Toughness" name="IntegerField" readonly="false" />
         <uie:ObjectField label="Animation Human" allow-scene-objects="false" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" binding-path="animationClipHuman" name="AnimationField" />
         <uie:ObjectField label="Animation Beast" allow-scene-objects="false" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" binding-path="animationClipBeast" name="AnimationField2" focusable="true" />
     </ui:VisualElement>
