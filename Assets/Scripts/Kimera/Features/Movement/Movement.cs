@@ -73,8 +73,20 @@ namespace Features
             Vector2 direction = input.inputDirection;
 
             Move(direction, kinetic, input);
+            float moveValue = Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z);
+                
+            if (anim) anim.SetFloat("Speed", moveValue);
 
-            if (anim) anim.SetFloat("Speed", Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z));
+            if (anim)
+            {
+                if(moveValue<0.5f)
+                {
+                    anim.SetFloat("MovSpdMultiplier", 1);
+                    return;
+                }
+                anim.SetFloat("MovSpdMultiplier", moveValue / maxSpeed);
+            }
+
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
