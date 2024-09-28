@@ -118,7 +118,7 @@ namespace Features
                     reactor.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-counter", Setting.ValueType.String));
                     actor.SearchFeature<Stun>().StunSomeTime(reactor.settings.Search("parryStunDuration"));
 
-                    if(reactor.SearchFeature<Furry>().furryCount == reactor.SearchFeature<Furry>().furryMax)
+                    if(reactor.SearchFeature<Furry>().furryCount > 80)
                     {
                         reactor.SearchFeature<Shield>().HalfShield();
                     }
