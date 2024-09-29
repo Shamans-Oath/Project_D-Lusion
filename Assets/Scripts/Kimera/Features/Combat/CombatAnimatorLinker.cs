@@ -17,7 +17,9 @@ namespace Features
             RightKnee,
             LeftFoot,
             RightFoot,
-            Chest
+            Chest,
+            Head,
+            Unlink
         }
 
         [System.Serializable]
@@ -26,6 +28,13 @@ namespace Features
             public string guid;
             public BodyParts bodyPart;
             public Transform child;
+            public Vector3 movement;
+            public AnimationCurve movementCurve;
+            public float duration;
+
+            //State vars
+            public float timer;
+            public Vector3 offset;
         }
 
         //Configuration
@@ -51,6 +60,7 @@ namespace Features
         [SerializeField] private Transform leftFoot;
         [SerializeField] private Transform rightFoot;
         [SerializeField] private Transform chest;
+        [SerializeField] private Transform head;
 
         public void SetupFeature(Controller controller)
         {
@@ -69,21 +79,32 @@ namespace Features
 
 
 
-        public void UpdateLink(AnimationParentLink link)
+        public void UpdateLink(AnimationParentLink link, string guid)
         {
             Transform bodyPart = GetAnimationBodyPart(link.bodyPart);
 
-            link.child.position = bodyPart.position;
+            link.timer += Time.deltaTime;
+            Vector3 attackDirection = transform.forward * link.movement.z + transform.right * link.movement.x + transform.up * link.movement.y;
+            link.offset += attackDirection * link.movementCurve.Evaluate(Mathf.Clamp01(link.timer / link.duration));
+
+            link.child.position = bodyPart.position + link.offset;
             link.child.rotation = bodyPart.rotation;
+
+            if (links.ContainsKey(guid)) links[guid] = link;
         }
 
-        public string CreateLink(Transform target, BodyParts bodyPart)
+        public string CreateLink(Transform target, BodyParts bodyPart, float duration, AnimationCurve movementCurve, Vector3 movementDirection)
         {
             AnimationParentLink link = new AnimationParentLink()
             {
                 guid = System.Guid.NewGuid().ToString(),
                 bodyPart = bodyPart,
-                child = target
+                child = target,
+                movement = movementDirection,
+                movementCurve = movementCurve,
+                duration = duration,
+                timer = 0f,
+                offset = Vector3.zero
             };
 
             links.Add(link.guid, link);
@@ -128,6 +149,9 @@ namespace Features
 
                 case BodyParts.Chest:
                     return chest;
+
+                case BodyParts.Head:
+                    return head;
                 
                 default:
                     return null;
@@ -145,7 +169,7 @@ namespace Features
 
             readLinks = links.Values.ToList();
 
-            links.Values.ToList().ForEach(link => UpdateLink(link));
+            links.Values.ToList().ForEach(link => UpdateLink(link, link.guid));
         }
     }
 }

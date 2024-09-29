@@ -19,8 +19,42 @@ MonoBehaviour:
   - swingName: KickMMA
     size: {x: 1, y: 2, z: 1}
     offset: {x: 0, y: -0.5, z: 0.5}
-    movement: {x: 0, y: 0, z: 0}
-    bodyPart: 0
+    movement: {x: 0, y: 0, z: 5}
+    bodyPart: 8
+    movementLinker: {x: 0, y: 0, z: 0.1}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.7676828
+        value: 0.69113827
+        inSlope: 2.8685663
+        outSlope: 2.8685663
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09786909
+        outWeight: 0.3112864
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 11400000, guid: 79035f3fba3558c4d842cb79400c61e6, type: 2}
     duration: 2.3333335
     start: 0.340824

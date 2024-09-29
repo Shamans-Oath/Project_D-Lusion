@@ -96,7 +96,15 @@ namespace Features
                 //Efectos al matar enemigo
                 if (reactorLife.CurrentHealth <= 0 && actorLife != null)
                 {
-                    actorLife.HealthPercentual(LIFE_STEAL, true);
+                    if(attack != null)
+                    {
+                        int? lifeSteal = attack.Search("attackLifeSteal");
+
+                        if (lifeSteal.HasValue)
+                        {
+                            actorLife.HealthPercentual(lifeSteal.Value, true);
+                        }
+                    }
                 }
 
                 Unlink();

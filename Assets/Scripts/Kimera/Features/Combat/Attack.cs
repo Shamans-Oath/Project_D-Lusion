@@ -82,7 +82,7 @@ namespace Features
             uniqueEffectsTriggered = false;
 
             CombatAnimatorLinker linker = controller.SearchFeature<CombatAnimatorLinker>();
-            if (linker != null) linkerGuid = linker.CreateLink(transform, attack.bodyPart);
+            if (linker != null && attack.bodyPart != CombatAnimatorLinker.BodyParts.Unlink) linkerGuid = linker.CreateLink(transform, attack.bodyPart, attack.duration, attack.movementCurve, attack.movementLinker);
 
             if (attack.settings != null) attack.settings.AssemblySettings();
         }
