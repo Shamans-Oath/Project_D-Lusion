@@ -67,7 +67,7 @@ namespace Features
 
         public void Health(int amount, bool triggerEvents = true, bool ignoreBlock = false)
         {
-            if (!active || amount == 0 || isImmune) return;
+            if (!active || amount == 0) return;
 
             int previousCurrentHealth = currentHealth;
 
@@ -92,6 +92,7 @@ namespace Features
                 }
                 else 
                 {
+                    if (isImmune) return;
                     currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
                     StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
                 }
