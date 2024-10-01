@@ -79,7 +79,7 @@ namespace Features
 
             if (anim)
             {
-                if(moveValue<0.5f)
+                if(moveValue/maxSpeed<0.1f)
                 {
                     anim.SetFloat("MovSpdMultiplier", 1);
                     return;
