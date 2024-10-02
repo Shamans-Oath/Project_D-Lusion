@@ -49,6 +49,7 @@ namespace Features
         [Header("Furry Stuff")]
         public float currentFurry = 0;
         public float attackSpeedModifier= 1.5f;
+        public float attackSpeedMultiplier = 1f;
 
         private void Awake()
         {
@@ -209,24 +210,26 @@ namespace Features
             if(cmp_furry != null)
             currentFurry = cmp_furry.furryCount/cmp_furry.furryMax;
 
+            attackSpeedMultiplier = 1 + (currentFurry * attackSpeedModifier);
+
             actualAttack = attack;
-            attackTimer = ((attack.animationClipHuman.length) / (1+(currentFurry * attackSpeedModifier))) + inBetweenAttacksTime;
+            attackTimer = attack.animationClipHuman.length / attackSpeedMultiplier + inBetweenAttacksTime;
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
             animatorOverride["Humano_Strike1"] = attack.animationClipHuman;
             animatorOverride["Furro_Strike1"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
-            cmp_animator.SetFloat("SpeedMultiplier", (1 + (currentFurry * attackSpeedModifier)));
+            cmp_animator.SetFloat("SpeedMultiplier", attackSpeedMultiplier);
             cmp_animator.SetTrigger("Attack");
             cmp_animator.SetBool("Attacking", true);
 
-            combatAnimator.SetVariableInputPermanenceTime((attack.animationClipHuman.length) / (1 + (currentFurry * attackSpeedModifier)));
+            combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length / attackSpeedMultiplier);
         }
 
         public void StartAttack(int i)
         {
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
             if (actualAttack == null) return;
-            possibleAttacks[i].StartAttackBox(actualAttack.swings[i]);
+            possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
         }
 
         public void EndAttack(int i)

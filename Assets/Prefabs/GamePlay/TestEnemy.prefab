@@ -108,6 +108,13 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -131,6 +138,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   controller: {fileID: 0}
   active: 0
+  startingLocalScale: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
@@ -147,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8232916560913132978}
-  - component: {fileID: 1320887339390431927}
+  - component: {fileID: 7570768956320592262}
   - component: {fileID: 812472315721240974}
   - component: {fileID: 2675780424105443923}
   - component: {fileID: 3914697773376791816}
@@ -168,13 +176,13 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.00000003352761, y: 0.000000059604638, z: -0.00000004470348, w: 1}
   m_LocalPosition: {x: 0.124998584, y: -0.3996538, z: 0.59799886}
-  m_LocalScale: {x: 0.60000014, y: 0.60000014, z: 0.6}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 824862076885888123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1320887339390431927
-BoxCollider:
+--- !u!135 &7570768956320592262
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -192,7 +200,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &812472315721240974
 Rigidbody:
@@ -246,6 +254,13 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -269,11 +284,12 @@ MonoBehaviour:
   settings: {fileID: 0}
   controller: {fileID: 0}
   active: 0
+  startingLocalScale: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
-  cmp_collider: {fileID: 1320887339390431927}
+  cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 812472315721240974}
   attack: {fileID: 0}
 --- !u!1 &210558511691775065
@@ -528,7 +544,7 @@ MonoBehaviour:
   ragdolModel: {fileID: 4561973707727223428}
   cmp_normalCols:
   - {fileID: 3246886364620360676}
-  - {fileID: 1320887339390431927}
+  - {fileID: 7570768956320592262}
   - {fileID: 7124831526948071157}
   - {fileID: 5478170687521043110}
   - {fileID: 4510897034455460311}
@@ -644,6 +660,8 @@ MonoBehaviour:
   active: 0
   currentHealth: 0
   maxHealth: 0
+  immunityDuration: 0.5
+  isImmune: 0
 --- !u!114 &2945222215580512892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +729,7 @@ MonoBehaviour:
   cmp_animator: {fileID: 0}
   currentFurry: 0
   attackSpeedModifier: 1.5
+  attackSpeedMultiplier: 1
 --- !u!114 &8722753730121016745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2752,6 +2771,13 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -2775,6 +2801,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   controller: {fileID: 0}
   active: 0
+  startingLocalScale: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
@@ -3479,6 +3506,13 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -3502,6 +3536,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   controller: {fileID: 0}
   active: 0
+  startingLocalScale: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
@@ -4872,6 +4907,13 @@ MonoBehaviour:
     offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 0}
     duration: 0
     start: 0
@@ -4895,6 +4937,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   controller: {fileID: 0}
   active: 0
+  startingLocalScale: {x: 0, y: 0, z: 0}
   boxSize: {x: 0, y: 0, z: 0}
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []

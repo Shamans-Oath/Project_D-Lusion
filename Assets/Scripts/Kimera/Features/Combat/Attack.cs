@@ -70,7 +70,7 @@ namespace Features
             if (actualAttack != null && activeAttack) AttackEffects(actualAttack.settings, kinetic);
         }
 
-        public void StartAttackBox(AttackSwing attack)
+        public void StartAttackBox(AttackSwing attack, float attackSpeedMultiplier)
         {
             if (!active || attack == null) return;
 
@@ -82,7 +82,7 @@ namespace Features
             uniqueEffectsTriggered = false;
 
             CombatAnimatorLinker linker = controller.SearchFeature<CombatAnimatorLinker>();
-            if (linker != null && attack.bodyPart != CombatAnimatorLinker.BodyParts.Unlink) linkerGuid = linker.CreateLink(transform, attack.bodyPart, attack.duration, attack.movementCurve, attack.movementLinker);
+            if (linker != null && attack.bodyPart != CombatAnimatorLinker.BodyParts.Unlink) linkerGuid = linker.CreateLink(transform, attack.bodyPart, (attack.end - attack.start) / attackSpeedMultiplier, attack.movementCurve, attack.movementLinker, attack.offset);
 
             if (attack.settings != null) attack.settings.AssemblySettings();
         }
@@ -179,16 +179,16 @@ namespace Features
             this.active = active;
         }
 
-        private void OnDrawGizmos()
-        {
-            if (!debug || !Application.isPlaying) return;
+        //private void OnDrawGizmos()
+        //{
+        //    if (!debug || !Application.isPlaying) return;
 
-            if (actualAttack == null || !activeAttack) return;
+        //    if (actualAttack == null || !activeAttack) return;
 
-            Gizmos.matrix = transform.localToWorldMatrix;
+        //    Gizmos.matrix = transform.localToWorldMatrix;
 
-            Gizmos.color = Color.green;
-            Gizmos.DrawCube(Vector3.zero,actualAttack.size);
-        }
+        //    Gizmos.color = Color.green;
+        //    Gizmos.DrawCube(Vector3.zero,actualAttack.size);
+        //}
     }
 }

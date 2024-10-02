@@ -17,11 +17,18 @@ MonoBehaviour:
   attackToughness: 5
   swings:
   - swingName: KickMMA
-    size: {x: 1, y: 2, z: 1}
-    offset: {x: 0, y: -0.5, z: 0.5}
+    size: {x: 5, y: 5, z: 5}
+    offset: {x: -0.5, y: 0, z: 0.25}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     settings: {fileID: 11400000, guid: bb74101587ca40e4aabf8bef0706880d, type: 2}
     duration: 1.0666671
-    start: 0.38859987
-    end: 0.90012425
+    start: 0
+    end: 0.38859987

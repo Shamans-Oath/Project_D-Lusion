@@ -17,7 +17,7 @@ MonoBehaviour:
   attackToughness: 3
   swings:
   - swingName: BoxPunch1
-    size: {x: 2, y: 1, z: 2}
+    size: {x: 2, y: 2, z: 2}
     offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
@@ -48,5 +48,5 @@ MonoBehaviour:
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: 404dbd274aedf6349a873c0a71d8db9d, type: 2}
     duration: 1.0666671
-    start: 0.05941481
-    end: 1.0349445
+    start: 0
+    end: 0.05941481

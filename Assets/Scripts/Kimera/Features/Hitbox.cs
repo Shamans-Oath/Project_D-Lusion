@@ -15,6 +15,7 @@ namespace Features
         [SerializeField] private bool active;
         //States
         [Header("States")]
+        [SerializeField] private Vector3 startingLocalScale;
         [SerializeField] private Vector3 boxSize;
         [SerializeField] private Vector3 boxOffset;
         [SerializeField] protected List<string> tagsToInteract;
@@ -24,7 +25,7 @@ namespace Features
         //Componentes
         [Header("Components")]
         //El Hitbox es hijo del punto de interacción
-        [SerializeField] private BoxCollider cmp_collider;
+        [SerializeField] private Collider cmp_collider;
         [SerializeField] private Rigidbody cmp_rigidbody;
 
         /*private void Awake()
@@ -34,11 +35,12 @@ namespace Features
 
         public virtual void SetupFeature(Controller controller)
         {
+            startingLocalScale = transform.localScale;
             tagsToInteract = new List<string>();
             settings = controller.settings;
             this.controller = controller;
 
-            cmp_collider = GetComponent<BoxCollider>();
+            cmp_collider = GetComponent<Collider>();
             cmp_rigidbody = GetComponent<Rigidbody>();
 
             if (cmp_collider != null) cmp_collider.isTrigger = true;
@@ -68,8 +70,8 @@ namespace Features
         {
             ToggleActive(active);
 
-            cmp_collider.size = boxSize;
-            transform.localPosition = boxOffset;
+            transform.localScale = new Vector3(boxSize.x * startingLocalScale.x, boxSize.y * startingLocalScale.y, boxSize.z * startingLocalScale.z);
+            transform.localPosition = controller.transform.right * boxOffset.x + controller.transform.forward * boxOffset.z + controller.transform.up * boxOffset.y;
             cmp_rigidbody.AddForce(boxImpulse, ForceMode.VelocityChange);
         }
 
@@ -87,8 +89,7 @@ namespace Features
 
             cmp_collider.enabled = active;
             cmp_rigidbody.isKinematic = !active;
-
-            if(active) isInteracted = false;
+            if (active) isInteracted = false;
         }
     }
 }
