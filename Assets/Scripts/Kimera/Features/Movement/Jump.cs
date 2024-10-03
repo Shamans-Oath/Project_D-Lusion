@@ -87,8 +87,8 @@ namespace Features
             if (jumpTimer > 0) return;
             if (terrain.onGround == false) return;
 
-            FMODManager.instance.LoadEvent("PlayerSounds", 1);
-            FMODManager.instance.PlayEvent();
+            //FMODManager.instance.LoadEvent("PlayerSounds", 1);
+            //FMODManager.instance.PlayEvent();
             hasJumped = true;
             jumpTimer = jumpCooldown;
             cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);         

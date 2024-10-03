@@ -767,13 +767,12 @@ MonoBehaviour:
   - {fileID: 2695751376655594623}
   - {fileID: -6162465916921746458}
   - {fileID: -5177137223036293847}
-  - {fileID: 2943666698321994467}
   EditorParameters: []
   MasterBanks:
   - {fileID: 859995130290232028}
   StringsBanks:
   - {fileID: 5074249907499603449}
-  cacheTime: 638634118729009991
+  cacheTime: 638635075186218295
   cacheVersion: 131620
 --- !u!114 &155071496068844124
 MonoBehaviour:
@@ -924,7 +923,7 @@ MonoBehaviour:
   Path: ../../Documentos/FMOD/Test/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638634118725940847
+  lastModified: 638635075183579046
   FileSizes:
   - Name: Desktop
     Value: 15592
@@ -946,10 +945,10 @@ MonoBehaviour:
   Path: ../../Documentos/FMOD/Test/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638634118729009991
+  lastModified: 638635075186218295
   FileSizes:
   - Name: Desktop
-    Value: 21580736
+    Value: 21580064
   - Name: HTML5
     Value: 21580736
   Exists: 1
@@ -1165,33 +1164,6 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters:
   - {fileID: 4131183952225366786}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2943666698321994467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Vehicles/test
-  m_EditorClassIdentifier: 
-  Path: event:/Vehicles/test
-  Guid:
-    Data1: -1294240439
-    Data2: 1140373664
-    Data3: 910418847
-    Data4: 373862637
-  Banks:
-  - {fileID: 978872867692850333}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -1457,12 +1429,12 @@ MonoBehaviour:
   Path: ../../Documentos/FMOD/Test/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638634118725966140
+  lastModified: 638635075183609045
   FileSizes:
   - Name: Desktop
-    Value: 4090
+    Value: 4054
   - Name: HTML5
-    Value: 4090
+    Value: 4054
   Exists: 1
 --- !u!114 &5665741201009567739
 MonoBehaviour:
