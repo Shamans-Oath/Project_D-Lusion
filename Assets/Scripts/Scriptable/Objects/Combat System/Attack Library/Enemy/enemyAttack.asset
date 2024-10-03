@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
   m_Name: enemyAttack
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 1f075ed5b0dbc784ea17f340f59c5ffe, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 37b56d0370021ed4ea63494fe96097d1, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: dd93b0d3d54960347b1957f2c3155ab9, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 933754d5404de5146911a3a33f38e952, type: 2}
   attackToughness: 3
   swings:
   - swingName: BoxPunch1
@@ -29,9 +29,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
-    duration: 1.7333335
+    duration: 1.1666667
     start: 0
-    end: 0.34358966
+    end: 1.1666667
   - swingName: BoxPunch2
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
@@ -45,9 +45,9 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
-    duration: 1.7333335
-    start: 0.5777778
-    end: 1.2480001
+    duration: 1.1666667
+    start: 0
+    end: 1.1666667
   - swingName: BoxPunch3
     size: {x: 1, y: 0.5, z: 1}
     offset: {x: 0, y: 0, z: 1}
@@ -61,6 +61,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: d04d0787dba01c5459b306df1f00fb95, type: 2}
-    duration: 1.7333335
-    start: 0.8220856
-    end: 1.492308
+    duration: 1.1666667
+    start: 0
+    end: 1.1666667
