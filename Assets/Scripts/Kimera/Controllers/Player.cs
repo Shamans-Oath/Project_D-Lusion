@@ -12,7 +12,9 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public Vector3 playerForward { get; set; }
     public Camera playerCamera { get; set; }
     //Kinetic
+    public Vector3 speed { get; set; }
     public float currentSpeed { get; set; }
+    public float maxSpeed { get; set; }
     //Terrain
     public bool onGround { get; set; }
     public bool onSlope { get; set; }

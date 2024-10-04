@@ -28,7 +28,6 @@ namespace Features
         [SerializeField] private Rotation rotation;
         [SerializeField] private Jump jump;
         [SerializeField] private Friction friction;
-        public Animator anim;
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody cmp_rigidbody;
@@ -66,27 +65,21 @@ namespace Features
             if (!active) return;
 
             KineticEntity kinetic = controller as KineticEntity;
-            if (kinetic != null) kinetic.currentSpeed = speed.magnitude;
+            if (kinetic != null)
+            {
+                kinetic.currentSpeed = speed.magnitude;
+                kinetic.maxSpeed = maxSpeed;
+                kinetic.speed = cmp_rigidbody.velocity;
+            }
 
             InputEntity input = controller as InputEntity;
             if (input == null) return;
             Vector2 direction = input.inputDirection;
 
             Move(direction, kinetic, input);
-            float moveValue = Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z);
-                
-            if (anim) anim.SetFloat("Speed", moveValue);
-
-            if (anim)
-            {
-                if(moveValue/maxSpeed<0.1f)
-                {
-                    anim.SetFloat("MovSpdMultiplier", 1);
-                    return;
-                }
-                anim.SetFloat("MovSpdMultiplier", moveValue / maxSpeed);
-            }
-
+            Vector3 flattenVelocity = cmp_rigidbody.velocity;
+            flattenVelocity.y = 0;
+            float moveSpeed = flattenVelocity.magnitude;
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
@@ -132,9 +125,6 @@ namespace Features
             if (movement != Vector3.zero) cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
 
             LimitSpeed();
-
-            speed = cmp_rigidbody.velocity;
-            kinetic.currentSpeed = speed.magnitude;
         }
 
         private void LimitSpeed()

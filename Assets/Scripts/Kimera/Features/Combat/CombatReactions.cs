@@ -23,9 +23,9 @@ namespace Features
         public Stun stun;
         public MovementIntelligence movementIntel;
         public CombatAnimator combatAnimator;
+        public EntityAnimator animator;
         //Componentes
         [Header("Components")]
-        public Animator animator;
         public CrowdIntelligence<Enemy> enemyCrowd;
 
         private void Awake()
@@ -35,9 +35,7 @@ namespace Features
             stun = GetComponent<Stun>();
             combatAnimator = GetComponent<CombatAnimator>();
             if (movementIntel == null) movementIntel = GetComponent<MovementIntelligence>();
-
-            //Get Components
-            if(animator == null) animator = GetComponent<Animator>();
+            animator = GetComponent<EntityAnimator>();
         }
 
         private void OnEnable()
@@ -68,6 +66,8 @@ namespace Features
             if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
 
             if (combatAnimator != null) combatAnimator.InputConditon("stop");
+
+            if(animator != null) animator.FeatureAction(controller, new Setting("triggerName", "Hurt", Setting.ValueType.String));
 
             Enemy meEnemy = controller as Enemy;
             //if(enemyCrowd != null && life != null && meEnemy != null && movementIntel != null)

@@ -30,6 +30,7 @@ namespace Features
         [Header("References")]
         public CombatAnimator combatAnimator;
         public IActivable movement, jump, rotation, combat, stun, dash, friction;
+        public EntityAnimator animator;
         //Componentes
         Movement cmp_movement;
         Jump cmp_jump;
@@ -49,6 +50,7 @@ namespace Features
             cmp_movement = GetComponent<Movement>();
             cmp_jump = GetComponent<Jump>();
             cmp_rotation = GetComponent<Rotation>();
+            animator = GetComponent<EntityAnimator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -90,7 +92,7 @@ namespace Features
         }
 
         public void StartBlock()
-        {            
+        {           
             if (parry == false && parryCooldownTimer <= 0)
             {                
                 //if (combat != null) combat.ToggleActiveSubcontroller(false);
@@ -147,6 +149,7 @@ namespace Features
             if (value)
             {
                 StartBlock();
+                if (animator != null) animator.FeatureAction(controller, new Setting("triggerName", "Block", Setting.ValueType.String));
                 if (movement != null) movement.ToggleActive(false);
                 cmp_movement.AttackFailsafe();
                 if (rotation != null) rotation.ToggleActive(false);

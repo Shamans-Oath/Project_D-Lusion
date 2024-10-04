@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
   m_Name: normalAttack 2
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 02402eb1be4e8c44b9f27c88d0c2c714, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 54b5c24d9b1b0684b8ced99aa344a8e6, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: 5786c545e5650854e828f58c934fdf8b, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 77154b060e32b184998ef8fb7ddbf9c9, type: 2}
   attackToughness: 2
   swings:
   - swingName: BoxPunch1
@@ -48,5 +48,5 @@ MonoBehaviour:
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: d1440d3492a1a5b4898ca742c210133a, type: 2}
     duration: 0.6666665
-    start: 0
-    end: 0.0911373
+    start: 0.13878559
+    end: 0.46344477

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
   m_Name: counterAttack
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 6b92b860747f03c47af127253bc83e96, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 1bb84fbd0b1d4084c9a31f1d9b24f129, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: 990ff3ba5aa4cf7489215856341249b5, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: ef74745e25ebf76498d6d1623b268bef, type: 2}
   attackToughness: 10
   swings:
   - swingName: KickMMA
@@ -56,6 +56,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: 79035f3fba3558c4d842cb79400c61e6, type: 2}
-    duration: 2.3333335
-    start: 0
-    end: 0.340824
+    duration: 0.666667
+    start: 0.06691453
+    end: 0.4188354

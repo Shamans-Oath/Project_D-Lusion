@@ -42,9 +42,9 @@ namespace Features
         public FaceTarget faceTarget;
         public Friction friction;
         [Header("Components")]
-        public Animator cmp_animator;
         Movement cmp_movement;
         Furry cmp_furry;
+        EntityAnimator animator;
 
         [Header("Furry Stuff")]
         public float currentFurry = 0;
@@ -63,9 +63,7 @@ namespace Features
             movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
             friction = GetComponent<Friction>();
             cmp_furry = GetComponent<Furry>();
-
-            //Setup Components
-            if (cmp_animator == null) cmp_animator = GetComponent<Animator>();
+            animator = GetComponent<EntityAnimator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -172,16 +170,18 @@ namespace Features
             CombatEntity combat = controller as CombatEntity;
             if (combat != null) combat.attack = attack;
 
+            //SR: Probando Linea
+            if (attackTimer > 0 && activeAttack) possibleAttacks.ForEach(attack => attack.EndAttackBox());
+
             activeAttack = false;
             possibleAttacks.ForEach(attack =>
             {
                 if (attack.ActiveAttack) activeAttack = true;
             });
-
             // SR: * MULTIPLICADOR PERO CHEQUEAR
             if (!activeAttack && attackTimer <= inBetweenAttacksTime && attackCooldownTimer <= 0f && attackQueue.Count > 0 && combatAnimator.CheckCondition(actualCombo.condition))
             {
-                SetupAttack(attackQueue.Dequeue());
+                SetupAttack(attackQueue.Dequeue(), controller);
                 combat.comboCount++;
             }
 
@@ -192,15 +192,10 @@ namespace Features
             }
 
             FurryEntity furry = controller as FurryEntity;
-
-            if (furry != null)
-            {
-                cmp_animator.SetFloat("Blend", furry.furryCount / furry.maxFurryCount);
-            }
         }
 
 
-        public void SetupAttack(AttackPreset attack)
+        public void SetupAttack(AttackPreset attack, Controller controller)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
             if (friction != null) friction.ToggleActive(false);
@@ -214,15 +209,18 @@ namespace Features
 
             actualAttack = attack;
             attackTimer = attack.animationClipHuman.length / attackSpeedMultiplier + inBetweenAttacksTime;
+            
+            combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length / attackSpeedMultiplier);
+
+            if (animator == null) return; 
+            
+            Animator cmp_animator = animator.cmp_animator;
             AnimatorOverrideController animatorOverride = new AnimatorOverrideController(cmp_animator.runtimeAnimatorController);
             animatorOverride["Humano_Strike1"] = attack.animationClipHuman;
             animatorOverride["Furro_Strike1"] = attack.animationClipBeast;
             cmp_animator.runtimeAnimatorController = animatorOverride;
-            cmp_animator.SetFloat("SpeedMultiplier", attackSpeedMultiplier);
-            cmp_animator.SetTrigger("Attack");
-            cmp_animator.SetBool("Attacking", true);
 
-            combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length / attackSpeedMultiplier);
+            animator.FeatureAction(controller, new Setting("triggerName", "Attack", Setting.ValueType.String));
         }
 
         public void StartAttack(int i)
@@ -265,8 +263,6 @@ namespace Features
             activeAttack = false;
             attackQueue.Clear();
             combatAnimator.SetVariableInputPermanenceTime(0f);
-
-            cmp_animator.SetBool("Attacking", false);
         }
 
         public void PriorityBasedCancelAttack(int incomingAttacImpact)
