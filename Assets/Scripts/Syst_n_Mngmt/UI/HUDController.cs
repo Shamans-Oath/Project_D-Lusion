@@ -29,26 +29,26 @@ public class HUDController : MonoBehaviour
         if(parryCircle.fillAmount == 1)
         {
             targetPointP += Time.deltaTime;
-            parryBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointP);
+            parryBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointP);
             parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointP);
         }
         else
         {
             targetPointP = 0;
-            parryBorder.color = new Color(1, 1, 1, 0);
+            parryBorder.color = new Color(1, 1, 1, 0.25f);
             parryIcon.color = new Color(1, 1, 1,0);
         }
 
         if (dashCircle.fillAmount == 1)
         {
             targetPointD += Time.deltaTime;
-            dashBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointD);
+            dashBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointD);
             dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointD);
         }
         else
         {
             targetPointD = 0;
-            dashBorder.color = new Color(1, 1, 1, 0);
+            dashBorder.color = new Color(1, 1, 1, 0.25f);
             dashIcon.color = new Color(1, 1, 1, 0);
         }
     }
