@@ -7,8 +7,10 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController instance;
 
-    public Image lifeBar, shieldBar, parryIcon, dashIcon;
+    public Image lifeBar, shieldBar, parryCircle, dashCircle;
+    public Image parryBorder, dashBorder, parryIcon, dashIcon;
     public float lerpDuration;
+    float targetPointD, targetPointP;
 
     void Awake()
     {
@@ -24,19 +26,45 @@ public class HUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(parryCircle.fillAmount == 1)
+        {
+            targetPointP += Time.deltaTime;
+            parryBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointP);
+            parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointP);
+        }
+        else
+        {
+            targetPointP = 0;
+            parryBorder.color = new Color(1, 1, 1, 0);
+            parryIcon.color = new Color(1, 1, 1,0);
+        }
+
+        if (dashCircle.fillAmount == 1)
+        {
+            targetPointD += Time.deltaTime;
+            dashBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointD);
+            dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointD);
+        }
+        else
+        {
+            targetPointD = 0;
+            dashBorder.color = new Color(1, 1, 1, 0);
+            dashIcon.color = new Color(1, 1, 1, 0);
+        }
     }
 
     public void UpdateParryCooldown(float timer, float duration)
     {
         float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
-        parryIcon.fillAmount = cooldownRatio;
+        parryCircle.fillAmount = cooldownRatio;
+        parryBorder.fillAmount = cooldownRatio;
     }
 
     public void UpdateDashCooldown(float timer, float duration)
     {
         float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
-        dashIcon.fillAmount = cooldownRatio;
+        dashCircle.fillAmount = cooldownRatio;
+        dashBorder.fillAmount = cooldownRatio;
     }
 
     public void UpdateLifeBar(int currentHealth, int maxHealth)
