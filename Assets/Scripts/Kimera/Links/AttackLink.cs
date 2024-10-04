@@ -63,9 +63,6 @@ namespace Features
 
             if (!reactorCombat.block && !reactorCombat.parry)
             {
-                //SR: Desactivado Temporalmente Para Probar
-                //FMODManager.instance.LoadEvent("PlayerSounds", 0);
-                //FMODManager.instance.PlayEvent();
                 reactorLife.Health(-damage);
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
