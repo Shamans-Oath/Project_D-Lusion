@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 4471502756704339409}
   - component: {fileID: 204981476069002227}
   - component: {fileID: 6131684910135387386}
+  - component: {fileID: 4037511989856516162}
   m_Layer: 10
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -1037,7 +1038,6 @@ MonoBehaviour:
   - {fileID: 2675780424105443923}
   faceTarget: {fileID: 0}
   friction: {fileID: 0}
-  cmp_animator: {fileID: 0}
   currentFurry: 0
   attackSpeedModifier: 1.5
   attackSpeedMultiplier: 1
@@ -1245,6 +1245,21 @@ MonoBehaviour:
   uiBars:
   - progressBar: {fileID: 8016657662397980669}
     maxValue: 0
+--- !u!114 &4037511989856516162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70fe5dd59f4b304e8fc0c66516e503a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  cmp_animator: {fileID: 0}
 --- !u!1 &280545415659776953
 GameObject:
   m_ObjectHideFlags: 0

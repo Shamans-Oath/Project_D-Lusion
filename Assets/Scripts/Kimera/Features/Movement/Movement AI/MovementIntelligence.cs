@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Features
 {
@@ -60,11 +62,15 @@ namespace Features
         [SerializeField] private MovementModeSelector movementMode;
         [SerializeField] private CombatAnimator combatAnim;
         //Componentes
+        private Animator animator;
+        private NavMeshAgent agent;
 
         private void Awake()
         {
             if(movementMode == null) movementMode = GetComponent<MovementModeSelector>();
             if(combatAnim == null) combatAnim = GetComponent<CombatAnimator>();
+            agent = gameObject.GetComponent<NavMeshAgent>();
+            animator = gameObject.GetComponent<Animator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -99,9 +105,20 @@ namespace Features
             StateMachine(follow);
 
             if (movementMode.GetActiveMoveModeName() != moveMode) movementMode.SetActiveMode(moveMode);
+            
+        }
+        private void Update()
+        {
+            AnimSpeedLink();
+        }
+        private void AnimSpeedLink()
+        {
+            if (!animator) return;
+            float velocity = agent.velocity.magnitude / agent.speed;
+            animator.SetFloat("MoveSpeedMulti",velocity);
         }
 
-        private void StateMachine(FollowEntity follow)
+        private void StateMachine(FollowEntity follow)  
         {
             if(state == States.Idle)
             {

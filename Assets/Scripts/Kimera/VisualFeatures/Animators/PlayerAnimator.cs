@@ -8,6 +8,8 @@ namespace Features
     {
         public override void SetAnimator(Controller controller)
         {
+            //arreglame
+            if(gameObject.tag=="Enemy") cmp_animator=gameObject.GetComponent<Animator>();
             FurryEntity furry = controller as FurryEntity;
             KineticEntity kinetic = controller as KineticEntity;
             TerrainEntity terrain = controller as TerrainEntity;
@@ -30,6 +32,8 @@ namespace Features
 
             cmp_animator.SetFloat("FurryBlend", furry.furryCount / furry.maxFurryCount);
             cmp_animator.SetBool("IsBlocking", combatEntity.block || combatEntity.parry);
+
+
         }
     }
 }
