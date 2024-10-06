@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70600822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018027715, y: 0.9601254, z: -0.06372634, w: -0.27161238}
+  m_LocalRotation: {x: -0.01801348, y: 0.96018606, z: -0.0637304, w: -0.27139783}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1748,7 +1748,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 634950427}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018027715, y: 0.9601254, z: -0.06372634, w: -0.27161238}
+  m_LocalRotation: {x: -0.01801348, y: 0.96018606, z: -0.0637304, w: -0.27139783}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2360,6 +2360,7 @@ GameObject:
   - component: {fileID: 945223619}
   - component: {fileID: 945223620}
   - component: {fileID: 945223621}
+  - component: {fileID: 945223622}
   m_Layer: 0
   m_Name: TestObject
   m_TagString: Untagged
@@ -2462,6 +2463,55 @@ MonoBehaviour:
   enemySpawned: 0
   spawnPoints: []
   storedEnemy: {fileID: 0}
+--- !u!114 &945223622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945223615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1869353ee9ae60a45b54adeac4c0bc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Golpe
+    clip: {fileID: 8300000, guid: 4b89b1fd4eccf444d8d5c5e873175195, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Pasos
+    clip: {fileID: 8300000, guid: 2d533a4c4d71a3942b155560c2792576, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: AbsorcionVida
+    clip: {fileID: 8300000, guid: 1d625384c18ccc044bdd20559edd60c7, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: GolpeAcertado
+    clip: {fileID: 8300000, guid: cf572f82c15c6cf4898f84ac0c1421cd, type: 3}
+    volume: 0.8
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.5
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!1 &947502298
 GameObject:
   m_ObjectHideFlags: 3
@@ -5278,7 +5328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129322142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018027721, y: 0.9601254, z: -0.06372638, w: -0.27161238}
+  m_LocalRotation: {x: -0.01801348, y: 0.96018606, z: -0.0637304, w: -0.27139783}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5530,19 +5580,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8509512
+      value: 0.85095114
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.20542002
+      value: 0.20542005
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.46991158
+      value: 0.46991152
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11343688
+      value: -0.11343687
       objectReference: {fileID: 0}
     - target: {fileID: 7065038961230154606, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalPosition.x

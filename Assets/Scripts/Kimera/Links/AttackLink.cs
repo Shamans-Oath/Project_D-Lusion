@@ -66,9 +66,10 @@ namespace Features
                 reactorLife.Health(-damage);
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
+                AudioManager.instance.PlaySound("GolpeAcertado");
                 //Añadir efectos de ataque
 
-                if(attack != null)
+                if (attack != null)
                 {
                     int? attackImpact = attack.Search("attackImpact");
 
@@ -103,6 +104,9 @@ namespace Features
                         if (lifeSteal.HasValue)
                         {
                             actorLife.HealthPercentual(lifeSteal.Value, true);
+                            
+                            AudioManager.instance.PlaySound("AbsorcionVida");
+                            
                         }
                     }
                 }

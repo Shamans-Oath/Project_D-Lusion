@@ -22,6 +22,7 @@ namespace Features
         public float maxSpeed;
         public float acceleration;
         public float deactivationSpeedRatio;
+        bool isMoving;
         //References
         [Header("References")]
         [SerializeField] private List<TerrainModifier> terrains;
@@ -80,6 +81,15 @@ namespace Features
             Vector3 flattenVelocity = cmp_rigidbody.velocity;
             flattenVelocity.y = 0;
             float moveSpeed = flattenVelocity.magnitude;
+
+            if (direction == Vector2.zero || jump.hasJumped == true)
+            {
+                if (FindObjectOfType(typeof(AudioManager)))
+                {
+                    AudioManager.instance.Stop("Pasos");
+                }
+                isMoving = false;
+            }
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
@@ -122,8 +132,19 @@ namespace Features
                 }
             }
             movement = movement.normalized * acceleration * 10f;
-            if (movement != Vector3.zero) cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
+            if (movement != Vector3.zero)
+            {
+                cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
 
+                if(isMoving == false && jump.hasJumped == false)
+                {
+                    if (FindObjectOfType(typeof(AudioManager)))
+                    {
+                        AudioManager.instance.PlaySound("Pasos");
+                    }
+                    isMoving = true;
+                }
+            }
             LimitSpeed();
         }
 

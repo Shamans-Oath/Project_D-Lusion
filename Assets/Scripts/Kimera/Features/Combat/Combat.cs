@@ -209,7 +209,11 @@ namespace Features
 
             actualAttack = attack;
             attackTimer = attack.animationClipHuman.length / attackSpeedMultiplier + inBetweenAttacksTime;
-            
+            if (FindObjectOfType(typeof(AudioManager)))
+            {
+                AudioManager.instance.PlaySound("Golpe");
+            }
+
             combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length / attackSpeedMultiplier);
 
             if (animator == null) return; 
