@@ -82,14 +82,25 @@ namespace Features
             flattenVelocity.y = 0;
             float moveSpeed = flattenVelocity.magnitude;
 
-            if (direction == Vector2.zero || jump.hasJumped == true)
+            /*if(AudioManager.instance)
             {
-                if (FindObjectOfType(typeof(AudioManager)))
+                if (Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z) > 0.01f && jump.hasJumped == false && direction != Vector2.zero)
                 {
-                    AudioManager.instance.Stop("Pasos");
+                    if (isMoving == false)
+                    {
+                        AudioManager.instance.PlaySound("Pasos");
+                        isMoving = true;
+                    }
                 }
-                isMoving = false;
-            }
+                else if (Mathf.Abs(cmp_rigidbody.velocity.x) + Mathf.Abs(cmp_rigidbody.velocity.z) <= 0.01f || jump.hasJumped == true)
+                {      
+                    if (isMoving == true)
+                    {
+                        AudioManager.instance.Stop("Pasos");
+                        isMoving = false;
+                    }
+                }
+            }*/                
         }
 
         public void FeatureAction(Controller controller, params Setting[] settings)
@@ -135,15 +146,6 @@ namespace Features
             if (movement != Vector3.zero)
             {
                 cmp_rigidbody.AddForce(new Vector3(movement.x, 0, movement.z));
-
-                if(isMoving == false && jump.hasJumped == false)
-                {
-                    if (FindObjectOfType(typeof(AudioManager)))
-                    {
-                        AudioManager.instance.PlaySound("Pasos");
-                    }
-                    isMoving = true;
-                }
             }
             LimitSpeed();
         }

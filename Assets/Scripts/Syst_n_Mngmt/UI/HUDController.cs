@@ -10,7 +10,7 @@ public class HUDController : MonoBehaviour
     public Image lifeBar, shieldBar, parryCircle, dashCircle;
     public Image parryBorder, dashBorder, parryIcon, dashIcon;
     public float lerpDuration;
-    float targetPointD, targetPointP;
+    float targetPointD, targetPointP, targetPointID, targetPointIP;
 
     void Awake()
     {
@@ -30,11 +30,14 @@ public class HUDController : MonoBehaviour
         {
             targetPointP += Time.deltaTime;
             parryBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointP);
-            parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointP);
+            if(parryBorder.fillAmount == 1)
+            targetPointIP += Time.deltaTime;
+            parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointIP);
         }
         else
         {
             targetPointP = 0;
+            targetPointIP = 0;
             parryBorder.color = new Color(1, 1, 1, 0.25f);
             parryIcon.color = new Color(1, 1, 1,0);
         }
@@ -43,11 +46,14 @@ public class HUDController : MonoBehaviour
         {
             targetPointD += Time.deltaTime;
             dashBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointD);
-            dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointD);
+            if(dashBorder.fillAmount == 1)
+            targetPointID += Time.deltaTime;
+            dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointID);
         }
         else
         {
             targetPointD = 0;
+            targetPointID = 0;
             dashBorder.color = new Color(1, 1, 1, 0.25f);
             dashIcon.color = new Color(1, 1, 1, 0);
         }
@@ -55,16 +61,20 @@ public class HUDController : MonoBehaviour
 
     public void UpdateParryCooldown(float timer, float duration)
     {
-        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
+        float cooldownRatio = Mathf.InverseLerp(duration, duration/2, timer);
+        float borderRatio = Mathf.InverseLerp(duration/2, 0, timer);
         parryCircle.fillAmount = cooldownRatio;
-        parryBorder.fillAmount = cooldownRatio;
+        //if(parryCircle.fillAmount == 1)
+        parryBorder.fillAmount = borderRatio;
     }
 
     public void UpdateDashCooldown(float timer, float duration)
     {
-        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
+        float cooldownRatio = Mathf.InverseLerp(duration, duration / 2, timer);
+        float borderRatio = Mathf.InverseLerp(duration / 2, 0, timer);
         dashCircle.fillAmount = cooldownRatio;
-        dashBorder.fillAmount = cooldownRatio;
+        //if(dashCircle.fillAmount == 1)
+        dashBorder.fillAmount = borderRatio;
     }
 
     public void UpdateLifeBar(int currentHealth, int maxHealth)
