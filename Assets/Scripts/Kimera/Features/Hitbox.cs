@@ -20,6 +20,7 @@ namespace Features
         [SerializeField] private Vector3 boxOffset;
         [SerializeField] protected List<string> tagsToInteract;
         [SerializeField] private bool isInteracted;
+        [SerializeField] private List<Collider> interactedCollider;
         //Properties
         //References
         //Componentes
@@ -43,6 +44,8 @@ namespace Features
             cmp_collider = GetComponent<Collider>();
             cmp_rigidbody = GetComponent<Rigidbody>();
 
+            interactedCollider = new List<Collider>();
+
             if (cmp_collider != null) cmp_collider.isTrigger = true;
 
             //Setup Properties
@@ -50,11 +53,11 @@ namespace Features
             ToggleActive(false);
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if(tagsToInteract.Contains(other.tag))
             {
-                if (isInteracted) return;
+                if (interactedCollider.Contains(other)) return;
 
                 //Logica Link
                 Controller otherController = other.GetComponent<Controller>();
@@ -63,6 +66,7 @@ namespace Features
                 else InteractObject(other.gameObject);
 
                 isInteracted = true;
+                interactedCollider.Add(other);
             }
         }
 
@@ -73,6 +77,8 @@ namespace Features
             transform.localScale = new Vector3(boxSize.x * startingLocalScale.x, boxSize.y * startingLocalScale.y, boxSize.z * startingLocalScale.z);
             transform.localPosition = controller.transform.right * boxOffset.x + controller.transform.forward * boxOffset.z + controller.transform.up * boxOffset.y;
             cmp_rigidbody.AddForce(boxImpulse, ForceMode.VelocityChange);
+
+            interactedCollider.Clear();
         }
 
         protected abstract void InteractEntity(Controller interactor);

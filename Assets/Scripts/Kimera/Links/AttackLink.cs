@@ -90,6 +90,7 @@ namespace Features
                     if (attackKnockback != null)
                     {
                         Vector3 direction = reactor.transform.position - actor.transform.position;
+                        direction.y = 0;
                         direction.Normalize();
 
                         AddAttackKnockback(reactorRigidbody, (Vector3)attackKnockback, direction);

@@ -155,7 +155,7 @@ namespace Features
 
             if (attackImpulse == 0) return;
 
-            playerRigidbody.AddForce(transform.up * (float)attackImpulse, ForceMode.VelocityChange);    
+            playerRigidbody.AddForce(controller.transform.up * (float)attackImpulse, ForceMode.VelocityChange);    
         }
 
         public void EndAttackBox()

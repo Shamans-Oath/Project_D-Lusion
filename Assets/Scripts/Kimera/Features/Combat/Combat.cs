@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, ISubcontroller //Other channels
+    public class Combat :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
         private const float DEFAULT_ATTACK_COOLDOWN = 1.25f;
         private const float DEFAULT_IN_BETWEEN_ATTACKS_TIME = .4f;
@@ -26,6 +26,7 @@ namespace Features
         [SerializeField] private ComboPreset actualCombo;
         //States / Time Management
         [SerializeField] private float attackTimer;
+        public float AttackTimer { get => attackTimer; }
         [SerializeField] public float attackCooldownTimer;
         //Properties
         [Header("Properties")]
@@ -171,7 +172,7 @@ namespace Features
             if (combat != null) combat.attack = attack;
 
             //SR: Probando Linea
-            if (attackTimer > 0 && activeAttack) possibleAttacks.ForEach(attack => attack.EndAttackBox());
+            if (attackTimer < 0 && activeAttack) possibleAttacks.ForEach(attack => attack.EndAttackBox());
 
             activeAttack = false;
             possibleAttacks.ForEach(attack =>
@@ -291,11 +292,6 @@ namespace Features
             if (active) return;
 
             StopAttack();
-        }
-
-        public void ToggleActiveSubcontroller(bool active)
-        {
-            ToggleActive(active);
         }
     }
 }

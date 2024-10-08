@@ -65,7 +65,7 @@ namespace Features
 
             if (stun != null) stun.StunSomeTime(disableTimeAfterHit);
 
-            if (combatAnimator != null) combatAnimator.InputConditon("stop");
+            //if (combatAnimator != null) combatAnimator.InputConditon("stop");
 
             if(animator != null) animator.FeatureAction(controller, new Setting("triggerName", "Hurt", Setting.ValueType.String));
 

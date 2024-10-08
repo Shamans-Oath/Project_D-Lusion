@@ -27,7 +27,7 @@ public abstract class Controller : MonoBehaviour, IActivable
         ToggleActive(true);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!active) return;
 
@@ -35,7 +35,7 @@ public abstract class Controller : MonoBehaviour, IActivable
         UpdateLinks();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!active) return;
 

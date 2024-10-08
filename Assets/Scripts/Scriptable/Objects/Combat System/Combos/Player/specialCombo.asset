@@ -18,3 +18,5 @@ MonoBehaviour:
   interruptions:
   - condition: attack-counter
     nextCombo: {fileID: 11400000, guid: f1546e7de19df0141a1c6e67d1aa0f87, type: 2}
+  - condition: attack-down
+    nextCombo: {fileID: 11400000, guid: 6b905ce6315705b4c8ad566d49a47f01, type: 2}

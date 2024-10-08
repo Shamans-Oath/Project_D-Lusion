@@ -41,6 +41,8 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     //Follow Entity
     public GameObject target {  get; set; }
 
+    [Header("Properties")]
+    public bool triggerDownAttack;
 
     [Header("Components")]
     public Transform dashPoint;
@@ -59,8 +61,17 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public override void Setup()
     {
         playerCamera = Camera.main;
-
+        triggerDownAttack = false;
         base.Setup();
+    }
+
+    protected override void Update()
+    {
+        if (!active) return;
+
+        if (onGround == true) triggerDownAttack = false;
+
+        base.Update();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -113,7 +124,18 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (block) return;
-        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
+        if (context.performed)
+        {
+            if (!onGround && !triggerDownAttack)
+            {
+                CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-down", Setting.ValueType.String));
+                CallFeature<AttackOnLand>(new Setting("On Land Attack", "attack-down-impact", Setting.ValueType.String));
+                triggerDownAttack = true;
+                return;
+            }
+
+            CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-normal", Setting.ValueType.String));
+        }
     }
 
     public void OnSpecialAttack(InputAction.CallbackContext context)
