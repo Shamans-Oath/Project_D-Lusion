@@ -32,6 +32,7 @@ namespace Features
         //Componentes
         [Header("Components")]
         [SerializeField] private Rigidbody cmp_rigidbody;
+        public float divideValue = 1;
 
         private void Awake()
         {
@@ -69,7 +70,7 @@ namespace Features
             if (kinetic != null)
             {
                 kinetic.currentSpeed = speed.magnitude;
-                kinetic.maxSpeed = maxSpeed;
+                kinetic.maxSpeed = maxSpeed / divideValue;
                 kinetic.speed = cmp_rigidbody.velocity;
             }
 
@@ -163,9 +164,9 @@ namespace Features
 
             //Debug.Log(velocity.magnitude);
 
-            if (velocity.magnitude > maxSpeed)
+            if (velocity.magnitude > maxSpeed/divideValue)
             {
-                velocity = velocity.normalized * maxSpeed + diffVelocity;
+                velocity = velocity.normalized * (maxSpeed/divideValue) + diffVelocity;
                 cmp_rigidbody.velocity = new Vector3(velocity.x, cmp_rigidbody.velocity.y, velocity.z);
             }
         }
@@ -250,6 +251,12 @@ namespace Features
 
             ToggleActive(active);
             AttackFailsafe();
+        }
+        public void DivideSpeed(float amount)
+        {
+            if(active==false)ToggleActive(true);
+            divideValue = amount;
+            if (rotation != null) rotation.DivideSpeed(amount);
         }
     }
 }

@@ -30,7 +30,6 @@ namespace Features
         //Componentes
         [Header("Components")]
         [SerializeField] private NavMeshAgent agent;
-
         private void Awake()
         {
             if(agent == null) agent = GetComponent<NavMeshAgent>();
@@ -123,7 +122,7 @@ namespace Features
 
         private IEnumerator RotationOverTime()
         {
-            float speedSpan = maxRotationSpeed - startRotationSpeed;
+            float speedSpan = (maxRotationSpeed) - startRotationSpeed;
 
             float time = speedSpan / acceleration;
             float elapsedTime = 0;
@@ -169,7 +168,6 @@ namespace Features
             }
             else
             {
-                
                 this.active = true;
             }
         }
@@ -178,6 +176,7 @@ namespace Features
         {
             activeCount = 1;
         }
+ 
     }
 }
 

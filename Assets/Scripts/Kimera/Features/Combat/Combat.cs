@@ -199,6 +199,7 @@ namespace Features
         public void SetupAttack(AttackPreset attack, Controller controller)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
+            if (cmp_movement != null) cmp_movement.DivideSpeed(10);
             if (friction != null) friction.ToggleActive(false);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
@@ -253,6 +254,7 @@ namespace Features
             if (player != null && !player.block)
             {
                 if (movement != null) movement.ToggleActiveSubcontroller(true);
+                if (cmp_movement != null) cmp_movement.DivideSpeed(1);
             }
             if (friction != null) friction.ToggleActive(true);
 
