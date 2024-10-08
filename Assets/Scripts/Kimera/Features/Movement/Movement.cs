@@ -256,7 +256,7 @@ namespace Features
         {
             if(active==false)ToggleActive(true);
             divideValue = amount;
-            if (rotation != null) rotation.DivideSpeed(amount);
+            
         }
     }
 }
