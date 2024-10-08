@@ -63,15 +63,14 @@ namespace Features
 
             if (!reactorCombat.block && !reactorCombat.parry)
             {
-                //SR: Desactivado Temporalmente Para Probar
-                //FMODManager.instance.LoadEvent("PlayerSounds", 0);
-                //FMODManager.instance.PlayEvent();
                 reactorLife.Health(-damage);
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
+                if(AudioManager.instance)
+                AudioManager.instance.PlaySound("GolpeAcertado");
                 //Añadir efectos de ataque
 
-                if(attack != null)
+                if (attack != null)
                 {
                     int? attackImpact = attack.Search("attackImpact");
 
@@ -107,6 +106,9 @@ namespace Features
                         if (lifeSteal.HasValue)
                         {
                             actorLife.HealthPercentual(lifeSteal.Value, true);
+                            
+                            if(AudioManager.instance)
+                            AudioManager.instance.PlaySound("AbsorcionVida");                            
                         }
                     }
                 }

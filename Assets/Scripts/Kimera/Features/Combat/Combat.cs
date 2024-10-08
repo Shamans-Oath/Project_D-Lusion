@@ -211,6 +211,7 @@ namespace Features
             actualAttack = attack;
             attackTimer = attack.animationClipHuman.length / attackSpeedMultiplier + inBetweenAttacksTime;
             
+
             combatAnimator.SetVariableInputPermanenceTime(attack.animationClipHuman.length / attackSpeedMultiplier);
 
             if (animator == null) return; 
@@ -229,6 +230,11 @@ namespace Features
             if (!active || i < 0 || i >= possibleAttacks.Count) return;
             if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
+
+            if (AudioManager.instance)
+            {
+                AudioManager.instance.PlaySound("Golpe");
+            }
         }
 
         public void EndAttack(int i)
