@@ -42,6 +42,7 @@ namespace Features
         public ISubcontroller movementAI;
         public FaceTarget faceTarget;
         public Friction friction;
+        public float divideValue;
         [Header("Components")]
         Movement cmp_movement;
         Furry cmp_furry;
@@ -88,6 +89,7 @@ namespace Features
             if (combo4 != null) defaultCombos.Add(combo4);
             if (combo5 != null) defaultCombos.Add(combo5);
 
+            if(settings.Search("movementDivideValue") != null) divideValue = settings.Search("movementDivideValue");
             float? tempAttackCooldown = settings.Search("attackCooldown");
             if (tempAttackCooldown.HasValue) attackCooldown = tempAttackCooldown.Value;
             else attackCooldown = DEFAULT_ATTACK_COOLDOWN;
@@ -199,7 +201,7 @@ namespace Features
         public void SetupAttack(AttackPreset attack, Controller controller)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
-            if (cmp_movement != null) cmp_movement.DivideSpeed(10);
+            if (cmp_movement != null) cmp_movement.DivideSpeed(divideValue);
             if (friction != null) friction.ToggleActive(false);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
