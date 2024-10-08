@@ -22,11 +22,11 @@ namespace Features
         public LayerMask aimLayer;
         //References
         //Componentes
-
+        InputEntity input;
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
+            input = controller as InputEntity;
             //Setup Properties
             aimRadius = settings.Search("aimRadius");
             aimMaxAngle = settings.Search("aimMaxAngle");
@@ -129,8 +129,17 @@ namespace Features
             Vector3 directionToTarget = target.transform.position - transform.position;
             directionToTarget.y = 0;
             directionToTarget.Normalize();
-
-            float angleBetween = Vector3.Angle(transform.forward, directionToTarget);
+            Vector2 direction = input.inputDirection;
+            float angleBetween = 0;
+            if (direction!=Vector2.zero)
+            {
+                Vector3 directValue = ProjectOnCameraFlattenPlane(new Vector3(direction.x, 0f, direction.y), input.playerCamera);
+                angleBetween = Vector3.Angle(directValue, directionToTarget);
+            }
+            else
+            {
+                angleBetween = Vector3.Angle(transform.forward, directionToTarget);
+            }
 
             return angleBetween;
         }
@@ -152,8 +161,55 @@ namespace Features
         {
             if (!Application.isPlaying) return;
 
-            Gizmos.color = Color.green;
+            Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, aimRadius);
+            
+            //------------------
+            Vector2 direction = input.inputDirection;
+            Vector3 directValue = ProjectOnCameraFlattenPlane(new Vector3(direction.x, 0f, direction.y), input.playerCamera);
+
+            Vector3 lineEndA = Vector3.zero;
+            Vector3 lineEndB = Vector3.zero;
+            if (direction != Vector2.zero)
+            {
+                Gizmos.color = Color.cyan;
+                lineEndA = directValue * aimRadius;
+                lineEndB = directValue * aimRadius;
+            }
+            else
+            {
+                Gizmos.color = Color.magenta;
+                lineEndA = transform.forward * aimRadius;
+                lineEndB = transform.forward * aimRadius;
+            }
+
+            Quaternion rotateA = Quaternion.Euler(0, aimMaxAngle/2, 0);
+            Quaternion rotateB = Quaternion.Euler(0, -aimMaxAngle / 2, 0);
+
+            lineEndA = rotateA * lineEndA;
+            lineEndB = rotateB * lineEndB;
+            lineEndA = lineEndA + transform.position;
+            lineEndB = lineEndB + transform.position;
+     
+            Gizmos.DrawLine(transform.position, lineEndA);
+            Gizmos.DrawLine(transform.position, lineEndB);
+
+
+        }
+        private Vector3 ProjectOnCameraFlattenPlane(Vector3 direction, Camera camera)
+        {
+            if (camera == null) return Vector3.zero;
+
+            Vector3 cameraForward = camera.transform.forward;
+            Vector3 cameraRight = Vector3.Cross(Vector3.up, cameraForward);
+
+            // Calculate the movement direction based on the camera's forward direction
+            Vector3 projection = cameraForward * direction.x + cameraRight * direction.z;
+
+            projection.y = 0;
+            projection.Normalize();
+
+            return projection;
         }
     }
 }

@@ -42,6 +42,7 @@ namespace Features
 
             if(follow.target == null) return;
 
+            Debug.Log(follow.target.gameObject.name + " || " + input);
             Vector3 directionToTarget = follow.target.transform.position;
             directionToTarget.y = transform.position.y;
 
