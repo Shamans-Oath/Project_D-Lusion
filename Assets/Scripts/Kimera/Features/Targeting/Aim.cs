@@ -18,6 +18,7 @@ namespace Features
         [Header("Properties")]
         public float aimRadius;
         public float aimMaxAngle;
+        public float noneAimAngle;
         public string aimTag;
         public LayerMask aimLayer;
         //References
@@ -28,6 +29,7 @@ namespace Features
             settings = controller.settings;
             input = controller as InputEntity;
             //Setup Properties
+            noneAimAngle = settings.Search("noneAimAngle");
             aimRadius = settings.Search("aimRadius");
             aimMaxAngle = settings.Search("aimMaxAngle");
             aimTag = settings.Search("aimTag");
@@ -62,6 +64,9 @@ namespace Features
             List<Collider> possibleTargets = Physics.OverlapSphere(transform.position, aimRadius, aimLayer).ToList();
             List<GameObject> temptativeTargets = new List<GameObject>();
 
+            float angleUse = aimMaxAngle;
+            if (input.inputDirection != Vector2.zero) angleUse = noneAimAngle;
+
             foreach (Collider target in possibleTargets)
             {
                 if (!target.CompareTag(aimTag)) continue;
@@ -72,7 +77,7 @@ namespace Features
 
                 float angleBetween = DistanceAngle(entity);
                 
-                if(angleBetween > aimMaxAngle / 2) continue;
+                if(angleBetween > angleUse / 2) continue;
 
                 temptativeTargets.Add(entity);
             }
@@ -94,7 +99,10 @@ namespace Features
             float angleToTarget = DistanceAngle(targetController);
             float distanceToTarget = DistanceBetween(targetController);
 
-            if (distanceToTarget <= aimRadius && angleToTarget < aimMaxAngle / 2) return;
+            float angleUse = aimMaxAngle;
+            if (input.inputDirection != Vector2.zero) angleUse = noneAimAngle;
+
+            if (distanceToTarget <= aimRadius && angleToTarget < angleUse / 2) return;
 
             follow.target = null;
         }
@@ -208,6 +216,24 @@ namespace Features
      
             Gizmos.DrawLine(transform.position, lineEndA);
             Gizmos.DrawLine(transform.position, lineEndB);
+
+
+            Vector3 lineEndC = directValue * aimRadius;
+            Vector3 lineEndD = directValue * aimRadius;
+                
+            Quaternion rotateC = Quaternion.Euler(0, noneAimAngle / 2, 0);
+            Quaternion rotateD = Quaternion.Euler(0, -noneAimAngle / 2, 0);
+
+            lineEndC = rotateC * lineEndC;
+            lineEndD = rotateD * lineEndD;
+            lineEndC = lineEndC + transform.position;
+            lineEndD = lineEndD + transform.position;
+
+            Gizmos.color = Color.black;
+            Gizmos.DrawLine(transform.position, lineEndC);
+            Gizmos.DrawLine(transform.position, lineEndD);
+
+            //Gizmos.DrawLine(transform.position, ((directValue * aimRadius) + transform.position);
 
 
         }
