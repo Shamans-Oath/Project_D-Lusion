@@ -8,6 +8,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 {
     //States
     //Input
+    public PlayerInput input;
     public Vector2 inputDirection { get; set; }
     public Vector3 playerForward { get; set; }
     public Camera playerCamera { get; set; }
@@ -50,11 +51,13 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     private void OnEnable()
     {
+        GameManager.StateChanged += CheckInputState;
         SearchFeature<Life>().OnDeath += OnDeath;
     }
 
     private void OnDisable()
     {
+        GameManager.StateChanged -= CheckInputState;
         SearchFeature<Life>().OnDeath -= OnDeath;
     }
 
@@ -148,5 +151,16 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         if (context.performed) CallFeature<Block>(new Setting("toggleBlock", true, Setting.ValueType.Bool));
         if (context.canceled) CallFeature<Block>(new Setting("toggleBlock", false, Setting.ValueType.Bool));
+    }
+    public void CheckInputState()
+    {
+        if (GameManager.gameState == GameManager.GameState.Gameplay)
+        {
+            input.enabled = true;
+        }
+        else
+        {
+            input.enabled = false;
+        }
     }
 }

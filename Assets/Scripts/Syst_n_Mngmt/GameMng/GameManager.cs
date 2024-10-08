@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         manager = this;
         SetInputSystem();
         GameManager.StateChanged += CheckState;
+        //GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> CheckState();
     }
 
     #region GameState&InputConfigIssues
@@ -58,6 +59,19 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+    }
+
+    public void ToggleMenus()
+    {
+        switch (gameState)
+        {
+            case GameState.Gameplay:
+                SetState(GameState.OnMenu);
+                break;
+            case GameState.OnMenu:
+                SetState(GameState.Gameplay);
+            break;
+        }        
     }
 
     #endregion
