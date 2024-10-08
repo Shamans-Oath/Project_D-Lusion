@@ -108,15 +108,30 @@ namespace Features
             GameObject closestTarget = tempTargets[0];
             float angleDistance = DistanceAngle(closestTarget);
             float distanceBetween = DistanceBetween(closestTarget);
-
-            foreach (GameObject target in tempTargets)
+            Vector2 direction = input.inputDirection;
+            if (direction != Vector2.zero)
             {
-                float distance = DistanceBetween(target);
+                foreach (GameObject target in tempTargets)
+                {
+                    float angle = DistanceAngle(target);
 
-                if(distance > distanceBetween) continue;
+                    if (angle > angleDistance) continue;
 
-                distanceBetween = distance;
-                closestTarget = target;
+                    angleDistance = angle;
+                    closestTarget = target;
+                }
+            }
+            else
+            {
+                foreach (GameObject target in tempTargets)
+                {
+                    float distance = DistanceBetween(target);
+
+                    if (distance > distanceBetween) continue;
+
+                    distanceBetween = distance;
+                    closestTarget = target;
+                }
             }
 
             return closestTarget;

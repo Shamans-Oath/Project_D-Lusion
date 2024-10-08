@@ -1183,8 +1183,8 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: Speed
-    m_EventTreshold: 0.01
+    m_ConditionEvent: MoveSpeedMulti
+    m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: -7424845781446912109}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2012,7 +2012,7 @@ AnimatorTransition:
     m_ConditionEvent: UpSpd
     m_EventTreshold: 0.1
   - m_ConditionMode: 4
-    m_ConditionEvent: Speed
+    m_ConditionEvent: MoveSpeedMulti
     m_EventTreshold: 0.1
   m_DstStateMachine: {fileID: 7484567709589941786}
   m_DstState: {fileID: 0}
@@ -2074,7 +2074,7 @@ AnimatorStateMachine:
     m_Position: {x: -100, y: 310, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -1163898489969420632}
-    m_Position: {x: 150, y: 70, z: 0}
+    m_Position: {x: 150, y: 50, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
