@@ -118,7 +118,12 @@ namespace Features
             for(int i = 0; i < vfxNamesList.Length; i++){
                 if(vfxNamesList[i] == string.Empty) continue;
                 
-                VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, bodyPart.rotation);
+                ParticleSystem particle = VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, Quaternion.identity);
+                particle.transform.SetParent(bodyPart, true);
+
+                Combat combat = controller.SearchFeature<Combat>();
+
+                Destroy(particle, (actualAttack.end - actualAttack.start) * (combat != null ? combat.attackSpeedMultiplier : 1f));
             }
         }
 

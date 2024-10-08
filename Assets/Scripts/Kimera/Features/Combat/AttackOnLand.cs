@@ -47,7 +47,11 @@ namespace Features
 
             if (terrain.onGround)
             {
-                controller.CallFeature<CombatAnimator>(new Setting("Combat Condition", combatCondition, Setting.ValueType.String));
+                CombatAnimator combatAnimator = controller.SearchFeature<CombatAnimator>();
+
+                combatAnimator.InputConditon("stop");
+                combatAnimator.InputConditon(combatCondition);
+
                 ToggleActive(false);
             }
         }

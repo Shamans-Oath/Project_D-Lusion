@@ -105,12 +105,6 @@ namespace Features
         {
             if (!active) return;
 
-            if (conditions.Contains("stop"))
-            {
-                StopAttack();
-                return;
-            }
-
             if (attackQueue.Count <= 0 && !activeAttack && attackTimer <= 0f && actualCombo != null)
             {
                 actualCombo = null;
@@ -160,12 +154,21 @@ namespace Features
             } 
         }
 
+        public void CancelCombo(){
+                StopAttack();
+                attackCooldownTimer = 0;
+                attackTimer = 0;
+                combatAnimator.CancelCondition("stop");
+        }
+
         public void UpdateFeature(Controller controller)
         {
             if (attackTimer > 0) attackTimer -= Time.deltaTime;
             if(attackCooldownTimer > 0) attackCooldownTimer -= Time.deltaTime;
 
             if (!active) return;
+
+            if(combatAnimator.GetActiveConditions().Contains("stop")) CancelCombo();
 
             //StartCombo(combatAnimator.GetActiveConditions());
             StartCombo(combatAnimator.GetActiveLastCondition());

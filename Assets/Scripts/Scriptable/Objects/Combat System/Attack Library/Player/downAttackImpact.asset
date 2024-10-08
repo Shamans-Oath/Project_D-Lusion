@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
   m_Name: downAttackImpact
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 871f91dceafe94741856b3de2b415325, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: a99cfdc0167cd2541a71086ada683c0a, type: 2}
+  animationClipHuman: {fileID: 7400000, guid: 0d8ec39c3dd48204b9f98351831455dc, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 332cd5a4576bc9d408e7babae463a558, type: 2}
   attackToughness: 10
   swings:
   - swingName: Down Explosion
@@ -29,6 +29,7 @@ MonoBehaviour:
       m_PostInfinity: 0
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: 0ab6cb5fb4dbaec478c1aaa26b8fb831, type: 2}
-    duration: 0.23333347
-    start: 0.037298664
-    end: 0.16815385
+    duration: 2.6
+    start: 0.2845283
+    end: 1.6090565
+    vfxNames: 

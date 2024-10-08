@@ -37,6 +37,7 @@ namespace Features
             conditions = new Dictionary<string, bool>();
             coroutinesInput = new Dictionary<string, Coroutine>();
             conditions.Add("stop", false);
+            coroutinesInput.Add("stop",null);
 
             //Setup Properties
             inputPermanenceTime = settings.Search("inputPermanenceTime");
@@ -106,6 +107,16 @@ namespace Features
                 lastCondition = condition;
                 if (coroutinesInput[condition] != null) StopCoroutine(coroutinesInput[condition]);
                 coroutinesInput[condition] = StartCoroutine(FlipFlopInputCondition(condition));
+            }
+        }
+
+        public void CancelCondition(string condition){
+            if (!active) return;
+
+            if (coroutinesInput.ContainsKey(condition))
+            {
+                if (coroutinesInput[condition] != null) StopCoroutine(coroutinesInput[condition]);
+                conditions[condition] = false;
             }
         }
 

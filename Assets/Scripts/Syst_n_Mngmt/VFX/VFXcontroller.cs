@@ -20,7 +20,7 @@ public class VFXcontroller : MonoBehaviour
         }
     }
 
-    public void InstanceVFX(string nameVFX,Vector3 position,Quaternion rotation)
+    public ParticleSystem InstanceVFX(string nameVFX,Vector3 position,Quaternion rotation)
     {
         Debug.Log("Instancing: " + nameVFX);
 
@@ -28,9 +28,10 @@ public class VFXcontroller : MonoBehaviour
         {
             if(vfxdata[i].name == nameVFX)
             {
-                Instantiate(vfxdata[i].vfx,position,rotation);
-                return;
+                return Instantiate(vfxdata[i].vfx,position,rotation);
             }
         }
+
+        return null;
     }
 }

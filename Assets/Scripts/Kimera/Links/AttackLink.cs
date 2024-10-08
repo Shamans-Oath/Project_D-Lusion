@@ -6,7 +6,7 @@ namespace Features
 {
     public class AttackLink : Link, ILinkUpdate, ILinkFixedUpdate //Other Link channels
     {
-        private const float KNOCKBACK_DELAY_SECONDS = .1f;
+        private const float KNOCKBACK_DELAY_SECONDS = .2f;
         private const int LIFE_STEAL = 35;  
 
         //States
