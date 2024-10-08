@@ -26,5 +26,8 @@ namespace Features
         [HideInInspector] public float duration;
         public float start;
         public float end;
+    
+        [Header("Visual FX")]
+        public string vfxNames; 
     }
 }

@@ -151,6 +151,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 8534706837684945161}
@@ -362,6 +363,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 812472315721240974}
@@ -734,6 +736,7 @@ GameObject:
   - component: {fileID: 204981476069002227}
   - component: {fileID: 6131684910135387386}
   - component: {fileID: 899471573336992760}
+  - component: {fileID: 4039711299542333199}
   m_Layer: 10
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -1294,6 +1297,31 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   cmp_animator: {fileID: 6893883958289241529}
+--- !u!114 &4039711299542333199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e69f15d7a7b1140beb56f3da06133d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  readLinks: []
+  leftHand: {fileID: 5619884589139247647}
+  rightHand: {fileID: 2657464692144000047}
+  leftElbow: {fileID: 1247255550372036431}
+  rightElbow: {fileID: 7150011083236425964}
+  leftKnee: {fileID: 5219892715981223434}
+  rightKnee: {fileID: 2788329402316630291}
+  leftFoot: {fileID: 2277822591596321690}
+  rightFoot: {fileID: 7050087811637050722}
+  chest: {fileID: 4213236694207368445}
+  head: {fileID: 351516917486588114}
 --- !u!1 &280545415659776953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2478,6 +2506,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 5867850406110256580}
@@ -3345,6 +3374,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 2917202757090379282}
@@ -5048,6 +5078,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 6068328991499465812}

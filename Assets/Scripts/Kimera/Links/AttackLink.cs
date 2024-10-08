@@ -4,12 +4,20 @@ using UnityEngine;
 
 namespace Features
 {
-    public class AttackLink : Link //Other Link channels
+    public class AttackLink : Link, ILinkUpdate, ILinkFixedUpdate //Other Link channels
     {
+        private const float KNOCKBACK_DELAY_SECONDS = .1f;
         private const int LIFE_STEAL = 35;  
 
         //States
+        [Header("Knockback Variables")]
+        public bool triggerKnockback = false;
+        public float knockbackTimer;
+        
         //Properties
+        [Header("Knockback Parameters")]
+        public Vector3 knockbackDirection;
+        public Vector3 knockbackAttack;
 
         public AttackLink(Controller actor, Controller reactor, Settings attack) : base(actor, reactor, attack)
 		{
@@ -68,7 +76,7 @@ namespace Features
                 if (furryEntity != null) furryEntity.furryCombo++;
                 if(AudioManager.instance)
                 AudioManager.instance.PlaySound("GolpeAcertado");
-                //Añadir efectos de ataque
+                //Aï¿½adir efectos de ataque
 
                 if (attack != null)
                 {
@@ -81,20 +89,6 @@ namespace Features
                 }
 
                 if (actorReaction != null) actorReaction.PassTurn();
-
-                if (attack != null)
-                {
-                    Vector3? attackKnockback = attack.Search("attackKnockback");
-
-                    if (attackKnockback != null)
-                    {
-                        Vector3 direction = reactor.transform.position - actor.transform.position;
-                        direction.y = 0;
-                        direction.Normalize();
-
-                        AddAttackKnockback(reactorRigidbody, (Vector3)attackKnockback, direction);
-                    }
-                }
 
                 //Efectos al matar enemigo
                 if (reactorLife.CurrentHealth <= 0 && actorLife != null)
@@ -110,6 +104,27 @@ namespace Features
                             if(AudioManager.instance)
                             AudioManager.instance.PlaySound("AbsorcionVida");                            
                         }
+                    }
+
+                    Unlink();
+                    return;
+                }
+
+                if (attack != null)
+                {
+                    Vector3? attackKnockback = attack.Search("attackKnockback");
+
+                    if (attackKnockback.HasValue)
+                    {
+                        Vector3 direction = reactor.transform.position - actor.transform.position;
+                        direction.y = 0;
+                        direction.Normalize();
+
+                        knockbackDirection = direction;
+                        knockbackAttack = attackKnockback.Value;
+                        knockbackTimer = KNOCKBACK_DELAY_SECONDS;
+
+                        return;
                     }
                 }
 
@@ -143,7 +158,7 @@ namespace Features
                 }
             }
 
-            //Añadir efectos de bloques
+            //Aï¿½adir efectos de bloques
 
             Unlink();
         }
@@ -155,6 +170,34 @@ namespace Features
             Vector3 knockbackInDirection = Vector3.Cross(direction, Vector3.up) * attackKnockback.x + Vector3.up * attackKnockback.y + direction * attackKnockback.z;
 
             reactorRigidbody.AddForce(knockbackInDirection, ForceMode.VelocityChange);
+        }
+
+        public void RequestActorUpdate(Controller controller){
+            return;
+        }
+
+        public void RequestReactorUpdate(Controller controller){
+            if(knockbackTimer > 0) knockbackTimer -= Time.deltaTime;
+            else if (triggerKnockback == false) 
+            {
+                triggerKnockback = true;
+            }
+        }
+
+        public void RequestActorFixedUpdate(Controller controller){
+            return;
+        }
+
+        public void RequestReactorFixedUpdate(Controller controller){
+            if(triggerKnockback == false) return;
+
+            Rigidbody reactorRb = controller.GetComponent<Rigidbody>();
+
+            if(reactorRb == null) return;
+
+            AddAttackKnockback(reactorRb, knockbackAttack, knockbackDirection);
+                
+            Unlink();
         }
     }
 }

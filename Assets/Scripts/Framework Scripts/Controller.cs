@@ -128,14 +128,17 @@ public abstract class Controller : MonoBehaviour, IActivable
 
     public void UpdateLinks()
     {
-        foreach (Link link in actionLinks)
+        var tempActionLinks = new List<Link>(actionLinks);
+        var tempReactionLinks = new List<Link>(reactionLinks);
+
+        foreach (Link link in tempActionLinks)
         {
             ILinkUpdate linkUpdate = link as ILinkUpdate;
             if (linkUpdate == null) continue;
             linkUpdate.RequestActorUpdate(this);
         }
 
-        foreach (Link link in reactionLinks)
+        foreach (Link link in tempReactionLinks)
         {
             ILinkUpdate linkUpdate = link as ILinkUpdate;
             if (linkUpdate == null) continue;
@@ -145,14 +148,17 @@ public abstract class Controller : MonoBehaviour, IActivable
 
     public void FixedUpdateLinks()
     {
-        foreach (Link link in actionLinks)
+        var tempActionLinks = new List<Link>(actionLinks);
+        var tempReactionLinks = new List<Link>(reactionLinks);
+
+        foreach (Link link in tempActionLinks)
         {
             ILinkFixedUpdate linkFixedUpdate = link as ILinkFixedUpdate;
             if (linkFixedUpdate == null) continue;
             linkFixedUpdate.RequestActorFixedUpdate(this);
         }
 
-        foreach (Link link in reactionLinks)
+        foreach (Link link in tempReactionLinks)
         {
             ILinkFixedUpdate linkFixedUpdate = link as ILinkFixedUpdate;
             if (linkFixedUpdate == null) continue;

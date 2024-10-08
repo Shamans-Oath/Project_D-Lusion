@@ -22,6 +22,8 @@ public class VFXcontroller : MonoBehaviour
 
     public void InstanceVFX(string nameVFX,Vector3 position,Quaternion rotation)
     {
+        Debug.Log("Instancing: " + nameVFX);
+
         for(int  i = 0; i < vfxdata.Length;i++)
         {
             if(vfxdata[i].name == nameVFX)

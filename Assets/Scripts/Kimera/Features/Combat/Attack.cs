@@ -99,8 +99,27 @@ namespace Features
             uniqueEffectsTriggered = true;
 
             //Unique Events
+            DisplayAttackVFX();
             AttackImpulse(attackSettings);
             VerticalAttackImpulse(attackSettings);
+        }
+
+        private void DisplayAttackVFX(){
+            string[] vfxNamesList = actualAttack.vfxNames.Split(",");
+
+            if(vfxNamesList.Length <= 0) return;
+
+            CombatAnimatorLinker linker = controller.SearchFeature<CombatAnimatorLinker>();
+
+            Transform bodyPart;
+            if(linker != null) bodyPart = linker.GetAnimationBodyPart(actualAttack.bodyPart);
+            else bodyPart = controller.transform;
+
+            for(int i = 0; i < vfxNamesList.Length; i++){
+                if(vfxNamesList[i] == string.Empty) continue;
+                
+                VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, bodyPart.rotation);
+            }
         }
 
         private void AttackFollowForce(Settings attackSettings, KineticEntity kinetic)

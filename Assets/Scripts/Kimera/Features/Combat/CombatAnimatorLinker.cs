@@ -132,7 +132,7 @@ namespace Features
             readLinks.Clear();
         }
 
-        private Transform GetAnimationBodyPart(BodyParts bodyPart)
+        public Transform GetAnimationBodyPart(BodyParts bodyPart)
         {
             switch(bodyPart)
             {

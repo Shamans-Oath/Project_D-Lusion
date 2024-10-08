@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using Features;
+using UnityEditor.Rendering;
 
 [CustomPropertyDrawer(typeof(Features.AttackSwing))]
 public class AttackSwingUIE : PropertyDrawer
@@ -36,6 +37,10 @@ public class AttackSwingUIE : PropertyDrawer
         labelStart.BindProperty(property.FindPropertyRelative("start"));
         var labelEnd = new FloatField("End");
         labelEnd.BindProperty(property.FindPropertyRelative("end"));
+
+        var labelVFX = new Label("VFX");
+        var labelVFXNames = new TextField("VFX Names");
+        labelVFXNames.BindProperty(property.FindPropertyRelative("vfxNames"));
 
         var swingSlider = new MinMaxSlider("Swing");
         swingSlider.lowLimit = 0;
@@ -84,6 +89,9 @@ public class AttackSwingUIE : PropertyDrawer
 
         container.Add(labelEffects);
         container.Add(settings);
+
+        container.Add(labelVFX);
+        container.Add(labelVFXNames);
 
         container.Add(labelTiming);
         container.Add(labelDuration);
