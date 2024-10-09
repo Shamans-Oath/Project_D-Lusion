@@ -111,6 +111,7 @@ public class HUDController : MonoBehaviour
     {
         float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
 
+        furyBorder.rectTransform.localScale = Vector3.Lerp(new Vector3(1.05f, 1.05f, 1.05f), Vector3.one, furryRatio);
         furyBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, furryRatio);
     }
 
