@@ -50,6 +50,12 @@ namespace Features
             cmp_animator.SetTrigger(triggerName);
         }
 
+        public void LockAnimator(bool value)
+        {
+
+            cmp_animator.SetBool("LOCK", value);
+
+        }
         public bool GetActive()
         {
             return active;

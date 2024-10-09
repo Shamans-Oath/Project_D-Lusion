@@ -27,12 +27,14 @@ namespace Features
         //References
         [Header("References")]
         [SerializeField] private List<ISubcontroller> subcontrollers;
+        public EntityAnimator animator;
         //Componentes
 
         private void Awake()
         {
             //Setup References
             subcontrollers = new List<ISubcontroller>(GetComponents<ISubcontroller>());
+            animator = GetComponent<EntityAnimator>();
         }
 
         public void SetupFeature(Controller controller)
@@ -41,6 +43,7 @@ namespace Features
 
             //Setup Properties
             stunDuration = settings.Search("stunDurationDefault");
+
 
             ToggleActive(true);
         }
@@ -83,6 +86,7 @@ namespace Features
 
             subcontrollers.ForEach(subcontroller => subcontroller.ToggleActiveSubcontroller(false));
             isStunned = true;
+            if (animator != null) animator.cmp_animator.SetBool("Stun", true);
         }
 
         public void CleanseStun()
@@ -95,6 +99,7 @@ namespace Features
 
             subcontrollers.ForEach(subcontroller => subcontroller.ToggleActiveSubcontroller(true));
             isStunned = false;
+            if (animator != null) animator.cmp_animator.SetBool("Stun", false);
         }
 
         public bool GetActive()

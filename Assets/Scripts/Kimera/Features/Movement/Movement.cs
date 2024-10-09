@@ -222,13 +222,14 @@ namespace Features
             if (activeCount > 0)
             {
                 this.active = false;
+                
             }
             else
             {
                 
                 this.active = true;
             }
-
+            Debug.Log(this.active);
             if (this.active) return;
             if (cmp_rigidbody.velocity == Vector3.zero) return;
 

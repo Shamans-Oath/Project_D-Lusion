@@ -118,6 +118,7 @@ namespace Features
         {
             if(!parry && !block)
             {
+                if (animator != null) animator.LockAnimator(false);
                 if (movement != null) movement.ToggleActive(true);                
                 if (rotation != null) rotation.ToggleActive(true);                
                 if (jump != null) jump.ToggleActive(true);                
@@ -156,6 +157,7 @@ namespace Features
                 cmp_rotation.AttackFailsafe();
                 if (jump != null) jump.ToggleActive(false);
                 cmp_jump.AttackFailsafe();
+                if (animator != null) animator.LockAnimator(true);
                 return;
             }
             

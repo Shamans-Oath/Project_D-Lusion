@@ -119,7 +119,10 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: -8500853265381723497}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -155,6 +158,9 @@ AnimatorTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: VerticalSpeed
     m_EventTreshold: 0.5
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: -3053368119959446315}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -185,10 +191,7 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Block
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 8503137443829948405}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -362,6 +365,9 @@ AnimatorTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Hurt
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 2653003174708966945}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -382,9 +388,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.2
   m_TransitionOffset: 0
-  m_ExitTime: 0.5833336
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -403,6 +409,9 @@ AnimatorTransition:
     m_EventTreshold: 0.6
   - m_ConditionMode: 2
     m_ConditionEvent: IsBlocking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -7424845781446912109}
   m_DstState: {fileID: 0}
@@ -739,6 +748,9 @@ AnimatorTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Hurt
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 2653003174708966945}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -755,6 +767,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Attack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -839,6 +854,9 @@ AnimatorTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: IsBlocking
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -8500853265381723497}
   m_DstState: {fileID: 0}
@@ -1046,7 +1064,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1377,6 +1398,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: LOCK
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1400,6 +1427,9 @@ AnimatorTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: Hurt
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 2653003174708966945}
   m_DstState: {fileID: 0}
@@ -1482,7 +1512,10 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 7484567709589941786}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1754,6 +1787,9 @@ AnimatorTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: VerticalSpeed
     m_EventTreshold: 0.5
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: -3053368119959446315}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1824,6 +1860,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Attack
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -1851,6 +1890,9 @@ AnimatorTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: FurryBlend
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 7484567709589941786}
   m_DstState: {fileID: 0}
@@ -2228,7 +2270,10 @@ AnimatorTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: LOCK
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: -7424845781446912109}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -2402,9 +2447,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.8235294
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2783,13 +2828,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -8500853265381723497}
-    second:
-    - {fileID: -7472350492002312033}
-    - {fileID: -5768577812966964019}
-    - {fileID: 1552894358474234092}
-    - {fileID: -7430179300687576307}
-    - {fileID: 3699491119351721415}
   - first: {fileID: -7424845781446912109}
     second:
     - {fileID: -967715655767721548}
@@ -2804,6 +2842,13 @@ AnimatorStateMachine:
     - {fileID: 4722903449156561705}
     - {fileID: 6151190167802433903}
     - {fileID: -6368213564776788144}
+  - first: {fileID: -8500853265381723497}
+    second:
+    - {fileID: -7472350492002312033}
+    - {fileID: -5768577812966964019}
+    - {fileID: 1552894358474234092}
+    - {fileID: -7430179300687576307}
+    - {fileID: 3699491119351721415}
   - first: {fileID: -3053368119959446315}
     second:
     - {fileID: -7815063121106210366}

@@ -15,6 +15,9 @@ namespace Features
         //States
         //Properties
         public SkinnedMeshRenderer cmp_smr;
+        public BlendGroup[] activeObjects;
+        public float gapActivationValue;
+        public SkinMeshBlend[] meshRenderers;
         [Range(0.5f,10)]
         public float changeSpeed;
         [SerializeField]
@@ -31,6 +34,8 @@ namespace Features
             //Setup Properties
 
             ToggleActive(true);
+            FurryEntity furryEntity = controller as FurryEntity;
+            GroupEnabler(furryEntity.furryCount);
         }
 
         public bool GetActive()
@@ -49,9 +54,17 @@ namespace Features
 
             FurryEntity furryEntity = controller as FurryEntity;
 
+            if (blendValue != furryEntity.furryCount) GroupEnabler(furryEntity.furryCount);
+
             blendValue = furryEntity.furryCount;
 
-            if (cmp_smr == null) return;
+            if (meshRenderers.Length>0)
+            {
+                foreach (SkinMeshBlend mesh in meshRenderers)
+                {
+                    BlendChange(blendValue, mesh);
+                }
+            }
             /*if(cmp_smr.GetBlendShapeWeight(0)!=blendValue && time < changeSpeed)
             {                
                 float currentWeight = cmp_smr.GetBlendShapeWeight(0);
@@ -60,16 +73,49 @@ namespace Features
 
                 time += Time.deltaTime;
             }*/
-
-            BlendChange(blendValue);
+ 
+  
         }
 
-        public void BlendChange(float value)
+        public void BlendChange(float value, SkinMeshBlend blend)
         {
-            float currentWeight = cmp_smr.GetBlendShapeWeight(0);
+            if (blend.skinMesh == null) return;
+
+            float currentWeight = blend.skinMesh.GetBlendShapeWeight(0);
+            if (currentWeight == value) return;
+
+            if (blend.inverse == true) value = maxValue - value;
             currentWeight = Mathf.Lerp(currentWeight, value, changeSpeed);
-            cmp_smr.SetBlendShapeWeight(0, currentWeight);
+            blend.skinMesh.SetBlendShapeWeight(0, currentWeight);
+        }
+        public void GroupEnabler(float value)
+        {
+            float baseValue = maxValue / activeObjects.Length;
+            for (int i = 0; i < activeObjects.Length; i++)
+            {
+                bool toSet = false;
+                if (value+ gapActivationValue >= baseValue * i && value-gapActivationValue < baseValue * (i+1)) toSet = true;
+
+                for (int j = 0; j < activeObjects[i].setOnElements.Length; j++)
+                {
+                    activeObjects[i].setOnElements[j].SetActive(toSet);
+                }
+            }
         }
 
     }
+
+    [System.Serializable]
+    public class BlendGroup
+    {
+        [Header("To Active Objects")]
+        public GameObject[] setOnElements;
+    }
+    [System.Serializable]
+    public class SkinMeshBlend
+    {
+        public bool inverse;
+        public SkinnedMeshRenderer skinMesh;
+    }
+
 }
