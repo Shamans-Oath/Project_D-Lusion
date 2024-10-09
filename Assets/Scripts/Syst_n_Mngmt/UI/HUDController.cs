@@ -7,9 +7,15 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController instance;
 
-    public Image lifeBar, shieldBar, parryCircle, dashCircle;
-    public Image parryBorder, dashBorder, parryIcon, dashIcon;
+    public Image lifeBar, shieldBar;
     public float lerpDuration;
+    public Image parryBorder, dashBorder, parryCircle, dashCircle, parryIcon, dashIcon;
+    public Color initialColor;
+    public Color furyColor;
+    public Image furyBorder;
+    public Image furyImage;
+    public Sprite[] furyIcons;
+    
     float targetPointD, targetPointP, targetPointID, targetPointIP;
 
     void Awake()
@@ -29,7 +35,7 @@ public class HUDController : MonoBehaviour
         if(parryCircle.fillAmount == 1)
         {
             targetPointP += Time.deltaTime;
-            parryBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointP);
+            parryBorder.color = Color.Lerp(new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 0.25f), new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 1), targetPointP);
             if(parryBorder.fillAmount == 1)
             targetPointIP += Time.deltaTime;
             parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointIP);
@@ -38,14 +44,14 @@ public class HUDController : MonoBehaviour
         {
             targetPointP = 0;
             targetPointIP = 0;
-            parryBorder.color = new Color(1, 1, 1, 0.25f);
+            parryBorder.color = new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 0.25f);
             parryIcon.color = new Color(1, 1, 1,0);
         }
 
         if (dashCircle.fillAmount == 1)
         {
             targetPointD += Time.deltaTime;
-            dashBorder.color = Color.Lerp(new Color(1, 1, 1, 0.25f), Color.white, targetPointD);
+            dashBorder.color = Color.Lerp(new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 0.25f), new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 1), targetPointD);
             if(dashBorder.fillAmount == 1)
             targetPointID += Time.deltaTime;
             dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointID);
@@ -54,9 +60,11 @@ public class HUDController : MonoBehaviour
         {
             targetPointD = 0;
             targetPointID = 0;
-            dashBorder.color = new Color(1, 1, 1, 0.25f);
+            dashBorder.color = new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 0.25f);
             dashIcon.color = new Color(1, 1, 1, 0);
         }
+
+
     }
 
     public void UpdateParryCooldown(float timer, float duration)
@@ -91,22 +99,42 @@ public class HUDController : MonoBehaviour
         shieldBar.fillAmount = Mathf.Lerp(shieldBar.fillAmount, shieldRatio, lerpDuration);
     }
 
-    /*IEnumerator UpdateLife(int currentHealth, int maxHealth)
+    public void UpdateBorderColor(float currentFurry, float maxFurry)
     {
-        float t = 0;
-        float healthRatio = Mathf.InverseLerp(0, maxHealth, currentHealth);
+        float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
 
-        while(true)
+        parryBorder.color = Color.Lerp(new Color(initialColor.r, initialColor.g, initialColor.b, parryBorder.color.a), new Color(furyColor.r, furyColor.g, furyColor.b, parryBorder.color.a), furryRatio);
+        dashBorder.color = Color.Lerp(new Color(initialColor.r, initialColor.g, initialColor.b, dashBorder.color.a), new Color(furyColor.r, furyColor.g, furyColor.b, dashBorder.color.a), furryRatio);
+    }
+
+    public void UpdateFuryBorder(float currentFurry, float maxFurry)
+    {
+        float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
+
+        furyBorder.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, furryRatio);
+    }
+
+    public void UpdateFuryImage(float currentFurry, float maxFurry)
+    {
+        if(currentFurry == 0)
         {
-            yield return null;
-
-            t += Time.deltaTime;
-            lifeBar.fillAmount = Mathf.Lerp(lifeBar.fillAmount, healthRatio, t/lerpDuration);
-
-            if(t > lerpDuration)
-            {
-                break;
-            }
+            furyImage.sprite = furyIcons[0];
         }
-    }*/
+        else if(currentFurry >= maxFurry/5 && currentFurry < (maxFurry / 5) * 2)
+        {
+            furyImage.sprite = furyIcons[1];
+        }
+        else if (currentFurry >= (maxFurry / 5) * 2 && currentFurry < (maxFurry / 5) * 3)
+        {
+            furyImage.sprite = furyIcons[2];
+        }
+        else if (currentFurry >= (maxFurry / 5) * 3 && currentFurry < (maxFurry / 5) * 4)
+        {
+            furyImage.sprite = furyIcons[3];
+        }
+        else if (currentFurry == 100)
+        {
+            furyImage.sprite = furyIcons[4];
+        }
+    }
 }

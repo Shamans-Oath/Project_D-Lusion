@@ -21,6 +21,7 @@ namespace Features
         float parryCooldown, parryCooldownTimer;
         float dashCooldown, dashCooldownTimer;
         bool isDashing;
+        float furryValue, maxFurry;
         //References
         //Componentes
 
@@ -38,6 +39,7 @@ namespace Features
         public void UpdateFeature(Controller controller)
         {
             LivingEntity Life = controller as LivingEntity;
+            FurryEntity furry = controller as FurryEntity;
 
             if(HUDController.instance != null)
             {
@@ -57,7 +59,13 @@ namespace Features
                 if(!isDashing)
                 {
                     HUDController.instance.UpdateDashCooldown(dashCooldownTimer, dashCooldown);
-                }                
+                }
+
+                furryValue = furry.furryCount;
+                maxFurry = furry.maxFurryCount;
+                HUDController.instance.UpdateBorderColor(furryValue, maxFurry);
+                HUDController.instance.UpdateFuryBorder(furryValue, maxFurry);
+                HUDController.instance.UpdateFuryImage(furryValue, maxFurry);
             }                
         }
 
