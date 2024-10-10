@@ -16,7 +16,7 @@ MonoBehaviour:
   - key: startRotationSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 10
+    floatValue: 5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -39,7 +39,7 @@ MonoBehaviour:
   - key: maxRotationSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 30
+    floatValue: 6
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   - key: rotationAcceleration
     boolValue: 0
     intValue: 0
-    floatValue: 15
+    floatValue: 4
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
   - key: maxVerticalSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 30
+    floatValue: 20
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   - key: groundFriction
     boolValue: 0
     intValue: 0
-    floatValue: 5
+    floatValue: 100
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -264,7 +264,7 @@ MonoBehaviour:
   - key: airFriction
     boolValue: 0
     intValue: 0
-    floatValue: 3
+    floatValue: 8
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -972,7 +972,7 @@ MonoBehaviour:
   - key: acceleration
     boolValue: 0
     intValue: 0
-    floatValue: 3.5
+    floatValue: 5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -995,7 +995,7 @@ MonoBehaviour:
   - key: maxSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 4
+    floatValue: 6.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   - key: aimMaxAngle
     boolValue: 0
     intValue: 0
-    floatValue: 355
+    floatValue: 360
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   - key: parryStunDuration
     boolValue: 0
     intValue: 0
-    floatValue: 4
+    floatValue: 3
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1569,7 +1569,7 @@ MonoBehaviour:
     valueType: 6
   - key: maxShield
     boolValue: 0
-    intValue: 75
+    intValue: 50
     floatValue: 0
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
