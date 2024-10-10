@@ -160,6 +160,7 @@ namespace Features
                 attackCooldownTimer = 0;
                 attackTimer = 0;
                 combatAnimator.CancelCondition("stop");
+            Debug.Log("Cancel");
         }
 
         public void UpdateFeature(Controller controller)
@@ -240,7 +241,7 @@ namespace Features
             if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
 
-            Debug.Log("Started Attack " + i + "  |  " + activeAttack + " - " + actualAttack.swings[i]);
+            Debug.Log("Started Attack " + i + "  |  " + actualAttack.name + " - " + actualAttack.swings[i].swingName);
             if (AudioManager.instance)
             {
                 AudioManager.instance.PlaySound("Golpe");

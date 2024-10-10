@@ -23,12 +23,12 @@ namespace Features
             {
                 AnimationEvent startEvent = new AnimationEvent();
                 startEvent.functionName = "StartAttack";
-                startEvent.time = Mathf.Clamp(swings[i].start, 0, animationClipHuman.length);
+                startEvent.time = Mathf.Clamp(swings[i].start, 0.01f, animationClipHuman.length-0.01f);
                 startEvent.intParameter = i;
 
                 AnimationEvent endEvent = new AnimationEvent();
                 endEvent.functionName = "EndAttack";
-                endEvent.time = Mathf.Clamp(swings[i].end, 0, animationClipHuman.length);
+                endEvent.time = Mathf.Clamp(swings[i].end, 0.01f, animationClipHuman.length - 0.01f);
                 endEvent.intParameter = i;
 
                 clipEvents[i * 2] = startEvent;
