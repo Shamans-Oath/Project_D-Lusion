@@ -19,7 +19,7 @@ namespace Features
             if (kinetic == null || terrain == null || combat == null) return;
 
             cmp_animator.SetFloat("AttackFactor", combat.attackSpeedMultiplier);
-            cmp_animator.SetBool("IsAttacking", combat.AttackTimer > 0);
+            cmp_animator.SetBool("IsAttacking", combat.AttackTimer > combat.inBetweenAttacksTime);
 
             Vector3 speed = kinetic.speed;
             cmp_animator.SetFloat("VerticalSpeed", speed.y);
