@@ -74,7 +74,7 @@ namespace Features
 
                     if(attackImpact.HasValue)
                     {
-                        reactorCombatController.PriorityBasedCancelAttack(attackImpact.Value);
+                        if(reactorCombatController != null) reactorCombatController.PriorityBasedCancelAttack(attackImpact.Value);
                     }
                 }
 
