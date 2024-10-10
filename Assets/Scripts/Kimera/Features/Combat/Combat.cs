@@ -16,6 +16,7 @@ namespace Features
         //Control
         [Header("Control")]
         [SerializeField] private bool active;
+        public Controller mainController;
         //States
         [Header("States")]
         [SerializeField]
@@ -71,7 +72,7 @@ namespace Features
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
+            mainController = controller;
             //Setup Properties
             attack = settings.Search("attack");
 
@@ -204,7 +205,9 @@ namespace Features
         public void SetupAttack(AttackPreset attack, Controller controller)
         {
             if(movement != null) movement.ToggleActiveSubcontroller(false);
+            
             if (cmp_movement != null) cmp_movement.DivideSpeed(divideValue);
+            if (cmp_movement != null) cmp_movement.ToggleActive(true);
             if (friction != null) friction.ToggleActive(false);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
             if (faceTarget != null) faceTarget.ToggleActive(true);
@@ -237,6 +240,7 @@ namespace Features
             if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
 
+            Debug.Log("Started Attack " + i + "  |  " + activeAttack + " - " + actualAttack.swings[i]);
             if (AudioManager.instance)
             {
                 AudioManager.instance.PlaySound("Golpe");
@@ -254,13 +258,17 @@ namespace Features
 
         public void StopAttack()
         {
-            Player player = this.gameObject.GetComponent<Player>();
+            
+            CombatEntity combatEnt = mainController as CombatEntity;
 
-            if (player != null && !player.block)
+            if (combatEnt != null && !combatEnt.block)
             {
+                Debug.Log("block not detected");
                 if (movement != null) movement.ToggleActiveSubcontroller(true);
-                if (cmp_movement != null) cmp_movement.DivideSpeed(1);
+                
+                
             }
+            if (cmp_movement != null) cmp_movement.DivideSpeed(1);
             if (friction != null) friction.ToggleActive(true);
 
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);

@@ -94,7 +94,10 @@ namespace Features
             for (int i = 0; i < activeObjects.Length; i++)
             {
                 bool toSet = false;
-                if (value+ gapActivationValue >= baseValue * i && value-gapActivationValue < baseValue * (i+1)) toSet = true;
+                float tmpVal = value;
+                if (i == activeObjects.Length - 1) tmpVal--;
+                else if(i==0) tmpVal++;
+                if (tmpVal + gapActivationValue >= baseValue * i && tmpVal - gapActivationValue < baseValue * (i+1)) toSet = true;
 
                 for (int j = 0; j < activeObjects[i].setOnElements.Length; j++)
                 {
@@ -102,7 +105,6 @@ namespace Features
                 }
             }
         }
-
     }
 
     [System.Serializable]

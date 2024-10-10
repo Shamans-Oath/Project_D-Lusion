@@ -35,6 +35,7 @@ namespace Features
         Movement cmp_movement;
         Jump cmp_jump;
         Rotation cmp_rotation;
+        Controller mainController;
 
         private void Awake()
         {
@@ -56,7 +57,7 @@ namespace Features
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
+            mainController = controller;
             //Setup Properties
             parryTime = settings.Search("parryTime");
             parryCooldown = settings.Search("parryCooldown");
@@ -94,14 +95,30 @@ namespace Features
         public void StartBlock()
         {           
             if (parry == false && parryCooldownTimer <= 0)
-            {                
+            {
+                
                 //if (combat != null) combat.ToggleActiveSubcontroller(false);
+                if (movement != null) movement.ToggleActive(false);
+                cmp_movement.AttackFailsafe();
+                if (rotation != null) rotation.ToggleActive(false);
+                cmp_rotation.AttackFailsafe();
+                if (jump != null) jump.ToggleActive(false);
+                cmp_jump.AttackFailsafe();
+                if (animator != null) animator.LockAnimator(true);
                 if (stun != null) stun.ToggleActive(false);
                 if (dash != null) dash.ToggleActive(false);
+
+                CombatEntity combat = mainController as CombatEntity;
+                if (combat != null)
+                {
+                    combat.parry = parry;
+                    combat.block = block;
+                }
+
                 parry = true;
                 block = true;
                 parryTimer = parryTime;
-                combatAnimator.InputConditon("stop");
+                //combatAnimator.InputConditon("stop");
             }                
         }
 
@@ -151,13 +168,6 @@ namespace Features
             {
                 StartBlock();
                 if (animator != null) animator.FeatureAction(controller, new Setting("triggerName", "Block", Setting.ValueType.String));
-                if (movement != null) movement.ToggleActive(false);
-                cmp_movement.AttackFailsafe();
-                if (rotation != null) rotation.ToggleActive(false);
-                cmp_rotation.AttackFailsafe();
-                if (jump != null) jump.ToggleActive(false);
-                cmp_jump.AttackFailsafe();
-                if (animator != null) animator.LockAnimator(true);
                 return;
             }
             

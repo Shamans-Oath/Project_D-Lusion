@@ -139,8 +139,8 @@ namespace Features
                     actor.SearchFeature<Combat>().StopAttack();
                     
                     reactor.SearchFeature<Friction>().ToggleActive(true);
-                    reactor.SearchFeature<Block>().block = false;
-                    reactor.SearchFeature<Block>().InvokeEnd();
+                    //reactor.SearchFeature<Block>().block = false;
+                    //reactor.SearchFeature<Block>().InvokeEnd();
 
                     Camera_System.instance.CameraShake("Parry");
                     reactor.SearchFeature<Combat>().attackCooldownTimer = 0;

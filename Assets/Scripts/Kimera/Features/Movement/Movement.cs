@@ -221,12 +221,10 @@ namespace Features
 
             if (activeCount > 0)
             {
-                this.active = false;
-                
+                this.active = false;              
             }
             else
             {
-                
                 this.active = true;
             }
             Debug.Log(this.active);
@@ -240,6 +238,8 @@ namespace Features
         public void AttackFailsafe()
         {
             activeCount = 1;
+            /*this.active = false;
+            Debug.Log(this.active + "AttackFailSafe");*/
         }
 
         public void ToggleActiveSubcontroller(bool active)
@@ -255,7 +255,7 @@ namespace Features
         }
         public void DivideSpeed(float amount)
         {
-            if(active==false)ToggleActive(true);
+            //if(active==false)ToggleActive(true);
             divideValue = amount;
             
         }

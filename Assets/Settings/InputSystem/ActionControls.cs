@@ -98,6 +98,15 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Empty"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce34a6a5-221e-4eb3-b27c-3a5c23b693f4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -213,28 +222,6 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2177fa2a-d750-49cb-ba89-7a3395ff112f"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a2a3dacd-7d20-4cd0-a27f-76fb3ece657d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""GamePad"",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""d653c901-4aa6-45c4-9bd9-6551c89d5c49"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -318,6 +305,28 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2177fa2a-d750-49cb-ba89-7a3395ff112f"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Empty"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2a3dacd-7d20-4cd0-a27f-76fb3ece657d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Empty"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -931,6 +940,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
         m_GamePlay_Escape = m_GamePlay.FindAction("Escape", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Block = m_GamePlay.FindAction("Block", throwIfNotFound: true);
+        m_GamePlay_Empty = m_GamePlay.FindAction("Empty", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
@@ -1014,6 +1024,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Escape;
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Block;
+    private readonly InputAction m_GamePlay_Empty;
     public struct GamePlayActions
     {
         private @ActionControls m_Wrapper;
@@ -1026,6 +1037,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
         public InputAction @Escape => m_Wrapper.m_GamePlay_Escape;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Block => m_Wrapper.m_GamePlay_Block;
+        public InputAction @Empty => m_Wrapper.m_GamePlay_Empty;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1059,6 +1071,9 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @Empty.started += instance.OnEmpty;
+            @Empty.performed += instance.OnEmpty;
+            @Empty.canceled += instance.OnEmpty;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
@@ -1087,6 +1102,9 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @Empty.started -= instance.OnEmpty;
+            @Empty.performed -= instance.OnEmpty;
+            @Empty.canceled -= instance.OnEmpty;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -1266,6 +1284,7 @@ public partial class @ActionControls: IInputActionCollection2, IDisposable
         void OnEscape(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnEmpty(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
