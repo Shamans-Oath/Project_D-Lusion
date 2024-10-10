@@ -212,6 +212,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 0}
@@ -236,6 +237,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
+  interactedCollider: []
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -358,6 +360,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 0}
@@ -382,6 +385,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
+  interactedCollider: []
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -432,6 +436,7 @@ GameObject:
   - component: {fileID: 1205403558973286421}
   - component: {fileID: 847454256161360653}
   - component: {fileID: 5258178875270296862}
+  - component: {fileID: 2015719651995609155}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -547,6 +552,9 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   cmp_smr: {fileID: 0}
+  activeObjects: []
+  gapActivationValue: 0
+  meshRenderers: []
   changeSpeed: 1.5
   blendValue: 0
   maxValue: 100
@@ -751,6 +759,8 @@ MonoBehaviour:
   - {fileID: 3732577423377676449}
   - {fileID: 7362127228096595051}
   - {fileID: 24328050031204868}
+  input: {fileID: 0}
+  triggerDownAttack: 0
   dashPoint: {fileID: 0}
   cameraSys: {fileID: 0}
 --- !u!114 &1119332842073681313
@@ -823,6 +833,7 @@ MonoBehaviour:
   jump: {fileID: 0}
   friction: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
+  divideValue: 1
 --- !u!114 &7757264760355797440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,6 +973,7 @@ MonoBehaviour:
   isStunned: 0
   stunTimer: 0
   stunDuration: 0
+  animator: {fileID: 0}
 --- !u!114 &5104579737851669017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+  mainController: {fileID: 0}
   activeAttack: 0
   actualAttack: {fileID: 0}
   actualCombo: {fileID: 0}
@@ -1048,6 +1061,7 @@ MonoBehaviour:
   - {fileID: 8920748631790589407}
   faceTarget: {fileID: 0}
   friction: {fileID: 0}
+  divideValue: 0
   currentFurry: 0
   attackSpeedModifier: 0.75
   attackSpeedMultiplier: 1
@@ -1133,6 +1147,7 @@ MonoBehaviour:
   active: 0
   aimRadius: 0
   aimMaxAngle: 0
+  noneAimAngle: 0
   aimTag: 
   aimLayer:
     serializedVersion: 2
@@ -1477,6 +1492,21 @@ MonoBehaviour:
   oscilationValue: 0
   oscilationSpeed: 0
   volume: {fileID: 0}
+--- !u!114 &2015719651995609155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea43bcb4ffa5974faeb86d182134526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  combatCondition: 
 --- !u!1 &289061052350404976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,6 +4764,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 0}
@@ -4758,6 +4789,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
+  interactedCollider: []
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -6418,6 +6450,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 0}
@@ -6442,6 +6475,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
+  interactedCollider: []
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
@@ -7998,6 +8032,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
   rb: {fileID: 0}
@@ -8022,6 +8057,7 @@ MonoBehaviour:
   boxOffset: {x: 0, y: 0, z: 0}
   tagsToInteract: []
   isInteracted: 0
+  interactedCollider: []
   cmp_collider: {fileID: 0}
   cmp_rigidbody: {fileID: 0}
   attack: {fileID: 0}
