@@ -24,18 +24,21 @@ namespace Features
         private float blendValue=0;
         private float time;
         public float maxValue = 100;
+        public float blendUnit;
         //References
         //Componentes
 
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
+            
             //Setup Properties
 
             ToggleActive(true);
             FurryEntity furryEntity = controller as FurryEntity;
-            GroupEnabler(furryEntity.furryCount);
+            blendUnit = maxValue / settings.Search("furryMax");
+
+            GroupEnabler(furryEntity.furryCount * blendUnit);
         }
 
         public bool GetActive()
@@ -54,9 +57,9 @@ namespace Features
 
             FurryEntity furryEntity = controller as FurryEntity;
 
-            if (blendValue != furryEntity.furryCount) GroupEnabler(furryEntity.furryCount);
+            if (blendValue != furryEntity.furryCount) GroupEnabler(furryEntity.furryCount * blendUnit);
 
-            blendValue = furryEntity.furryCount;
+            blendValue = furryEntity.furryCount * blendUnit;
 
             if (meshRenderers.Length>0)
             {
