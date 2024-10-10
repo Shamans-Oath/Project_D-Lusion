@@ -17,11 +17,11 @@ MonoBehaviour:
   attackToughness: 10
   swings:
   - swingName: KickMMA
-    size: {x: 3, y: 3, z: 3}
-    offset: {x: 0, y: 0, z: 0.5}
+    size: {x: 5, y: 5, z: 5}
+    offset: {x: 0, y: 0, z: 0}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 8
-    movementLinker: {x: 0, y: 0, z: 0.1}
+    movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
       serializedVersion: 2
       m_Curve:
