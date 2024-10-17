@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7469492986313009258}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2894991169735044327}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2688378180608644671}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3548858813152249112}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9164325137363791681}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_B0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6322582121231331720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 97579960212191061}
   - component: {fileID: 3661771022975729849}
   - component: {fileID: 7288147909024742982}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torso_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -843,10 +843,10 @@ NavMeshAgent:
   m_GameObject: {fileID: 270489431914573047}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 0.35
+  m_Radius: 0.7
+  m_Speed: 3
   m_Acceleration: 8
-  avoidancePriority: 50
+  avoidancePriority: 25
   m_AngularSpeed: 120
   m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
@@ -855,7 +855,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &8209517727731381321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,6 +1028,7 @@ MonoBehaviour:
   isStunned: 0
   stunTimer: 0
   stunDuration: 0
+  animator: {fileID: 0}
 --- !u!114 &6392410177378381092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1061,6 +1062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+  mainController: {fileID: 0}
   activeAttack: 0
   actualAttack: {fileID: 0}
   actualCombo: {fileID: 0}
@@ -1075,6 +1077,7 @@ MonoBehaviour:
   - {fileID: 2675780424105443923}
   faceTarget: {fileID: 0}
   friction: {fileID: 0}
+  divideValue: 0
   currentFurry: 0
   attackSpeedModifier: 1.5
   attackSpeedMultiplier: 1
@@ -1364,7 +1367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2955310242201095402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BocaSup_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1396,7 +1399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1086792074319420074}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1428,7 +1431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8343929570560989840}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1459,7 +1462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385002792041357557}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4656357542319262390}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_A1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,7 +1525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5619884589139247647}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mano_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1560,7 +1563,7 @@ GameObject:
   - component: {fileID: 5254473893342926861}
   - component: {fileID: 6650864947454428740}
   - component: {fileID: 522816514261606028}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: WorldCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1659,7 +1662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5376278134365152128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 295897663121333443}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1722,7 +1725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 718668013262942826}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,7 +1757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2469221029669914920}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8558274221279462672}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1818,7 +1821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6440377296354116534}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1849,7 +1852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997497826027908474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1881,7 +1884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2920259990182089606}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1913,7 +1916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7388844841005894567}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1945,7 +1948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7593688339084701505}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_A0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1977,7 +1980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8036517339815181046}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2009,7 +2012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6680347814455108530}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2041,7 +2044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8627742396358554137}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A3_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2072,7 +2075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769272949907475680}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torso_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,7 +2109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6334817885504833518}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2138,7 +2141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2267552000423440656}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_03_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,7 +2176,7 @@ GameObject:
   - component: {fileID: 2573868516531262552}
   - component: {fileID: 3601692309261247469}
   - component: {fileID: 8728531732154525877}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brazo_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2301,7 +2304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3090760777476904601}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2333,7 +2336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833495306014200304}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2364,7 +2367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2860078509536423102}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mano_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2544,7 +2547,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5197175457282014071}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ojo_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2576,7 +2579,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6706714372409123985}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2608,7 +2611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3516983546459887604}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ojo_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2639,7 +2642,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5219892715981223434}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2671,7 +2674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084200493658188786}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BocaInf_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2703,7 +2706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6674862630541377860}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_C1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2734,7 +2737,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5313258883038886838}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mano_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2766,7 +2769,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4379234498584125519}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2798,7 +2801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4087680498847684018}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2832,7 +2835,7 @@ GameObject:
   - component: {fileID: 2769181278644360872}
   - component: {fileID: 4437546520986109103}
   - component: {fileID: 8016657662397980669}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: Progress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2905,7 +2908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4249992402789593000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2938,7 +2941,7 @@ GameObject:
   - component: {fileID: 6022980336639113588}
   - component: {fileID: 5844393028041130961}
   - component: {fileID: 46707993585281813}
-  m_Layer: 5
+  m_Layer: 12
   m_Name: LifeBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3012,7 +3015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1339825806466179644}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3044,7 +3047,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7687104572570782308}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3412,7 +3415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4607337649555061095}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3444,7 +3447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4594810894075954137}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3510,7 +3513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1183031837257023194}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_B1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3541,7 +3544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 601947196698252282}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_C1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3658,7 +3661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3586148765916987457}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_A0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3690,7 +3693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4758210022361215737}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_03_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3722,7 +3725,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1038913928656424984}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3754,7 +3757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567967567046015774}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3785,7 +3788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278239833344462717}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: joint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3817,7 +3820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6664244662779144169}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A3_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3851,7 +3854,7 @@ GameObject:
   - component: {fileID: 5740862090958849879}
   - component: {fileID: 2984380713612131791}
   - component: {fileID: 7441246619434998943}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_02_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3979,7 +3982,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7084284885749526622}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4011,7 +4014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563775259525358608}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BocaSup_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4042,7 +4045,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5744549622603365079}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pulgar_02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4073,7 +4076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 636916590468261791}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4105,7 +4108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5580656656580904329}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_C0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4139,7 +4142,7 @@ GameObject:
   - component: {fileID: 4592336290351842230}
   - component: {fileID: 2280956226488820106}
   - component: {fileID: 8848519101209133644}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pelviz_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4221,7 +4224,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2408060747495874989}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_A2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4255,7 +4258,7 @@ GameObject:
   - component: {fileID: 1398502265326543882}
   - component: {fileID: 9008746541736929507}
   - component: {fileID: 227928450733758892}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brazo_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4383,7 +4386,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6708105093898423265}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_A1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4417,7 +4420,7 @@ GameObject:
   - component: {fileID: 3856851318141132782}
   - component: {fileID: 665478893366888925}
   - component: {fileID: 2696949641780492325}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cabeza_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4543,7 +4546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7050087811637050722}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4580,7 +4583,7 @@ GameObject:
   - component: {fileID: 4558427411284566311}
   - component: {fileID: 1637226914401814046}
   - component: {fileID: 6919333154173706729}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brazo_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4708,7 +4711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5999533560739992461}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4739,7 +4742,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1569199439431865486}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4771,7 +4774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2277822591596321690}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4905,7 +4908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5304283869693563595}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Torso_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4937,7 +4940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5067468769233655804}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BocaInf_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5116,7 +5119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6463854331781715142}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_C0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5148,7 +5151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3076689159669233079}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5180,7 +5183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2549753820315752030}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_C0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5212,7 +5215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1404213022763814050}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5280,7 +5283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3149774372604414039}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_B0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5312,7 +5315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6106295314915176593}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5344,7 +5347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4994882680895495268}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A0_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5376,7 +5379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2657464692144000047}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mano_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5414,7 +5417,7 @@ GameObject:
   - component: {fileID: 7345166736720941280}
   - component: {fileID: 5626317607802874773}
   - component: {fileID: 1863623709054692200}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_02_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5542,7 +5545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2788329402316630291}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_01_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5574,7 +5577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351516917486588114}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Cabeza_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5619,7 +5622,7 @@ GameObject:
   - component: {fileID: 6835403215122915919}
   - component: {fileID: 5407579473376566979}
   - component: {fileID: 6518675978494970072}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5747,7 +5750,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7990010772276298078}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ojo_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5781,7 +5784,7 @@ GameObject:
   - component: {fileID: 3610407589598006530}
   - component: {fileID: 4441777135270174564}
   - component: {fileID: 4049532384693971750}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Brazo_01_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5909,7 +5912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6717768143963277435}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5941,7 +5944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7786050253574528915}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_B2_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5972,7 +5975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4184402647036682963}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A1_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6004,7 +6007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699762280854585172}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ojo_00_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6036,7 +6039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3851996200998715818}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Escama_B1_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6120,7 +6123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285627580196342908}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6152,7 +6155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5667444538931863444}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pie_dedo_C2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6186,7 +6189,7 @@ GameObject:
   - component: {fileID: 1476083820164788701}
   - component: {fileID: 8629671742737033772}
   - component: {fileID: 1606337377449115928}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pierna_00_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6314,7 +6317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2112879593027360840}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_A2_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6346,7 +6349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6872248162533213955}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dedo_B0_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -42,6 +42,12 @@ namespace Features
 
             if(attack != null)
             {
+                bool? proporcentualDamage = attack.Search("proportionalHealthDamage");
+                if(proporcentualDamage.HasValue && proporcentualDamage.Value==true)
+                {
+                    damage = ((reactorLife.maxHealth - reactorLife.CurrentHealth) * damage) / reactorLife.maxHealth;
+                }
+
                 float? attackPotential = attack.Search("attackPotential");
 
                 if (attackPotential.HasValue)
@@ -61,7 +67,9 @@ namespace Features
 
             if (!reactorCombat.block && !reactorCombat.parry)
             {
+                Debug.Log("Life:" + reactorLife.CurrentHealth + " / " + reactorLife.maxHealth + "   |  " + damage + " damage made to " + reactor.name);
                 reactorLife.Health(-damage);
+                
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
                 if(AudioManager.instance)
