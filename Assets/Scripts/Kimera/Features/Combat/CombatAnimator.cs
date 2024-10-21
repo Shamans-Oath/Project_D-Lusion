@@ -51,6 +51,7 @@ namespace Features
             string condition3 = settings.Search("combatCondition3");
             string condition4 = settings.Search("combatCondition4");
             string condition5 = settings.Search("combatCondition5");
+            string condition6 = settings.Search("combatCondition6");
 
             if (condition1 != null) if (condition1 != string.Empty)
                 {
@@ -76,6 +77,11 @@ namespace Features
                 {
                     conditions.Add(condition5, false);
                     coroutinesInput.Add(condition5, null);
+                }
+            if (condition6 != null) if (condition6 != string.Empty)
+                {
+                    conditions.Add(condition6, false);
+                    coroutinesInput.Add(condition6, null);
                 }
 
             ToggleActive(true);

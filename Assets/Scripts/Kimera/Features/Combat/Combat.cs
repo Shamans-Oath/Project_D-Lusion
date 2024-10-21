@@ -83,14 +83,16 @@ namespace Features
             ComboPreset combo3 = settings.Search("defaultCombo3") as ComboPreset;
             ComboPreset combo4 = settings.Search("defaultCombo4") as ComboPreset;
             ComboPreset combo5 = settings.Search("defaultCombo5") as ComboPreset;
+            ComboPreset combo6 = settings.Search("defaultCombo6") as ComboPreset;
 
             if (combo1 != null) defaultCombos.Add(combo1);
             if (combo2 != null) defaultCombos.Add(combo2);
             if (combo3 != null) defaultCombos.Add(combo3);
             if (combo4 != null) defaultCombos.Add(combo4);
             if (combo5 != null) defaultCombos.Add(combo5);
+            if (combo6 != null) defaultCombos.Add(combo6);
 
-            if(settings.Search("movementDivideValue") != null) divideValue = settings.Search("movementDivideValue");
+            if (settings.Search("movementDivideValue") != null) divideValue = settings.Search("movementDivideValue");
             float? tempAttackCooldown = settings.Search("attackCooldown");
             if (tempAttackCooldown.HasValue) attackCooldown = tempAttackCooldown.Value;
             else attackCooldown = DEFAULT_ATTACK_COOLDOWN;
