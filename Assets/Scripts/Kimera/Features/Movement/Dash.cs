@@ -37,6 +37,7 @@ namespace Features
         public float baseHeight;
         public float gravityMultiplierUpHill;
         public float gravityMultiplierDownHill;
+        public float dashOffset;
         //Properties /Time Management
         public float chargeTimeSeconds;
         public float dashCooldownSeconds;
@@ -45,6 +46,7 @@ namespace Features
         [SerializeField] private Movement movement;
         //Componentes
         [Header("Components")]
+        private Controller cmp_controller;
         [SerializeField] private Rigidbody cmp_rigidbody;
 
         private void Awake()
@@ -61,6 +63,7 @@ namespace Features
             settings = controller.settings;
 
             //Setup Properties
+            cmp_controller = controller;
             gravityValue = settings.Search("gravityValue");
             timeMultiplier = settings.Search("timeMultiplier");
             baseHeight = settings.Search("baseHeight");
@@ -68,6 +71,7 @@ namespace Features
             gravityMultiplierDownHill = settings.Search("gravityMultiplierDownHill");
             chargeTimeSeconds = settings.Search("chargeTimeSeconds");
             dashCooldownSeconds = settings.Search("dashCooldownSeconds");
+            dashOffset = settings.Search("dashOffset");
 
             ToggleActive(true);
         }
@@ -114,6 +118,11 @@ namespace Features
             try
             {
                 Vector3 position = settings[0].value;
+                /*Vector3 direction = position - transform.position;
+                float distance = Hipotenuse(direction.x, direction.z);
+                float newPositionX = GetEquivalence(distance, distance - dashOffset, direction.x);
+                float newPositionZ = GetEquivalence(distance, distance - dashOffset, direction.z);*/
+
                 ChargeDash(position);
             }
             catch
@@ -157,15 +166,19 @@ namespace Features
 
             float flightTime = ProjectileMotion.GetFlightTime(heightUpHill, gravityValue * gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(heightDownHill, gravityValue * gravityMultiplierDownHill);
 
-            float length = direction.magnitude;
+            float length = direction.magnitude - dashOffset;
 
             float newHorizontalSpeed = length / flightTime;
+
+            transform.LookAt(direction);
 
             //Get the speed to reach the target Position
             speed = ProjectileMotion.GetStartSpeed(direction.normalized, heightUpHill, newHorizontalSpeed, gravityValue * gravityMultiplierUpHill);
 
             //Disable movement while dashing and charging
             DashState(true);
+
+            cmp_controller.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-viper", Setting.ValueType.String));
 
             cmp_rigidbody.velocity = Vector3.zero;
 
@@ -260,6 +273,18 @@ namespace Features
         }
 
         #endregion
+
+        float Hipotenuse(float a, float b)
+        {
+            return Mathf.Sqrt(a * a + b * b);
+        }
+
+        float GetEquivalence(float ratio1, float ratio2, float targetValue)
+        {
+            float Ratio = ratio1 / ratio2;
+
+            return targetValue/Ratio;
+        }
 
         #region State Management
 
