@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2805917127601961051, guid: 897683e0a972128448be8a4531474c6c, type: 3}
       propertyPath: m_Name
-      value: Arboles_low Variant
+      value: Arboles_low Variant 2
       objectReference: {fileID: 0}
     - target: {fileID: 3295313787801199329, guid: 897683e0a972128448be8a4531474c6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57,5 +57,40 @@ PrefabInstance:
     - {fileID: 25560128601723427, guid: 897683e0a972128448be8a4531474c6c, type: 3}
     - {fileID: 3991658023138802774, guid: 897683e0a972128448be8a4531474c6c, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2805917127601961051, guid: 897683e0a972128448be8a4531474c6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279033606224842057}
   m_SourcePrefab: {fileID: 100100000, guid: 897683e0a972128448be8a4531474c6c, type: 3}
+--- !u!1 &1649826557008848097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2805917127601961051, guid: 897683e0a972128448be8a4531474c6c, type: 3}
+  m_PrefabInstance: {fileID: 3464889076860230842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!205 &5279033606224842057
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649826557008848097}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 0}
+  m_Enabled: 1
