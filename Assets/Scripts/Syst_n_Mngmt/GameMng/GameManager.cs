@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
         OnMenu
 
     };
+
     private void Awake()
     {
         manager = this;
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
 
             Debug.Log("GameManager: add input system");
             gameInputSystem = new ActionControls();
+            gameInputSystem.GamePlay.Enable();
         }
     }
 
@@ -67,11 +70,23 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Gameplay:
                 SetState(GameState.OnMenu);
-                break;
+                ToggleActionMap(gameInputSystem.UI);
+            break;
+
             case GameState.OnMenu:
                 SetState(GameState.Gameplay);
+                ToggleActionMap(gameInputSystem.GamePlay);
             break;
         }        
+    }
+
+    public void ToggleActionMap(InputActionMap actionMap)
+    {
+        if (actionMap.enabled)
+            return;
+
+        gameInputSystem.Disable();
+        actionMap.Enable();
     }
 
     #endregion
