@@ -56,10 +56,10 @@ public class CanvasManager : MonoBehaviour
             ToggleTutorial("InputPopup", "Atacar");
         }*/
 
-        if (Input.GetKeyDown(KeyCode.O))
+        /*if (Input.GetKeyDown(KeyCode.O))
         {
             ToggleTutorialPause("ComboPopup", "Bloody Combo");
-        }
+        }*/
     }
 
     public void ToggleMenu(string menuName)
@@ -105,6 +105,8 @@ public class CanvasManager : MonoBehaviour
     public void ToggleTutorialPause(string menuName, string tutorialName)
     {
         CanvasObj s = Array.Find(Menus, canvasobj => canvasobj.name == menuName);
+
+        Debug.Log("TestCanvas");
 
         TutorialManager tutorialManager = s.canvObj.GetComponent<TutorialManager>();
 

@@ -45,7 +45,7 @@ public class TutorialManager : MonoBehaviour
     {
         if(seconds == 0)
         {
-            yield return 0;
+            yield break;
         }
 
         yield return new WaitForSeconds(seconds);
