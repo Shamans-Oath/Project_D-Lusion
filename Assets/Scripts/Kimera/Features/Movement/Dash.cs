@@ -37,6 +37,7 @@ namespace Features
         public float baseHeight;
         public float gravityMultiplierUpHill;
         public float gravityMultiplierDownHill;
+        [Range(0, 1)]
         public float dashOffset;
         //Properties /Time Management
         public float chargeTimeSeconds;
@@ -166,7 +167,7 @@ namespace Features
 
             float flightTime = ProjectileMotion.GetFlightTime(heightUpHill, gravityValue * gravityMultiplierUpHill) + ProjectileMotion.GetFlightTime(heightDownHill, gravityValue * gravityMultiplierDownHill);
 
-            float length = direction.magnitude - dashOffset;
+            float length = direction.magnitude * dashOffset;
 
             float newHorizontalSpeed = length / flightTime;
 
