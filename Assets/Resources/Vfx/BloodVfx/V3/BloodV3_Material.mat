@@ -26,7 +26,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Speed: 0.009
-    m_Colors: []
+    m_Colors:
+    - _BloodColor: {r: 1, g: 0, b: 0.05555582, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5132097460625088094
 MonoBehaviour:
