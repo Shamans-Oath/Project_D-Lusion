@@ -64,7 +64,8 @@ public class TargetLock : MonoBehaviour
         if (currentTarget == null)
         {
             AssignTarget();
-            if (aimIcon) aimIcon.transform.position = mainCamera.WorldToScreenPoint(new Vector3(Screen.width, Screen.height,0));
+            if (aimIcon) //aimIcon.transform.position = mainCamera.WorldToScreenPoint(new Vector3(Screen.width, Screen.height,0));
+            aimIcon.transform.position = new Vector3(Screen.width/2, Screen.height/2, 0);
         }
         else
         {
