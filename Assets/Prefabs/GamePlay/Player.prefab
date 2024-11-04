@@ -935,6 +935,7 @@ MonoBehaviour:
   baseHeight: 0
   gravityMultiplierUpHill: 0
   gravityMultiplierDownHill: 0
+  dashOffset: 0
   chargeTimeSeconds: 0
   dashCooldownSeconds: 0
   movement: {fileID: 1988158739632771454}
@@ -1508,6 +1509,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   combatCondition: 
+  animator: {fileID: 0}
 --- !u!1 &289061052350404976
 GameObject:
   m_ObjectHideFlags: 0

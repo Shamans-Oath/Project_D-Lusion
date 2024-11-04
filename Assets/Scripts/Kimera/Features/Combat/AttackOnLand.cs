@@ -15,13 +15,18 @@ namespace Features
         //States
         //Properties
         public string combatCondition;
+        public EntityAnimator animator;
         //References
         //Componentes
 
+        private void Awake()
+        {
+            animator = gameObject.GetComponent<EntityAnimator>();
+        }
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-
+            
             //Setup Properties
 
             ToggleActive(false);
@@ -50,6 +55,7 @@ namespace Features
                 CombatAnimator combatAnimator = controller.SearchFeature<CombatAnimator>();
 
                 combatAnimator.InputConditon("stop");
+                if (animator != null) animator.FeatureAction(controller, new Setting("triggerName", "Cancel", Setting.ValueType.String));
                 combatAnimator.InputConditon(combatCondition);
 
                 ToggleActive(false);

@@ -26,6 +26,7 @@ namespace Features
         public float maxRotationSpeed;
         public float acceleration;
         public AnimationCurve rotationSpeedCurve;
+        public float rotationDirValue;
         //References
         //Componentes
         [Header("Components")]
@@ -105,9 +106,24 @@ namespace Features
             {
                 angularSpeed = startRotationSpeed;
             }
-
+            /*if (Quaternion.Angle(transform.rotation, Quaternion.LookRotation(forward)) < -0.5f)
+            {
+                Debug.Log(-1);
+            }
+            else if (transform.rotation.y - Quaternion.LookRotation(forward).y > 0.5f)
+            {
+                Debug.Log(1);
+            }
+            else
+            {
+                Debug.Log(0);
+            }*/
+            Quaternion toRotate = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward), angularSpeed * Time.deltaTime);
+ 
+            rotationDirValue= toRotate.eulerAngles.y-transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(forward), angularSpeed * Time.deltaTime);
-
+            
+            //Debug.Log(transform.rotation.eulerAngles.y - Quaternion.LookRotation(forward).eulerAngles.y);
             RotateSpeed();
 
             isRotating = true;
@@ -133,7 +149,7 @@ namespace Features
                 float t = elapsedTime / time;
 
                 angularSpeed = rotationSpeedCurve.Evaluate(t) * speedSpan + startRotationSpeed;
-
+                Debug.Log(angularSpeed);
                 yield return null;
             }
 
