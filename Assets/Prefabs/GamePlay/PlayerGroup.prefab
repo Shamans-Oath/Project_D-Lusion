@@ -3402,6 +3402,10 @@ MonoBehaviour:
     reference: MuerteHumano
   - name: MuerteFurro
     reference: MuerteBestia
+  - name: Pasos
+    reference: PasosHumano
+  - name: PasosFurro
+    reference: PasosBestia
 --- !u!4 &4134109494406787620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780311985754503132, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
