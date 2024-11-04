@@ -73,7 +73,7 @@ namespace Features
             {
                 jumpTimer = 0;
                 reachedApex = false;
-                hasJumped = false;
+                hasJumped = false;               
             }
         }
 
@@ -89,7 +89,18 @@ namespace Features
 
             hasJumped = true;
             jumpTimer = jumpCooldown;
-            cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);         
+            cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
+
+            FurryEntity furry = controller as FurryEntity;
+
+            if (furry.furryCount > furry.maxFurryCount * 0.7f)
+            {
+                AudioManager.instance.PlaySound("SaltoBestia");
+            }
+            else
+            {
+                AudioManager.instance.PlaySound("SaltoHumano");
+            }
         }        
 
         public bool GetActive()

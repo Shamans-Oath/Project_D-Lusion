@@ -21,6 +21,8 @@ namespace Features
             CombatReactions actorReaction = actor.SearchFeature<CombatReactions>();
             Life reactorLife = reactor.SearchFeature<Life>();
             Life actorLife = actor.SearchFeature<Life>();
+            SoundLibrary actorLibrary = actor.GetComponent<SoundLibrary>();
+            SoundLibrary reactorLibrary = reactor.GetComponent<SoundLibrary>();
 
             Combat reactorCombatController = reactor.SearchFeature<Combat>();
 
@@ -68,12 +70,27 @@ namespace Features
             if (!reactorCombat.block && !reactorCombat.parry)
             {
                 Debug.Log("Life:" + reactorLife.CurrentHealth + " / " + reactorLife.maxHealth + "   |  " + damage + " damage made to " + reactor.name);
-                reactorLife.Health(-damage);
+                reactorLife.Health(-damage);                
                 
                 if (furry != null) furry.IncreaseFurryCount();
                 if (furryEntity != null) furryEntity.furryCombo++;
                 if(AudioManager.instance)
-                AudioManager.instance.PlaySound("GolpeAcertado");
+                {
+                    /*if(furry != null && furry.furryCount > furry.furryMax * 0.7)
+                    {
+                        actorLibrary.CallAudioManager("ImpactoFurro");
+                        reactorLibrary.CallAudioManager("DañoFurro");
+                    }
+                    else
+                    {
+                        actorLibrary.CallAudioManager("Impacto");
+                        reactorLibrary.CallAudioManager("Daño");
+                    }*/
+
+                    actorLibrary.CallAudioManager("Impacto");
+                    reactorLibrary.CallAudioManager("Daño");
+                }
+                
                 //A�adir efectos de ataque
 
                 if (attack != null)

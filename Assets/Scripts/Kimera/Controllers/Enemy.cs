@@ -46,6 +46,13 @@ namespace Features
             CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
             ToggleActive(false);
             Invoke("ReanimateAndSave", DESPAWN_TIME);
+
+            SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
+
+            if (soundLibrary != null)
+            {
+                soundLibrary.CallAudioManager("Muerte");
+            }
         }
 
         public void ReanimateAndSave()

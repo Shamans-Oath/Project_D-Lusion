@@ -2551,7 +2551,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: IdleBlendTree
   m_Speed: 23.47
   m_CycleOffset: 0
   m_Transitions:
@@ -2973,13 +2973,6 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -8500853265381723497}
-    second:
-    - {fileID: -7472350492002312033}
-    - {fileID: -5768577812966964019}
-    - {fileID: 1552894358474234092}
-    - {fileID: -7430179300687576307}
-    - {fileID: 3699491119351721415}
   - first: {fileID: -7424845781446912109}
     second:
     - {fileID: -967715655767721548}
@@ -2994,6 +2987,13 @@ AnimatorStateMachine:
     - {fileID: 4722903449156561705}
     - {fileID: 6151190167802433903}
     - {fileID: -6368213564776788144}
+  - first: {fileID: -8500853265381723497}
+    second:
+    - {fileID: -7472350492002312033}
+    - {fileID: -5768577812966964019}
+    - {fileID: 1552894358474234092}
+    - {fileID: -7430179300687576307}
+    - {fileID: 3699491119351721415}
   - first: {fileID: -3053368119959446315}
     second:
     - {fileID: -7815063121106210366}

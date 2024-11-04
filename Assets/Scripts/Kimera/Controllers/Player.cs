@@ -121,6 +121,12 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public void OnDeath()
     {
         CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+        SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
+        
+        if(soundLibrary != null)
+        {
+            soundLibrary.CallAudioManager("Muerte");
+        }
         //ToggleActive(false);
     }
 
@@ -133,6 +139,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
             {
                 CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-down", Setting.ValueType.String));
                 CallFeature<AttackOnLand>(new Setting("On Land Attack", "attack-down-impact", Setting.ValueType.String));
+                AudioManager.instance.PlaySound("GolpeAereo");
                 triggerDownAttack = true;
                 return;
             }

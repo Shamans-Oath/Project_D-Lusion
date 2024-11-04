@@ -3179,6 +3179,14 @@ PrefabInstance:
       propertyPath: camSys
       value: 
       objectReference: {fileID: 8910038366316001742}
+    - target: {fileID: 8345765700696733017, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+      propertyPath: overrideFOV
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345765700696733017, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+      propertyPath: overrideTimeScale
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8523905423036746850, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.113789506
@@ -3330,6 +3338,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 270489431914573047, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4710607627570596992}
+    - targetCorrespondingSourceObject: {fileID: 270489431914573047, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 626212958433548525}
   m_SourcePrefab: {fileID: 100100000, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}
 --- !u!1 &3480032950958696719 stripped
 GameObject:
@@ -3350,6 +3361,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+--- !u!114 &626212958433548525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3480032950958696719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2859df892144b84387a0bd178665e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Impacto
+    reference: GolpeAcertado
+  - name: ImpactoFurro
+    reference: GolpeFurro
+  - name: "Da\xF1o"
+    reference: "Da\xF1oHumano"
+  - name: "Da\xF1oFurro"
+    reference: "Da\xF1oFurro"
+  - name: Aterrizaje
+    reference: CaidaHumano
+  - name: AterrizajeFurro
+    reference: CaidaBestia
+  - name: Salto
+    reference: SaltoHumano
+  - name: SaltoFurro
+    reference: SaltoBestia
+  - name: Golpe
+    reference: GolpeHumano
+  - name: GolpeFurro
+    reference: GolpeBestia
+  - name: Idle
+    reference: IdleHumano
+  - name: IdleFurro
+    reference: IdleBestia
+  - name: Muerte
+    reference: MuerteHumano
+  - name: MuerteFurro
+    reference: MuerteBestia
 --- !u!4 &4134109494406787620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780311985754503132, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}

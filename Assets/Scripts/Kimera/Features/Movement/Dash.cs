@@ -180,6 +180,7 @@ namespace Features
             DashState(true);
 
             cmp_controller.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-viper", Setting.ValueType.String));
+            AudioManager.instance.PlaySound("ViperStrike");
 
             cmp_rigidbody.velocity = Vector3.zero;
 

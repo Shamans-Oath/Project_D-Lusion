@@ -6,6 +6,8 @@ namespace Features
 {
     public class PlayerAnimator : EntityAnimator
     {
+        public bool OnIdle = false;
+
         public override void SetAnimator(Controller controller)
         {
             //arreglame
@@ -34,7 +36,21 @@ namespace Features
             cmp_animator.SetFloat("FurryBlend", furry.furryCount / furry.maxFurryCount);
             cmp_animator.SetBool("IsBlocking", combatEntity.block || combatEntity.parry);
 
+            /*if(cmp_animator.GetCurrentAnimatorStateInfo(0).IsName("IdleBlendTree") && OnIdle == false)
+            {
+                Debug.Log("TestAnimation");
 
+                SoundLibrary soundLibrary = controller.GetComponent<SoundLibrary>();
+
+                soundLibrary.CallAudioManager("Idle");
+                OnIdle = true;
+            }
+            else
+            {
+                AudioManager.instance.Stop("IdleHumano");
+                AudioManager.instance.Stop("IdleBestia");
+                OnIdle = false;
+            }*/
         }
     }
 }

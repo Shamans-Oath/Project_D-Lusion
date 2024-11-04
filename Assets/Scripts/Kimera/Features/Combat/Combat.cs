@@ -244,10 +244,10 @@ namespace Features
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
 
             Debug.Log("Started Attack " + i + "  |  " + actualAttack.name + " - " + actualAttack.swings[i].swingName);
-            if (AudioManager.instance)
+            /*if (AudioManager.instance)
             {
                 AudioManager.instance.PlaySound("Golpe");
-            }
+            }*/
         }
 
         public void EndAttack(int i)
