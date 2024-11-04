@@ -23,7 +23,8 @@ namespace Features
         private Vector3 speedAfterStop;
         //States /Time Management
         private Coroutine dashCharge;
-        private float dashCooldownTimer;
+        [HideInInspector]
+        public float dashCooldownTimer;
         private float dashDurationTimer;
         public float timeToLand => isDashing ? Mathf.Max(dashDurationTimer / timeMultiplier, 0) : -1;
         public float realDashCooldown => Mathf.Max(dashCooldownTimer / timeMultiplier, 0);
@@ -137,7 +138,7 @@ namespace Features
         public void ChargeDash(Vector3 position)
         {
             //Check inner state: if the cooldown is not ready or the player is already dashing interrupt
-            //if (dashCooldownTimer > 0 || isDashing || isCharging) return;  //Descomentar para habilitar cooldown inicial
+            if (dashCooldownTimer > 0 || isDashing || isCharging) return;  //Descomentar para habilitar cooldown inicial
 
             dashCharge = StartCoroutine(DashToPosition(position));
         }

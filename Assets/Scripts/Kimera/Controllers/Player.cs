@@ -38,6 +38,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     // Dash Distance
     public float maxDashDistance { get; set; }
+    bool dashing;
 
     //Follow Entity
     public GameObject target {  get; set; }
@@ -95,17 +96,19 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (block) return;
+        if (block || SearchFeature<Dash>().dashCooldownTimer > 0 || SearchFeature<Dash>().IsDashing || SearchFeature<Dash>().IsCharging) return;
         if (context.performed)
         {
             // SearchFeature<Rotation>().RotateTo(dashPoint.Position);
             //CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.Position, Setting.ValueType.Vector3));
             //CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+            dashing = true;
             SearchFeature<TimeFocusMode>().EnableFocus();
             cameraSys.lockSys.AimVisual(true);
         }
-        if(context.canceled)
+        if(context.canceled && dashing)
         {
+            dashing = false;
             cameraSys.lockSys.AimVisual(false);
             SearchFeature<TimeFocusMode>().DisableFocus();
             if (maxDashDistance <= 0) maxDashDistance = 15;
