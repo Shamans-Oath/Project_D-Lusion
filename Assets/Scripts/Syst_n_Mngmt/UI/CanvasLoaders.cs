@@ -32,7 +32,7 @@ public class CanvasLoaders : MonoBehaviour
             }
             else
             {
-                CanvasManager.instance.ToggleTutorialPause(menuName, tutorialName);
+                CanvasManager.instance.ToggleTutorialPause(menuName, tutorialName, true);
             }
             
             tutorialTriggered = true;

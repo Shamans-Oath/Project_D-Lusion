@@ -21,14 +21,14 @@ public class CanvasManager : MonoBehaviour
     void OnEnable()
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> TogglePause();
-        GameManager.gameInputSystem.UI.Interact.performed +=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo");
+        GameManager.gameInputSystem.UI.Interact.performed +=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed +=_=> TogglePause();
     }
 
     void OnDisable()
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed -=_=> TogglePause();
-        GameManager.gameInputSystem.UI.Interact.performed -=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo");
+        GameManager.gameInputSystem.UI.Interact.performed -=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed -=_=> TogglePause();
     }
 
@@ -102,7 +102,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    public void ToggleTutorialPause(string menuName, string tutorialName)
+    public void ToggleTutorialPause(string menuName, string tutorialName, bool toActivate)
     {
         CanvasObj s = Array.Find(Menus, canvasobj => canvasobj.name == menuName);
 
@@ -110,7 +110,7 @@ public class CanvasManager : MonoBehaviour
 
         TutorialManager tutorialManager = s.canvObj.GetComponent<TutorialManager>();
 
-        if (s.canvObj.activeInHierarchy)
+        if (s.canvObj.activeInHierarchy && toActivate == false)
         {
             if (pausedByTutorial)
             {
@@ -119,7 +119,7 @@ public class CanvasManager : MonoBehaviour
                 GameManager.manager.ToggleMenus();
             }            
         }
-        else
+        else if(!s.canvObj.activeInHierarchy && toActivate == true)
         {
             if (s.oneTimeTrigger == true)
             {
