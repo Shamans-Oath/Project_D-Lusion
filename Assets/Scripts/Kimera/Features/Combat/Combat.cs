@@ -53,6 +53,7 @@ namespace Features
         public float currentFurry = 0;
         public float attackSpeedModifier= 1.5f;
         public float attackSpeedMultiplier = 1f;
+        public float baseSpeedModifier = 1f;
 
         private void Awake()
         {
@@ -218,7 +219,7 @@ namespace Features
             if(cmp_furry != null)
             currentFurry = cmp_furry.furryCount/cmp_furry.furryMax;
 
-            attackSpeedMultiplier = 1 + (currentFurry * attackSpeedModifier);
+            attackSpeedMultiplier = baseSpeedModifier + (currentFurry * attackSpeedModifier);
 
             actualAttack = attack;
             attackTimer = attack.animationClipHuman.length / attackSpeedMultiplier + inBetweenAttacksTime;
