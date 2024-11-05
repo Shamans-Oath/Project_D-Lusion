@@ -36,6 +36,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 0f6a7fa8d2615404fa72723fb275c4b3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_216f9321bbfe497bbca57d33efc10a51_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -54,7 +62,7 @@ Material:
     - _QueueControl: 1
     - _QueueOffset: 0
     - _RotVelocity: 0.5
-    - _VertexDisplacement: 0.0015
+    - _VertexDisplacement: 0.001
     - _distortion: 0.02
     m_Colors:
     - _FresnelColor: {r: 0.21462256, g: 0.63201165, b: 0.8584906, a: 0}
