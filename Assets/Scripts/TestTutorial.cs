@@ -36,7 +36,7 @@ namespace Features
 
             if(tutorialTriggered == false && FuryValue >= furry.maxFurryCount/2)
             {
-                CanvasManager.instance.ToggleTutorialPause("ComboPopup", "Bloody Combo");
+                CanvasManager.instance.ToggleTutorialPause("ComboPopup", "Bloody Combo", true);
                 tutorialTriggered = true;
             }
         }
