@@ -17,9 +17,9 @@ MonoBehaviour:
   attackToughness: 3
   swings:
   - swingName: BoxPunch1
-    size: {x: 2.5, y: 2.5, z: 2.5}
+    size: {x: 3, y: 3, z: 3}
     offset: {x: 0, y: 0, z: 0}
-    movement: {x: 0, y: 0, z: 2}
+    movement: {x: 0, y: 0, z: 2.75}
     bodyPart: 0
     movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
