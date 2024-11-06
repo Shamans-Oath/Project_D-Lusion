@@ -3406,6 +3406,14 @@ MonoBehaviour:
     reference: PasosHumano
   - name: PasosFurro
     reference: PasosBestia
+  - name: Impacto2
+    reference: Golpe2Humano
+  - name: Impacto2Furro
+    reference: Golpe2Bestia
+  - name: Impacto3
+    reference: Golpe3Humano
+  - name: Impacto3Furro
+    reference: Golpe3Bestia
 --- !u!4 &4134109494406787620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780311985754503132, guid: c5674a9fcb7b0fa47bf51e0d222f97d9, type: 3}

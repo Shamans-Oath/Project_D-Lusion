@@ -194,11 +194,11 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         if(SearchFeature<Furry>().furryCount > SearchFeature<Furry>().furryMax * 0.7f)
         {
             AudioManager.instance.ChangeVolume("IdleHumano", 0, 2);
-            AudioManager.instance.ChangeVolume("IdleBestia", 0.75f, 2);
+            AudioManager.instance.ChangeVolume("IdleBestia", 0.35f, 2);
         }
         else
         {
-            AudioManager.instance.ChangeVolume("IdleHumano", 0.75f, 2);
+            AudioManager.instance.ChangeVolume("IdleHumano", 0.35f, 2);
             AudioManager.instance.ChangeVolume("IdleBestia", 0, 2);
         }
     }

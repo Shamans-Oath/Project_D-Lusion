@@ -41,6 +41,16 @@ namespace Features
             SearchFeature<Life>().OnDeath -= OnDeath;
         }
 
+        private void Start()
+        {
+            AudioCaller audioCaller = GetComponent<AudioCaller>();
+
+            if(audioCaller != null)
+            {
+                audioCaller.CallSound("Idle");
+            }
+        }
+
         public void OnDeath()
         {
             CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));

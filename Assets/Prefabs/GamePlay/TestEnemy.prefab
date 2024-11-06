@@ -1084,6 +1084,7 @@ MonoBehaviour:
   currentFurry: 0
   attackSpeedModifier: 1.5
   attackSpeedMultiplier: 1
+  baseSpeedModifier: 1
 --- !u!114 &8722753730121016745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,6 +1362,8 @@ MonoBehaviour:
     reference: "Da\xF1oMelee"
   - name: Muerte
     reference: MuerteMelee
+  - name: Idle
+    reference: IdleMelee
 --- !u!1 &280545415659776953
 GameObject:
   m_ObjectHideFlags: 0
