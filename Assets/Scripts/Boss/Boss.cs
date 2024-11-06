@@ -58,6 +58,7 @@ public class Boss : MonoBehaviour
     private bool isCharging = false;
     public float chargeHomingFactor = 0.1f;
     public float chargeCooldown = 20f;
+    public float chargeRepositionSpeed = 200f;
 
     [Header("Minions")]
     public GameObject enemyPrefab;
@@ -417,7 +418,7 @@ public class Boss : MonoBehaviour
         Transform targetPosition = spawnedPositions[Random.Range(0, spawnedPositions.Count)];
         while (Vector3.Distance(transform.position, targetPosition.position) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, 200f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, chargeRepositionSpeed * Time.deltaTime);
             yield return null;
         }
         gameObject.transform.parent = targetPosition;
