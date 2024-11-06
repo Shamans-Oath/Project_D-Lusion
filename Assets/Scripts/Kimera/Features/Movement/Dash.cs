@@ -14,8 +14,8 @@ namespace Features
         [SerializeField] private bool active;
         //States
         [Header("States")]
-        private bool isDashing;
-        private bool isCharging;
+        public bool isDashing;
+        public bool isCharging;
         public bool IsDashing { get { return isDashing; } }
         public bool IsCharging { get { return isCharging; } }
         private Vector3 speed;

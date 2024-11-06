@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using static UnityEngine.Rendering.DebugUI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -38,13 +39,13 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlaySound(string sound)
@@ -95,5 +96,45 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.UnPause();
+    }
+
+    public void ChangeVolume(string sound, float volume, float changeSpd)
+    {
+        Sound s = System.Array.Find(sounds, item => item.name == sound);
+        if (s == null)
+        {
+            Debug.Log("The sound " + name + " couldn't be found");
+            return;
+        }
+
+        var currentVolume = s.volume;
+        if (Mathf.Approximately(currentVolume, volume))
+        {
+            Debug.LogWarning($"Music {s.name} is already at volume {volume}");
+            return;
+        }
+
+        var sign = -Mathf.Sign(currentVolume - volume);
+        StartCoroutine(VolumeChanger(s.source, volume, changeSpd * sign));
+    }
+
+    private IEnumerator VolumeChanger(AudioSource source, float volume, float changeSpd)
+    {
+        if (volume == 0)
+        {
+            volume = 0.001f;
+        }
+        while (!Mathf.Approximately(source.volume, volume))
+        {
+            source.volume += Time.deltaTime * changeSpd;
+
+            if (Mathf.Approximately(Mathf.Sign(changeSpd), Mathf.Sign(source.volume - volume)))
+            {
+                source.volume = volume;
+                break;
+            }
+
+            yield return null;
+        }
     }
 }

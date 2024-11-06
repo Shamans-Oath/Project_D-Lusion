@@ -69,11 +69,26 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         base.Setup();
     }
 
+    private void Start()
+    {
+        AudioManager.instance.PlaySound("IdleHumano");
+        AudioManager.instance.PlaySound("IdleBestia");
+    }
+
     protected override void Update()
     {
         if (!active) return;
 
         if (onGround == true) triggerDownAttack = false;
+
+        
+
+        if(furryCount != SearchFeature<Furry>().furryCount)
+        {
+            furryCount = SearchFeature<Furry>().furryCount;
+
+            UpdateIdle();
+        }
 
         base.Update();
     }
@@ -86,7 +101,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (block) return;
+        if (block || dashing) return;
         if (context.performed)
         {
             CallFeature<Features.Jump>();
@@ -171,6 +186,20 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         else
         {
             input.enabled = false;
+        }
+    }
+
+    void UpdateIdle()
+    {
+        if(SearchFeature<Furry>().furryCount > SearchFeature<Furry>().furryMax * 0.7f)
+        {
+            AudioManager.instance.ChangeVolume("IdleHumano", 0, 2);
+            AudioManager.instance.ChangeVolume("IdleBestia", 0.75f, 2);
+        }
+        else
+        {
+            AudioManager.instance.ChangeVolume("IdleHumano", 0.75f, 2);
+            AudioManager.instance.ChangeVolume("IdleBestia", 0, 2);
         }
     }
 }

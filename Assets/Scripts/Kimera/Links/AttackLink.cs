@@ -87,7 +87,10 @@ namespace Features
                         reactorLibrary.CallAudioManager("Daño");
                     }*/
 
-                    actorLibrary.CallAudioManager("Impacto");
+                    string attackSFX = attack.Search("attackSFX");
+                    
+                    if(attackSFX != null)
+                    actorLibrary.CallAudioManager(attack.Search("attackSFX"));
                     reactorLibrary.CallAudioManager("Daño");
                 }
                 
