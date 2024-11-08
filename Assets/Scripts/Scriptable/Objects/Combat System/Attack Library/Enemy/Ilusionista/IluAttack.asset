@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
-  m_Name: downAttack
+  m_Name: IluAttack
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 0ae04be3b3ab85546a9b2d910a0c379f, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 5aa51791219a54e46a5f3d201acf0b8a, type: 2}
-  attackToughness: 10
+  animationClipHuman: {fileID: 7400000, guid: 433a3dcc182920f40812980b8b8f00f1, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 433a3dcc182920f40812980b8b8f00f1, type: 2}
+  attackToughness: 3
   swings:
-  - swingName: Down Explosion
-    size: {x: 0.5, y: 0.5, z: 0.5}
+  - swingName: BoxPunch1
+    size: {x: 2.5, y: 2.5, z: 2.5}
     offset: {x: 0, y: 0, z: 0}
-    movement: {x: 0, y: 0, z: 0}
-    bodyPart: 8
+    movement: {x: 0, y: 0, z: 2}
+    bodyPart: 9
     movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
       serializedVersion: 2
       m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 4
-    settings: {fileID: 11400000, guid: 6d014669dd6b2e440a592e34e150cdbc, type: 2}
-    duration: 2
-    start: 0
-    end: 2
-    vfxNames: 
+    settings: {fileID: 11400000, guid: db231d9272360d8448e011fd14ee1fae, type: 2}
+    duration: 1.166667
+    start: 0.416
+    end: 0.625
+    vfxNames: parryIndi
