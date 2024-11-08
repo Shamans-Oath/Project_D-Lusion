@@ -31,7 +31,7 @@ namespace Features
         [SerializeField] private Friction friction;
         //Componentes
         [Header("Components")]
-        [SerializeField] private Rigidbody cmp_rigidbody;
+        [SerializeField] public Rigidbody cmp_rigidbody;
         public float divideValue = 1;
 
         private void Awake()

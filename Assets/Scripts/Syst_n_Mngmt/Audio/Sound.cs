@@ -13,7 +13,7 @@ public class Sound
 	[Range(0f, 1f)]
 	public float volumeVariance = .1f;
 
-	[Range(.1f, 3f)]
+	[Range(0f, 3f)]
 	public float pitch = 1f;
 	[Range(0f, 1f)]
 	public float pitchVariance = .1f;
@@ -24,4 +24,7 @@ public class Sound
 
 	[HideInInspector]
 	public AudioSource source;
+
+	[HideInInspector]
+	public bool paused = false;
 }

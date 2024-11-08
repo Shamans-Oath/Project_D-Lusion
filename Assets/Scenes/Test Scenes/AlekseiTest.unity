@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 70600822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0180091, y: 0.9602047, z: -0.06373165, w: -0.27133182}
+  m_LocalRotation: {x: -0.018009085, y: 0.9602047, z: -0.063731596, w: -0.27133185}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -506,6 +506,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+  masterMixerGroup: {fileID: 0}
+  gameplaySFX: {fileID: 0}
+  mixerValues: []
 --- !u!4 &168238106
 Transform:
   m_ObjectHideFlags: 0
@@ -2680,6 +2683,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2732645188360801931, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
+    paused: 0
   - name: Pasos
     clip: {fileID: 8300000, guid: 2d533a4c4d71a3942b155560c2792576, type: 3}
     volume: 0.75
@@ -2689,6 +2693,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2732645188360801931, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
+    paused: 0
   - name: AbsorcionVida
     clip: {fileID: 8300000, guid: 1d625384c18ccc044bdd20559edd60c7, type: 3}
     volume: 0.4
@@ -2698,6 +2703,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2732645188360801931, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
+    paused: 0
   - name: GolpeAcertado
     clip: {fileID: 8300000, guid: cf572f82c15c6cf4898f84ac0c1421cd, type: 3}
     volume: 0.5
@@ -2707,6 +2713,10 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2732645188360801931, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
+    paused: 0
+  masterMixerGroup: {fileID: 0}
+  gameplaySFX: {fileID: 0}
+  mixerValues: []
 --- !u!1 &947502298
 GameObject:
   m_ObjectHideFlags: 3
@@ -6005,7 +6015,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129322142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0180091, y: 0.9602047, z: -0.06373165, w: -0.27133182}
+  m_LocalRotation: {x: -0.018009085, y: 0.9602047, z: -0.063731596, w: -0.27133185}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6674,7 +6684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.79770595
+      value: 0.7977059
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6682,11 +6692,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.555518
+      value: -0.55551803
       objectReference: {fileID: 0}
     - target: {fileID: 4112656918466121098, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13410202
+      value: 0.13410205
       objectReference: {fileID: 0}
     - target: {fileID: 4321653855083491193, guid: cb21f66941cdac94a968a8197ae65fae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

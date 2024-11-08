@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using static UnityEngine.Rendering.DebugUI;
 
 public class AudioManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private Sound[] sounds;
 
+    public AudioMixerGroup masterMixerGroup, gameplaySFX;
+
+    public MixerValues[] mixerValues;
 
     void Awake()
     {
@@ -39,7 +43,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -98,6 +102,29 @@ public class AudioManager : MonoBehaviour
         s.source.UnPause();
     }
 
+    public void TogglePause(bool toggle) 
+    {
+        if (toggle == true)
+        {
+            foreach (var sound in sounds)
+            {
+                sound.source.pitch = 0;
+                sound.paused = true;
+            }
+        }
+        else
+        {
+            foreach (var sound in sounds)
+            {
+                if(sound.paused)
+                {
+                    sound.source.pitch = 1;
+                    sound.paused = false;
+                }
+            }
+        }
+    }
+
     public void ChangeVolume(string sound, float volume, float changeSpd)
     {
         Sound s = System.Array.Find(sounds, item => item.name == sound);
@@ -107,7 +134,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        var currentVolume = s.volume;
+        var currentVolume = s.source.volume;
         if (Mathf.Approximately(currentVolume, volume))
         {
             Debug.LogWarning($"Music {s.name} is already at volume {volume}");
@@ -137,4 +164,46 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ToggleMute(string volumeKey)
+    {
+        MixerValues m = System.Array.Find(mixerValues, item => item.volumeKey == volumeKey);
+
+        if (m == null)
+        {
+            Debug.Log("The mixer " + volumeKey + " couldn't be found");
+            return;
+        }
+
+        if (m.muted == false)
+        {
+            SetVolume(volumeKey, 0);
+            m.muted = true;
+        }
+        else
+        {
+            SetVolume(volumeKey, m.value);
+            m.muted = false;
+        }
+    }
+
+    public void SetVolume(string volumeKey, float value)
+    {
+        if (value == 0)
+        {
+            value = 0.001f;
+        }
+
+        masterMixerGroup.audioMixer.SetFloat(volumeKey, Mathf.Log10(value) * 20);        
+    }
+
+
+}
+
+[System.Serializable]
+public class MixerValues
+{
+    public string volumeKey;
+    public float value;
+    public bool muted;
 }

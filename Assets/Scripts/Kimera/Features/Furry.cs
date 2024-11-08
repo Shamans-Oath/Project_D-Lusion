@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -86,12 +87,16 @@ namespace Features
             furryCount += furryIncrement;
             furryCount = Mathf.Clamp(furryCount, 0, furryMax);
             lastFurryPunchTime = Time.time;
+
+            
         }
 
         private void DecreaseFurryCount()
         {
             furryCount -= furryDecrement * Time.deltaTime;
             furryCount = Mathf.Clamp(furryCount, 0, furryMax);
+
+            
         }
 
         public bool GetActive()

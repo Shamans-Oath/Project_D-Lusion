@@ -71,11 +71,15 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay:
                 SetState(GameState.OnMenu);
                 ToggleActionMap(gameInputSystem.UI);
+                //AudioManager.instance.TogglePause(false);
+                AudioManager.instance.ToggleMute("GameplaySFXVolume");
             break;
 
             case GameState.OnMenu:
                 SetState(GameState.Gameplay);
                 ToggleActionMap(gameInputSystem.GamePlay);
+                //AudioManager.instance.TogglePause(true);
+                AudioManager.instance.ToggleMute("GameplaySFXVolume");
             break;
         }        
     }

@@ -39,6 +39,8 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     // Dash Distance
     public float maxDashDistance { get; set; }
     bool dashing;
+    float currentFury;
+    float audio_currentSpeed = 0;
 
     //Follow Entity
     public GameObject target {  get; set; }
@@ -54,12 +56,14 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         GameManager.StateChanged += CheckInputState;
         SearchFeature<Life>().OnDeath += OnDeath;
+        
     }
 
     private void OnDisable()
     {
         GameManager.StateChanged -= CheckInputState;
         SearchFeature<Life>().OnDeath -= OnDeath;
+        
     }
 
     public override void Setup()
@@ -81,12 +85,10 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
         if (onGround == true) triggerDownAttack = false;
 
-        
-
-        if(furryCount != SearchFeature<Furry>().furryCount)
+        if(currentFury != SearchFeature<Furry>().furryCount || Mathf.Abs(audio_currentSpeed - SearchFeature<Movement>().cmp_rigidbody.velocity.magnitude) > 0.1f)
         {
-            furryCount = SearchFeature<Furry>().furryCount;
-
+            audio_currentSpeed = SearchFeature<Movement>().cmp_rigidbody.velocity.magnitude;
+            currentFury = SearchFeature<Furry>().furryCount;
             UpdateIdle();
         }
 
@@ -191,15 +193,23 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     void UpdateIdle()
     {
-        if(SearchFeature<Furry>().furryCount > SearchFeature<Furry>().furryMax * 0.7f)
+        float velocity = SearchFeature<Movement>().cmp_rigidbody.velocity.magnitude;
+
+        float volumeRatio = Mathf.InverseLerp(0, SearchFeature<Furry>().furryMax, SearchFeature<Furry>().furryCount);
+
+        float volumeValue = Mathf.Lerp(0, 0.35f, volumeRatio);
+
+        float inverseVolumeValue = Mathf.Lerp(0.35f, 0, volumeRatio);
+
+        if (velocity < 0.1f)
         {
-            AudioManager.instance.ChangeVolume("IdleHumano", 0, 2);
-            AudioManager.instance.ChangeVolume("IdleBestia", 0.35f, 2);
+            AudioManager.instance.ChangeVolume("IdleHumano", inverseVolumeValue, 0.2f);
+            AudioManager.instance.ChangeVolume("IdleBestia", volumeValue, 0.2f);
         }
         else
         {
-            AudioManager.instance.ChangeVolume("IdleHumano", 0.35f, 2);
-            AudioManager.instance.ChangeVolume("IdleBestia", 0, 2);
+            AudioManager.instance.ChangeVolume("IdleHumano", 0, 0.2f);
+            AudioManager.instance.ChangeVolume("IdleBestia", 0, 0.2f);
         }
     }
 }
