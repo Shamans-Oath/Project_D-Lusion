@@ -390,6 +390,46 @@ MonoBehaviour:
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
     paused: 0
+  - name: AparicionTutorial
+    clip: {fileID: 8300000, guid: 7a0052eac85830d4990bc00115839e86, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
+  - name: Pausa
+    clip: {fileID: 8300000, guid: 5b85c59a0e287e64295a697808e16936, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
+  - name: Boton
+    clip: {fileID: 8300000, guid: 8be03355a188e994a91aa4ce52dbab07, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
+  - name: SombreadoBoton
+    clip: {fileID: 8300000, guid: d5cbcc9caebca3e44b7d7b80117fdd93, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
   masterMixerGroup: {fileID: 24300002, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
   gameplaySFX: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
   mixerValues:
