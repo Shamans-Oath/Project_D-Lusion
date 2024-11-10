@@ -1,0 +1,1091 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51c653966eb9b047bc450c405e46dd4, type: 3}
+  m_Name: Clon_Ilusio
+  m_EditorClassIdentifier: 
+  settingsList:
+  - key: maxHealth
+    boolValue: 0
+    intValue: 100
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 1
+  - key: terrainLayer
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: Ground
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: extraDistanceGround
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.05
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: offsetGround
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: -0.05}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 5
+  - key: extraDistanceSlope
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.15
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: maxAngleSlope
+    boolValue: 0
+    intValue: 0
+    floatValue: 45
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: gravityValue
+    boolValue: 0
+    intValue: 0
+    floatValue: 50
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: maxVerticalSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 3
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: detectDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 9
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: targetTag
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: Player
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: stunDurationDefault
+    boolValue: 0
+    intValue: 0
+    floatValue: 2
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: reachDestinationDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.25
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: checkBlockRadius
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: solidLayer
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: Ground
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: orbitDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: wanderDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 2.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: disableTimeAfterHit
+    boolValue: 0
+    intValue: 0
+    floatValue: 1
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: feetSize
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0.5, y: 0.1, z: 0.5}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 3
+  - key: escapeDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 12
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: rotationSpeedCurve
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1.5457184
+        outSlope: 1.5457184
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.108333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.030319178
+        outSlope: 0.030319178
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.23333335
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 8
+  - key: inputPermanenceTime
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.16
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: combatCondition1
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: attack-normal
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: attack
+    boolValue: 0
+    intValue: 23
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 1
+  - key: idleMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: wander
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: runAwayMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: escape
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: outOfBattleMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: orbit
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: repositionDistanceOutOfBattle
+    boolValue: 0
+    intValue: 0
+    floatValue: 2
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: approachTargetMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: chase
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: repositionDistanceAlert
+    boolValue: 0
+    intValue: 0
+    floatValue: 2
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: alertMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: orbit
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: chaseMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: chase
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: maxRotationSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 45
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: startRotationSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 30
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: attackHitboxTag1
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: Player
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6
+  - key: rotationAcceleration
+    boolValue: 0
+    intValue: 0
+    floatValue: 20
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: runAwayLife
+    boolValue: 0
+    intValue: 50
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 1
+  - key: orbitSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.6
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: wanderSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.6
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: escapeSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 8
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: alertDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 4
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: runAwayDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 7.5
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: defaultCombo1
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 11400000, guid: 5bc3c7527c5d5a44384c2d24e41bab9b, type: 2}
+    valueType: 13
+  - key: attackDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 2.7
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: chaseSpeed
+    boolValue: 0
+    intValue: 0
+    floatValue: 0.6
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: chaseDistance
+    boolValue: 0
+    intValue: 0
+    floatValue: 1.2
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: 
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 2
+  - key: defaultMoveMode
+    boolValue: 0
+    intValue: 0
+    floatValue: 0
+    vector3Value: {x: 0, y: 0, z: 0}
+    vector3IntValue: {x: 0, y: 0, z: 0}
+    vector2Value: {x: 0, y: 0}
+    stringValue: chase
+    layerMaskValue:
+      serializedVersion: 2
+      m_Bits: 0
+    animationCurveValue:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorValue: {r: 0, g: 0, b: 0, a: 0}
+    spriteValue: {fileID: 0}
+    audioClipValue: {fileID: 0}
+    prefabValue: {fileID: 0}
+    scriptableObjectValue: {fileID: 0}
+    valueType: 6

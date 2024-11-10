@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,8 @@ namespace Features
         [SerializeField] Life life;
         [SerializeField] Ragdoll ragdoll;
         [SerializeField] Transform firstSpine;
+        [SerializeField] Furry fury;
+        [SerializeField] Controller contrl;
         Vector3 savePos;
         //References
         //Componentes
@@ -29,10 +32,12 @@ namespace Features
         public void SetupFeature(Controller controller)
         {
             settings = controller.settings;
-            
+            contrl = controller;
             //Setup Properties
             savePos = firstSpine.localPosition;
             life.OnDeath += () => RespawnPosition();
+
+            fury = controller.SearchFeature<Furry>();
 
             ToggleActive(true);
         }
@@ -59,6 +64,8 @@ namespace Features
             firstSpine.transform.localPosition = savePos;
             ragdoll.RagdollSetActive(false);
             life.ResetHealth();
+            if (fury != null) fury.furryCount = 0;
+            
             transform.position = new Vector3(spwPoint.x,spwPoint.y,spwPoint.z);
 
             while(currentColor.a >= 0)

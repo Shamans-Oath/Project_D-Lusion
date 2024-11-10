@@ -53,7 +53,9 @@ namespace Features
 
         public void OnDeath()
         {
+            UpdateFeatures();
             CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+            SearchFeature<FillBarVisualizer>().ActiveVisuals(false);
             ToggleActive(false);
             Invoke("ReanimateAndSave", DESPAWN_TIME);
 
@@ -69,6 +71,7 @@ namespace Features
         {
             ToggleActive(true);
             CallFeature<Ragdoll>(new Setting("ragdollActivation", false, Setting.ValueType.Bool));
+            SearchFeature<FillBarVisualizer>().ActiveVisuals(true);
             this.Setup();
             gameObject.SetActive(false);
         }

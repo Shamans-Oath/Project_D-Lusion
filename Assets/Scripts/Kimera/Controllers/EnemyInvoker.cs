@@ -6,7 +6,7 @@ namespace Features
 {
     public class EnemyInvoker : Controller, LivingEntity, KineticEntity, TerrainEntity, SpecialTerrainEntity, FollowEntity, CombatEntity
     {
-
+        public const float DESPAWN_TIME = 5.5f;
         //Living
         public int currentHealth { get; set; }
         public int maxHealth { get; set; }
@@ -42,9 +42,29 @@ namespace Features
 
         public void OnDeath()
         {
+
+            UpdateFeatures();
             CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
+            SearchFeature<FillBarVisualizer>().ActiveVisuals(false);
             ToggleActive(false);
-            //Destroy(gameObject);
+            Invoke("ReanimateAndSave", DESPAWN_TIME);
+
+            SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
+
+            if (soundLibrary != null)
+            {
+                soundLibrary.CallAudioManager("Muerte");
+            }
+        }
+
+        public void ReanimateAndSave()
+        {
+            ToggleActive(true);
+            CallFeature<Ragdoll>(new Setting("ragdollActivation", false, Setting.ValueType.Bool));
+            SearchFeature<FillBarVisualizer>().ActiveVisuals(true);
+
+            this.Setup();
+            gameObject.SetActive(false);
         }
     }
 }

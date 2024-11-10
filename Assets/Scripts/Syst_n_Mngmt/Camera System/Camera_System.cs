@@ -7,7 +7,7 @@ public class Camera_System : MonoBehaviour
 {
     public static Camera_System instance;
 
-    [SerializeField] private Camera mainCamera;
+    [SerializeField] public Camera mainCamera;
     
     public CinemachineFreeLook cmp_playerCamera;
     public float defaultFOV;

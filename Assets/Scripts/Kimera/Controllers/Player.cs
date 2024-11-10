@@ -1,6 +1,7 @@
 using Features;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -51,6 +52,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     [Header("Components")]
     public Transform dashPoint;
     public Camera_System cameraSys;
+    public EntityAnimator animator;
 
     private void OnEnable()
     {
@@ -77,6 +79,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         AudioManager.instance.PlaySound("IdleHumano");
         AudioManager.instance.PlaySound("IdleBestia");
+        animator = gameObject.GetComponent<EntityAnimator>();
     }
 
     protected override void Update()
@@ -131,8 +134,10 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
             if (maxDashDistance <= 0) maxDashDistance = 15;
             if (cameraSys.GetCameraLookat(maxDashDistance).HasValue)
             {
+                //if (animator != null) animator.cmp_animator.SetTrigger("DashExecute");
                 dashPoint.position = cameraSys.GetCameraLookat(maxDashDistance).Value;
                 CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.position, Setting.ValueType.Vector3));
+                
             }
             
         }
@@ -142,8 +147,9 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
         SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
-        
-        if(soundLibrary != null)
+        //ToggleActive(false);
+
+        if (soundLibrary != null)
         {
             soundLibrary.CallAudioManager("Muerte");
         }

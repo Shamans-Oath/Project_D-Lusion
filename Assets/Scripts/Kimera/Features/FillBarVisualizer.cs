@@ -16,8 +16,10 @@ namespace Features
         //Properties
         [Tooltip("0 - to life | 1 to fury")]
         public ImageGroup[] uiBars;
+        public GameObject CanvasObject;
         //References
         //Componentes
+
 
         public void SetupFeature(Controller controller)
         {
@@ -51,7 +53,10 @@ namespace Features
             //Fury
             if (uiBars.Length > 1 && uiBars[1] != null) FillAmount(uiBars[1], furry.furryCount);
         }
-
+        public void ActiveVisuals(bool value)
+        {
+            if(CanvasObject) CanvasObject.SetActive(value);
+        }
         public void ToggleActive(bool active)
         {
             this.active = active;

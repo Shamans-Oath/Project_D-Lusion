@@ -57,10 +57,14 @@ public class GameManager : MonoBehaviour
         if (gameState != GameState.OnMenu)
         {
             Time.timeScale = 1;
+            manager.ToggleActionMap(gameInputSystem.GamePlay);
+            AudioManager.instance.TogglePause(false);
         }
         else
         {
             Time.timeScale = 0;
+            manager.ToggleActionMap(gameInputSystem.UI);
+            AudioManager.instance.TogglePause(true);
         }
     }
 
@@ -70,16 +74,16 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Gameplay:
                 SetState(GameState.OnMenu);
-                ToggleActionMap(gameInputSystem.UI);
+                //ToggleActionMap(gameInputSystem.UI);
                 //AudioManager.instance.TogglePause(false);
-                AudioManager.instance.ToggleMute("GameplaySFXVolume");
+                //AudioManager.instance.ToggleMute("GameplaySFXVolume");
             break;
 
             case GameState.OnMenu:
                 SetState(GameState.Gameplay);
-                ToggleActionMap(gameInputSystem.GamePlay);
+                //ToggleActionMap(gameInputSystem.GamePlay);
                 //AudioManager.instance.TogglePause(true);
-                AudioManager.instance.ToggleMute("GameplaySFXVolume");
+                //AudioManager.instance.ToggleMute("GameplaySFXVolume");
             break;
         }        
     }
