@@ -99,6 +99,7 @@ public class CanvasManager : MonoBehaviour
         {
             s.canvObj.SetActive(true);
             tutorialManager.LoadTutorial(tutorialName);
+            AudioManager.instance.PlaySound("AparicionTutorial");
         }
     }
 
@@ -117,6 +118,7 @@ public class CanvasManager : MonoBehaviour
                 tutorialManager.StartCoroutine("ExitTutorial");
                 pausedByTutorial = false;
                 GameManager.manager.ToggleMenus();
+                AudioManager.instance.PlaySound("Boton");
             }            
         }
         else if(!s.canvObj.activeInHierarchy && toActivate == true)
@@ -132,6 +134,7 @@ public class CanvasManager : MonoBehaviour
                 tutorialManager.LoadTutorial(tutorialName);
                 pausedByTutorial = true;
                 GameManager.manager.ToggleMenus();
+                AudioManager.instance.PlaySound("AparicionTutorial");
             }            
         }
     }
@@ -147,9 +150,15 @@ public class CanvasManager : MonoBehaviour
         else
         {
             pauseMenu.SetActive(true);
+            AudioManager.instance.PlaySound("Pausa");
         }
 
         GameManager.manager.ToggleMenus();
+    }
+
+    public void CallUISound(string name)
+    {
+        AudioManager.instance.PlaySound(name);
     }
 }
 
