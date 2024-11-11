@@ -13,7 +13,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private Sound[] sounds;
 
-    public AudioMixerGroup masterMixerGroup, gameplaySFX;
+    public AudioMixerGroup masterMixerGroup;
+
+    public string lastBGM;
 
     public MixerValues[] mixerValues;
 
@@ -197,7 +199,16 @@ public class AudioManager : MonoBehaviour
         masterMixerGroup.audioMixer.SetFloat(volumeKey, Mathf.Log10(value) * 20);        
     }
 
-
+    public void MusicChanger(string name, float volume)
+    {
+        if(name != lastBGM)
+        {
+            ChangeVolume(lastBGM, 0, 0.2f);
+            PlaySound(name);
+            ChangeVolume(name, volume, 0.2f);
+            lastBGM = name;
+        }
+    }
 }
 
 [System.Serializable]
