@@ -42,6 +42,7 @@ public class SpawnManager : MonoBehaviour
                 if(currentWave == currentEncounter.waves.Length - 1)
                 {
                     isActive = false;
+                    if (currentModule) currentModule.OnCompleteEvent();
                     currentModule = null;
                 }
                 else
