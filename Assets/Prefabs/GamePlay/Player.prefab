@@ -551,11 +551,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
-  cmp_smr: {fileID: 0}
-  activeObjects: []
-  gapActivationValue: 0
-  meshRenderers: []
-  changeSpeed: 1.5
+  cmp_smr: {fileID: 5063165809516090998}
+  activeObjects:
+  - setOnElements:
+    - {fileID: 4490325775097979278}
+  - setOnElements:
+    - {fileID: 4632619183049485667}
+    - {fileID: 1340685771014782075}
+  gapActivationValue: 1
+  meshRenderers:
+  - inverse: 1
+    skinMesh: {fileID: 2914293270647480142}
+  - inverse: 1
+    skinMesh: {fileID: 5070453551929132476}
+  - inverse: 1
+    skinMesh: {fileID: 5070453551929132476}
+  - inverse: 1
+    skinMesh: {fileID: 37223135866942262}
+  - inverse: 1
+    skinMesh: {fileID: 5063165809516090998}
+  - inverse: 1
+    skinMesh: {fileID: 7806476338865813746}
+  - inverse: 1
+    skinMesh: {fileID: 4192049922524742804}
+  - inverse: 1
+    skinMesh: {fileID: 8234845426494983278}
+  - inverse: 1
+    skinMesh: {fileID: 8992369366679681661}
+  - inverse: 0
+    skinMesh: {fileID: 4409759722219869264}
+  changeSpeed: 0.5
   blendValue: 0
   maxValue: 100
   blendUnit: 0
@@ -764,6 +789,7 @@ MonoBehaviour:
   triggerDownAttack: 0
   dashPoint: {fileID: 0}
   cameraSys: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &1119332842073681313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +836,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  rotationDirValue: 0
   agent: {fileID: 0}
 --- !u!114 &1988158739632771454
 MonoBehaviour:
@@ -929,6 +956,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+  isDashing: 0
+  isCharging: 0
+  dashCooldownTimer: 0
   gravityValue: 0
   distanceLimit: 0
   timeMultiplier: 0
@@ -1067,6 +1097,7 @@ MonoBehaviour:
   currentFurry: 0
   attackSpeedModifier: 0.75
   attackSpeedMultiplier: 1
+  baseSpeedModifier: 1
 --- !u!114 &2804152875468415466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,6 +1461,8 @@ MonoBehaviour:
   life: {fileID: 6137916988852556588}
   ragdoll: {fileID: 1119332842073681313}
   firstSpine: {fileID: 4051324827215894819}
+  fury: {fileID: 0}
+  contrl: {fileID: 0}
 --- !u!114 &7546904365373147736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,7 +2039,7 @@ SkinnedMeshRenderer:
   - {fileID: 1848821375584116299}
   - {fileID: 8720313828549074005}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 8720313828549074005}
   m_AABB:
     m_Center: {x: -0.006887774, y: 0.0034003842, z: 0.003098332}
@@ -3402,7 +3435,7 @@ SkinnedMeshRenderer:
   - {fileID: 9016635771205828363}
   - {fileID: 9012365966852098717}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 4051324827215894819}
   m_AABB:
     m_Center: {x: 0.00014103204, y: 0.010774789, z: 0.005161213}
@@ -3748,7 +3781,7 @@ SkinnedMeshRenderer:
   - {fileID: 7850393499601669787}
   - {fileID: 8720313828549074005}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 8720313828549074005}
   m_AABB:
     m_Center: {x: 0.0046694158, y: -0.0006960891, z: 0.0066362075}
@@ -5666,7 +5699,7 @@ SkinnedMeshRenderer:
   - {fileID: 5221839647742782344}
   - {fileID: 4590964111178571552}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 3873288775716186428}
   m_AABB:
     m_Center: {x: -0.024493832, y: -0.000103500206, z: 0.009175694}
@@ -6177,7 +6210,7 @@ SkinnedMeshRenderer:
   - {fileID: 5221839647742782344}
   - {fileID: 4590964111178571552}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 4125460822819898385}
   m_AABB:
     m_Center: {x: -0.011255839, y: -0.012436373, z: -0.00039746705}
@@ -6573,7 +6606,7 @@ SkinnedMeshRenderer:
   - {fileID: 5221839647742782344}
   - {fileID: 4590964111178571552}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 4125460822819898385}
   m_AABB:
     m_Center: {x: -0.013999979, y: -0.014370235, z: -0.0005810545}
@@ -7084,7 +7117,7 @@ SkinnedMeshRenderer:
   - {fileID: 5573940748128895591}
   - {fileID: 6192367170275061172}
   m_BlendShapeWeights:
-  - 100
+  - 0
   m_RootBone: {fileID: 3873288775716186428}
   m_AABB:
     m_Center: {x: -0.021839164, y: -0.000093541574, z: 0.009792084}

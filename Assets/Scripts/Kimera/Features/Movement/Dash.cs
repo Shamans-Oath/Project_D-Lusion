@@ -145,6 +145,7 @@ namespace Features
 
         private IEnumerator DashToPosition(Vector3 endPosition)
         {
+            yield return new WaitForSeconds(0f);
             isCharging = true;
 
             //Start Calculations
@@ -185,7 +186,7 @@ namespace Features
             //Disable movement while dashing and charging
             DashState(true);
 
-            cmp_controller.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-viper", Setting.ValueType.String));
+            //cmp_controller.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-viper", Setting.ValueType.String));
             AudioManager.instance.PlaySound("ViperStrike");
 
             cmp_rigidbody.velocity = Vector3.zero;
@@ -195,7 +196,8 @@ namespace Features
 
             //Wait for the charge time
             yield return new WaitForSeconds(chargeTimeSeconds);
-            
+            Debug.Log("viper");
+            cmp_controller.CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-viper", Setting.ValueType.String));
             isCharging = false;
         }
 

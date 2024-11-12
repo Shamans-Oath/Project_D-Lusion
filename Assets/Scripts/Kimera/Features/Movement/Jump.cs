@@ -90,7 +90,7 @@ namespace Features
             hasJumped = true;
             jumpTimer = jumpCooldown;
             cmp_rigidbody.AddForce(new Vector2(0, jumpForce), ForceMode.Impulse);
-
+            terrain.onGround = false;
             FurryEntity furry = controller as FurryEntity;
 
             if (furry.furryCount > furry.maxFurryCount * 0.7f)

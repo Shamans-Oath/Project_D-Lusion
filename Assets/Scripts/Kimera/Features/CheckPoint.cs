@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,7 +65,9 @@ namespace Features
             ragdoll.RagdollSetActive(false);
             life.ResetHealth();
             if (fury != null) fury.furryCount = 0;
-            
+            contrl.enabled = true;
+            //contrl.ToggleActive(true);
+
             transform.position = new Vector3(spwPoint.x,spwPoint.y,spwPoint.z);
 
             while(currentColor.a >= 0)

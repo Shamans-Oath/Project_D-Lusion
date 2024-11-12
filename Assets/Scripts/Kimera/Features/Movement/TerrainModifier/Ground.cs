@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Features
 {
@@ -12,6 +13,8 @@ namespace Features
         public float extraDistanceGround;
         public Vector2 offsetGround;
         public Vector3 feetSize;
+        public float delayDetection;
+        private float delayTimer=0;
         //References
         //Componentes
 
@@ -36,10 +39,32 @@ namespace Features
             onTerrain = Physics.OverlapBox(origin, feetSize / 2, transform.rotation, terrainLayer).Length > 0;
 
             TerrainEntity terrain = controller as TerrainEntity;
-
+            
             if (terrain == null) return;
 
+            if (terrain.onGround == false &&  onTerrain==true) onTerrain = GetTerrainDelayed(onTerrain);
+
             terrain.onGround = onTerrain;
+        }
+
+        public bool GetTerrainDelayed(bool value)
+        {
+            
+            if(value)
+            {
+                delayTimer = 0;
+            }
+            else
+            {
+                delayTimer += Time.deltaTime;
+                if(delayTimer>=delayDetection)
+                {
+                    Debug.Log("terraintestcall | false");
+                    return false;
+                }
+            }
+            Debug.Log("terraintestcall | true");
+            return true;
         }
 
         public override Vector3 ProjectOnTerrain(Vector3 direction)

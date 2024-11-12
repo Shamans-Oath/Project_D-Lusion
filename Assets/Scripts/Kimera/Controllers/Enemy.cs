@@ -58,6 +58,7 @@ namespace Features
             SearchFeature<FillBarVisualizer>().ActiveVisuals(false);
             ToggleActive(false);
             Invoke("ReanimateAndSave", DESPAWN_TIME);
+            this.enabled = false;
 
             SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
 
@@ -69,6 +70,7 @@ namespace Features
 
         public void ReanimateAndSave()
         {
+            this.enabled = true;
             ToggleActive(true);
             CallFeature<Ragdoll>(new Setting("ragdollActivation", false, Setting.ValueType.Bool));
             SearchFeature<FillBarVisualizer>().ActiveVisuals(true);

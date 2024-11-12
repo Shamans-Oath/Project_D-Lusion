@@ -6,16 +6,21 @@ namespace Features
 {
     public class PlayerAnimator : EntityAnimator
     {
+        private void Start()
+        {
+            if (gameObject.tag == "Enemy") cmp_animator = gameObject.GetComponent<Animator>();
+        }
         public override void SetAnimator(Controller controller)
         {
             //arreglame
-            if(gameObject.tag=="Enemy") cmp_animator=gameObject.GetComponent<Animator>();
+            
             FurryEntity furry = controller as FurryEntity;
             KineticEntity kinetic = controller as KineticEntity;
             TerrainEntity terrain = controller as TerrainEntity;
             CombatEntity combatEntity = controller as CombatEntity;
             Combat combat = controller.SearchFeature<Combat>();
             Rotation rotate = controller.SearchFeature<Rotation>();
+            Dash dash = controller.SearchFeature<Dash>();
 
             if (kinetic == null || terrain == null || combat == null) return;
 
@@ -30,6 +35,7 @@ namespace Features
             cmp_animator.SetFloat("WalkFactor", .5f + speed.magnitude / kinetic.maxSpeed);
 
             cmp_animator.SetBool("OnGround", terrain.onGround);
+            cmp_animator.SetBool("DashExecute", dash.isDashing);
 
             if (furry == null || combatEntity == null) return;
 

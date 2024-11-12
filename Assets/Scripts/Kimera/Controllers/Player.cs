@@ -1,7 +1,7 @@
 using Features;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -148,6 +148,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
         SoundLibrary soundLibrary = GetComponent<SoundLibrary>();
         //ToggleActive(false);
+        this.enabled = false;
 
         if (soundLibrary != null)
         {
