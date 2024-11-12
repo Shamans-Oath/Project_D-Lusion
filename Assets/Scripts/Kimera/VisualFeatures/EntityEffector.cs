@@ -26,6 +26,20 @@ namespace Features
             ToggleActive(true);
         }
 
+        public void UpdateFeature(Controller controller)
+        {
+            if (!active) return;
+
+            
+        }
+
+        public void FeatureAction(Controller controller, params Setting[] settings)
+        {
+            if (!active) return;
+
+           
+        }
+
         public bool GetActive()
         {
             return active;
