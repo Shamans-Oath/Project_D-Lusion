@@ -33,6 +33,7 @@ Transform:
   - {fileID: 2347116669180179702}
   - {fileID: 4611310386642275725}
   - {fileID: 4484181307169869690}
+  - {fileID: 6608909553124978759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3989175643896190930
@@ -82,114 +83,114 @@ MonoBehaviour:
   sounds:
   - name: GolpeAereo
     clip: {fileID: 8300000, guid: 0c629da78281a8d4fbfa3a21bcb25390, type: 3}
-    volume: 0.65
+    volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: GolpeHumano
     clip: {fileID: 8300000, guid: 9ee92e17916ce1b499f791443a7c5240, type: 3}
-    volume: 0.65
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0.5
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: GolpeBestia
     clip: {fileID: 8300000, guid: 9cf483196507ab3439e3bab9f95e6f5d, type: 3}
-    volume: 0.65
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0.5
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: GolpeAcertado
     clip: {fileID: 8300000, guid: e0266ac307c8f954884a3a8337133131, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 0.5
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: GolpeFurro
     clip: {fileID: 8300000, guid: 817b733331d209e4c8083930e83441ad, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 0.5
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Golpe2Humano
     clip: {fileID: 8300000, guid: 67caffa40a34c164186db8607a4787fc, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Golpe2Bestia
     clip: {fileID: 8300000, guid: 48322e089adb68043bdfd5acdabe35e8, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Golpe3Humano
     clip: {fileID: 8300000, guid: 67c77120a5f7c1947912ca1af6cdbb95, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Golpe3Bestia
     clip: {fileID: 8300000, guid: 489ef4625f4293b439d21d8a2ef52fb6, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 1
+    pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: PasosHumano
     clip: {fileID: 8300000, guid: 3f918d29d775d1046a3907d5970ec0be, type: 3}
-    volume: 0.5
+    volume: 0.15
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 0.25
+    pitchVariance: 0.2
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: PasosBestia
     clip: {fileID: 8300000, guid: 8ecb45c6335c0b542abd66e7fc1882b6, type: 3}
-    volume: 0.5
+    volume: 0.2
     volumeVariance: 0
     pitch: 1
-    pitchVariance: 0.25
+    pitchVariance: 0.2
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: AbsorcionVida
     clip: {fileID: 8300000, guid: f8b881f6294097c489fa2ee78a1f3722, type: 3}
     volume: 1
@@ -199,29 +200,39 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: ViperStrike
     clip: {fileID: 8300000, guid: c48f536af9a371f4a8e8444dfc11180d, type: 3}
-    volume: 0.85
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: "Da\xF1oHumano"
     clip: {fileID: 8300000, guid: 5a0de92fc85195649ae63091d2aa0f09, type: 3}
-    volume: 1
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: "Da\xF1oFurro"
     clip: {fileID: 8300000, guid: f0b570f7d41d8654fbf4deb64461dd7c, type: 3}
+    volume: 0.6
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: AtaqueAereo
+    clip: {fileID: 8300000, guid: 111839e1edeef2740a293a0be114ab28, type: 3}
     volume: 1
     volumeVariance: 0
     pitch: 1
@@ -229,147 +240,137 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
-  - name: AtaqueAereo
-    clip: {fileID: 8300000, guid: 111839e1edeef2740a293a0be114ab28, type: 3}
-    volume: 0.75
+    paused: 1
+  - name: GolpeMelee
+    clip: {fileID: 8300000, guid: bf1c6e345ca3fd241b23d585526b569f, type: 3}
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
-  - name: GolpeMelee
-    clip: {fileID: 8300000, guid: bf1c6e345ca3fd241b23d585526b569f, type: 3}
-    volume: 0.35
-    volumeVariance: 0
-    pitch: 1
-    pitchVariance: 1
-    loop: 0
-    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
-    source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: PasosMelee
     clip: {fileID: 8300000, guid: 9f78d2d511855474199f3696d1dc88fc, type: 3}
-    volume: 0.35
+    volume: 0.2
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0.25
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: AtaqueMelee
     clip: {fileID: 8300000, guid: 0c3406c0af9fe8c49b518cf6a3a67205, type: 3}
-    volume: 0.7
+    volume: 1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0.5
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: "Da\xF1oMelee"
     clip: {fileID: 8300000, guid: 89957ee7920322c46b29da4dd13085c6, type: 3}
-    volume: 0.85
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: SpawnMelee
     clip: {fileID: 8300000, guid: 0a75cefb20ea80e4999767de66971330, type: 3}
-    volume: 0.25
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: MuerteMelee
     clip: {fileID: 8300000, guid: 62f7dcffa9b26df4f929b39397053ed4, type: 3}
-    volume: 0.35
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: IdleMelee
     clip: {fileID: 8300000, guid: dbf7d5dc20febf747bf53989894105dd, type: 3}
-    volume: 0.25
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: CaidaHumano
     clip: {fileID: 8300000, guid: c1263711feb94e24899dea509a78e1a0, type: 3}
-    volume: 0.85
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: CaidaBestia
     clip: {fileID: 8300000, guid: 218f7325fd96eae4d8616f67f0a209ea, type: 3}
-    volume: 0.85
+    volume: 0.8
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: SaltoBestia
     clip: {fileID: 8300000, guid: cb70fbf403f77a943924d835072531d1, type: 3}
-    volume: 0.85
+    volume: 0.8
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: SaltoHumano
     clip: {fileID: 8300000, guid: 4a780eda57683094fb452488359a2053, type: 3}
-    volume: 0.85
+    volume: 0.6
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: IdleHumano
     clip: {fileID: 8300000, guid: b416dffcecac9cd45b625592ec9033ea, type: 3}
-    volume: 0.35
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: IdleBestia
     clip: {fileID: 8300000, guid: 8d1022780b3f0b34a89e4411d3bd8c8f, type: 3}
-    volume: 0
+    volume: 0.1
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: MuerteHumano
     clip: {fileID: 8300000, guid: 40bf72d40ee210a4c8edacf4ad4caa4d, type: 3}
     volume: 0.5
@@ -379,7 +380,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: MuerteBestia
     clip: {fileID: 8300000, guid: 43ccb865ee43c9b4fbf3040e59169f5d, type: 3}
     volume: 0.5
@@ -389,7 +390,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: AparicionTutorial
     clip: {fileID: 8300000, guid: 7a0052eac85830d4990bc00115839e86, type: 3}
     volume: 0.5
@@ -399,7 +400,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Pausa
     clip: {fileID: 8300000, guid: 5b85c59a0e287e64295a697808e16936, type: 3}
     volume: 0.5
@@ -409,7 +410,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Boton
     clip: {fileID: 8300000, guid: 8be03355a188e994a91aa4ce52dbab07, type: 3}
     volume: 0.5
@@ -419,7 +420,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: SombreadoBoton
     clip: {fileID: 8300000, guid: d5cbcc9caebca3e44b7d7b80117fdd93, type: 3}
     volume: 0.5
@@ -429,7 +430,7 @@ MonoBehaviour:
     loop: 0
     mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Menu
     clip: {fileID: 8300000, guid: 9628a96f1d96a944199651a3b94aa04c, type: 3}
     volume: 0
@@ -439,7 +440,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   - name: Jungla
     clip: {fileID: 8300000, guid: 2339555119be85b4ab9ead945f58c68d, type: 3}
     volume: 0
@@ -449,7 +450,7 @@ MonoBehaviour:
     loop: 1
     mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
-    paused: 0
+    paused: 1
   masterMixerGroup: {fileID: 24300002, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
   lastBGM: 
   mixerValues:
@@ -516,6 +517,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSet: 0
+--- !u!1 &5225146890716558219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6608909553124978759}
+  - component: {fileID: 5330028041708768028}
+  m_Layer: 0
+  m_Name: ElementInstanciator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6608909553124978759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225146890716558219}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 94.13574, y: -22.641724, z: 2.8405595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7415028902724691822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5330028041708768028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225146890716558219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b33214cafafd24458f6ebe0a39c8155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsList:
+  - nameObj: healFX
+    mainPrefabObj: {fileID: 3900824808501021153, guid: 1d76f220d95058244ae15ecefaad2654, type: 3}
+    activeObjects: []
+    deactiveObjects: []
+  - nameObj: clawFX
+    mainPrefabObj: {fileID: 2376254253947472822, guid: 7e454f6d7ebd9ff42ada104597f7345f, type: 3}
+    activeObjects: []
+    deactiveObjects: []
+  - nameObj: bleedFX
+    mainPrefabObj: {fileID: 4680026458678786858, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
+    activeObjects: []
+    deactiveObjects: []
+  - nameObj: impactFX
+    mainPrefabObj: {fileID: 76157952026525887, guid: 74372a8212c997c458d5828433948f11, type: 3}
+    activeObjects: []
+    deactiveObjects: []
 --- !u!1 &5777059888098358530
 GameObject:
   m_ObjectHideFlags: 0

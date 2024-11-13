@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace Features
 {
     public class Shield :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
+        public Action OnBroke;
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -58,6 +60,7 @@ namespace Features
 
             int previousCurrentHealth = currentShield;
             currentShield = Mathf.Clamp(currentShield + amount, 0, maxShield);
+            if (currentShield <= 0) OnBroke.Invoke();
         }
 
         public void HalfShield()

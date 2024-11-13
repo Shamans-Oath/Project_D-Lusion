@@ -5,7 +5,7 @@ using System.Linq;
 public class ElementInstancer : MonoBehaviour
 {
     public GeneretableObject[] objectsList;
-    public ElementInstancer instance;
+    public static ElementInstancer instance;
     private void Awake()
     {
         instance = this;    

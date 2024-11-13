@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features
 {
-    public class EntityEffector : MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate, IFeatureAction //Other channels
+    public class EntityEffector : MonoBehaviour, IActivable, IFeatureSetup //Other channels
     {
         //Configuration
         [Header("Settings")]
@@ -12,32 +12,54 @@ namespace Features
         //Control
         [Header("Control")]
         [SerializeField] private bool active;
+        public string hitFxKey;
+        public string healFxKey;
+        public string deadFxKey;
+        //public string shieldBrkFxKey;
+
+        private Controller ctrll;
+
         //States
         //Properties
         //References
         //Componentes
+        private void OnEnable()
+        {
+            if(ElementInstancer.instance!=null)
+            {
+                if(ctrll.SearchFeature<Life>())
+                {
+                    Life lf = ctrll.SearchFeature<Life>();
+                    Debug.Log("thisis the enaabble");
+                    if (hitFxKey != "") lf.OnDamage += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey),transform.position,transform);
+                    if (healFxKey != "") lf.OnHeal += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
+                    if (deadFxKey != "") lf.OnDeath += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
+                }
 
+            }
+        }
+        private void OnDisable()
+        {
+            if (ElementInstancer.instance != null)
+            {
+                if (ctrll.SearchFeature<Life>())
+                {
+                    Life lf = ctrll.SearchFeature<Life>();
+                    if (hitFxKey != "") lf.OnDamage -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey), transform.position, transform);
+                    if (healFxKey != "") lf.OnHeal -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
+                    if (deadFxKey != "") lf.OnDeath -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
+                }
+            }
+        }
         public void SetupFeature(Controller controller)
         {
+            this.enabled = false;
             settings = controller.settings;
-
+            ctrll = controller;
+            this.enabled = true;
             //Setup Properties
 
             ToggleActive(true);
-        }
-
-        public void UpdateFeature(Controller controller)
-        {
-            if (!active) return;
-
-            
-        }
-
-        public void FeatureAction(Controller controller, params Setting[] settings)
-        {
-            if (!active) return;
-
-           
         }
 
         public bool GetActive()

@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 7270073362084917279}
   - component: {fileID: 8264937529608813348}
   - component: {fileID: 487814461227229033}
+  - component: {fileID: 7196491400562794214}
   m_Layer: 10
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -977,6 +978,7 @@ MonoBehaviour:
   extraDistanceGround: 0
   offsetGround: {x: 0, y: 0}
   feetSize: {x: 0, y: 0, z: 0}
+  delayDetection: 0
 --- !u!114 &9140238939135494083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,6 +1385,23 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &7196491400562794214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed414dbf83594940a0fb8a85cd4d74f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  hitFxKey: bleedFX
+  healFxKey: 
+  deadFxKey: 
 --- !u!1 &280545415659776953
 GameObject:
   m_ObjectHideFlags: 0
