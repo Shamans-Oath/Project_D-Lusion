@@ -430,8 +430,28 @@ MonoBehaviour:
     mixerGroup: {fileID: 7569935204355509857, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
     paused: 0
+  - name: Menu
+    clip: {fileID: 8300000, guid: 9628a96f1d96a944199651a3b94aa04c, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
+  - name: Jungla
+    clip: {fileID: 8300000, guid: 2339555119be85b4ab9ead945f58c68d, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 0
   masterMixerGroup: {fileID: 24300002, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
-  gameplaySFX: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+  lastBGM: 
   mixerValues:
   - volumeKey: MasterVolume
     value: 0.5

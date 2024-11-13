@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Camera_System : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class Camera_System : MonoBehaviour
     [Header("Lock System")]
     public TargetLock lockSys;
 
-     void Awake()
+    [Header("Sensivility")]
+    public float minSens;
+    public float maxSens;
+
+    void Awake()
     {
         instance = this;
     }
@@ -54,70 +59,7 @@ public class Camera_System : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(Input.GetKeyDown(KeyCode.C))
-        {
-            CameraShake("TestExplosion");
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SetFOV(80);
-        }
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            StartCoroutine(FOVLerp(20, 2.5f));
-        }
-
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ResetFOV();
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-           ResetFOVLerp(2.5f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SetRadius(1, 3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartCoroutine(RadiusLerp(1, 5, 2.5f));
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ResetRadius(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ResetRadiusLerp(1, 2.5f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            GlobalRadiusChange(3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            GlobalRadiusLerp(5, 2.5f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            GlobalRadiusReset();
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            GlobalRadiusResetLerp(2.5f);
-        }*/
+        
     }
 
     public void CameraShake(string name)
@@ -285,5 +227,21 @@ public class Camera_System : MonoBehaviour
 
         /*Vector3 point = mainCamera.transform.Position + (mainCamera.transform.forward * maxDistance);
         return point;*/
+    }
+
+    public float ReadSens()
+    {
+        float sensRatio = Mathf.InverseLerp(minSens, maxSens, cmp_playerCamera.m_XAxis.m_MaxSpeed);
+
+        return Mathf.Lerp(0 , 1 , sensRatio);
+    }
+
+    public void UpdateSens(float value)
+    {
+        float sensRatio = Mathf.InverseLerp(0, 1, value);
+
+        float newSens = Mathf.Lerp(minSens, maxSens, sensRatio);
+
+        cmp_playerCamera.m_XAxis.m_MaxSpeed = newSens;
     }
 }

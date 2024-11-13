@@ -1,25 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class BGMCaller : MonoBehaviour
+public class SensibilityChanger : MonoBehaviour
 {
-    public string Music;
-    public float Volume;
+    public Slider slider;
 
     private void OnEnable()
     {
-        if (AudioManager.instance != null)
-        {
-            PlayBGM();
-        }
+        slider.value = Camera_System.instance.ReadSens();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
-
     }
 
     // Update is called once per frame
@@ -28,8 +24,8 @@ public class BGMCaller : MonoBehaviour
         
     }
 
-    public void PlayBGM()
+    public void UpdateSens(float value)
     {
-        AudioManager.instance.MusicChanger(Music, Volume);
+        Camera_System.instance.UpdateSens(value);
     }
 }
