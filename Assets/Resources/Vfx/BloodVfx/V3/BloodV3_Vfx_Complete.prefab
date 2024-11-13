@@ -45,6 +45,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: ShapeModule.angle
       value: 0
       objectReference: {fileID: 0}
@@ -279,6 +283,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 820386971665114397}
     m_Modifications:
+    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: SubModule.enabled
       value: 1
