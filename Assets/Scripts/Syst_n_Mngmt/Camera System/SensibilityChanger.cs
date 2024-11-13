@@ -9,6 +9,7 @@ public class SensibilityChanger : MonoBehaviour
 
     private void OnEnable()
     {
+        if(Camera_System.instance != null)
         slider.value = Camera_System.instance.ReadSens();
     }
 
@@ -26,6 +27,7 @@ public class SensibilityChanger : MonoBehaviour
 
     public void UpdateSens(float value)
     {
+        if (Camera_System.instance != null)
         Camera_System.instance.UpdateSens(value);
     }
 }
