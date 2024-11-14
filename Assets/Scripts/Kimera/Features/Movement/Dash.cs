@@ -112,7 +112,11 @@ namespace Features
             TerrainEntity terrain = controller as TerrainEntity;
             if (terrain != null)
             {
-                if (!terrain.onGround) return;
+                if (!terrain.onGround)
+                {
+                    AudioManager.instance.PlaySound("ViperCancel");
+                    return;
+                }
             }
 
             if (settings.Length < 1) return;
@@ -138,8 +142,10 @@ namespace Features
         public void ChargeDash(Vector3 position)
         {
             //Check inner state: if the cooldown is not ready or the player is already dashing interrupt
-            if (dashCooldownTimer > 0 || isDashing || isCharging) return;  //Descomentar para habilitar cooldown inicial
-
+            if (dashCooldownTimer > 0 || isDashing || isCharging)
+            {
+                return;  //Descomentar para habilitar cooldown inicial
+            }
             dashCharge = StartCoroutine(DashToPosition(position));
         }
 

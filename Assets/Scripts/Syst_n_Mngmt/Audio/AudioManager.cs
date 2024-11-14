@@ -199,13 +199,21 @@ public class AudioManager : MonoBehaviour
         masterMixerGroup.audioMixer.SetFloat(volumeKey, Mathf.Log10(value) * 20);        
     }
 
-    public void MusicChanger(string name, float volume)
+    public void MusicChanger(string name)
     {
-        if(name != lastBGM)
+        Sound s = System.Array.Find(sounds, item => item.name == name);
+        if (s == null)
+        {
+            Debug.Log("The sound " + name + " couldn't be found");
+            return;
+        }
+
+        if (s.name != lastBGM)
         {
             ChangeVolume(lastBGM, 0, 0.2f);
+            s.source.volume = 0;
             PlaySound(name);
-            ChangeVolume(name, volume, 0.2f);
+            ChangeVolume(name, s.volume, 0.2f);
             lastBGM = name;
         }
     }

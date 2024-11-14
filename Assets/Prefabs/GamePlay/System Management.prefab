@@ -211,6 +211,16 @@ MonoBehaviour:
     mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
     paused: 1
+  - name: ViperCancel
+    clip: {fileID: 8300000, guid: fddf998db9601af4383186713cea002f, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
   - name: "Da\xF1oHumano"
     clip: {fileID: 8300000, guid: 5a0de92fc85195649ae63091d2aa0f09, type: 3}
     volume: 0.6
@@ -433,7 +443,7 @@ MonoBehaviour:
     paused: 1
   - name: Menu
     clip: {fileID: 8300000, guid: 9628a96f1d96a944199651a3b94aa04c, type: 3}
-    volume: 0
+    volume: 0.25
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0
@@ -443,7 +453,17 @@ MonoBehaviour:
     paused: 1
   - name: Jungla
     clip: {fileID: 8300000, guid: 2339555119be85b4ab9ead945f58c68d, type: 3}
-    volume: 0
+    volume: 0.75
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Combate
+    clip: {fileID: 8300000, guid: 1d749fe87e7515a4e8ac340792d950af, type: 3}
+    volume: 0.45
     volumeVariance: 0
     pitch: 1
     pitchVariance: 0

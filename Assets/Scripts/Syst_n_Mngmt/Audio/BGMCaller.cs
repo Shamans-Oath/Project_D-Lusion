@@ -5,8 +5,7 @@ using UnityEngine;
 public class BGMCaller : MonoBehaviour
 {
     public string Music;
-    public float Volume;
-
+    
     private void OnEnable()
     {
         if (AudioManager.instance != null)
@@ -30,6 +29,6 @@ public class BGMCaller : MonoBehaviour
 
     public void PlayBGM()
     {
-        AudioManager.instance.MusicChanger(Music, Volume);
+        AudioManager.instance.MusicChanger(Music);
     }
 }

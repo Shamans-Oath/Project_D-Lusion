@@ -116,7 +116,11 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (block || SearchFeature<Dash>().dashCooldownTimer > 0 || SearchFeature<Dash>().IsDashing || SearchFeature<Dash>().IsCharging) return;
+        if (block || SearchFeature<Dash>().dashCooldownTimer > 0 || SearchFeature<Dash>().IsDashing || SearchFeature<Dash>().IsCharging)
+        {
+            if (context.performed) AudioManager.instance.PlaySound("ViperCancel");
+            return;
+        }
         if (context.performed)
         {
             // SearchFeature<Rotation>().RotateTo(dashPoint.Position);
