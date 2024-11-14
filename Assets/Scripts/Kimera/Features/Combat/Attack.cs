@@ -115,16 +115,26 @@ namespace Features
             if(linker != null) bodyPart = linker.GetAnimationBodyPart(actualAttack.bodyPart);
             else bodyPart = controller.transform;
 
-            for(int i = 0; i < vfxNamesList.Length; i++){
-                if(vfxNamesList[i] == string.Empty) continue;
-                
-                ParticleSystem particle = VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, Quaternion.identity);
-                particle.transform.SetParent(bodyPart, true);
+            if(ElementInstancer.instance!=null)
+            {
+                for (int i = 0; i < vfxNamesList.Length; i++)
+                {
+                    if (vfxNamesList[i] == string.Empty) continue;
+                    GameObject generatedObj;
+                    if (vfxNamesList[i] != "")
+                    {
+                        generatedObj = ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(vfxNamesList[i]), bodyPart.transform.position, bodyPart.transform);
+                        generatedObj.transform.rotation = bodyPart.transform.rotation;
+                    }
+                    //ParticleSystem particle = VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, Quaternion.identity);
+                    //particle.transform.SetParent(bodyPart, true);
 
-                Combat combat = controller.SearchFeature<Combat>();
+                    Combat combat = controller.SearchFeature<Combat>();
 
-                Destroy(particle, (actualAttack.end - actualAttack.start) * (combat != null ? combat.attackSpeedMultiplier : 1f));
+                    //Destroy(particle, (actualAttack.end - actualAttack.start) * (combat != null ? combat.attackSpeedMultiplier : 1f));
+                }
             }
+            
         }
 
         private void AttackFollowForce(Settings attackSettings, KineticEntity kinetic)

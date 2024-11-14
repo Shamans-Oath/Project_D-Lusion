@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 577433905706880175}
   - component: {fileID: 6937960196878263980}
   - component: {fileID: 6593878182154407726}
+  - component: {fileID: 7694014338569476255}
   m_Layer: 0
   m_Name: StylizedBomb
   m_TagString: Untagged
@@ -181,6 +182,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sparkParticles: {fileID: 4176505520310474083}
+--- !u!114 &7694014338569476255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730161902386835081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7d746b0ef5e8940bd25258ba43b798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpan: 1
 --- !u!1 &7387782052155479644
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +324,6 @@ GameObject:
   - component: {fileID: 2758850726644476294}
   - component: {fileID: 7202887480812067209}
   - component: {fileID: 4579530056058251516}
-  - component: {fileID: 6362429049305222163}
   m_Layer: 0
   m_Name: BombSphere
   m_TagString: Untagged
@@ -383,24 +396,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6362429049305222163
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8601659315516587219}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}

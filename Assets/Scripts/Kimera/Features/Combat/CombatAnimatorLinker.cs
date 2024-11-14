@@ -167,7 +167,7 @@ namespace Features
                     return head;
                 
                 default:
-                    return null;
+                    return transform;
             }
         }
 

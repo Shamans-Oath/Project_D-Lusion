@@ -18,9 +18,9 @@ MonoBehaviour:
   swings:
   - swingName: KickMMA
     size: {x: 5, y: 5, z: 5}
-    offset: {x: -0.5, y: 0, z: 0.25}
+    offset: {x: 0, y: 0.5, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
-    bodyPart: 0
+    bodyPart: 10
     movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
       serializedVersion: 2
@@ -32,4 +32,4 @@ MonoBehaviour:
     duration: 1.2500001
     start: 0.3717472
     end: 1.1794872
-    vfxNames: 
+    vfxNames: blastFX

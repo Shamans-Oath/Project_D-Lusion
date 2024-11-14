@@ -16,8 +16,11 @@ public class DeactiveSpan : MonoBehaviour
         }
         else
         {
-            timer = 0;
             gameObject.SetActive(false);
         }
+    }
+    private void OnDisable()
+    {
+        timer = 0;
     }
 }
