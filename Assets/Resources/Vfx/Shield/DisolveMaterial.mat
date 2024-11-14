@@ -48,7 +48,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _CastShadows: 1
     - _Cull: 1
-    - _Dissolve: 0.394
+    - _Dissolve: -0.2
     - _DissolveEdgeThickness: 0.1
     - _DissolveStartHeight: 3
     - _DstBlend: 10
@@ -62,7 +62,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 0.25, g: 0.39088392, b: 1, a: 1}
+    - _Color: {r: 0.24999997, g: 0.39088386, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6362756120398203636
 MonoBehaviour:
