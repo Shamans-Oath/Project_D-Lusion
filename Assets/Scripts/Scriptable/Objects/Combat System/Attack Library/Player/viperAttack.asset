@@ -19,17 +19,35 @@ MonoBehaviour:
   - swingName: Down Explosion
     size: {x: 25, y: 25, z: 25}
     offset: {x: 0, y: -1, z: 1}
-    movement: {x: 0, y: 0, z: 0}
-    bodyPart: 9
+    movement: {x: 0, y: 0, z: 1}
+    bodyPart: 10
     movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
       serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 0
-      m_PostInfinity: 0
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: ad68acbe1d789674ab21abd1c7d340aa, type: 2}
     duration: 2.6
-    start: 0.2845283
-    end: 1.6090565
+    start: 0
+    end: 0.2845283
     vfxNames: sphereImpactFX

@@ -11,6 +11,7 @@ namespace Features
         public event Action OnDamage;
         public event Action OnHeal;
         public event Action OnDeath;
+        public event Action OnLowVariance;
 
         //Configuration
         [Header("Settings")]
@@ -25,6 +26,7 @@ namespace Features
         public int CurrentHealth { get => currentHealth; }
         //Properties
         [Header("Properties")]
+        public float lowHpIndicator;
         public int maxHealth;
         public float immunityDuration = 0.5f;
         public  bool isImmune = false;
@@ -106,6 +108,7 @@ namespace Features
             else if (diff < 0) OnDamage?.Invoke();
 
             if (currentHealth <= 0) OnDeath?.Invoke();
+            if ((previousCurrentHealth > lowHpIndicator && currentHealth < lowHpIndicator) || (previousCurrentHealth < lowHpIndicator && currentHealth > lowHpIndicator)) OnLowVariance.Invoke();
         }
 
         public void MaxHealth(int amount, bool readjust = true, bool triggerEvents = true)
