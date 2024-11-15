@@ -98,8 +98,7 @@ public class CanvasManager : MonoBehaviour
         else
         {
             s.canvObj.SetActive(true);
-            tutorialManager.LoadTutorial(tutorialName);
-            AudioManager.instance.PlaySound("AparicionTutorial");
+            tutorialManager.LoadTutorial(tutorialName);            
         }
     }
 
