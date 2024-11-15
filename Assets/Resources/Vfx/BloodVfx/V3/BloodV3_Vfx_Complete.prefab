@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 0.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: EmissionModule.m_BurstCount
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: InitialModule.startSize.minScalar
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
@@ -214,15 +214,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.7599983
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalRotation.w
@@ -304,10 +304,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: SubModule.subEmitters.Array.data[0].type
       value: 2
       objectReference: {fileID: 0}
@@ -337,7 +333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.062
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalPosition.z
@@ -370,14 +366,6 @@ PrefabInstance:
     - target: {fileID: 6971193882992815425, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107577689530764807, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
-      propertyPath: m_RenderMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8107577689530764807, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
-      propertyPath: m_LengthScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -452,16 +440,8 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 493131978226789424, guid: e2cd8ff8f982f8449b92d8e948101e44, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.size
