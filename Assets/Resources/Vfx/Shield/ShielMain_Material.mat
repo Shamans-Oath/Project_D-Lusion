@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
@@ -37,19 +37,41 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _AlphaToMask: 1
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _CastShadows: 1
+    - _Cull: 0
     - _DepthOffset: 0
-    - _DistortionStrenght: 0.1
-    - _FresnelPower: 1
-    - _QueueControl: 0
+    - _DisplacementStrenght: 0.1
+    - _Dissolve: -0.2
+    - _DissolveEdgeThickness: 0.3
+    - _DissolveStartHeight: 0
+    - _DistortionStrenght: 0.009
+    - _DstBlend: 0
+    - _FresnelPower: 3
+    - _QueueControl: 1
     - _QueueOffset: 0
+    - _ReceiveShadows: 1
+    - _SphereHardeness: 0
     - _SphereMaskHardeness: 0
-    - _SphereMaskRadius: 0
+    - _SphereMaskRadius: 1
+    - _SphereMaskRadius_1: 0
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
     - _zoom: 0.5
     m_Colors:
+    - _DissolveEdgeColor: {r: 0, g: 0.112649836, b: 0.6313726, a: 0}
+    - _HiPos: {r: 0, g: 0, b: 0, a: 0}
     - _HitPosition: {r: 0, g: 0, b: 0, a: 0}
-    - _MaskSmoothStep: {r: 0.8, g: 2.5, b: 0, a: 0}
+    - _MaskSmoothStep: {r: 2.51, g: 2.5, b: 0, a: 0}
     - _ObjScreenPos: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _OutlinerColor: {r: 0, g: 1.216442, b: 3.627208, a: 1}
+    - _OutlinerColor: {r: 0, g: 0.17336765, b: 0.509434, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &967102382082166164
 MonoBehaviour:
