@@ -8,6 +8,7 @@ namespace Features
     public class Shield :  MonoBehaviour, IActivable, IFeatureSetup, IFeatureUpdate //Other channels
     {
         public Action OnBroke;
+        public Action OnShield;
         //Configuration
         [Header("Settings")]
         public Settings settings;
@@ -60,6 +61,7 @@ namespace Features
 
             int previousCurrentHealth = currentShield;
             currentShield = Mathf.Clamp(currentShield + amount, 0, maxShield);
+            if (previousCurrentHealth <= 0 && currentShield > 0) OnShield.Invoke();
             if (currentShield <= 0) OnBroke.Invoke();
         }
 

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958817586814405986}
+  - component: {fileID: 1062274560677605527}
+  - component: {fileID: 8647011824913048758}
   m_Layer: 0
   m_Name: SpawnerVFX
   m_TagString: Untagged
@@ -33,6 +35,34 @@ Transform:
   - {fileID: 975894549504337161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062274560677605527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303531876486101893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7d746b0ef5e8940bd25258ba43b798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpan: 1.5
+--- !u!114 &8647011824913048758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303531876486101893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be65f970a33e99c47ba971bebfa3b472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreX: 0
+  ignoreY: 0
+  ignoreZ: 0
 --- !u!1 &2425156368093318053
 GameObject:
   m_ObjectHideFlags: 0
