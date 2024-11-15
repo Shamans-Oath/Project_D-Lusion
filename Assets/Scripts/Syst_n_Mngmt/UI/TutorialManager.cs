@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
     public Animator cmp_Animator;
 
     public string lastTutorial;
-    Coroutine timerCoroutine;
+    Coroutine timerCoroutine, exitCoroutine;
 
 
     public Tutorial[] tutorials;
@@ -36,8 +36,9 @@ public class TutorialManager : MonoBehaviour
         cmp_TextMeshPro.text = t.Name;
         buttonIcon.sprite = t.Icon;
         lastTutorial = tutorialName;
-        
-        if(timerCoroutine != null) StopCoroutine(timerCoroutine);
+        AudioManager.instance.PlaySound("AparicionTutorial");
+
+        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
         timerCoroutine = StartCoroutine(PopupTimer(t.Time));
     }
 
@@ -50,11 +51,31 @@ public class TutorialManager : MonoBehaviour
 
         yield return new WaitForSeconds(seconds);
 
-        StartCoroutine(ExitTutorial());
+        if (exitCoroutine != null) StopCoroutine(exitCoroutine);
+        exitCoroutine = StartCoroutine(ExitTutorial());
     }
 
     public IEnumerator UpdateTutorial(string tutorialName)
     {
+        AnimatorStateInfo stateInfo = cmp_Animator.GetCurrentAnimatorStateInfo(0);
+
+        /*if(stateInfo.IsName("SlideIn"))
+        {
+            cmp_Animator.SetTrigger("Exit");
+
+            yield return new WaitForSeconds(0.5f);
+
+            LoadTutorial(tutorialName);
+            cmp_Animator.SetTrigger("Start");
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            LoadTutorial(tutorialName);
+            cmp_Animator.SetTrigger("Start");
+        }*/
+
         cmp_Animator.SetTrigger("Exit");
 
         yield return new WaitForSeconds(0.5f);
