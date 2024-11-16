@@ -34,10 +34,7 @@ namespace Features
         private void OnEnable()
         {
             SearchFeature<Life>().OnDeath += OnDeath;
-            this.enabled = true;
-            ToggleActive(true);
-            if(SearchFeature<FillBarVisualizer>()) SearchFeature<FillBarVisualizer>().ActiveVisuals(true);
-            this.Setup();
+            
         }
 
         private void OnDisable()
@@ -74,6 +71,10 @@ namespace Features
 
         public void ReanimateAndSave()
         {
+            this.enabled = true;
+            ToggleActive(true);
+            if (SearchFeature<FillBarVisualizer>()) SearchFeature<FillBarVisualizer>().ActiveVisuals(true);
+            this.Setup();
             CallFeature<Ragdoll>(new Setting("ragdollActivation", false, Setting.ValueType.Bool));
             gameObject.SetActive(false);
         }
