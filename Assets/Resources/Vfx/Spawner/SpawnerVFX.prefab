@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1958817586814405986}
   - component: {fileID: 1062274560677605527}
   - component: {fileID: 8647011824913048758}
+  - component: {fileID: 6043584822279410629}
   m_Layer: 0
   m_Name: SpawnerVFX
   m_TagString: Untagged
@@ -63,6 +64,27 @@ MonoBehaviour:
   ignoreX: 0
   ignoreY: 0
   ignoreZ: 0
+--- !u!95 &6043584822279410629
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303531876486101893}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ae43d5b13a57f984380cf3221c319466, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2425156368093318053
 GameObject:
   m_ObjectHideFlags: 0
