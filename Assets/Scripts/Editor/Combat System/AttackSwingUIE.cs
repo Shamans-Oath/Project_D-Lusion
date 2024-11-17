@@ -38,7 +38,13 @@ public class AttackSwingUIE : PropertyDrawer
         var labelEnd = new FloatField("End");
         labelEnd.BindProperty(property.FindPropertyRelative("end"));
 
+        var labelControl = new Label("Control");
+        var labelMovement = new Toggle("Deactive Movement");
+        labelMovement.BindProperty(property.FindPropertyRelative("unallowPlayerControlOverride"));
+
         var labelVFX = new Label("VFX");
+        var labelVFXattach = new Toggle("Hitbox Attacher");
+        labelVFXattach.BindProperty(property.FindPropertyRelative("hitboxAttach"));
         var labelVFXNames = new TextField("VFX Names");
         labelVFXNames.BindProperty(property.FindPropertyRelative("vfxNames"));
 
@@ -90,7 +96,11 @@ public class AttackSwingUIE : PropertyDrawer
         container.Add(labelEffects);
         container.Add(settings);
 
+        container.Add(labelControl);
+        container.Add(labelMovement);
+
         container.Add(labelVFX);
+        container.Add(labelVFXattach);
         container.Add(labelVFXNames);
 
         container.Add(labelTiming);

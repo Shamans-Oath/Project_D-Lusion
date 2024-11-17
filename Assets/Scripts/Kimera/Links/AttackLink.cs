@@ -45,9 +45,9 @@ namespace Features
             if(attack != null)
             {
                 bool? proporcentualDamage = attack.Search("proportionalHealthDamage");
-                if(proporcentualDamage.HasValue && proporcentualDamage.Value==true)
+                if(proporcentualDamage.HasValue)
                 {
-                    damage = ((reactorLife.maxHealth - reactorLife.CurrentHealth) * damage) / reactorLife.maxHealth;
+                    if(proporcentualDamage.Value == true) damage = ((reactorLife.maxHealth - reactorLife.CurrentHealth) * damage) / reactorLife.maxHealth;
                 }
 
                 float? attackPotential = attack.Search("attackPotential");

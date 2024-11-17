@@ -741,7 +741,6 @@ GameObject:
   - component: {fileID: 8264937529608813348}
   - component: {fileID: 487814461227229033}
   - component: {fileID: 7196491400562794214}
-  - component: {fileID: 3771556838183863001}
   m_Layer: 10
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -1408,20 +1407,6 @@ MonoBehaviour:
   lowHpGroup:
   - {fileID: 4909646620706049688}
   shieldGroup: []
---- !u!114 &3771556838183863001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270489431914573047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef9e9e0b69474245ae683744e8bebca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings: {fileID: 0}
-  active: 0
 --- !u!1 &280545415659776953
 GameObject:
   m_ObjectHideFlags: 0

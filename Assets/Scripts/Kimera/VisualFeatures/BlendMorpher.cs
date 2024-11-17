@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using UnityEditor.Media;
 using UnityEngine;
+using UnityEngine.Android;
 
 namespace Features
 {
@@ -18,13 +21,17 @@ namespace Features
         public BlendGroup[] activeObjects;
         public float gapActivationValue;
         public SkinMeshBlend[] meshRenderers;
+        public SkinnedMeshRenderer[] emissionRenderers;
+        public float emissionUnit;
         [Range(0.5f,10)]
         public float changeSpeed;
         [SerializeField]
         private float blendValue=0;
+        
         private float time;
         public float maxValue = 100;
         public float blendUnit;
+        
         //References
         //Componentes
 
@@ -37,7 +44,7 @@ namespace Features
             ToggleActive(true);
             FurryEntity furryEntity = controller as FurryEntity;
             blendUnit = maxValue / settings.Search("furryMax");
-
+            emissionUnit = 1 / settings.Search("furryMax");
             GroupEnabler(furryEntity.furryCount * blendUnit);
         }
 
@@ -68,6 +75,14 @@ namespace Features
                     BlendChange(blendValue, mesh);
                 }
             }
+            if (emissionRenderers.Length > 0)
+            {
+                foreach (SkinnedMeshRenderer mesh in emissionRenderers)
+                {
+                    BlendEmission(furryEntity.furryCount * emissionUnit, mesh);
+                    Debug.Log(furryEntity.furryCount * emissionUnit);
+                }
+            }
             /*if(cmp_smr.GetBlendShapeWeight(0)!=blendValue && time < changeSpeed)
             {                
                 float currentWeight = cmp_smr.GetBlendShapeWeight(0);
@@ -76,8 +91,8 @@ namespace Features
 
                 time += Time.deltaTime;
             }*/
- 
-  
+
+
         }
 
         public void BlendChange(float value, SkinMeshBlend blend)
@@ -107,6 +122,20 @@ namespace Features
                     activeObjects[i].setOnElements[j].SetActive(toSet);
                 }
             }
+        }
+
+        public void BlendEmission(float value, SkinnedMeshRenderer mesh)
+        {
+            if (mesh == null) return;
+
+            UnityEngine.Color baseCol = mesh.material.GetColor("_EmissionColor");
+            float currentEmission = 0.2989f * baseCol.r + 0.5870f * baseCol.g + 0.1140f * baseCol.b;
+
+
+            if (currentEmission == value) return;
+            currentEmission = Mathf.Lerp(currentEmission, value, changeSpeed);
+            Debug.Log(currentEmission + " | " + value);
+            mesh.material.SetColor("_EmissionColor", new UnityEngine.Color(baseCol.r, baseCol.g, baseCol.b) * Mathf.Pow(2, currentEmission));
         }
     }
 

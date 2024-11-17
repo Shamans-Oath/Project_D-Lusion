@@ -26,8 +26,12 @@ namespace Features
         [HideInInspector] public float duration;
         public float start;
         public float end;
-    
+
+        [Header("Control")]
+        public bool unallowPlayerControlOverride;
+
         [Header("Visual FX")]
+        public bool hitboxAttach;
         public string vfxNames; 
     }
 }

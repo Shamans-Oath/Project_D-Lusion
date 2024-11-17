@@ -33,13 +33,13 @@ namespace Features
 
         private void OnEnable()
         {
-            SearchFeature<Life>().OnDeath += OnDeath;
+            if(SearchFeature<Life>()) SearchFeature<Life>().OnDeath += OnDeath;
             
         }
 
         private void OnDisable()
         {
-            SearchFeature<Life>().OnDeath -= OnDeath;
+            if (SearchFeature<Life>()) SearchFeature<Life>().OnDeath -= OnDeath;
         }
 
         private void Start()

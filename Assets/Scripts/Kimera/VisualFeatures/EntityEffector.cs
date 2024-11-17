@@ -39,7 +39,12 @@ namespace Features
             if(ElementInstancer.instance!=null)
             {
                 Debug.Log("eeeeenable");
-                if (spawnFxKey != "")  ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), transform.position,transform);
+                if (spawnFxKey != "")
+                {
+                    GameObject tmpObj =  ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), transform.position);
+                    //tmpObj.transform.parent = null;
+                }
+
 
                 if (ctrll.SearchFeature<Life>())
                 {

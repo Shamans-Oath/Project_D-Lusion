@@ -117,14 +117,18 @@ namespace Features
 
             if(ElementInstancer.instance!=null)
             {
+                Transform attachTransform = bodyPart.transform;
+                if (actualAttack.hitboxAttach) attachTransform = transform;
+
                 for (int i = 0; i < vfxNamesList.Length; i++)
                 {
                     if (vfxNamesList[i] == string.Empty) continue;
                     GameObject generatedObj;
                     if (vfxNamesList[i] != "")
                     {
-                        generatedObj = ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(vfxNamesList[i]), bodyPart.transform.position, bodyPart.transform);
-                        generatedObj.transform.rotation = bodyPart.transform.rotation;
+                        generatedObj = ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(vfxNamesList[i]), attachTransform);
+                        generatedObj.transform.rotation = attachTransform.rotation;
+                        generatedObj.transform.position = attachTransform.position;
                     }
                     //ParticleSystem particle = VFXcontroller.instance?.InstanceVFX(vfxNamesList[i], bodyPart.position, Quaternion.identity);
                     //particle.transform.SetParent(bodyPart, true);
