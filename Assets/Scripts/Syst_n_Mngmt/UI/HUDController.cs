@@ -90,6 +90,11 @@ public class HUDController : MonoBehaviour
         float healthRatio = Mathf.InverseLerp(0, maxHealth, currentHealth);
 
         lifeBar.fillAmount = Mathf.Lerp(lifeBar.fillAmount, healthRatio, lerpDuration);
+
+        if(currentHealth == 0)
+        {
+            lifeBar.fillAmount = 0;
+        }
     }
 
     public void UpdateShieldBar(int currentShield, int maxShield)

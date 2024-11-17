@@ -22,6 +22,7 @@ public class CanvasManager : MonoBehaviour
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> TogglePause();
         GameManager.gameInputSystem.UI.Interact.performed +=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
+        //GameManager.gameInputSystem.UI.Escape.performed += _ => ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed +=_=> TogglePause();
     }
 
@@ -29,6 +30,7 @@ public class CanvasManager : MonoBehaviour
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed -=_=> TogglePause();
         GameManager.gameInputSystem.UI.Interact.performed -=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
+        //GameManager.gameInputSystem.UI.Escape.performed -= _ => ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed -=_=> TogglePause();
     }
 
@@ -145,10 +147,14 @@ public class CanvasManager : MonoBehaviour
         if (pauseMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(false);
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
         else
         {
             pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             AudioManager.instance.PlaySound("Pausa");
         }
 
