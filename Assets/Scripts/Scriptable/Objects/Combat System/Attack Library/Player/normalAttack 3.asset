@@ -17,7 +17,7 @@ MonoBehaviour:
   attackToughness: 3
   swings:
   - swingName: BoxPunch1
-    size: {x: 5, y: 5, z: 5}
+    size: {x: 7, y: 5, z: 7}
     offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
@@ -50,4 +50,6 @@ MonoBehaviour:
     duration: 1.033334
     start: 0.29205275
     end: 0.64755607
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: auraFX
