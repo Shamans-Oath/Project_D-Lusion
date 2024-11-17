@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager manager;
     [ReadOnly]
     public float timeSet;
+    public GameState initialState;
 
 
     public static event Action StateChanged = delegate { };
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Gameplay,
+        OnPause,
         OnMenu
 
     };
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
         manager = this;
         SetInputSystem();
         GameManager.StateChanged += CheckState;
+        SetState(initialState);
         //GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> CheckState();
     }
 
@@ -54,18 +57,48 @@ public class GameManager : MonoBehaviour
     public void CheckState()
     {
         Debug.Log("ChangeState gamemanager checker");
-        if (gameState != GameState.OnMenu)
+
+        switch(gameState)
+        {
+            case GameState.Gameplay:
+                Time.timeScale = 1;
+                manager.ToggleActionMap(gameInputSystem.GamePlay);
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                AudioManager.instance.TogglePause(false);
+                break;
+            case GameState.OnPause:
+                Time.timeScale = 0;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                manager.ToggleActionMap(gameInputSystem.UI);
+                AudioManager.instance.TogglePause(true);
+                break;
+            case GameState.OnMenu:
+                Time.timeScale = 1;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                manager.ToggleActionMap(gameInputSystem.UI);
+                AudioManager.instance.TogglePause(true);
+                break;
+        }
+
+        /*if (gameState != GameState.OnPause)
         {
             Time.timeScale = 1;
             manager.ToggleActionMap(gameInputSystem.GamePlay);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             AudioManager.instance.TogglePause(false);
         }
         else
         {
             Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             manager.ToggleActionMap(gameInputSystem.UI);
             AudioManager.instance.TogglePause(true);
-        }
+        }*/
     }
 
     public void ToggleMenus()
@@ -73,13 +106,13 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.Gameplay:
-                SetState(GameState.OnMenu);
+                SetState(GameState.OnPause);
                 //ToggleActionMap(gameInputSystem.UI);
                 //AudioManager.instance.TogglePause(false);
                 //AudioManager.instance.ToggleMute("GameplaySFXVolume");
             break;
 
-            case GameState.OnMenu:
+            case GameState.OnPause:
                 SetState(GameState.Gameplay);
                 //ToggleActionMap(gameInputSystem.GamePlay);
                 //AudioManager.instance.TogglePause(true);
@@ -95,6 +128,19 @@ public class GameManager : MonoBehaviour
 
         gameInputSystem.Disable();
         actionMap.Enable();
+    }
+
+    public void ChangeState(string name)
+    {
+        try
+        {
+            GameState enumerable = (GameState)System.Enum.Parse(typeof(GameState), name);
+            SetState(enumerable);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogErrorFormat("Parse: Can't convert {0} to enum, please check the spell.", name);
+        }
     }
 
     #endregion
