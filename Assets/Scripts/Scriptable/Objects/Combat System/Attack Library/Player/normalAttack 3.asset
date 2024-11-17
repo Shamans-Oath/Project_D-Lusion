@@ -15,9 +15,10 @@ MonoBehaviour:
   animationClipHuman: {fileID: 7400000, guid: 46d2be7fc9564494abcc7cf5cb3b41a9, type: 2}
   animationClipBeast: {fileID: 7400000, guid: c17eb009548f3fb469d2251ba59c3f89, type: 2}
   attackToughness: 3
+  unallowPlayerControlOverride: 0
   swings:
   - swingName: BoxPunch1
-    size: {x: 7, y: 5, z: 7}
+    size: {x: 9, y: 5, z: 9}
     offset: {x: 0, y: 0, z: 0.5}
     movement: {x: 0, y: 0, z: 0}
     bodyPart: 0
@@ -50,6 +51,5 @@ MonoBehaviour:
     duration: 1.033334
     start: 0.29205275
     end: 0.64755607
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: auraFX
