@@ -27,8 +27,7 @@ namespace Features
         public float start;
         public float end;
 
-        [Header("Control")]
-        public bool unallowPlayerControlOverride;
+        
 
         [Header("Visual FX")]
         public bool hitboxAttach;

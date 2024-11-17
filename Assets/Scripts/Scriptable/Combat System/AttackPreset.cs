@@ -11,6 +11,11 @@ namespace Features
         public AnimationClip animationClipHuman;
         public AnimationClip animationClipBeast;
         public int attackToughness;
+
+
+        [Header("Control")]
+        public bool unallowPlayerControlOverride;
+
         public AttackSwing[] swings;
 
 

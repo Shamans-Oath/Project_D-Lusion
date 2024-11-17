@@ -46,6 +46,7 @@ namespace Features
         public float divideValue;
         [Header("Components")]
         Movement cmp_movement;
+        Rotation cmp_rotate;
         Furry cmp_furry;
         EntityAnimator animator;
 
@@ -64,6 +65,7 @@ namespace Features
             faceTarget = GetComponent<FaceTarget>();
             movement = GetComponent<Movement>() as ISubcontroller;
             cmp_movement = GetComponent<Movement>();
+            cmp_rotate = GetComponent<Rotation>();
             movementAI = GetComponent<MovementModeSelector>() as ISubcontroller;
             friction = GetComponent<Friction>();
             cmp_furry = GetComponent<Furry>();
@@ -208,13 +210,28 @@ namespace Features
 
         public void SetupAttack(AttackPreset attack, Controller controller)
         {
-            if(movement != null) movement.ToggleActiveSubcontroller(false);
+            if (movement != null) movement.ToggleActiveSubcontroller(false);
+
+            if (attack.unallowPlayerControlOverride)
+            {
+                if (cmp_rotate != null) cmp_rotate.ToggleActive(false);
+                if (cmp_movement != null) cmp_movement.ToggleActive(false);
+                if (friction != null) friction.ToggleActive(true);
+                if (faceTarget != null) faceTarget.ToggleActive(false);
+
+            }
+            else
+            {
+                if (cmp_movement != null) cmp_movement.DivideSpeed(divideValue);
+                if (cmp_movement != null) cmp_movement.ToggleActive(true);
+                if (friction != null) friction.ToggleActive(false);
+                if (cmp_rotate != null) cmp_rotate.ToggleActive(true);
+                if (faceTarget != null) faceTarget.ToggleActive(true);
+            }
             
-            if (cmp_movement != null) cmp_movement.DivideSpeed(divideValue);
-            if (cmp_movement != null) cmp_movement.ToggleActive(true);
-            if (friction != null) friction.ToggleActive(false);
+            //if (friction != null) friction.ToggleActive(false);
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(false);
-            if (faceTarget != null) faceTarget.ToggleActive(true);
+            //if (faceTarget != null) faceTarget.ToggleActive(true);
 
             if(cmp_furry != null)
             currentFurry = cmp_furry.furryCount/cmp_furry.furryMax;
@@ -268,11 +285,12 @@ namespace Features
             if (combatEnt != null && !combatEnt.block)
             {
                 Debug.Log("block not detected");
-                if (movement != null) movement.ToggleActiveSubcontroller(true);
-                
-                
+                if (movement != null) movement.ToggleActiveSubcontroller(true);   
             }
+
+            if (cmp_rotate != null) cmp_rotate.ToggleActive(true);
             if (cmp_movement != null) cmp_movement.DivideSpeed(1);
+            if (cmp_movement != null) cmp_movement.ToggleActive(true);
             if (friction != null) friction.ToggleActive(true);
 
             if (movementAI != null) movementAI.ToggleActiveSubcontroller(true);

@@ -15,6 +15,7 @@ MonoBehaviour:
   animationClipHuman: {fileID: 7400000, guid: 0d8ec39c3dd48204b9f98351831455dc, type: 2}
   animationClipBeast: {fileID: 7400000, guid: 332cd5a4576bc9d408e7babae463a558, type: 2}
   attackToughness: 10
+  unallowPlayerControlOverride: 1
   swings:
   - swingName: Down Explosion
     size: {x: 25, y: 25, z: 25}
@@ -32,6 +33,5 @@ MonoBehaviour:
     duration: 2.6
     start: 0.2845283
     end: 1.6090565
-    unallowPlayerControlOverride: 1
     hitboxAttach: 0
-    vfxNames: sphereImpactFX
+    vfxNames: downSphereFX

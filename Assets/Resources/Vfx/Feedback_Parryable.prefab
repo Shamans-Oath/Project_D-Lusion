@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2261058273215706303}
   - component: {fileID: 1074173611789356203}
   - component: {fileID: 8435533864378483786}
+  - component: {fileID: 8097748347190209511}
   m_Layer: 0
   m_Name: Feedback_Parryable
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.6874764, y: -0.16545759, z: 0.16545759, w: 0.6874764}
   m_LocalPosition: {x: 57.82, y: 15.34, z: 57.33}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -223,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.9137255, g: 0.23921567, b: 0.43275574, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4830,3 +4831,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &8097748347190209511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070132377579911203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7d746b0ef5e8940bd25258ba43b798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeSpan: 1

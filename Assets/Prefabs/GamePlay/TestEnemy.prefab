@@ -151,6 +151,8 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -363,6 +365,8 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -2607,6 +2611,8 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -2987,7 +2993,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c559524c549d0e44948fa75b479ac20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 752ea2956260b034ba13be2888461423, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3094,7 +3100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c559524c549d0e44948fa75b479ac20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cbc4f5c5534c994282e28112f64f308, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3498,6 +3504,8 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -5202,6 +5210,8 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    unallowPlayerControlOverride: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}

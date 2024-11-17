@@ -14,6 +14,7 @@ namespace Features
         [SerializeField] private bool active;
         //States
         //Properties
+        public Rotation rotation;
         //References
         //Componentes
 
@@ -21,6 +22,7 @@ namespace Features
         {
             settings = controller.settings;
 
+            rotation = controller.SearchFeature<Rotation>();
             //Setup Properties
 
             ToggleActive(false);
@@ -43,8 +45,9 @@ namespace Features
             Vector3 directionToTarget = Vector3.zero;
             if (input.inputDirection != Vector2.zero && follow.target==null)
             {
-                directionToTarget = ProjectOnCameraFlattenPlane(new Vector3(input.inputDirection.x, 0f, input.inputDirection.y), input.playerCamera);
-                directionToTarget = ((directionToTarget * 2.5f) + transform.position);
+                return;
+                //directionToTarget = ProjectOnCameraFlattenPlane(new Vector3(input.inputDirection.x, 0f, input.inputDirection.y), input.playerCamera);
+                //directionToTarget = ((directionToTarget * 2.5f) + transform.position);
             }
             else
             {
@@ -53,8 +56,9 @@ namespace Features
                 directionToTarget.y = transform.position.y;              
             }
 
+            /*if (rotation && rotation.GetActive()) rotation.RotateTo(directionToTarget);
+            else*/ transform.LookAt(directionToTarget);
 
-            transform.LookAt(directionToTarget);
             if (input == null) return;
 
             input.playerForward = (directionToTarget - transform.position).normalized;

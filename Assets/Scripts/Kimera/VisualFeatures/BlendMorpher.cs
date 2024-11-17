@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.Android;
 
@@ -44,7 +43,7 @@ namespace Features
             ToggleActive(true);
             FurryEntity furryEntity = controller as FurryEntity;
             blendUnit = maxValue / settings.Search("furryMax");
-            emissionUnit = 1 / settings.Search("furryMax");
+            emissionUnit = 10 / settings.Search("furryMax");
             GroupEnabler(furryEntity.furryCount * blendUnit);
         }
 
@@ -127,15 +126,24 @@ namespace Features
         public void BlendEmission(float value, SkinnedMeshRenderer mesh)
         {
             if (mesh == null) return;
-
+            Debug.Log(mesh.gameObject.name + " " + (value));
+            UnityEngine.Color previousColor = mesh.sharedMaterial.GetColor("_EmissionColor");
             UnityEngine.Color baseCol = mesh.material.GetColor("_EmissionColor");
             float currentEmission = 0.2989f * baseCol.r + 0.5870f * baseCol.g + 0.1140f * baseCol.b;
 
+            UnityEngine.Color _emissionColor = mesh.material.GetColor("_EmissionColor");
+            var maxColorComponent = _emissionColor.maxColorComponent;
+            var scaleFactor = 191 / maxColorComponent;
+            //float currentEmission = Mathf.Log(255f / scaleFactor) / Mathf.Log(2f);
 
-            if (currentEmission == value) return;
-            currentEmission = Mathf.Lerp(currentEmission, value, changeSpeed);
-            Debug.Log(currentEmission + " | " + value);
-            mesh.material.SetColor("_EmissionColor", new UnityEngine.Color(baseCol.r, baseCol.g, baseCol.b) * Mathf.Pow(2, currentEmission));
+            //value = value - 5;
+            Debug.Log(currentEmission + " | " + (value-5) + " | " + Mathf.Pow(2, currentEmission));
+            if (currentEmission == value ||  currentEmission < -5 ||  currentEmission > 5) return;
+            currentEmission = Mathf.Lerp(currentEmission, value-5, changeSpeed);
+         
+            Debug.Log(currentEmission + " | " + value + " | " + Mathf.Pow(2, currentEmission));
+            float intensityVal = Mathf.Pow(2, currentEmission);
+            mesh.material.SetColor("_EmissionColor", new UnityEngine.Color(previousColor.r * intensityVal, previousColor.g * intensityVal, previousColor.b * intensityVal, previousColor.a));
         }
     }
 

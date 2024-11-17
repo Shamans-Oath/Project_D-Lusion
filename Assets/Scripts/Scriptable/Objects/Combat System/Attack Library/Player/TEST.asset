@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
-  m_Name: viperAttack
+  m_Name: TEST
   m_EditorClassIdentifier: 
-  animationClipHuman: {fileID: 7400000, guid: 0d8ec39c3dd48204b9f98351831455dc, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 332cd5a4576bc9d408e7babae463a558, type: 2}
-  attackToughness: 10
-  unallowPlayerControlOverride: 1
+  animationClipHuman: {fileID: 7400000, guid: 75d9103b9eefb094a9a168579ff01d58, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 75d9103b9eefb094a9a168579ff01d58, type: 2}
+  attackToughness: 5
+  unallowPlayerControlOverride: 0
   swings:
-  - swingName: Down Explosion
-    size: {x: 25, y: 25, z: 25}
-    offset: {x: 0, y: -1, z: 1}
-    movement: {x: 0, y: 0, z: 1}
-    bodyPart: 10
+  - swingName: KickMMA
+    size: {x: 5, y: 5, z: 5}
+    offset: {x: -0.5, y: 0, z: 1}
+    movement: {x: 0, y: 0, z: 0.5}
+    bodyPart: 8
     movementLinker: {x: 0, y: 0, z: 0}
     movementCurve:
       serializedVersion: 2
@@ -47,9 +47,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    settings: {fileID: 11400000, guid: ad68acbe1d789674ab21abd1c7d340aa, type: 2}
-    duration: 2.6
+    settings: {fileID: 11400000, guid: bb74101587ca40e4aabf8bef0706880d, type: 2}
+    duration: 0.60000014
     start: 0
-    end: 0.2845283
-    hitboxAttach: 0
-    vfxNames: sphereImpactFX
+    end: 0.60000014
+    hitboxAttach: 1
+    vfxNames: blastFX
