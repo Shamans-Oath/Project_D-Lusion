@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2479082817338353923}
   - component: {fileID: 2206799252184598318}
   - component: {fileID: 1404486631419614405}
-  - component: {fileID: 2379612168306334852}
   m_Layer: 0
   m_Name: VPiedra4
   m_TagString: Untagged
@@ -134,25 +133,4 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: -1600453367263067698, guid: 3450d8bb517ebd6418dc4f3901173228, type: 3}
---- !u!65 &2379612168306334852
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9034399014018600378}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.62255615, y: 1.206329, z: 0.76914793}
-  m_Center: {x: 0, y: 0.5143545, z: 0}
+  m_Mesh: {fileID: 7293712305353425805, guid: f4d260c1d1804ed4e9d35b5a3988dc5c, type: 3}
