@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_Columna2_low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 039a3614fc6df1c48a8482a335421285, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -115,7 +119,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2457764202818945052}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.0036680293
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2457764202818945052}

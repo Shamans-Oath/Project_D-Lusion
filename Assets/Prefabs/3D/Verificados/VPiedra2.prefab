@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8601118986060565708}
   - component: {fileID: 5829964606713610506}
   - component: {fileID: -3323530130081853599}
-  m_Layer: 0
+  - component: {fileID: 3353734637709855145}
+  m_Layer: 3
   m_Name: VPiedra2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +108,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8601118986060565708}
-  - screenRelativeHeight: 0.1
+  - screenRelativeHeight: 0.0016790804
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 8601118986060565708}
@@ -134,3 +135,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6433128827303214681, guid: 3450d8bb517ebd6418dc4f3901173228, type: 3}
+--- !u!65 &3353734637709855145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888699947809532526}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6522293, y: 0.89526534, z: 0.78606445}
+  m_Center: {x: -0.010303497, y: 0.369309, z: 0}
