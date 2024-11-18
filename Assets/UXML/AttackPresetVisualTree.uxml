@@ -4,6 +4,7 @@
         <ui:IntegerField binding-path="attackToughness" label="Attack Toughness" name="IntegerField" readonly="false" />
         <uie:ObjectField label="Animation Human" allow-scene-objects="false" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" binding-path="animationClipHuman" name="AnimationField" />
         <uie:ObjectField label="Animation Beast" allow-scene-objects="false" type="UnityEngine.AnimationClip, UnityEngine.AnimationModule" binding-path="animationClipBeast" name="AnimationField2" focusable="true" />
+        <ui:Toggle binding-path="unallowPlayerControlOverride" label="Deactive Movement" name="ToogleField" readonly="false" />
     </ui:VisualElement>
     <ui:VisualElement style="flex-grow: 1;">
         <ui:Foldout text="Attacks">
