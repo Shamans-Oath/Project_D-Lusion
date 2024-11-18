@@ -4635,6 +4635,59 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &597802489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597802491}
+  - component: {fileID: 597802490}
+  m_Layer: 0
+  m_Name: PARED XD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &597802490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597802489}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.334539, y: 5.2555056, z: 0.23049387}
+  m_Center: {x: 0.38803193, y: 0.92179245, z: 0.3847529}
+--- !u!4 &597802491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597802489}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.15013358, z: -0, w: 0.9886657}
+  m_LocalPosition: {x: -14.95, y: 17.66, z: 105.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -17.269, z: 0}
 --- !u!43 &599314293
 Mesh:
   m_ObjectHideFlags: 0
@@ -10160,6 +10213,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 447393610}
+    - target: {fileID: 1213437303602593125, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213437303602593125, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1305579487121838011, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10188,6 +10249,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 613997857}
+    - target: {fileID: 1478258873988579726, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1478258873988579726, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1510629053077679309, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10250,7 +10319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1799718739198859165, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.28217056
+      value: 0.2821706
       objectReference: {fileID: 0}
     - target: {fileID: 1799718739198859165, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10508,6 +10577,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1005643538}
+    - target: {fileID: 3525854508162238290, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525854508162238290, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3541516399940111647, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10944,6 +11021,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1321584825}
+    - target: {fileID: 6636292931679005924, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6638984307203213163, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11008,6 +11089,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 501647572}
+    - target: {fileID: 7123025610438104671, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7128619353459208039, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -11233,8 +11318,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1555623265}
     - target: {fileID: 8263564791006468118, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.69900036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263564791006468118, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.1
+      value: 41.099995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263564791006468118, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.036423445
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263564791006468118, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9993365
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263564791006468118, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 175.825
       objectReference: {fileID: 0}
     - target: {fileID: 8310034339586845123, guid: 07f905aee68179b4688d319e0af8169e, type: 3}
       propertyPath: m_Mesh
@@ -19330,3 +19431,4 @@ SceneRoots:
   - {fileID: 1511270344}
   - {fileID: 1331103045}
   - {fileID: 1952836109}
+  - {fileID: 597802491}
