@@ -212,6 +212,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -360,6 +361,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -583,6 +585,8 @@ MonoBehaviour:
     skinMesh: {fileID: 0}
   - inverse: 0
     skinMesh: {fileID: 0}
+  emissionRenderers: []
+  emissionUnit: 0
   changeSpeed: 0.5
   blendValue: 0
   maxValue: 100
@@ -1106,7 +1110,7 @@ MonoBehaviour:
   currentFurry: 0
   attackSpeedModifier: 0.75
   attackSpeedMultiplier: 1
-  baseSpeedModifier: 1
+  baseSpeedModifier: 1.7
 --- !u!114 &2804152875468415466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,6 +1212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
+  rotation: {fileID: 0}
 --- !u!114 &3224052788435961124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4832,6 +4837,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -6518,6 +6524,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -8322,6 +8329,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
