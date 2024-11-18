@@ -150,6 +150,17 @@ namespace Features
             isImmune = false;
         }
 
+        public IEnumerator ImmunityCoroutine(float time)
+        {
+            isImmune = true;
+            yield return new WaitForSeconds(time);
+            isImmune = false;
+        }
+
+        public void CallInmunity(float value)
+        {
+            StartCoroutine(ImmunityCoroutine(value));
+        }
         private int PercentageToAmount(int percentage)
         {
             return (int)(maxHealth * Mathf.Clamp01((float)percentage / 100));

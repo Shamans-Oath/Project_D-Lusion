@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSet: 0
+  initialState: 0
 --- !u!1 &5225146890716558219
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +621,10 @@ MonoBehaviour:
     deactiveObjects: []
   - nameObj: pointFX
     mainPrefabObj: {fileID: 8070132377579911203, guid: 42b6fefbb459b1349a8238f20a26ed23, type: 3}
+    activeObjects: []
+    deactiveObjects: []
+  - nameObj: puddleFX
+    mainPrefabObj: {fileID: 6772373481628128767, guid: 3814e590d99dc474da41c089ed4c069b, type: 3}
     activeObjects: []
     deactiveObjects: []
 --- !u!1 &5777059888098358530

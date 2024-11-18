@@ -86,11 +86,14 @@ namespace Features
                         actorLibrary.CallAudioManager("Impacto");
                         reactorLibrary.CallAudioManager("Daño");
                     }*/
+                    if(attack.Search("attackSFX"))
+                    {
+                        string attackSFX = attack.Search("attackSFX");
 
-                    string attackSFX = attack.Search("attackSFX");
+                        if (attackSFX != null)
+                            actorLibrary.CallAudioManager(attack.Search("attackSFX"));
+                    }
                     
-                    if(attackSFX != null)
-                    actorLibrary.CallAudioManager(attack.Search("attackSFX"));
                     reactorLibrary.CallAudioManager("Daño");
                 }
                 

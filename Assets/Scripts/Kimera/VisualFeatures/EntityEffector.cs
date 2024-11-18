@@ -23,59 +23,20 @@ namespace Features
         //public string shieldBrkFxKey;
 
         private Controller ctrll;
-
+        private bool contentAdded = false;
         //States
         //Properties
         //References
         //Componentes
         private void OnEnable()
         {
-            if (ctrll == null)
-            {
-                Debug.Log("Controler not detected");
-                return;
-            }
-
-            if(ElementInstancer.instance!=null)
-            {
-                Debug.Log("eeeeenable");
-                if (spawnFxKey != "")
-                {
-                    GameObject tmpObj =  ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), transform.position);
-                    //tmpObj.transform.parent = null;
-                }
-
-
-                if (ctrll.SearchFeature<Life>())
-                {
-                    Life lf = ctrll.SearchFeature<Life>();
-
-                    if (hitFxKey != "") lf.OnDamage += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey),transform.position,transform);
-                    if (healFxKey != "") lf.OnHeal += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
-                    if (deadFxKey != "") lf.OnDeath += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
-                }
-
-            }
-
-            if (ctrll.SearchFeature<Shield>() && shieldGroup.Length>0)
-            {
-                Shield sh = ctrll.SearchFeature<Shield>();
-                sh.OnShield += () => GroupAnimatorTrigger(shieldGroup, "Start");
-                sh.OnBroke += () => GroupAnimatorTrigger(shieldGroup, "End");
-            }
-
-            if (ctrll.SearchFeature<Life>() && lowHpGroup.Length>0)
-            {
-                Life lf = ctrll.SearchFeature<Life>();
-                lf.OnLowVariance += () =>
-                {
-                    if (lf.CurrentHealth < lf.lowHpIndicator) GroupAnimatorTrigger(lowHpGroup, "Start");
-                    else if(lf.CurrentHealth > lf.lowHpIndicator) GroupAnimatorTrigger(lowHpGroup, "End");
-                };
-            }
+            AddEnableContent();
         }
         private void OnDisable()
         {
+            if (ctrll == null) return;
+            contentAdded = false;
+
             if (ctrll == null)
             {
                 Debug.Log("Controler not detected");
@@ -111,15 +72,64 @@ namespace Features
         }
         public void SetupFeature(Controller controller)
         {
-            this.enabled = false;
+            //this.enabled = false;
             settings = controller.settings;
             ctrll = controller;
-            this.enabled = true;
+            //this.enabled = true;
             //Setup Properties
-
+            if (contentAdded == false) AddEnableContent();
             ToggleActive(true);
         }
+        public void AddEnableContent()
+        {
+            if (ctrll == null) return;
+            contentAdded = true;
 
+            Debug.Log("FisrtEnable");
+            if (ctrll == null)
+            {
+                Debug.Log("Controler not detected");
+                return;
+            }
+
+            if (ElementInstancer.instance != null)
+            {
+                Debug.Log("eeeeenable");
+                if (spawnFxKey != "")
+                {
+                    GameObject tmpObj = ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), transform.position);
+                    //tmpObj.transform.parent = null;
+                }
+
+
+                if (ctrll.SearchFeature<Life>())
+                {
+                    Life lf = ctrll.SearchFeature<Life>();
+
+                    if (hitFxKey != "") lf.OnDamage += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey), transform.position, transform);
+                    if (healFxKey != "") lf.OnHeal += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
+                    if (deadFxKey != "") lf.OnDeath += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
+                }
+
+            }
+
+            if (ctrll.SearchFeature<Shield>() && shieldGroup.Length > 0)
+            {
+                Shield sh = ctrll.SearchFeature<Shield>();
+                sh.OnShield += () => GroupAnimatorTrigger(shieldGroup, "Start");
+                sh.OnBroke += () => GroupAnimatorTrigger(shieldGroup, "End");
+            }
+
+            if (ctrll.SearchFeature<Life>() && lowHpGroup.Length > 0)
+            {
+                Life lf = ctrll.SearchFeature<Life>();
+                lf.OnLowVariance += () =>
+                {
+                    if (lf.CurrentHealth < lf.lowHpIndicator) GroupAnimatorTrigger(lowHpGroup, "Start");
+                    else if (lf.CurrentHealth > lf.lowHpIndicator) GroupAnimatorTrigger(lowHpGroup, "End");
+                };
+            }
+        }
         public void GroupAnimatorTrigger(Animator[] group, string triger)
         {
             foreach (Animator anim in group)

@@ -198,7 +198,7 @@ namespace Features
                 combat.comboCount++;
             }
 
-            else if (attackTimer <= 0f && !activeAttack && actualAttack != null)
+            else if (attackTimer <= inBetweenAttacksTime && !activeAttack && actualAttack != null)
             {
                 StopAttack();
                 combat.comboCount = 0;
