@@ -151,7 +151,6 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
@@ -365,7 +364,6 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
@@ -1093,7 +1091,7 @@ MonoBehaviour:
   currentFurry: 0
   attackSpeedModifier: 1.5
   attackSpeedMultiplier: 1
-  baseSpeedModifier: 1
+  baseSpeedModifier: 0.5
 --- !u!114 &8722753730121016745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2611,7 +2609,6 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
@@ -3504,7 +3501,6 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
@@ -5210,7 +5206,6 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
-    unallowPlayerControlOverride: 0
     hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
