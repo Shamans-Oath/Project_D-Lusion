@@ -72,10 +72,10 @@ namespace Features
         }
         public void SetupFeature(Controller controller)
         {
-            //this.enabled = false;
+            this.enabled = false;
             settings = controller.settings;
             ctrll = controller;
-            //this.enabled = true;
+            this.enabled = true;
             //Setup Properties
             if (contentAdded == false) AddEnableContent();
             ToggleActive(true);
