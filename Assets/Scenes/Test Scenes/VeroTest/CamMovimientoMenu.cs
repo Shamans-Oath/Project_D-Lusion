@@ -31,18 +31,14 @@ public class CamMovimientoMenu : MonoBehaviour
     }
 
 
-    void Update()
+    public void StartMenu()
     {
-        if (currentView == viewsMp[0]) //lugar inicial
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                currentView = viewsMp[1];
-                Press.SetActive(false);
-                HiMTitle.SetActive(false);
-                //MenuPrincipal.SetActive(true);
-            }
-        }
+        /*if (currentView == viewsMp[0]) //lugar inicial
+        {*/
+            currentView = viewsMp[1];
+            Press.SetActive(false);
+            HiMTitle.SetActive(false);
+        /*}*/
     }
 
    private void LateUpdate()

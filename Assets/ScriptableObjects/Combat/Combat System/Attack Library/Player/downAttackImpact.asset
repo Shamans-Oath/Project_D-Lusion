@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417bd52ec2575ae4c9882fbbc04f83a4, type: 3}
+  m_Name: downAttackImpact
+  m_EditorClassIdentifier: 
+  animationClipHuman: {fileID: 7400000, guid: 0d8ec39c3dd48204b9f98351831455dc, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 332cd5a4576bc9d408e7babae463a558, type: 2}
+  attackToughness: 10
+  unallowPlayerControlOverride: 1
+  swings:
+  - swingName: Down Explosion
+    size: {x: 25, y: 25, z: 25}
+    offset: {x: 0, y: -1, z: 0}
+    movement: {x: 0, y: 0, z: 0}
+    bodyPart: 9
+    movementLinker: {x: 0, y: 0, z: 0}
+    movementCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 0
+      m_PostInfinity: 0
+      m_RotationOrder: 4
+    settings: {fileID: 11400000, guid: 0ab6cb5fb4dbaec478c1aaa26b8fb831, type: 2}
+    duration: 2.6
+    start: 0.2845283
+    end: 1.6090565
+    hitboxAttach: 0
+    vfxNames: downSphereFX
