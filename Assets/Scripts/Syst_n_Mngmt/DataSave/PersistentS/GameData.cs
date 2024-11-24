@@ -7,6 +7,7 @@ public class GameData : PersistentScriptableObject
 {
     public int language;
 
+    public float sens;
     public float genVolume;
     public float mscVolume;
     public float sndVolume;
@@ -15,6 +16,7 @@ public class GameData : PersistentScriptableObject
     {
     
         language= 1;
+        sens = 0.5f;
         genVolume = 0.5f;
         mscVolume = 0.5f;
         sndVolume = 0.5f;
