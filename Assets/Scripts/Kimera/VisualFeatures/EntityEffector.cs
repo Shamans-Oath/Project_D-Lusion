@@ -20,6 +20,7 @@ namespace Features
         [Header("MaterialAnimator")]
         public Animator[] lowHpGroup;
         public Animator[] shieldGroup;
+        public Animator[] invulnerabilityGroup;
         //public string shieldBrkFxKey;
 
         private Controller ctrll;
@@ -50,6 +51,8 @@ namespace Features
                     if (hitFxKey != "") lf.OnDamage -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey), transform.position, transform);
                     if (healFxKey != "") lf.OnHeal -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
                     if (deadFxKey != "") lf.OnDeath -= () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
+                    if (deadFxKey != "") lf.OnExternalInvulnerability -= () => GroupAnimatorTrigger(invulnerabilityGroup, "Start");
+                    if (deadFxKey != "") lf.OnExternalInvulnerabilityExit -= () => GroupAnimatorTrigger(invulnerabilityGroup, "End");
                 }
             }
 
@@ -109,6 +112,8 @@ namespace Features
                     if (hitFxKey != "") lf.OnDamage += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(hitFxKey), transform.position, transform);
                     if (healFxKey != "") lf.OnHeal += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(healFxKey), transform.position, transform);
                     if (deadFxKey != "") lf.OnDeath += () => ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(deadFxKey), transform.position, transform);
+                    if (deadFxKey != "") lf.OnExternalInvulnerability += () => GroupAnimatorTrigger(invulnerabilityGroup, "Start");
+                    if (deadFxKey != "") lf.OnExternalInvulnerabilityExit += () => GroupAnimatorTrigger(invulnerabilityGroup, "End");
                 }
 
             }

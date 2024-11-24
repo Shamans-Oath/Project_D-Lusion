@@ -12,6 +12,8 @@ namespace Features
         public event Action OnHeal;
         public event Action OnDeath;
         public event Action OnLowVariance;
+        public event Action OnExternalInvulnerability;
+        public event Action OnExternalInvulnerabilityExit;
 
         //Configuration
         [Header("Settings")]
@@ -152,9 +154,12 @@ namespace Features
 
         public IEnumerator ImmunityCoroutine(float time)
         {
+
             isImmune = true;
+            OnExternalInvulnerability?.Invoke();
             yield return new WaitForSeconds(time);
             isImmune = false;
+            OnExternalInvulnerabilityExit?.Invoke();
         }
 
         public void CallInmunity(float value)

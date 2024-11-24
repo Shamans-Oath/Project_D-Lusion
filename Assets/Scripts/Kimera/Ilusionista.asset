@@ -200,7 +200,7 @@ MonoBehaviour:
   - key: detectDistance
     boolValue: 0
     intValue: 0
-    floatValue: 9
+    floatValue: 12
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -636,7 +636,7 @@ MonoBehaviour:
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
-    stringValue: orbit
+    stringValue: escape
     layerMaskValue:
       serializedVersion: 2
       m_Bits: 0
@@ -682,7 +682,7 @@ MonoBehaviour:
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
-    stringValue: chase
+    stringValue: escape
     layerMaskValue:
       serializedVersion: 2
       m_Bits: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
-    stringValue: orbit
+    stringValue: escape
     layerMaskValue:
       serializedVersion: 2
       m_Bits: 0

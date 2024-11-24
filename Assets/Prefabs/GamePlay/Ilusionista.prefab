@@ -119,6 +119,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -267,6 +268,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -365,6 +367,7 @@ GameObject:
   - component: {fileID: 1447376989534918998}
   - component: {fileID: 7228356015299200931}
   - component: {fileID: 4407003771781409614}
+  - component: {fileID: 9174872231818755736}
   m_Layer: 10
   m_Name: Ilusionista
   m_TagString: Enemy
@@ -385,6 +388,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2632681089182382010}
   - {fileID: 8709919075265315837}
   - {fileID: 4800481621850287741}
   - {fileID: 5842440255660317706}
@@ -526,6 +530,7 @@ MonoBehaviour:
   - {fileID: 5478170687521043110}
   - {fileID: 4510897034455460311}
   - {fileID: 6353012718249098835}
+  - {fileID: 7648720076639260489}
   cmp_normalRB:
   - {fileID: 355923020120665639}
   - {fileID: 812472315721240974}
@@ -600,6 +605,7 @@ MonoBehaviour:
   extraDistanceGround: 0
   offsetGround: {x: 0, y: 0}
   feetSize: {x: 0, y: 0, z: 0}
+  delayDetection: 0
 --- !u!114 &9140238939135494083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +642,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   currentHealth: 0
+  lowHpIndicator: 0
   maxHealth: 0
   immunityDuration: 0.5
   isImmune: 0
@@ -789,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
-  hostile: 1
+  hostile: 0
   available: 1
   state: 0
   moveMode: 
@@ -915,12 +922,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 0}
   active: 0
-  poolIndex: 0
-  enemyName: 
+  poolIndex: 2
+  enemyName: ClonIlusion
   spawnIndex: 0
   distanceThreshold: 0
   enemySpawned: 0
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 0}
   storedEnemy: {fileID: 0}
 --- !u!208 &1341223941157076153
 NavMeshObstacle:
@@ -932,7 +940,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 0.8, y: 1, z: 0.8}
+  m_Extents: {x: 1.52, y: 1, z: 1.52}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -993,7 +1001,7 @@ MonoBehaviour:
   settings: {fileID: 0}
   active: 0
   uiBars:
-  - progressBar: {fileID: 2716819702220528638}
+  - progressBar: {fileID: 4353204785762567760}
     maxValue: 100
   CanvasObject: {fileID: 2363658077059736389}
 --- !u!114 &7228356015299200931
@@ -1026,9 +1034,30 @@ MonoBehaviour:
   - name: Impacto
     reference: AtaqueMelee
   - name: "Da\xF1o"
-    reference: "Da\xF1oMelee"
+    reference: Hurt_Ilu
   - name: Muerte
-    reference: MuerteMelee
+    reference: Death_Ilu
+  - name: Idle
+    reference: Breath_Ilu
+--- !u!114 &9174872231818755736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59a94f0277914440997c24f100d4a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 1
+  spawnManager: {fileID: 0}
+  instanciatorKey: invulneravilityArea
+  initCounter: 1
+  habDuration: 3
+  cooldown: 8
 --- !u!1 &340249982049030099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1403,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1637,7 +1666,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1799,7 +1828,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2105,7 +2134,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2410,6 +2439,59 @@ Transform:
   - {fileID: 4667093895454754779}
   m_Father: {fileID: 7275744519069851319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2686682399080167997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2632681089182382010}
+  - component: {fileID: 7648720076639260489}
+  m_Layer: 8
+  m_Name: TargetPointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2632681089182382010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686682399080167997}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99525833, z: -0, w: -0.09726672}
+  m_LocalPosition: {x: -0.083, y: 1.2510014, z: 0.421}
+  m_LocalScale: {x: 0.49999988, y: 0.5, z: 0.49999988}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5750635313050069094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7648720076639260489
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2686682399080167997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2783353721385766166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,7 +2544,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2682,7 +2764,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c559524c549d0e44948fa75b479ac20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cbc4f5c5534c994282e28112f64f308, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2843,6 +2925,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -2956,7 +3039,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3249,6 +3332,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -4051,7 +4135,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4214,6 +4298,7 @@ MonoBehaviour:
     duration: 0
     start: 0
     end: 0
+    hitboxAttach: 0
     vfxNames: 
   attackBox: {fileID: 0}
   playerRigidbody: {fileID: 355923020120665639}
@@ -4505,12 +4590,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4c559524c549d0e44948fa75b479ac20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 752ea2956260b034ba13be2888461423, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.558
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -4599,7 +4684,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: 0caca4bf02c340642a09ec9ca4972857, type: 3}
+  - {fileID: 2100000, guid: 12c9c4ad3d605a049b0143ad561bcb30, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

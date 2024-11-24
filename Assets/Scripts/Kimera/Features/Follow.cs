@@ -51,7 +51,7 @@ namespace Features
 
         private void DetectTarget(Controller controller)
         {
-            if (!active || targetGameObject == null || targetDetected) return;
+            if (!active || targetGameObject == null) return;
             
             float distanceToTarget = Vector3.Distance(transform.position, targetGameObject.transform.position);
 
@@ -64,6 +64,13 @@ namespace Features
                     Enemy meEnemy = controller as Enemy;
                     if (meEnemy != null) enemyCrowd.SetUnitConscious(meEnemy);
                 }
+            }
+            else
+            {
+                Debug.Log("FARAWAT");
+                if (enemyCrowd != null) return;
+                Debug.Log("PASSaWAY");
+                targetDetected = false;
             }
         }
 
