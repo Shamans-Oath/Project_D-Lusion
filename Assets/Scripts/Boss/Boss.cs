@@ -1,6 +1,7 @@
 using Features;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -34,7 +35,11 @@ public class Boss : MonoBehaviour
     private Animator animator;
     public float attackCooldown = 4f;
     public float lastAttackTime = 0f;
-    public bool specialAttack= false;
+    public bool specialAttack = false;
+    public GameObject autoAttackPrefab;
+    public Transform attackPoint;
+    private bool HasStackedAttack;
+    public Life life;
 
     [Header("Movement")]
     public float minDistance = 2.5f;
@@ -42,13 +47,13 @@ public class Boss : MonoBehaviour
     public float chaseMoveSpeed = 5f;
     private NavMeshAgent agent;
     public float stoppingDistance = 0.1f;
-    public float rotationSpeed=5f;
+    public float rotationSpeed = 5f;
 
     [Header("Embestida")]
     public GameObject pointPrefab;
-    public int numPositions = 4;            
-    public float spawnRadius = 5f;          
-    public float moveDelay = 2f;           
+    public int numPositions = 4;
+    public float spawnRadius = 5f;
+    public float moveDelay = 2f;
     public float moveSpeed = 5f;
     public List<Transform> spawnedPositions = new List<Transform>();
     private bool isMoving = false;
@@ -59,6 +64,7 @@ public class Boss : MonoBehaviour
     public float chargeHomingFactor = 0.1f;
     public float chargeCooldown = 20f;
     public float chargeRepositionSpeed = 200f;
+    public Transform embestidaCentreArena;
 
     [Header("Minions")]
     public GameObject enemyPrefab;
@@ -78,9 +84,9 @@ public class Boss : MonoBehaviour
     public float raizTotalCastTime;
 
     [Header("ClonePhase")]
-    public GameObject objectToDeactivate; 
-    public GameObject chargingPrefab;   
-    public GameObject[] shadowSpawnPoints;        
+    public GameObject objectToDeactivate;
+    public GameObject chargingPrefab;
+    public GameObject[] shadowSpawnPoints;
     public float shadowChargeSpeed = 10f;
     public float shadowChargeDelay = 3f;
     public List<GameObject> spawnedObjects = new List<GameObject>();
@@ -96,21 +102,25 @@ public class Boss : MonoBehaviour
 
     void Start()
     {
+        life=GetComponent<Life>();
+        animator = GetComponentInChildren<Animator>();
         currentState = BossState.Idle;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         shadowSpawnPoints = GameObject.FindGameObjectsWithTag("Shadow");
         cube.GetComponent<MeshRenderer>().material = materialToFade;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (specialAttack) 
+        life.OnDamage += ReactToDamage;
+        StackedAutoattack();
+        FollowPlayer();
+        if (specialAttack)
         {
             agent.enabled = false;
-            return; 
+            return;
         }
         else
         {
@@ -118,64 +128,62 @@ public class Boss : MonoBehaviour
         }
         CooldownTimers();
         switch (currentState)
-            {
-                case BossState.Idle:
-                    if (Time.time - lastAttackTime > attackCooldown)
-                    {
-                        ChooseAttack();
-                        FollowPlayer();
-                    }
-                    if (health <= enrageThreshold * 100f / health)
-                    {
-                        currentState = BossState.Enraged;
-                        //animator.SetTrigger("Enrage");
+        {
+            case BossState.Idle:
+                if (Time.time - lastAttackTime > attackCooldown)
+                {
+                    ChooseAttack();
+                }
+                if (health <= enrageThreshold * 100f / health)
+                {
+                    currentState = BossState.Enraged;
+                    //animator.SetTrigger("Enrage");
 
-                    }
-                    if(health<= 50)
-                    {
-                    currentState = BossState.RaizTotal;
-                    }
-                    break;
+                }
+                if (health <= 50)
+                {
+                    //currentState = BossState.RaizTotal;
+                }
+                break;
 
-                case BossState.Attack:
-                //animator.SetTrigger("Attack"); 
-                Debug.Log("Te ataco lol");
-                    lastAttackTime = Time.time;
-                    currentState = BossState.Idle;
-                    break;
+            case BossState.Attack:
+                Autoattack();
+                lastAttackTime = Time.time;
+                currentState = BossState.Idle;
+                break;
 
-                case BossState.DefensiveDash:
-                    //animator.SetTrigger("Dash");
-                    lastAttackTime = Time.time;
-                    Dash();
-                    currentState = BossState.Idle;
-                    break;
+            case BossState.DefensiveDash:
+                //animator.SetTrigger("Dash");
+                lastAttackTime = Time.time;
+                Dash();
+                currentState = BossState.Idle;
+                break;
 
 
-                case BossState.OffensiveDash:
-                    //animator.SetTrigger("Dash2");
-                    lastAttackTime = Time.time;
-                    currentState = BossState.Idle;
-                    break;
+            case BossState.OffensiveDash:
+                //animator.SetTrigger("Dash2");
+                lastAttackTime = Time.time;
+                currentState = BossState.Idle;
+                break;
 
-                case BossState.Enraged:
-                    attackCooldown = 1f;
+            case BossState.Enraged:
+                attackCooldown = 1f;
 
-                    if (Time.time - lastAttackTime > attackCooldown)
-                    {
-                        ChooseAttack();
-                    }
-                    break;
-                case BossState.Raiz:
-                    if (Time.time - lastAttackTime > attackCooldown && raizCooldown <=0.1f)
-                    {
+                if (Time.time - lastAttackTime > attackCooldown)
+                {
+                    ChooseAttack();
+                }
+                break;
+            case BossState.Raiz:
+                if (Time.time - lastAttackTime > attackCooldown && raizCooldown <= 0.1f)
+                {
                     Raiz();
-                    }
-                    else
-                    {
-                        ChooseAttack();
-                    }
-                    break;
+                }
+                else
+                {
+                    ChooseAttack();
+                }
+                break;
             case BossState.ChargeAttack:
                 if (Time.time - lastAttackTime > attackCooldown && chargeCooldown <= 0.1f)
                 {
@@ -203,6 +211,47 @@ public class Boss : MonoBehaviour
                 }
                 break;
         }
+    }
+    private void ReactToDamage()
+    {
+        health = life.CurrentHealth;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Autoattack()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer < maxDistance)
+        {
+ 
+            Debug.Log("Te ataco lol");
+            StartCoroutine(DoAutoAttack());
+        }
+        else
+        {
+            HasStackedAttack = true;
+            Debug.Log("Player too far :(");
+        }
+    }
+    private void StackedAutoattack()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (distanceToPlayer < maxDistance && HasStackedAttack)
+        {
+
+            Debug.Log("Te ataco lol");
+            HasStackedAttack = false;
+            StartCoroutine(DoAutoAttack());
+            lastAttackTime = Time.time;
+        }
+    }
+    System.Collections.IEnumerator DoAutoAttack()
+    {
+        animator.SetTrigger("MeleeAttack");
+        yield return new WaitForSeconds(1f);
+        Instantiate(autoAttackPrefab,attackPoint.position, attackPoint.rotation);
     }
     public void FadeOut()
     {
@@ -232,6 +281,8 @@ public class Boss : MonoBehaviour
     {
         if (!specialAttack)
         {
+            float velocity = agent.velocity.magnitude / agent.speed;
+            animator.SetFloat("NavMeshSpeed", velocity);
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
 
@@ -260,7 +311,7 @@ public class Boss : MonoBehaviour
             {
                 agent.isStopped = true;
             }
-            
+
 
         }
     }
@@ -277,10 +328,10 @@ public class Boss : MonoBehaviour
             dashCooldown -= Time.deltaTime;
         if (specialAttack)
             return;
-        if(chargeCooldown >= 0)
-           chargeCooldown -= Time.deltaTime;
-        if(raizCooldown >= 0)
-           raizCooldown -= Time.deltaTime;
+        if (chargeCooldown >= 0)
+            chargeCooldown -= Time.deltaTime;
+        if (raizCooldown >= 0)
+            raizCooldown -= Time.deltaTime;
         if (minionCooldown >= 0)
             minionCooldown -= Time.deltaTime;
 
@@ -293,12 +344,13 @@ public class Boss : MonoBehaviour
     }
     private IEnumerator RaizSpecial()
     {
-       
+
         yield return new WaitForSeconds(raizCastTime);
         Instantiate(raizPrefab, transform.position, Quaternion.identity);
         currentState = BossState.Idle;
         specialAttack = false;
         raizCooldown = 20f;
+        lastAttackTime = Time.time;
     }
     private void RaizTotal()
     {
@@ -309,7 +361,7 @@ public class Boss : MonoBehaviour
     {
 
         yield return new WaitForSeconds(raizCastTime);
-        Instantiate(raizTotalPrefab, player.position, Quaternion.identity);
+        //Instantiate(raizTotalPrefab, player.position, Quaternion.identity);
         currentState = BossState.Idle;
         specialAttack = false;
         //lastAttackTime = 20f;
@@ -376,8 +428,9 @@ public class Boss : MonoBehaviour
         }
         lastAttackTime = 5f;
     }
-   public void ChargeAttack()
+    public void ChargeAttack()
     {
+        HasStackedAttack = true;
         specialAttack = true;
         //animator.SetTrigger("ChargeAttack");
         //apagar el renderer TO-DO
@@ -407,7 +460,7 @@ public class Boss : MonoBehaviour
         {
             float angle = i * 2f * Mathf.PI / numPositions;
             Vector3 positionOffset = new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * spawnRadius;
-            Vector3 spawnPosition = transform.position + positionOffset;
+            Vector3 spawnPosition = embestidaCentreArena.position + positionOffset;
             GameObject point = Instantiate(pointPrefab, spawnPosition, Quaternion.identity);
             spawnedPositions.Add(point.transform);
         }
@@ -428,7 +481,7 @@ public class Boss : MonoBehaviour
     }
     public void StartCharge()
     {
-        if (!isCharging && player != null) 
+        if (!isCharging && player != null)
         {
             StartCoroutine(ChargeCoroutine());
         }
@@ -440,14 +493,16 @@ public class Boss : MonoBehaviour
     private System.Collections.IEnumerator ChargeCoroutine()
     {
         isCharging = true;
-        
+
         yield return new WaitForSeconds(chargeDelay);
         gameObject.transform.parent = null;
         FadeIn();
         chargeTargetPosition = player.position;
+        float timer = 2;
         //homing
-        while (Vector3.Distance(transform.position, player.position) > 0.5f)
+        while (Vector3.Distance(transform.position, player.position) > 0.5f && timer>=0)
         {
+            timer -= Time.deltaTime;
             Vector3 directionToTarget = (chargeTargetPosition - transform.position).normalized;
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             Vector3 curvedDirection = Vector3.Lerp(directionToTarget, directionToPlayer, chargeHomingFactor);
@@ -460,9 +515,10 @@ public class Boss : MonoBehaviour
         specialAttack = false;
         dashCooldown = 20;
         chargeCooldown = 20;
+        lastAttackTime = Time.time;
     }
 
-private System.Collections.IEnumerator SpawnEnemiesCoroutine()
+    private System.Collections.IEnumerator SpawnEnemiesCoroutine()
     {
         yield return new WaitForSeconds(spawnDelay);
         for (int i = 0; i < numEnemies; i++)
@@ -478,10 +534,12 @@ private System.Collections.IEnumerator SpawnEnemiesCoroutine()
                 }
 
             }
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            enemy.SetActive(true);
             currentState = BossState.Idle;
             specialAttack = false;
         }
+        lastAttackTime = Time.time;
         minionCooldown = 30;
     }
     private IEnumerator FadeCoroutine(float startAlpha, float endAlpha)
@@ -501,5 +559,4 @@ private System.Collections.IEnumerator SpawnEnemiesCoroutine()
         currentColor.a = endAlpha;
         materialToFade.color = currentColor;
     }
-
 }

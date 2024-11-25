@@ -13,13 +13,12 @@ public class RaizAttack : MonoBehaviour
     private Vector3 initialScale;
     private bool isScaling = false;
 
+
     void Start()
     {
-
         initialScale = transform.localScale;
         transform.localScale = Vector3.zero;
         StartCoroutine(SpawnSequence());
-        
     }
 
     void Update()

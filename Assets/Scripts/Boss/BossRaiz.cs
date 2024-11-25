@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossRaiz : MonoBehaviour
 {
+
     public List<GameObject> childObjects;
     public Transform[] spawnPoints;
     public Transform playerPoint;
@@ -14,6 +15,8 @@ public class BossRaiz : MonoBehaviour
     public Transform centerPoint;
     public float delayAdditive = 0.6f;
     public float minDistance =1.0f;
+    public LayerMask groundLayer;
+
 
     void Start()
     {
@@ -31,9 +34,25 @@ public class BossRaiz : MonoBehaviour
         Transform chosenSpawnPoint = spawnPoints[randomIndex];
         foreach (Transform spawnPoint in spawnPoints)
         {
-            GameObject prefab = Instantiate(fakeRaizPrefab, spawnPoint.position, spawnPoint.transform.rotation,this.transform);
+            //Vector3 spawnPosition = transform.position + new Vector3(randomCirclePoint.x, 0f, randomCirclePoint.y);
+            if (groundLayer != 0)
+            {
+
+                if (Physics.Raycast(spawnPoint.position + Vector3.up * 5f, Vector3.down, out RaycastHit hitfake, 10f, groundLayer))
+                {
+                    spawnPoint.position = hitfake.point;
+                    GameObject prefab = Instantiate(fakeRaizPrefab, spawnPoint.position, spawnPoint.transform.rotation, this.transform);
+                }
+
+            }
+            
         }
-        Instantiate(fakeRaizPrefab, playerPoint.position, playerPoint.transform.rotation,this.transform);
+        if (Physics.Raycast(playerPoint.position + Vector3.up * 5f, Vector3.down, out RaycastHit hit, 10f, groundLayer))
+        {
+            playerPoint.position= hit.point;
+            Instantiate(fakeRaizPrefab, playerPoint.position, playerPoint.transform.rotation, this.transform);
+        }
+        
         ReplaceChild(Random.Range(0,childObjects.Count));
     }
     public void ReplaceChild(int indexToReplace)
