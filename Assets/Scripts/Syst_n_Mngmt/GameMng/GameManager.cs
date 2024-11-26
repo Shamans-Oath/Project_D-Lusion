@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public DataSaver saveGroup;
     public static GameManager manager;
     [ReadOnly]
     public float timeSet;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if(saveGroup)saveGroup.LoadData();
         manager = this;
         SetInputSystem();
         GameManager.StateChanged += CheckState;
