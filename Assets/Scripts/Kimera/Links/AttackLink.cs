@@ -63,6 +63,9 @@ namespace Features
                 {
                     damage += (int)attackExtra;
                 }
+
+
+                
             }
 
             //bool damaged = reactorCombat != null ? !reactorCombat.block && !reactorCombat.parry : true;
@@ -103,6 +106,12 @@ namespace Features
                     if(attackImpact.HasValue)
                     {
                         if(reactorCombatController != null) reactorCombatController.PriorityBasedCancelAttack(attackImpact.Value);
+                    }
+
+                    float? overrideStun = attack.Search("stunAplierValue");
+                    if (overrideStun.HasValue)
+                    {
+                        if (reactor != null) reactor.SearchFeature<Stun>().StunSomeTime(overrideStun.Value);
                     }
                 }
 

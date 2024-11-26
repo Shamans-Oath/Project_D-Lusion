@@ -1172,6 +1172,7 @@ MonoBehaviour:
   active: 0
   instantModify: 0
   duration: 1
+  disableTimeScale: 1
   overrideTimeScale: 0.65
   overrideFOV: 80
   overrideTargetDistance: 30
@@ -1579,6 +1580,7 @@ MonoBehaviour:
   lowHpGroup: []
   shieldGroup:
   - {fileID: 4402821929433394307}
+  invulnerabilityGroup: []
 --- !u!1 &289061052350404976
 GameObject:
   m_ObjectHideFlags: 0

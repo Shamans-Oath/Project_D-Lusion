@@ -18,6 +18,7 @@ namespace Features
         [Range(0.0f,1.0f)]
         public float duration;
         [Header("TimeScale")]
+        public bool disableTimeScale;
         public float overrideTimeScale;
         [Header("FOV")]
         public float overrideFOV;
@@ -57,8 +58,13 @@ namespace Features
                     camSys.lockSys.adjustmentSpeed = overrideTargetAdjustSpeed;
                 }
             }
-            if (instantModify) GameManager.SetTimeTo(overrideTimeScale);
-            else GameManager.LerpTimeTo(overrideTimeScale,duration);
+            if(disableTimeScale==false)
+            {
+                if (instantModify) GameManager.SetTimeTo(overrideTimeScale);
+                else GameManager.LerpTimeTo(overrideTimeScale, duration);
+
+            }
+
 
         }
 
@@ -74,8 +80,11 @@ namespace Features
                     camSys.lockSys.ResetValues();
                 }
             }
-            if (instantModify) GameManager.ResetTime();
-            else GameManager.LerpTimeTo(1, duration);
+            if (disableTimeScale==false)
+            {
+                if (instantModify) GameManager.ResetTime();
+                else GameManager.LerpTimeTo(1, duration);
+            }
         }
         public void ToggleActive(bool active)
         {
