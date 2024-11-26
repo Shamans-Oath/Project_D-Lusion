@@ -492,6 +492,7 @@ MonoBehaviour:
   - volumeKey: 3DVolume
     value: 0.5
     muted: 0
+  gameData: {fileID: 11400000, guid: 504d42ec32547424bbdfff3c5ce9779c, type: 2}
 --- !u!1 &4846504211833691880
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77b33344da8b58478c87aad9c7874cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveGroup: {fileID: 11400000, guid: 404b17b2066d2cf44b681a053caf0b1e, type: 2}
   timeSet: 0
   initialState: 0
 --- !u!1 &5225146890716558219

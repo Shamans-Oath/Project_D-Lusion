@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     public DataSaver saveGroup;
+    public GameData gameData;
     public static GameManager manager;
     [ReadOnly]
     public float timeSet;

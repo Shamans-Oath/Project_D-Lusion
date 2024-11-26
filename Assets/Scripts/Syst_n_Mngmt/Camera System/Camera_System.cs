@@ -27,6 +27,9 @@ public class Camera_System : MonoBehaviour
     public float minSens;
     public float maxSens;
 
+    [Header("GameData")]
+    public GameData gameData;
+
     void Awake()
     {
         instance = this;
@@ -53,7 +56,9 @@ public class Camera_System : MonoBehaviour
         for(int i = 0; i < cmp_playerCamera.m_Orbits.Length; i++)
         {
             defaultRadius.Add(cmp_playerCamera.m_Orbits[i].m_Radius);
-        }        
+        }
+
+        cmp_playerCamera.m_XAxis.m_MaxSpeed = gameData.sens;
     }
 
     // Update is called once per frame
@@ -243,5 +248,7 @@ public class Camera_System : MonoBehaviour
         float newSens = Mathf.Lerp(minSens, maxSens, sensRatio);
 
         cmp_playerCamera.m_XAxis.m_MaxSpeed = newSens;
+        gameData.sens = newSens;
+        gameData.Save();
     }
 }

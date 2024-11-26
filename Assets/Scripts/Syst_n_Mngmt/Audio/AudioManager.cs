@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
 
     public MixerValues[] mixerValues;
 
+    public GameData gameData;
+
     void Awake()
     {
         if (instance == null)
@@ -40,12 +42,21 @@ public class AudioManager : MonoBehaviour
 
             s.source.outputAudioMixerGroup = s.mixerGroup;
         }
+
+        
+    }
+
+    void OnEnable()
+    {
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetVolume("MasterVolume", gameData.genVolume);
+        SetVolume("MusicVolume", gameData.mscVolume);
+        SetVolume("SFXVolume", gameData.sndVolume);
     }
 
     // Update is called once per frame
@@ -196,7 +207,44 @@ public class AudioManager : MonoBehaviour
             value = 0.001f;
         }
 
-        masterMixerGroup.audioMixer.SetFloat(volumeKey, Mathf.Log10(value) * 20);        
+        masterMixerGroup.audioMixer.SetFloat(volumeKey, Mathf.Log10(value) * 20);
+
+        switch(volumeKey)
+        {
+            case "MasterVolume":
+                gameData.genVolume = value;                
+            break;
+            case "MusicVolume":
+                gameData.mscVolume = value;
+            break;
+            case "SFXVolume":
+                gameData.sndVolume = value;
+            break;
+        }
+
+        gameData.Save();
+    }
+
+    public float ReadVolume(string volumeKey)
+    {
+        float volume = 0;
+
+        switch (volumeKey)
+        {
+            case "MasterVolume":
+                volume = gameData.genVolume;
+            break;
+
+            case "MusicVolume":
+                volume = gameData.mscVolume;
+            break;
+
+            case "SFXVolume":
+                volume = gameData.sndVolume;
+            break;
+        }
+
+        return volume;
     }
 
     public void MusicChanger(string name)

@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.04360546, y: 0}
   m_AnchorMax: {x: 0.808, y: 0.46800002}
-  m_AnchoredPosition: {x: -0.27049637, y: 0.016052246}
+  m_AnchoredPosition: {x: -0.27050018, y: 0.016052246}
   m_SizeDelta: {x: 0.062301636, y: 0.023147583}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2954672829353815489
@@ -1120,7 +1120,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5431824}
   m_AnchorMax: {x: 0.6913085, y: 1}
-  m_AnchoredPosition: {x: -0.029518127, y: 0.35070753}
+  m_AnchoredPosition: {x: -0.029518127, y: 0.35070705}
   m_SizeDelta: {x: -0.31960297, y: 0.0703001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1470815183801830156
@@ -2215,6 +2215,10 @@ PrefabInstance:
       propertyPath: minSens
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8276063849687360079, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: 504d42ec32547424bbdfff3c5ce9779c, type: 2}
     - target: {fileID: 8378380917893731835, guid: 40b9200a3b9f3924d93b0a0239bf070f, type: 3}
       propertyPath: m_SceneBindings.Array.data[1].value
       value: 

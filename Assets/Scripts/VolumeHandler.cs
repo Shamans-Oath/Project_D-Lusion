@@ -10,6 +10,12 @@ public class VolumeHandler : MonoBehaviour
     public Slider VolumeSlider;
     public TextMeshProUGUI value;
 
+    void OnEnable()
+    {
+        if (AudioManager.instance != null)
+        VolumeSlider.value = AudioManager.instance.ReadVolume(VolumeKey);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
