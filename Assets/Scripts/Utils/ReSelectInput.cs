@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 public class ReSelectInput : MonoBehaviour
 {
     public EventSystem evSys;
@@ -13,13 +14,23 @@ public class ReSelectInput : MonoBehaviour
         //evSys.
     }
 
+    private void OnEnable()
+    {
+        GameManager.gameInputSystem.UI.Navigate.performed += _ => DetectToSelect();
+    }
+
+    private void OnDisable()
+    {
+        GameManager.gameInputSystem.UI.Navigate.performed -= _ => DetectToSelect();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (evSys != null)
         {
             UnselectCheck();
-            DetectToSelect();
+            //DetectToSelect();
         }
     }
     public void UnselectCheck()
@@ -43,12 +54,12 @@ public class ReSelectInput : MonoBehaviour
     public void DetectToSelect()
     {
         if (enableCheck != true) return;
-        if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs( Input.GetAxisRaw("Vertical")) > 0)
-        {
-            Debug.Log("1");
+        /*if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs( Input.GetAxisRaw("Vertical")) > 0)
+        {*/
+
             if (lastSelect.activeInHierarchy == false) return;
             evSys.SetSelectedGameObject(lastSelect);
-            Debug.Log("2");
-        }
+
+        //}
     }
 }
