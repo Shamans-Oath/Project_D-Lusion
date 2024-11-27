@@ -64,7 +64,6 @@ namespace Features
                 furryValue = furry.furryCount;
                 maxFurry = furry.maxFurryCount;
                 HUDController.instance.UpdateBorderColor(furryValue, maxFurry);
-                HUDController.instance.UpdateFuryBorder(furryValue, maxFurry);
                 HUDController.instance.UpdateFuryImage(furryValue, maxFurry);
             }                
         }

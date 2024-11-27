@@ -7,12 +7,15 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController instance;
 
+    public Animator cmp_anim;
+    bool iconReady = true;
+    float tempHealth;
+
     public Image lifeBar, shieldBar;
     public float lerpDuration;
-    public Image parryBorder, dashBorder, parryCircle, dashCircle, parryIcon, dashIcon;
+    public Image parryBorder, parryCircle, dashCircle, parryIcon, dashIcon;
     public Color initialColor;
     public Color furyColor;
-    public Image furyBorder;
     public Image furyImage;
     public Sprite[] furyIcons;
     
@@ -26,7 +29,8 @@ public class HUDController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        iconReady = true;
+        tempHealth = 100;
     }
 
     // Update is called once per frame
@@ -47,24 +51,6 @@ public class HUDController : MonoBehaviour
             parryBorder.color = new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 0.25f);
             parryIcon.color = new Color(1, 1, 1,0);
         }
-
-        if (dashCircle.fillAmount == 1)
-        {
-            targetPointD += Time.deltaTime;
-            dashBorder.color = Color.Lerp(new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 0.25f), new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 1), targetPointD);
-            if(dashBorder.fillAmount == 1)
-            targetPointID += Time.deltaTime;
-            dashIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointID);
-        }
-        else
-        {
-            targetPointD = 0;
-            targetPointID = 0;
-            dashBorder.color = new Color(dashBorder.color.r, dashBorder.color.g, dashBorder.color.b, 0.25f);
-            dashIcon.color = new Color(1, 1, 1, 0);
-        }
-
-
     }
 
     public void UpdateParryCooldown(float timer, float duration)
@@ -79,10 +65,19 @@ public class HUDController : MonoBehaviour
     public void UpdateDashCooldown(float timer, float duration)
     {
         float cooldownRatio = Mathf.InverseLerp(duration, duration / 2, timer);
-        float borderRatio = Mathf.InverseLerp(duration / 2, 0, timer);
         dashCircle.fillAmount = cooldownRatio;
-        //if(dashCircle.fillAmount == 1)
-        dashBorder.fillAmount = borderRatio;
+
+        Debug.Log(iconReady);
+
+        if (dashCircle.fillAmount == 1 && iconReady == false)
+        {
+            cmp_anim.SetTrigger("Ready");
+            iconReady = true;
+        }
+        else if(dashCircle.fillAmount <= 0.5f)
+        {
+            iconReady = false;
+        }
     }
 
     public void UpdateLifeBar(int currentHealth, int maxHealth)
@@ -109,15 +104,6 @@ public class HUDController : MonoBehaviour
         float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
 
         parryBorder.color = Color.Lerp(new Color(initialColor.r, initialColor.g, initialColor.b, parryBorder.color.a), new Color(furyColor.r, furyColor.g, furyColor.b, parryBorder.color.a), furryRatio);
-        dashBorder.color = Color.Lerp(new Color(initialColor.r, initialColor.g, initialColor.b, dashBorder.color.a), new Color(furyColor.r, furyColor.g, furyColor.b, dashBorder.color.a), furryRatio);
-    }
-
-    public void UpdateFuryBorder(float currentFurry, float maxFurry)
-    {
-        float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
-
-        furyBorder.rectTransform.localScale = Vector3.Lerp(new Vector3(1.05f, 1.05f, 1.05f), Vector3.one, furryRatio);
-        furyBorder.color = Color.Lerp(new Color(furyBorder.color.r, furyBorder.color.g, furyBorder.color.b, 0), new Color(furyBorder.color.r, furyBorder.color.g, furyBorder.color.b, 1), furryRatio);
     }
 
     public void UpdateFuryImage(float currentFurry, float maxFurry)

@@ -98,6 +98,10 @@ namespace Features
                 {
                     if (isImmune) return;
                     currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+                    if(cmp_Controller.SearchFeature<HudHandler>())
+                    {
+                        HUDController.instance.cmp_anim.SetTrigger("Damage");
+                    }
                     StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
                 }
             }           
