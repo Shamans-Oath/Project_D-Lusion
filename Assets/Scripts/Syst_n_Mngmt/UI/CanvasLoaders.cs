@@ -26,16 +26,21 @@ public class CanvasLoaders : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && tutorialTriggered == false)
         {
-            if(tutorialPauses == false)
-            {
-                CanvasManager.instance.ToggleTutorial(menuName, tutorialName);
-            }
-            else
-            {
-                CanvasManager.instance.ToggleTutorialPause(menuName, tutorialName, true);
-            }
-            
-            tutorialTriggered = true;
+            TriggerTutorial();
         }
+    }
+
+    public void TriggerTutorial()
+    {
+        if (tutorialPauses == false)
+        {
+            CanvasManager.instance.ToggleTutorial(menuName, tutorialName);
+        }
+        else
+        {
+            CanvasManager.instance.ToggleTutorialPause(menuName, tutorialName, true);
+        }
+
+        tutorialTriggered = true;
     }
 }

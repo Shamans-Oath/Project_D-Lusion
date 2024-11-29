@@ -15,9 +15,14 @@ MonoBehaviour:
   waves:
   - enemyThreshold: 1
     waveInfo:
+    - poolIndex: 2
+      enemyName: Ilusionista
+      numberOfEnemies: 1
+      usesSubmodule: 0
+      submoduleIndex: 0
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 20
+      numberOfEnemies: 19
       usesSubmodule: 0
       submoduleIndex: 0
   - enemyThreshold: 1

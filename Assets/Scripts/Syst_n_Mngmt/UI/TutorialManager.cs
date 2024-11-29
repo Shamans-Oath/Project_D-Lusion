@@ -7,7 +7,7 @@ using System;
 
 public class TutorialManager : MonoBehaviour
 {
-    public TextMeshProUGUI cmp_TextMeshPro;
+    public TextMeshProUGUI Name, Description;
     public Image buttonIcon;
     public Animator cmp_Animator;
 
@@ -33,8 +33,20 @@ public class TutorialManager : MonoBehaviour
     {
         Tutorial t = Array.Find(tutorials, tutorial => tutorial.Name == tutorialName);
 
-        cmp_TextMeshPro.text = t.Name;
-        buttonIcon.sprite = t.Icon;
+        Name.text = t.Name;
+        if (t.Icon != null)
+        {
+            buttonIcon.sprite = t.Icon;
+        }
+        else
+        {
+            buttonIcon.sprite = null;
+        }
+        
+        if (t.Description != null && Description != null)
+        {
+            Description.text = t.Description;
+        }
         lastTutorial = tutorialName;
         AudioManager.instance.PlaySound("AparicionTutorial");
 
@@ -100,5 +112,8 @@ public class Tutorial
 {
     public string Name;
     public Sprite Icon;
+    [TextArea(1,5)]
+    public string Description;
     public float Time;
+    public bool oneTimeTrigger;
 }

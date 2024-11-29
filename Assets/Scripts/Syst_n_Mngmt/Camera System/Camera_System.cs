@@ -26,6 +26,7 @@ public class Camera_System : MonoBehaviour
     [Header("Sensivility")]
     public float minSens;
     public float maxSens;
+    public float sensYRatio = 130;
 
     [Header("GameData")]
     public GameData gameData;
@@ -59,6 +60,7 @@ public class Camera_System : MonoBehaviour
         }
 
         cmp_playerCamera.m_XAxis.m_MaxSpeed = gameData.sens;
+        cmp_playerCamera.m_YAxis.m_MaxSpeed= gameData.sens/sensYRatio;
     }
 
     // Update is called once per frame
@@ -246,8 +248,11 @@ public class Camera_System : MonoBehaviour
         float sensRatio = Mathf.InverseLerp(0, 1, value);
 
         float newSens = Mathf.Lerp(minSens, maxSens, sensRatio);
+        float newSensY = newSens / sensYRatio;
+
 
         cmp_playerCamera.m_XAxis.m_MaxSpeed = newSens;
+        cmp_playerCamera.m_YAxis.m_MaxSpeed = newSensY;
         gameData.sens = newSens;
         gameData.Save();
     }

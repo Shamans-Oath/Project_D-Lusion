@@ -21,16 +21,16 @@ public class CanvasManager : MonoBehaviour
     void OnEnable()
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> TogglePause();
-        GameManager.gameInputSystem.UI.Interact.performed +=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
-        GameManager.gameInputSystem.UI.Escape.performed += _ => ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
+        GameManager.gameInputSystem.UI.Interact.performed +=_=> ToggleTutorialPause("PausePopup", "Bloody Combo", false);
+        GameManager.gameInputSystem.UI.Escape.performed += _ => ToggleTutorialPause("PausePopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed +=_=> TogglePause();
     }
 
     void OnDisable()
     {        
         GameManager.gameInputSystem.GamePlay.Escape.performed -=_=> TogglePause();
-        GameManager.gameInputSystem.UI.Interact.performed -=_=> ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
-        GameManager.gameInputSystem.UI.Escape.performed -= _ => ToggleTutorialPause("ComboPopup", "Bloody Combo", false);
+        GameManager.gameInputSystem.UI.Interact.performed -=_=> ToggleTutorialPause("PausePopup", "Bloody Combo", false);
+        GameManager.gameInputSystem.UI.Escape.performed -= _ => ToggleTutorialPause("PausePopup", "Bloody Combo", false);
         GameManager.gameInputSystem.UI.Escape.performed -=_=> TogglePause();
     }
 
@@ -124,13 +124,15 @@ public class CanvasManager : MonoBehaviour
         }
         else if(!s.canvObj.activeInHierarchy && toActivate == true)
         {
-            if (s.oneTimeTrigger == true)
+            Tutorial t = Array.Find(tutorialManager.tutorials, tutorial => tutorial.Name == tutorialName);
+
+            if (t.oneTimeTrigger == true)
             {
                 return;
             }
             else
             {
-                s.oneTimeTrigger = true;
+                t.oneTimeTrigger = true;
                 s.canvObj.SetActive(true);
                 tutorialManager.LoadTutorial(tutorialName);
                 pausedByTutorial = true;
@@ -168,7 +170,6 @@ public class CanvasManager : MonoBehaviour
 public class CanvasObj
 {
     public string name;
-    public GameObject canvObj;
-    public bool oneTimeTrigger;
+    public GameObject canvObj;    
 }
 

@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: Modulo 2
   m_EditorClassIdentifier: 
   waves:
+  - enemyThreshold: 0
+    waveInfo:
+    - poolIndex: 1
+      enemyName: TestEnemyTutorial
+      numberOfEnemies: 1
+      usesSubmodule: 0
+      submoduleIndex: 0
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0

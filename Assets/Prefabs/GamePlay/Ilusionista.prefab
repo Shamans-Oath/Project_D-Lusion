@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 7228356015299200931}
   - component: {fileID: 4407003771781409614}
   - component: {fileID: 9174872231818755736}
+  - component: {fileID: 1640328967634007122}
   m_Layer: 10
   m_Name: Ilusionista
   m_TagString: Enemy
@@ -1058,6 +1059,20 @@ MonoBehaviour:
   initCounter: 1
   habDuration: 3
   cooldown: 8
+--- !u!114 &1640328967634007122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d128b123e8d447648b5863819ad9e36a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intrTag: Tutorial
+  interactObj: {fileID: 0}
 --- !u!1 &340249982049030099
 GameObject:
   m_ObjectHideFlags: 0
