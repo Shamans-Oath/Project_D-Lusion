@@ -90,20 +90,22 @@ namespace Features
             }
             else
             {
+                if (isImmune) return;
                 if (cmp_Controller.SearchFeature<Shield>() && cmp_Controller.SearchFeature<Shield>().currentShield > 0 && !ignoreBlock)
                 {
                     cmp_Controller.SearchFeature<Shield>().ModifyShield(amount);
                 }
                 else 
                 {
-                    if (isImmune) return;
+                    
                     currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
                     if(cmp_Controller.SearchFeature<HudHandler>())
                     {
                         HUDController.instance.cmp_anim.SetTrigger("Damage");
                     }
-                    StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
+                    
                 }
+                StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
             }           
 
             if (!triggerEvents) return;

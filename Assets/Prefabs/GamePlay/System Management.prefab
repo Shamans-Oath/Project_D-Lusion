@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveGroup: {fileID: 11400000, guid: 404b17b2066d2cf44b681a053caf0b1e, type: 2}
+  gameData: {fileID: 0}
   timeSet: 0
   initialState: 0
 --- !u!1 &5225146890716558219
@@ -627,6 +628,10 @@ MonoBehaviour:
     deactiveObjects: []
   - nameObj: puddleFX
     mainPrefabObj: {fileID: 6772373481628128767, guid: 3814e590d99dc474da41c089ed4c069b, type: 3}
+    activeObjects: []
+    deactiveObjects: []
+  - nameObj: invulneravilityArea
+    mainPrefabObj: {fileID: 8171582226712022952, guid: a7a80e17aac5ca640bcbc89f4e1e7c46, type: 3}
     activeObjects: []
     deactiveObjects: []
 --- !u!1 &5777059888098358530

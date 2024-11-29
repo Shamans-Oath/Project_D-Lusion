@@ -261,6 +261,9 @@ namespace Features
             if (actualAttack == null) return;
             possibleAttacks[i].StartAttackBox(actualAttack.swings[i], attackSpeedMultiplier);
 
+            float? invincibleTime = actualAttack.swings[i].settings.Search("invincibleTime");
+            if (invincibleTime.HasValue && mainController.SearchFeature<Life>()) mainController.SearchFeature<Life>().CallInmunity(invincibleTime.Value);
+
             Debug.Log("Started Attack " + i + "  |  " + actualAttack.name + " - " + actualAttack.swings[i].swingName);
             /*if (AudioManager.instance)
             {

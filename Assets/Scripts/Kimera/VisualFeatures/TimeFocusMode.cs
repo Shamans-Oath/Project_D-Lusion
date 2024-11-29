@@ -22,6 +22,10 @@ namespace Features
         public float overrideTimeScale;
         [Header("FOV")]
         public float overrideFOV;
+        [Header("CameraSpeed")]
+        [Tooltip("Don´t forget the - to rest value")]
+        public float speedModifier;
+        private float previousSped;
         [Header("Target Lock")]
         public float overrideTargetDistance;
         public float overrideTargetRadius;
@@ -51,6 +55,11 @@ namespace Features
                 if (instantModify) camSys.SetFOV(overrideFOV);
                 else camSys.FOVLerpInvoke(overrideFOV, duration);
 
+                previousSped = camSys.ReadSens();
+                camSys.UpdateSens(previousSped + speedModifier);
+                camSys.gameData.sens = previousSped;
+                camSys.gameData.Save();
+
                 if (camSys.lockSys)
                 {
                     camSys.lockSys.distance = overrideTargetDistance;
@@ -74,6 +83,8 @@ namespace Features
             {
                 if (instantModify) camSys.ResetFOV();
                 else camSys.ResetFOVLerp(duration);
+
+                camSys.UpdateSens(camSys.gameData.sens);
 
                 if (camSys.lockSys)
                 {
