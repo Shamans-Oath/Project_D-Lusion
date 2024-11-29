@@ -123,6 +123,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         }
         if (context.performed)
         {
+            if (onGround == false || SearchFeature<Features.Jump>().hasJumped) return;
             // SearchFeature<Rotation>().RotateTo(dashPoint.Position);
             //CallFeature<Features.Dash>(new Setting("dashPoint", dashPoint.Position, Setting.ValueType.Vector3));
             //CallFeature<Ragdoll>(new Setting("ragdollActivation", true, Setting.ValueType.Bool));
@@ -182,7 +183,23 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     public void OnSpecialAttack(InputAction.CallbackContext context)
     {
         if (block) return;
-        if (context.performed) CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-special", Setting.ValueType.String));
+        if (context.performed)
+        {
+            if(SearchFeature<CooldownAction>())
+            {
+                if(SearchFeature<CooldownAction>().GetCooldowntListValue("SpecialAtk")>=0)
+                {
+                    SearchFeature<CooldownAction>().VerifyToActivate(SearchFeature<CooldownAction>().GetCooldowntListValue("SpecialAtk"), () =>
+                    {
+                        CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-special", Setting.ValueType.String));
+                    });
+                    return;
+                }
+            }
+
+            CallFeature<CombatAnimator>(new Setting("combatCondition", "attack-special", Setting.ValueType.String));
+        }
+
     }
 
     public void OnBlock(InputAction.CallbackContext context)

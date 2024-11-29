@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 5258178875270296862}
   - component: {fileID: 2015719651995609155}
   - component: {fileID: 3991624545513770837}
+  - component: {fileID: 7416962318486864172}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -586,7 +587,12 @@ MonoBehaviour:
     skinMesh: {fileID: 0}
   - inverse: 0
     skinMesh: {fileID: 0}
-  emissionRenderers: []
+  emissionRenderers:
+  - {fileID: 5063165809516090998}
+  - {fileID: 4409759722219869264}
+  - {fileID: 3238330597732767431}
+  baseColor: {r: 0, g: 0.18431373, b: 0.21568628, a: 1}
+  furyColor: {r: 0, g: 1.8119158, b: 2.1185477, a: 1}
   emissionUnit: 0
   changeSpeed: 0.5
   blendValue: 0
@@ -1581,6 +1587,25 @@ MonoBehaviour:
   shieldGroup:
   - {fileID: 4402821929433394307}
   invulnerabilityGroup: []
+--- !u!114 &7416962318486864172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270489431914573047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3165b68415fb3d4cab9e0d72a9682fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 0}
+  active: 0
+  cooldowns:
+  - keyName: SpecialAtk
+    readyToCall: 0
+    cooldownTime: 2
+    timer: 0
 --- !u!1 &289061052350404976
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,10 @@ namespace Features
         public float gapActivationValue;
         public SkinMeshBlend[] meshRenderers;
         public SkinnedMeshRenderer[] emissionRenderers;
+        [ColorUsage(true, true)]
+        public UnityEngine.Color baseColor;
+        [ColorUsage(true, true)]
+        public UnityEngine.Color furyColor;
         public float emissionUnit;
         [Range(0.5f,10)]
         public float changeSpeed;
@@ -43,7 +47,7 @@ namespace Features
             ToggleActive(true);
             FurryEntity furryEntity = controller as FurryEntity;
             blendUnit = maxValue / settings.Search("furryMax");
-            emissionUnit = 10 / settings.Search("furryMax");
+            emissionUnit = 1 / settings.Search("furryMax");
             GroupEnabler(furryEntity.furryCount * blendUnit);
         }
 
@@ -127,23 +131,26 @@ namespace Features
         {
             if (mesh == null) return;
             Debug.Log(mesh.gameObject.name + " " + (value));
-            UnityEngine.Color previousColor = mesh.sharedMaterial.GetColor("_EmissionColor");
-            UnityEngine.Color baseCol = mesh.material.GetColor("_EmissionColor");
-            float currentEmission = 0.2989f * baseCol.r + 0.5870f * baseCol.g + 0.1140f * baseCol.b;
+            //UnityEngine.Color previousColor = UnityEngine.Color.white; //mesh.sharedMaterial.GetColor("_EmissionColor");
+            //UnityEngine.Color baseCol = mesh.material.GetColor("_EmissionColor");
+            //float currentEmission = 0.2989f * baseCol.r + 0.5870f * baseCol.g + 0.1140f * baseCol.b;
 
-            UnityEngine.Color _emissionColor = mesh.material.GetColor("_EmissionColor");
-            var maxColorComponent = _emissionColor.maxColorComponent;
-            var scaleFactor = 191 / maxColorComponent;
+            //UnityEngine.Color _emissionColor = mesh.material.GetColor("_EmissionColor");
+            //var maxColorComponent = _emissionColor.maxColorComponent;
+            //var scaleFactor = 191 / maxColorComponent;
             //float currentEmission = Mathf.Log(255f / scaleFactor) / Mathf.Log(2f);
 
             //value = value - 5;
-            Debug.Log(currentEmission + " | " + (value-5) + " | " + Mathf.Pow(2, currentEmission));
-            if (currentEmission == value ||  currentEmission < -5 ||  currentEmission > 5) return;
-            currentEmission = Mathf.Lerp(currentEmission, value-5, changeSpeed);
-         
-            Debug.Log(currentEmission + " | " + value + " | " + Mathf.Pow(2, currentEmission));
-            float intensityVal = Mathf.Pow(2, currentEmission);
-            mesh.material.SetColor("_EmissionColor", new UnityEngine.Color(previousColor.r * intensityVal, previousColor.g * intensityVal, previousColor.b * intensityVal, previousColor.a));
+            //Debug.Log(currentEmission + " | " + (value-5) + " | " + Mathf.Pow(2, currentEmission));
+            //if (currentEmission == value ||  currentEmission < -5 ||  currentEmission > 5) return;
+            //currentEmission = Mathf.Lerp(currentEmission, value-5, changeSpeed);
+            //float lerpValue = Mathf.Lerp(lerpValue, value, changeSpeed);
+            //Debug.Log(currentEmission + " | " + value + " | " + Mathf.Pow(2, currentEmission));
+            //float intensityVal = Mathf.Pow(2, currentEmission);
+
+            UnityEngine.Color newColor = new UnityEngine.Color(Mathf.Lerp(baseColor.r, furyColor.r, value), Mathf.Lerp(baseColor.g, furyColor.g, value), Mathf.Lerp(baseColor.b, furyColor.b, value), Mathf.Lerp(baseColor.a, furyColor.a, value));
+
+            mesh.material.SetColor("_EmissionColor", newColor);
         }
     }
 
