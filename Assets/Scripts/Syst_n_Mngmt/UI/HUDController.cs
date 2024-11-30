@@ -64,7 +64,7 @@ public class HUDController : MonoBehaviour
 
     public void UpdateDashCooldown(float timer, float duration)
     {
-        float cooldownRatio = Mathf.InverseLerp(duration, duration / 2, timer);
+        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
         dashCircle.fillAmount = cooldownRatio;
 
         Debug.Log(iconReady);
