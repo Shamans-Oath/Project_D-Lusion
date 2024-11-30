@@ -4,11 +4,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Video;
 
 public class TutorialManager : MonoBehaviour
 {
     public TextMeshProUGUI Name, Description;
     public Image buttonIcon;
+    public VideoPlayer cmp_VideoPlayer;
     public Animator cmp_Animator;
 
     public string lastTutorial;
@@ -47,6 +49,13 @@ public class TutorialManager : MonoBehaviour
         {
             Description.text = t.Description;
         }
+
+        if(t.Clip != null && cmp_VideoPlayer != null)
+        {
+            cmp_VideoPlayer.clip = t.Clip;
+            cmp_VideoPlayer.Play();
+        }
+
         lastTutorial = tutorialName;
         AudioManager.instance.PlaySound("AparicionTutorial");
 
@@ -112,6 +121,7 @@ public class Tutorial
 {
     public string Name;
     public Sprite Icon;
+    public VideoClip Clip;
     [TextArea(1,5)]
     public string Description;
     public float Time;
