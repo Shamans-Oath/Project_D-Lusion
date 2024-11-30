@@ -471,6 +471,76 @@ MonoBehaviour:
     mixerGroup: {fileID: 2192065369473268291, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
     source: {fileID: 0}
     paused: 1
+  - name: Death_Ilu
+    clip: {fileID: 8300000, guid: b62ea46429371e64ba911df9444d8d4d, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Move_Ilu
+    clip: {fileID: 8300000, guid: c5d66d1c818fcc74fbcf67c891da1570, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Hurt_Ilu
+    clip: {fileID: 8300000, guid: b62ea46429371e64ba911df9444d8d4d, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Grito_Ilu
+    clip: {fileID: 8300000, guid: 835ed31105d5b99458f92d7b1ee0ec99, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Stun_Ilu
+    clip: {fileID: 8300000, guid: b62ea46429371e64ba911df9444d8d4d, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Spawn_Ilu
+    clip: {fileID: 8300000, guid: ee1af17608ef1034ab44ead144855475, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
+  - name: Breath_Ilu
+    clip: {fileID: 8300000, guid: 458023f9cdd648b4cb3f3267cdf442f9, type: 3}
+    volume: 0.3
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0.3
+    loop: 0
+    mixerGroup: {fileID: 2408439881344723332, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
+    source: {fileID: 0}
+    paused: 1
   masterMixerGroup: {fileID: 24300002, guid: 9fe0933d3399aef48acc70b0c5636ca2, type: 2}
   lastBGM: 
   mixerValues:

@@ -195,4 +195,18 @@ public class SpawnManager : MonoBehaviour
     {
         return remainingEnemies[index];
     }
+
+    public void CancelEncounter()
+    {
+        isActive = false;
+        GameObject[] list = remainingEnemies.ToArray();
+
+        foreach (GameObject obj in list)
+        {
+            obj.SetActive(false);
+        }
+        currentEncounter = null;
+        currentModule = null;
+
+    }
 }

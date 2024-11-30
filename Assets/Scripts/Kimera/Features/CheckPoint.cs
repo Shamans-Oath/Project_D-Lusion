@@ -65,6 +65,7 @@ namespace Features
             ragdoll.RagdollSetActive(false);
             life.ResetHealth();
             if (fury != null) fury.furryCount = 0;
+            if(RevertProgressActions.instance!=null) RevertProgressActions.instance.Reset();
             contrl.enabled = true;
             //contrl.ToggleActive(true);
 

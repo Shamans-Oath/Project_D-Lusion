@@ -7,7 +7,9 @@ public class FightModule : MonoBehaviour
     public EncounterScriptable Info;
     public Transform[] spawnPoints;
     public Transform[] subModule;
-    public bool combatInProgress;
+
+    [field: SerializeField]
+    public bool combatInProgress { get; set; }
     public UnityEvent endEvent;
     // Start is called before the first frame update
     void Start()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interacter : MonoBehaviour
 {
-    public string intrTag;
+    public string[] intrTag;
     public GameObject interactObj;
     private Interactable itrc;
 
@@ -19,12 +19,18 @@ public class Interacter : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag(intrTag))
+        for (int i = 0; i < intrTag.Length; i++)
         {
-            interactObj = collision.gameObject;
-            itrc = interactObj.GetComponent<Interactable>();
-            if (itrc.onFirstTriger) Interact();
+            if (collision.gameObject.CompareTag(intrTag[i]))
+            {
+                interactObj = collision.gameObject;
+                if(interactObj.GetComponent<Interactable>()==false)return;
+
+                itrc = interactObj.GetComponent<Interactable>();
+                if (itrc.onFirstTriger) Interact();
+            }
         }
+        
     }
 
     private void OnTriggerExit(Collider collision)
