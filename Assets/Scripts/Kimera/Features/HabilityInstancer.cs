@@ -25,6 +25,7 @@ namespace Features
         public float cooldown;
 
         private float initTime;
+        public bool instantiateOnFirstActive;
         private float habTime;
         private float cooldownTime;
         private EntityAnimator animator;
@@ -40,6 +41,7 @@ namespace Features
             spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
             inteligence = controller.SearchFeature<MovementIntelligence>();
             ToggleActive(true); 
+            if(instantiateOnFirstActive) cooldownTime=cooldown;
         }
         public bool GetActive()
         {

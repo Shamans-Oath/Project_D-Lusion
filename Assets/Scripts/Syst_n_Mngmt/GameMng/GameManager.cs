@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 
 
     public static event Action StateChanged = delegate { };
+    public static event Action ChangedInputType = delegate { };
     public static GameState gameState;
+    public static InputType gameInput;
     public static ActionControls gameInputSystem;
     public enum GameState
     {
@@ -23,6 +25,12 @@ public class GameManager : MonoBehaviour
         OnPause,
         OnMenu
 
+    };
+
+    public enum InputType
+    {
+        Keyboard,
+        XInputController,
     };
 
     private void Awake()
