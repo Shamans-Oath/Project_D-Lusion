@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,9 +16,12 @@ public class GameManager : MonoBehaviour
 
 
     public static event Action StateChanged = delegate { };
-    public static event Action ChangedInputType = delegate { };
+    public static event Action<InputType> ChangedInputType = delegate { };
     public static GameState gameState;
-    public static InputType gameInput;
+    public static InputType currentGameInput { get; private set; }
+    public InputActionAsset inputActions;
+    public InputUser user;
+
     public static ActionControls gameInputSystem;
     public enum GameState
     {
@@ -29,8 +33,8 @@ public class GameManager : MonoBehaviour
 
     public enum InputType
     {
-        Keyboard,
-        XInputController,
+        Keyboard = 0,
+        XInputController = 1,
     };
 
     private void Awake()
@@ -38,9 +42,24 @@ public class GameManager : MonoBehaviour
         if(saveGroup)saveGroup.LoadData();
         manager = this;
         SetInputSystem();
+        
+
         GameManager.StateChanged += CheckState;
+        StartAutoControlSchemeSwitching();
         SetState(initialState);
+        
+
         //GameManager.gameInputSystem.GamePlay.Escape.performed +=_=> CheckState();
+    }
+    private void OnDestroy() => StopAutoControlSchemeSwitching();
+
+    private void OnEnable()
+    {
+        ChangedInputType += (InputType sch) => { Debug.Log("Sipasalawea device" + sch); };
+    }
+    private void OnDisable()
+    {
+        ChangedInputType -= (InputType sch) => { Debug.Log("Sipasalawea device" + sch); };
     }
 
     #region GameState&InputConfigIssues
@@ -76,21 +95,21 @@ public class GameManager : MonoBehaviour
                 manager.ToggleActionMap(gameInputSystem.GamePlay);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
-                AudioManager.instance.TogglePause(false);
+                if (AudioManager.instance) AudioManager.instance.TogglePause(false);
                 break;
             case GameState.OnPause:
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 manager.ToggleActionMap(gameInputSystem.UI);
-                AudioManager.instance.TogglePause(true);
+                if (AudioManager.instance) AudioManager.instance.TogglePause(true);
                 break;
             case GameState.OnMenu:
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 manager.ToggleActionMap(gameInputSystem.UI);
-                AudioManager.instance.TogglePause(true);
+                if(AudioManager.instance) AudioManager.instance.TogglePause(true);
                 break;
         }
 
@@ -154,6 +173,72 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region SchemesControl
+
+    void StartAutoControlSchemeSwitching()
+    {
+        user = InputUser.CreateUserWithoutPairedDevices();
+        /*for (int i = 0; i < inputActions.actionMaps.Count; i++)
+        {
+            user.AssociateActionsWithUser(inputActions.actionMaps[i]);
+        }*/
+       
+        ++InputUser.listenForUnpairedDeviceActivity;
+        InputUser.onUnpairedDeviceUsed += InputUser_onUnpairedDeviceUsed;
+        //InputUser.on
+
+    }
+    private void StopAutoControlSchemeSwitching()
+    {
+        InputUser.onUnpairedDeviceUsed -= InputUser_onUnpairedDeviceUsed;
+        if (InputUser.listenForUnpairedDeviceActivity > 0)
+            --InputUser.listenForUnpairedDeviceActivity;
+
+    }
+
+    private void InputUser_onUnpairedDeviceUsed(InputControl ctrl, UnityEngine.InputSystem.LowLevel.InputEventPtr eventPtr)
+    {
+        var device = ctrl.device;
+        Debug.Log(ctrl.device + " device");
+
+        /*if ((currentGameInput == InputType.Keyboard) &&
+             (/*(device is Pointer) || (device is Keyboard)))
+        {
+            //InputUser.PerformPairingWithDevice(device, user);
+            if (ChangedInputType != null) ChangedInputType(InputType.Keyboard);
+            TrigerControlScheme(InputType.Keyboard);
+
+            return;
+        }*/
+
+        if (device is Gamepad)
+        {
+            if (currentGameInput == InputType.XInputController) return;
+
+            if (ChangedInputType != null) ChangedInputType(InputType.XInputController);
+            currentGameInput = InputType.XInputController;
+            TrigerControlScheme(InputType.XInputController);
+            
+        }
+        else if ((device is Keyboard) /*|| (device is Pointer)*/)
+        {
+            if (currentGameInput == InputType.Keyboard) return;
+
+            if (ChangedInputType != null) ChangedInputType(InputType.Keyboard);
+            currentGameInput = InputType.Keyboard;
+            TrigerControlScheme(InputType.Keyboard);
+
+        }
+        else return;
+
+    }
+    public void TrigerControlScheme(InputType scheme)
+    {
+        //ChangedInputType.Invoke(scheme);
+        
+    }
     #endregion
 
     #region TimeSettings

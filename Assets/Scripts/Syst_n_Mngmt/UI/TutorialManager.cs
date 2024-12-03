@@ -12,12 +12,17 @@ public class TutorialManager : MonoBehaviour
     public Image buttonIcon;
     public VideoPlayer cmp_VideoPlayer;
     public Animator cmp_Animator;
+    [ReadOnly]
+    public bool active = false;
 
     public string lastTutorial;
+    private Tutorial lastTutorialGroup;
     Coroutine timerCoroutine, exitCoroutine;
 
 
     public Tutorial[] tutorials;
+
+    private int inputImageNumber = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -30,13 +35,47 @@ public class TutorialManager : MonoBehaviour
     {
         
     }
+    private void OnEnable()
+    {
+        GameManager.ChangedInputType += (GameManager.InputType type) => 
+        { 
+            if (active == false) return;
+            inputImageNumber = (int)type;
+            Debug.Log((int)type);
+            UpdatePanel(lastTutorialGroup);
+        };
+    }
+
+    private void OnDisable()
+    {
+        GameManager.ChangedInputType -= (GameManager.InputType type) =>
+        {
+            if (active == false) return;
+            inputImageNumber = (int)type;
+            Debug.Log((int)type);
+            UpdatePanel(lastTutorialGroup);
+        };
+    }
 
     public void LoadTutorial(string tutorialName)
     {
         Tutorial t = Array.Find(tutorials, tutorial => tutorial.Name == tutorialName);
 
-        Name.text = t.Name;
-        if (t.Icon != null)
+        UpdatePanel(t);
+        lastTutorial = tutorialName;
+        lastTutorialGroup = t;
+        AudioManager.instance.PlaySound("AparicionTutorial");
+
+        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
+        timerCoroutine = StartCoroutine(PopupTimer(t.Time));
+    }
+    public void UpdatePanel(Tutorial t)
+    {
+        if (t.Icons.Length >= inputImageNumber)
+        {
+            if (t.Icons[inputImageNumber]) buttonIcon.sprite = t.Icons[inputImageNumber];
+        }
+        else if (t.Icon != null)
         {
             buttonIcon.sprite = t.Icon;
         }
@@ -44,27 +83,27 @@ public class TutorialManager : MonoBehaviour
         {
             buttonIcon.sprite = null;
         }
-        
+
+        if (t.Name != null && Name != null)
+        {
+            Name.text = t.Name;
+        }
+
         if (t.Description != null && Description != null)
         {
             Description.text = t.Description;
         }
 
-        if(t.Clip != null && cmp_VideoPlayer != null)
+        if (t.Clip != null && cmp_VideoPlayer != null)
         {
             cmp_VideoPlayer.clip = t.Clip;
             cmp_VideoPlayer.Play();
         }
-
-        lastTutorial = tutorialName;
-        AudioManager.instance.PlaySound("AparicionTutorial");
-
-        if (timerCoroutine != null) StopCoroutine(timerCoroutine);
-        timerCoroutine = StartCoroutine(PopupTimer(t.Time));
     }
 
     public IEnumerator PopupTimer(float seconds)
     {
+        active = true;
         if(seconds == 0)
         {
             yield break;
@@ -107,6 +146,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator ExitTutorial()
     {
+        active = true;
         cmp_Animator.SetTrigger("Exit");
 
         yield return new WaitForSeconds(0.5f);
@@ -121,6 +161,8 @@ public class Tutorial
 {
     public string Name;
     public Sprite Icon;
+    [Tooltip("Match de number of icon with de Scheme Control of the Game Input")]
+    public Sprite[] Icons;
     public VideoClip Clip;
     [TextArea(1,5)]
     public string Description;

@@ -11,9 +11,14 @@ public class InputExtensions : MonoBehaviour
     public static event Action<ControlScheme> OnInputSchemeChanged;
     public static ControlScheme CurrentControlScheme { get; private set; }
     public InputActionAsset inputActions;
-
+    public InputExtensions instance;
     public InputUser user;
-    private void Start() => StartAutoControlSchemeSwitching();
+    private void Start()
+    {
+        
+        StartAutoControlSchemeSwitching();
+
+    }
     private void OnDestroy() => StopAutoControlSchemeSwitching();
 
     void StartAutoControlSchemeSwitching()
@@ -47,7 +52,7 @@ public class InputExtensions : MonoBehaviour
             //InputUser.PerformPairingWithDevice(device, user);
             if (OnInputSchemeChanged != null) OnInputSchemeChanged(ControlScheme.KeyboardMouse);
             TrigerControlScheme(ControlScheme.KeyboardMouse);
-            Debug.Log("Contro Scheme " + CurrentControlScheme);
+            //Debug.Log("Contro Scheme " + CurrentControlScheme);
             return;
         }
 
@@ -56,14 +61,14 @@ public class InputExtensions : MonoBehaviour
             if (OnInputSchemeChanged != null) OnInputSchemeChanged(ControlScheme.Gamepad);
             CurrentControlScheme = ControlScheme.Gamepad;
             TrigerControlScheme(ControlScheme.Gamepad);
-            Debug.Log("Contro Scheme " + CurrentControlScheme);
+            //Debug.Log("Contro Scheme " + CurrentControlScheme);
         }
         else if ((device is Keyboard) || (device is Pointer))
         {
             if (OnInputSchemeChanged != null) OnInputSchemeChanged(ControlScheme.KeyboardMouse);
             CurrentControlScheme = ControlScheme.KeyboardMouse;
             TrigerControlScheme(ControlScheme.KeyboardMouse);
-            Debug.Log("Contro Scheme " + CurrentControlScheme);
+            //Debug.Log("Contro Scheme " + CurrentControlScheme);
         }
         else return;
 
@@ -72,9 +77,10 @@ public class InputExtensions : MonoBehaviour
     }
     public void TrigerControlScheme(ControlScheme scheme)
     {
-        Debug.Log(scheme.ToString());
-        Debug.Log(inputActions.controlSchemes[(int)scheme]);
-        Debug.Log((int)scheme);
+        //OnInputSchemeChanged.Invoke(scheme);
+        //Debug.Log(scheme.ToString());
+        //Debug.Log(inputActions.controlSchemes[(int)scheme]);
+        //Debug.Log((int)scheme);
         //user.ActivateControlScheme(scheme.ToString());
         //user.ActivateControlScheme(inputActions.controlSchemes[(int)scheme]); // this should be faster and not vulnerable to scheme string names
     }

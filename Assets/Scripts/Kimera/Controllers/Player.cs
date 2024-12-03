@@ -58,6 +58,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         GameManager.StateChanged += CheckInputState;
         SearchFeature<Life>().OnDeath += OnDeath;
+        GameManager.manager.CheckState();
         
     }
 
@@ -65,7 +66,8 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
     {
         GameManager.StateChanged -= CheckInputState;
         SearchFeature<Life>().OnDeath -= OnDeath;
-        
+        GameManager.manager.CheckState();
+
     }
 
     public override void Setup()
