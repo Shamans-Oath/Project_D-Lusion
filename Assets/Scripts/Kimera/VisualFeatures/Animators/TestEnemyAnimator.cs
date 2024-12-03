@@ -19,6 +19,7 @@ namespace Features
             if (kinetic == null || terrain == null || combat == null) return;
 
             Vector3 speed = kinetic.speed;
+            cmp_animator.SetFloat("AttackFactor", combat.attackSpeedMultiplier);
             cmp_animator.SetFloat("UpSpd", speed.y);
             speed.y = 0;
             speed.Normalize();
