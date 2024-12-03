@@ -101,7 +101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bloody Combo \n"
+  m_text: "\xF1\xF1\xF1\xF1\xF1\xF1\xF1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b51a3dd9599565e46ab93844c89ad3a6, type: 2}
   m_sharedMaterial: {fileID: -7136578430963868327, guid: b51a3dd9599565e46ab93844c89ad3a6, type: 2}
@@ -704,7 +704,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2555689268506439555}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 7d723c42b9f00c44db3a4b6ef538becb, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 305fe40259575ee4881df7d4f08e43e2, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -1612,28 +1612,41 @@ MonoBehaviour:
   buttonIcon: {fileID: 9108236370101046460}
   cmp_VideoPlayer: {fileID: 0}
   cmp_Animator: {fileID: 4581888545486663102}
+  active: 0
   lastTutorial: 
   tutorials:
   - Name: Movimiento
     Icon: {fileID: 21300000, guid: da13b416b7ff21345a029a03bbbdfd80, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: da13b416b7ff21345a029a03bbbdfd80, type: 3}
+    - {fileID: 21300000, guid: a942b07800ec49346893de731b2e4fab, type: 3}
     Clip: {fileID: 0}
     Description: 
     Time: 60
     oneTimeTrigger: 0
   - Name: Camara
     Icon: {fileID: 21300000, guid: 6995b332d3fa69c48a62a2ad8b5d5df3, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: 6995b332d3fa69c48a62a2ad8b5d5df3, type: 3}
+    - {fileID: 21300000, guid: 810e445301a09fc45befebc0a320e2a5, type: 3}
     Clip: {fileID: 0}
     Description: 
-    Time: 8
+    Time: 5
     oneTimeTrigger: 0
   - Name: Ataque Ligero
     Icon: {fileID: 21300000, guid: 371646c00596c124697583e976a3c445, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: 371646c00596c124697583e976a3c445, type: 3}
+    - {fileID: 21300000, guid: 5a90a23e63ea4ef4dbe57243207dc23d, type: 3}
     Clip: {fileID: 0}
     Description: 
     Time: 5
     oneTimeTrigger: 0
   - Name: Saltar
     Icon: {fileID: 21300000, guid: e304df09a33bfab4c9c3c13ee1764669, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: e304df09a33bfab4c9c3c13ee1764669, type: 3}
+    - {fileID: 21300000, guid: 7275d20f58aa3fd499025c0cb0f05865, type: 3}
     Clip: {fileID: 0}
     Description: 
     Time: 10
@@ -2358,11 +2371,15 @@ MonoBehaviour:
   buttonIcon: {fileID: 4421793088194944897}
   cmp_VideoPlayer: {fileID: 928457387758813105}
   cmp_Animator: {fileID: 2811691644566905060}
+  active: 0
   lastTutorial: 
   tutorials:
   - Name: Bloody Combo
-    Icon: {fileID: 21300000, guid: 6995b332d3fa69c48a62a2ad8b5d5df3, type: 3}
-    Clip: {fileID: 32900000, guid: 1edb9f8c31c15d04db13dd712914b12f, type: 3}
+    Icon: {fileID: 21300000, guid: 371646c00596c124697583e976a3c445, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: 371646c00596c124697583e976a3c445, type: 3}
+    - {fileID: 21300000, guid: 5a90a23e63ea4ef4dbe57243207dc23d, type: 3}
+    Clip: {fileID: 32900000, guid: 305fe40259575ee4881df7d4f08e43e2, type: 3}
     Description: 'Chain your attacks to transform into a beast and become faster
       and stronger.
 
@@ -2373,7 +2390,10 @@ MonoBehaviour:
     oneTimeTrigger: 0
   - Name: Spiritual Strike
     Icon: {fileID: 21300000, guid: a67437c108914a64196359c2e0019786, type: 3}
-    Clip: {fileID: 32900000, guid: 7d723c42b9f00c44db3a4b6ef538becb, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: a67437c108914a64196359c2e0019786, type: 3}
+    - {fileID: 21300000, guid: cc5fd41ae80900d42825548a4129b2b1, type: 3}
+    Clip: {fileID: 32900000, guid: bfdb1783e7d48184fad7498c0386e28d, type: 3}
     Description: '(Enemy''s HP can be depleted using both physical and spiritual
       damage.)
 
@@ -2384,7 +2404,10 @@ MonoBehaviour:
     oneTimeTrigger: 0
   - Name: Viper Rush
     Icon: {fileID: 21300000, guid: eee577bc59f6e9d4cba45ae914124b0d, type: 3}
-    Clip: {fileID: 32900000, guid: a956ad174f9183445a1498ed6beae523, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: eee577bc59f6e9d4cba45ae914124b0d, type: 3}
+    - {fileID: 21300000, guid: dc6998d0c91233b42b96b63ae033d669, type: 3}
+    Clip: {fileID: 32900000, guid: cb22256e56916ad4ab48ba5a9bf71455, type: 3}
     Description: 'Hold then release to dash towards enemies to deal damage and knock
       them out for a brief period of time.
 
@@ -2395,7 +2418,10 @@ MonoBehaviour:
     oneTimeTrigger: 0
   - Name: Wraithwarden
     Icon: {fileID: 21300000, guid: ee4d36d44f21ce744b2e1bf65e117d98, type: 3}
-    Clip: {fileID: 32900000, guid: fea67bb1e4605454788fb343e08e9899, type: 3}
+    Icons:
+    - {fileID: 21300000, guid: ee4d36d44f21ce744b2e1bf65e117d98, type: 3}
+    - {fileID: 21300000, guid: ee4d36d44f21ce744b2e1bf65e117d98, type: 3}
+    Clip: {fileID: 32900000, guid: 35227203aafc718408c6b589d71d0fe0, type: 3}
     Description: Wraithwardens are elusive and make their allies invulnerable for
       a period of time.
     Time: 0
