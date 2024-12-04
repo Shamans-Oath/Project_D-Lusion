@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Features
 {
@@ -33,7 +34,7 @@ namespace Features
         public float immunityDuration = 0.5f;
         public  bool isImmune = false;
         //References
-
+        private Coroutine inmuneRutine;
         //Componentes
 
         public void SetupFeature(Controller controller)
@@ -105,7 +106,7 @@ namespace Features
                     }
                     
                 }
-                StartCoroutine(ImmunityCoroutine()); //invulnerabilidad al tomar daño
+                Inmunity(); //invulnerabilidad al tomar daño
             }           
 
             if (!triggerEvents) return;
@@ -151,26 +152,42 @@ namespace Features
             currentHealth = 0;
             OnDeath?.Invoke();
         }
+        public void Inmunity()
+        {
+            if (inmuneRutine != null) return;
+            inmuneRutine = StartCoroutine(ImmunityCoroutine());
+        }
         public IEnumerator ImmunityCoroutine()
         {
             isImmune = true;
             yield return new WaitForSeconds(immunityDuration);
             isImmune = false;
+            inmuneRutine = null;
         }
 
         public IEnumerator ImmunityCoroutine(float time)
         {
-
             isImmune = true;
             OnExternalInvulnerability?.Invoke();
             yield return new WaitForSeconds(time);
-            isImmune = false;
             OnExternalInvulnerabilityExit?.Invoke();
+            isImmune = false;
+            inmuneRutine = null;
         }
 
         public void CallInmunity(float value)
         {
-            StartCoroutine(ImmunityCoroutine(value));
+            if (inmuneRutine != null)
+            {
+                StopCoroutine(inmuneRutine);
+                if(isImmune==true)
+                {
+                    OnExternalInvulnerabilityExit?.Invoke();
+                    isImmune =false;
+                }
+            }
+
+            inmuneRutine = StartCoroutine(ImmunityCoroutine(value));
         }
         private int PercentageToAmount(int percentage)
         {

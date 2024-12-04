@@ -112,7 +112,7 @@ public class Player : Controller, InputEntity, KineticEntity, TerrainEntity, Spe
         if (context.performed)
         {
             CallFeature<Features.Jump>();
-            StartCoroutine(SearchFeature<Life>().ImmunityCoroutine());
+            SearchFeature<Life>().Inmunity();
         }
     }
 
