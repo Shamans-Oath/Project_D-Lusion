@@ -19,11 +19,17 @@ public class KeyInvoker : MonoBehaviour
 
             tmpObj.transform.parent = visualParent.transform;
             TextMeshProUGUI textmesh = tmpObj.AddComponent<TextMeshProUGUI>();
+            textmesh.UpdateFontAsset();
+            textmesh.fontSize = 0;
             textmesh.text = keyEvents[i].KeyCode.ToString() + " to " + keyEvents[i].name;
             textmesh.verticalAlignment = TMPro.VerticalAlignmentOptions.Top;
             textmesh.horizontalAlignment = TMPro.HorizontalAlignmentOptions.Center;
             textmesh.autoSizeTextContainer = true;
+            textmesh.fontSizeMin = 10;
+            textmesh.fontSizeMax = 72;
+            textmesh.enableWordWrapping = true;
             textmesh.enableAutoSizing = true;
+
             textmesh.raycastTarget = false;
         }
     }
