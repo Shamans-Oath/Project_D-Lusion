@@ -17,35 +17,60 @@ MonoBehaviour:
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
+      numberOfEnemies: 16
+      usesSubmodule: 0
+      submoduleIndex: 0
+    - poolIndex: 0
+      enemyName: Ilusionista
+      numberOfEnemies: 1
+      usesSubmodule: 0
+      submoduleIndex: 0
+  - enemyThreshold: 1
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
+      numberOfEnemies: 16
+      usesSubmodule: 0
+      submoduleIndex: 0
+    - poolIndex: 0
+      enemyName: Ilusionista
+      numberOfEnemies: 1
+      usesSubmodule: 0
+      submoduleIndex: 0
+  - enemyThreshold: 1
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
       numberOfEnemies: 20
       usesSubmodule: 0
       submoduleIndex: 0
-  - enemyThreshold: 1
-    waveInfo:
     - poolIndex: 0
-      enemyName: TestEnemy
-      numberOfEnemies: 25
+      enemyName: Ilusionista
+      numberOfEnemies: 2
       usesSubmodule: 0
       submoduleIndex: 0
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 25
+      numberOfEnemies: 20
+      usesSubmodule: 0
+      submoduleIndex: 0
+    - poolIndex: 0
+      enemyName: Ilusionista
+      numberOfEnemies: 2
       usesSubmodule: 0
       submoduleIndex: 0
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 25
+      numberOfEnemies: 24
       usesSubmodule: 0
       submoduleIndex: 0
-  - enemyThreshold: 1
-    waveInfo:
     - poolIndex: 0
-      enemyName: TestEnemy
-      numberOfEnemies: 30
+      enemyName: Ilusionista
+      numberOfEnemies: 3
       usesSubmodule: 0
       submoduleIndex: 0
   timeBetweenWaves: 1
