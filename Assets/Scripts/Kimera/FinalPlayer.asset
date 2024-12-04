@@ -126,7 +126,7 @@ MonoBehaviour:
   - key: maxVerticalSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 20
+    floatValue: 17
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -241,7 +241,7 @@ MonoBehaviour:
   - key: groundFriction
     boolValue: 0
     intValue: 0
-    floatValue: 100
+    floatValue: 80
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -264,7 +264,7 @@ MonoBehaviour:
   - key: airFriction
     boolValue: 0
     intValue: 0
-    floatValue: 8
+    floatValue: 7
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -512,7 +512,7 @@ MonoBehaviour:
   - key: gravityMultiplierUpHill
     boolValue: 0
     intValue: 0
-    floatValue: 1.5
+    floatValue: 1.2
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -949,7 +949,7 @@ MonoBehaviour:
   - key: maxSpeed
     boolValue: 0
     intValue: 0
-    floatValue: 6.5
+    floatValue: 8.5
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
@@ -1363,7 +1363,7 @@ MonoBehaviour:
   - key: attackCooldown
     boolValue: 0
     intValue: 0
-    floatValue: 0
+    floatValue: 0.1
     vector3Value: {x: 0, y: 0, z: 0}
     vector3IntValue: {x: 0, y: 0, z: 0}
     vector2Value: {x: 0, y: 0}
