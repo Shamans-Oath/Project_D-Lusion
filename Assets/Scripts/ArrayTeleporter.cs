@@ -31,6 +31,6 @@ public class ArrayTeleporter : MonoBehaviour
     {
         if (indexPointer >= pointLists.Length) pointNumber=pointNumber % (pointLists.Length);
         objectToTeleport.transform.position = pointLists[pointNumber].position;
-        indexPointer = pointNumber;
+        indexPointer = pointNumber++;
     }
 }
