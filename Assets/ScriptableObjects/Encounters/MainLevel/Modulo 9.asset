@@ -29,6 +29,18 @@ MonoBehaviour:
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
+      numberOfEnemies: 14
+      usesSubmodule: 0
+      submoduleIndex: 0
+    - poolIndex: 0
+      enemyName: Ilusionista
+      numberOfEnemies: 1
+      usesSubmodule: 0
+      submoduleIndex: 0
+  - enemyThreshold: 1
+    waveInfo:
+    - poolIndex: 0
+      enemyName: TestEnemy
       numberOfEnemies: 16
       usesSubmodule: 0
       submoduleIndex: 0
@@ -41,31 +53,7 @@ MonoBehaviour:
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
-      numberOfEnemies: 18
-      usesSubmodule: 0
-      submoduleIndex: 0
-    - poolIndex: 0
-      enemyName: Ilusionista
-      numberOfEnemies: 1
-      usesSubmodule: 0
-      submoduleIndex: 0
-  - enemyThreshold: 1
-    waveInfo:
-    - poolIndex: 0
-      enemyName: TestEnemy
-      numberOfEnemies: 20
-      usesSubmodule: 0
-      submoduleIndex: 0
-    - poolIndex: 0
-      enemyName: Ilusionista
-      numberOfEnemies: 1
-      usesSubmodule: 0
-      submoduleIndex: 0
-  - enemyThreshold: 1
-    waveInfo:
-    - poolIndex: 0
-      enemyName: TestEnemy
-      numberOfEnemies: 20
+      numberOfEnemies: 16
       usesSubmodule: 0
       submoduleIndex: 0
     - poolIndex: 0
