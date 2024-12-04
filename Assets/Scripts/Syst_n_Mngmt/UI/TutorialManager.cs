@@ -22,7 +22,7 @@ public class TutorialManager : MonoBehaviour
 
     public Tutorial[] tutorials;
 
-    private int inputImageNumber = 0;
+    private int inputImageNumber = -1;
     
     // Start is called before the first frame update
     void Start()
@@ -44,6 +44,8 @@ public class TutorialManager : MonoBehaviour
             Debug.Log((int)type);
             UpdatePanel(lastTutorialGroup);
         };
+
+        if (inputImageNumber < 0) inputImageNumber = (int)GameManager.currentGameInput;
     }
 
     private void OnDisable()
