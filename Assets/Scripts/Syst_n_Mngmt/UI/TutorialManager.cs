@@ -38,9 +38,9 @@ public class TutorialManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.ChangedInputType += (GameManager.InputType type) => 
-        { 
-            if (active == false) return;
+        {
             inputImageNumber = (int)type;
+            if (active == false) return;
             Debug.Log((int)type);
             UpdatePanel(lastTutorialGroup);
         };
@@ -50,8 +50,8 @@ public class TutorialManager : MonoBehaviour
     {
         GameManager.ChangedInputType -= (GameManager.InputType type) =>
         {
-            if (active == false) return;
             inputImageNumber = (int)type;
+            if (active == false) return;
             Debug.Log((int)type);
             UpdatePanel(lastTutorialGroup);
         };
