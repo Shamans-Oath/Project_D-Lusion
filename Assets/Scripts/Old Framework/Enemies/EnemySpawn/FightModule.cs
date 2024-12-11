@@ -37,7 +37,18 @@ public class FightModule : MonoBehaviour
             SpawnManager.instance.waveCooldown = Info.timeBetweenWaves;
             SpawnManager.instance.ReadEncounter(0);
             SpawnManager.instance.isActive = true;
-            StartCoroutine(SpawnManager.instance.LoadEncounter(0));
+            for (int i = 1; i <= Info.waves[0].numberOfBatches; i++)
+            {
+                if (i == 1)
+                {
+                    StartCoroutine(SpawnManager.instance.LoadEncounter(0, false, i, 0));
+                }
+                else
+                {
+                    StartCoroutine(SpawnManager.instance.LoadEncounter(0, true, i, (Info.timeBetweenBatches/ Info.waves[0].numberOfBatches) * i));
+                }
+            }
+                
         }        
     }
 

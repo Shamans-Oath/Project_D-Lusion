@@ -7,6 +7,7 @@ public class EncounterScriptable : ScriptableObject
 {
     public Waves[] waves;
     public float timeBetweenWaves;
+    public float timeBetweenBatches;
 }
 
 [System.Serializable]
@@ -14,6 +15,7 @@ public class Waves
 {
     public int enemyThreshold;
     public WaveInfo[] waveInfo;
+    public int numberOfBatches;
 }
 
 [System.Serializable]

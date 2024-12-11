@@ -1,7 +1,10 @@
+using Features;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -20,6 +23,8 @@ public class SpawnManager : MonoBehaviour
     public float waveCooldown;
     public int currentWave = 0;
     public int enemyThreshold;
+    int tempEnemies;
+    int spawnNumber;
 
     void Awake()
     {
@@ -54,7 +59,18 @@ public class SpawnManager : MonoBehaviour
                         currentWave++;
                         waveCooldown = currentEncounter.timeBetweenWaves;
                         ReadEncounter(currentWave);
-                        StartCoroutine(LoadEncounter(currentWave));
+                        for(int i = 1; i <= currentEncounter.waves[currentWave].numberOfBatches; i++)
+                        {
+                            if (i == 1)
+                            {
+                                StartCoroutine(LoadEncounter(currentWave, false, i, 0));
+                            }
+                            else
+                            {
+                                StartCoroutine(LoadEncounter(currentWave, true, i, (currentEncounter.timeBetweenBatches/ currentEncounter.waves[currentWave].numberOfBatches) * i));
+                            }
+                        }
+                        
                     }
                 }
             }
@@ -67,31 +83,77 @@ public class SpawnManager : MonoBehaviour
 
         enemyThreshold = currentEncounter.waves[waveIndex].enemyThreshold;
 
+        spawnNumber = 0;
+
         for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
             pool.UpdatePool(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies + enemyCount, currentEncounter.waves[waveIndex].waveInfo[x].enemyName);
         }
     }
 
-    public IEnumerator LoadEncounter(int waveIndex)
+    public IEnumerator LoadEncounter(int waveIndex, bool ignoreTemp,int batchNumber, float batchTimer)
     {
-        int enemyCount = remainingEnemies.Count;
+        int temp = 0;
 
-        for(int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
+        if (ignoreTemp == true)
         {
-            if(!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
+            temp = 0;
+        }
+        else
+        {
+            temp = remainingEnemies.Count;
+        }
+
+        tempEnemies = remainingEnemies.Count;
+
+        /*for (int i = 1; i <= numberOfBatches; i++)
+        {
+            for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
             {
-                SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies + enemyCount);
+                if (!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
+                {
+                    if(i == 1)
+                    {
+                        SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies/numberOfBatches + tempEnemies);
+                    }
+                    else
+                    {
+                        SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies / numberOfBatches * i);
+                    }
+
+                    PlaceEnemies(i);
+                }
             }
-            /*else
+
+            yield return new WaitForEndOfFrame();
+
+            //PlaceEnemies(i);          
+
+            yield return new WaitForSeconds(1f);
+        }*/
+        if (remainingEnemies.Count > 0)
+        {
+            yield return new WaitForSeconds(batchTimer);
+        }
+
+        int numberOfBatches = currentEncounter.waves[waveIndex].numberOfBatches;
+
+        for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
+        {
+            int enemiesToSpawn = currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies / numberOfBatches;
+            Debug.Log(enemiesToSpawn);
+
+            if (!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
             {
-                SpawnEnemySingle(currentEncounter.waves[waveIndex].waveInfo[x].poolIndex, currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentModule.subModule[currentEncounter.waves[waveIndex].waveInfo[x].submoduleIndex]);
-            }*/
+                SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, (enemiesToSpawn * batchNumber) + temp);
+            }
         }
 
         yield return new WaitForEndOfFrame();
 
-        PlaceEnemies();
+        //PlaceEnemies();
+
+        
     }
 
     public void SpawnEnemy(string enemyName, int amountToSpawn)
@@ -102,27 +164,75 @@ public class SpawnManager : MonoBehaviour
 
             if (enemy != null)
             {
+                if (spawnNumber >= currentModule.spawnPoints.Length)
+                {
+                    spawnNumber = 0;
+                }
+
+                enemy.transform.position = currentModule.spawnPoints[spawnNumber].position;
                 enemy.SetActive(true);
                 remainingEnemies.Add(enemy);
+
+                spawnNumber++;
             }
+
+            /*if(remainingEnemies.Count != amountToSpawn)
+            {
+                remainingEnemies.Add(enemy);
+            }*/
         }
         
     }
 
     public void PlaceEnemies()
     {
-        int x = 0;
+        int totalBatches = currentEncounter.waves[currentWave].numberOfBatches;
 
-        for (int i = 0; i < remainingEnemies.Count; ++i)
+
+        for (int i = 0 + tempEnemies; i < remainingEnemies.Count; ++i)
         {
-            if(x >= currentModule.spawnPoints.Length)
+            if(spawnNumber >= currentModule.spawnPoints.Length)
             {
-                x = 0;
+                spawnNumber = 0;
             }
 
-            remainingEnemies[i].transform.position = currentModule.spawnPoints[x].position;
-            x++;
+            remainingEnemies[i].transform.position = currentModule.spawnPoints[spawnNumber].position;
+            spawnNumber++;
         }
+
+        /*if (batchNumber == 1)
+        {
+            Debug.Log(remainingEnemies.Count);            
+
+            for (int i = 0 + tempEnemies; i < remainingEnemies.Count/totalBatches; ++i)
+            {
+                if (spawnNumber >= currentModule.spawnPoints.Length)
+                {
+                    spawnNumber = 0;
+                }
+
+                remainingEnemies[i].transform.position = currentModule.spawnPoints[spawnNumber].position;
+                spawnNumber++;
+            }
+        }
+        else
+        {
+            Debug.Log(remainingEnemies.Count);
+
+            for (int i = remainingEnemies.Count / totalBatches * (batchNumber - 1); i < remainingEnemies.Count/totalBatches * batchNumber; ++i)
+            {
+                Debug.Log("Current iteration: " + i);
+                Debug.Log(remainingEnemies[i].name);
+
+                if (spawnNumber >= currentModule.spawnPoints.Length)
+                {
+                    spawnNumber = 0;
+                }
+
+                remainingEnemies[i].transform.position = currentModule.spawnPoints[spawnNumber].position;
+                spawnNumber++;
+            }
+        } */          
     }
 
     public GameObject SpawnEnemySingle(int poolIndex, string enemyName, int spawnIndex)

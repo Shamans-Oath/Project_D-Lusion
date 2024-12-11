@@ -20,6 +20,7 @@ MonoBehaviour:
       numberOfEnemies: 1
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 1
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
@@ -27,6 +28,7 @@ MonoBehaviour:
       numberOfEnemies: 8
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 2
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
@@ -34,11 +36,14 @@ MonoBehaviour:
       numberOfEnemies: 8
       usesSubmodule: 0
       submoduleIndex: 0
-  - enemyThreshold: 1
+    numberOfBatches: 2
+  - enemyThreshold: 0
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 8
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 2
   timeBetweenWaves: 1
+  timeBetweenBatches: 1.5

@@ -20,11 +20,12 @@ MonoBehaviour:
       numberOfEnemies: 16
       usesSubmodule: 0
       submoduleIndex: 0
-    - poolIndex: 0
+    - poolIndex: 2
       enemyName: Ilusionista
       numberOfEnemies: 1
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 6
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
@@ -32,11 +33,12 @@ MonoBehaviour:
       numberOfEnemies: 16
       usesSubmodule: 0
       submoduleIndex: 0
-    - poolIndex: 0
+    - poolIndex: 2
       enemyName: Ilusionista
       numberOfEnemies: 1
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 6
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
@@ -44,11 +46,12 @@ MonoBehaviour:
       numberOfEnemies: 16
       usesSubmodule: 0
       submoduleIndex: 0
-    - poolIndex: 0
+    - poolIndex: 2
       enemyName: Ilusionista
       numberOfEnemies: 2
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 6
   - enemyThreshold: 1
     waveInfo:
     - poolIndex: 0
@@ -56,21 +59,24 @@ MonoBehaviour:
       numberOfEnemies: 20
       usesSubmodule: 0
       submoduleIndex: 0
-    - poolIndex: 0
+    - poolIndex: 2
       enemyName: Ilusionista
       numberOfEnemies: 2
       usesSubmodule: 0
       submoduleIndex: 0
-  - enemyThreshold: 1
+    numberOfBatches: 8
+  - enemyThreshold: 0
     waveInfo:
     - poolIndex: 0
       enemyName: TestEnemy
       numberOfEnemies: 20
       usesSubmodule: 0
       submoduleIndex: 0
-    - poolIndex: 0
+    - poolIndex: 2
       enemyName: Ilusionista
       numberOfEnemies: 3
       usesSubmodule: 0
       submoduleIndex: 0
+    numberOfBatches: 8
   timeBetweenWaves: 1
+  timeBetweenBatches: 1
