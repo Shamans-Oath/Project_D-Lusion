@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Tutorial_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 747f7350edf3bad43bfb0f7d59774dec, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 352655375810560
+    m_Localized: Movement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352692386349056
+    m_Localized: Camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352712078606336
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352731296907264
+    m_Localized: Light attack
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352752738189312
+    m_Localized: Spiritual Strike
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352774691176448
+    m_Localized: Finishing weakened enemies with a Spiritual Strike regains some
+      of your health.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352795234877440
+    m_Localized: Bloody Combo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353284307501056
+    m_Localized: 'Chain your attacks to transform into a beast and become faster
+      and stronger.
+
+
+      Taking too much time between strikes will slowly turn
+      you back to normal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352855666409472
+    m_Localized: Viper Rush
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352892748251136
+    m_Localized: Hold then release to dash towards enemies to deal damage and knock
+      them out for a brief period of time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352921168855040
+    m_Localized: Wraithwardens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352945906860032
+    m_Localized: Wraithwardens are elusive and make their allies invulnerable for
+      a period of time.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352968941977600
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352988189638656
+    m_Localized: Space
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

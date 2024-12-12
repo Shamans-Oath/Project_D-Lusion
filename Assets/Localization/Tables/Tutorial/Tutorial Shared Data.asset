@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Tutorial Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Tutorial
+  m_TableCollectionNameGuidString: 747f7350edf3bad43bfb0f7d59774dec
+  m_Entries:
+  - m_Id: 352655375810560
+    m_Key: MovementKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352692386349056
+    m_Key: CameraKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352712078606336
+    m_Key: JumpKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352731296907264
+    m_Key: LightAttackKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352752738189312
+    m_Key: SpiritualStrikeKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352774691176448
+    m_Key: SpiritualStrikeTextKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352795234877440
+    m_Key: BloodyComboKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 353284307501056
+    m_Key: BloodyComboTextKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352855666409472
+    m_Key: ViperRushKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352892748251136
+    m_Key: ViperRushTextKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352921168855040
+    m_Key: WraithwardensKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352945906860032
+    m_Key: WraithwardensTextKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352968941977600
+    m_Key: ConfirmKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 352988189638656
+    m_Key: SpaceKey
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5110967904511721475
+  references:
+    version: 2
+    RefIds:
+    - rid: 5110967904511721475
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1733896151151

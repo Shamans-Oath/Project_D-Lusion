@@ -10,25 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Table 1 Shared Data
+  m_Name: Menus Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Table 1
+  m_TableCollectionName: Menus
   m_TableCollectionNameGuidString: d8315ca37f26af748afd5b86134ce048
   m_Entries:
   - m_Id: 6967822827520
-    m_Key: M001
+    m_Key: PlayKey
     m_Metadata:
       m_Items: []
   - m_Id: 6967847993344
-    m_Key: M002
+    m_Key: ExitKey
     m_Metadata:
       m_Items: []
   - m_Id: 6967847993345
-    m_Key: M003
+    m_Key: CreditsKey
     m_Metadata:
       m_Items: []
   - m_Id: 6967847993346
-    m_Key: M004
+    m_Key: SettingsKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91085910235889664
+    m_Key: BackKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91086000589586432
+    m_Key: SensKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087709722329088
+    m_Key: GenVolKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087762973212672
+    m_Key: SfxVolKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087900143730688
+    m_Key: MusicVolKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375620190208
+    m_Key: PauseKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375636967424
+    m_Key: ResumeKey
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375636967425
+    m_Key: MenuKey
     m_Metadata:
       m_Items: []
   m_Metadata:

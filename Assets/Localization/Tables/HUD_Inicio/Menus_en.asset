@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Table 1_en
+  m_Name: Menus_en
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en
@@ -32,6 +32,38 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 6967847993346
     m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91085910235889664
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91086000589586432
+    m_Localized: Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087709722329088
+    m_Localized: Sound volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087762973212672
+    m_Localized: Sound effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91087900143730688
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375620190208
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375636967424
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 91424375636967425
+    m_Localized: Menu
     m_Metadata:
       m_Items: []
   references:
