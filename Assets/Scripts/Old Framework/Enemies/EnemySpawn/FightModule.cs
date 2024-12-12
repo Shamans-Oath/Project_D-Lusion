@@ -32,8 +32,8 @@ public class FightModule : MonoBehaviour
         {
             combatInProgress = true;
             SpawnManager.instance.currentModule = this;
-            SpawnManager.instance.currentEncounter = Info;
             SpawnManager.instance.currentWave = 0;
+            SpawnManager.instance.currentEncounter = Info;            
             SpawnManager.instance.waveCooldown = Info.timeBetweenWaves;
             SpawnManager.instance.ReadEncounter(0);
             SpawnManager.instance.isActive = true;
@@ -41,11 +41,14 @@ public class FightModule : MonoBehaviour
             {
                 if (i == 1)
                 {
+                    Debug.Log(i);
                     StartCoroutine(SpawnManager.instance.LoadEncounter(0, false, i, 0));
                 }
                 else
                 {
+                    Debug.Log(i);
                     StartCoroutine(SpawnManager.instance.LoadEncounter(0, true, i, (Info.timeBetweenBatches/ Info.waves[0].numberOfBatches) * i));
+                    //StartCoroutine(SpawnManager.instance.LoadEncounter(0, true, i, (Info.timeBetweenBatches)));
                 }
             }
                 
