@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing.Text;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -17,13 +18,13 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> remainingEnemies = new List<GameObject>();
 
     public bool isActive;
-    public string spawnFxKey;
+
     [HideInInspector]
     public float waveCooldown;
     public int currentWave = 0;
     public int enemyThreshold;
     int tempEnemies;
-    int spawnNumber;
+    public int spawnNumber;
 
     void Awake()
     {
@@ -33,17 +34,17 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isActive)
+        if (isActive)
         {
-            if(remainingEnemies.Count <= enemyThreshold) 
+            if (remainingEnemies.Count <= enemyThreshold)
             {
-                if(currentWave == currentEncounter.waves.Length - 1)
+                if (currentWave == currentEncounter.waves.Length)
                 {
                     isActive = false;
                     if (currentModule) currentModule.OnCompleteEvent();
@@ -58,8 +59,6 @@ public class SpawnManager : MonoBehaviour
                         currentWave++;
                         waveCooldown = currentEncounter.timeBetweenWaves;
                         ReadEncounter(currentWave);
-
-
                         for (int i = 1; i <= currentEncounter.waves[currentWave].numberOfBatches; i++)
                         {
                             if (i == 1)
@@ -68,10 +67,10 @@ public class SpawnManager : MonoBehaviour
                             }
                             else
                             {
-                                StartCoroutine(LoadEncounter(currentWave, true, i, (currentEncounter.timeBetweenBatches/ currentEncounter.waves[currentWave].numberOfBatches) * i));
+                                StartCoroutine(LoadEncounter(currentWave, true, i, (currentEncounter.timeBetweenBatches / currentEncounter.waves[currentWave].numberOfBatches) * i));
                             }
                         }
-                        
+
                     }
                 }
             }
@@ -92,7 +91,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadEncounter(int waveIndex, bool ignoreTemp,int batchNumber, float batchTimer)
+    public IEnumerator LoadEncounter(int waveIndex, bool ignoreTemp, int batchNumber, float batchTimer)
     {
         int temp = 0;
 
@@ -138,17 +137,20 @@ public class SpawnManager : MonoBehaviour
         }
 
         int numberOfBatches = currentEncounter.waves[waveIndex].numberOfBatches;
-        
 
         for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
             int enemiesToSpawn = currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies / numberOfBatches;
+
             Debug.Log(enemiesToSpawn);
 
-
-            if (!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
+            if (enemiesToSpawn != 0)
             {
                 SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, (enemiesToSpawn * batchNumber) + temp);
+            }
+            else
+            {
+                SpawnEnemy(currentEncounter.waves[waveIndex].waveInfo[x].enemyName, currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies);
             }
         }
 
@@ -156,12 +158,12 @@ public class SpawnManager : MonoBehaviour
 
         //PlaceEnemies();
 
-        
+
     }
 
     public void SpawnEnemy(string enemyName, int amountToSpawn)
     {
-        for(int i = 0; i < amountToSpawn; i++)
+        for (int i = 0; i < amountToSpawn; i++)
         {
             GameObject enemy = pool.GetPooledObject(enemyName);
 
@@ -171,14 +173,13 @@ public class SpawnManager : MonoBehaviour
                 {
                     spawnNumber = 0;
                 }
-                if (spawnFxKey != null && spawnFxKey != "") ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), currentModule.spawnPoints[spawnNumber].position);
 
-                    enemy.transform.position = currentModule.spawnPoints[spawnNumber].position;
-                    enemy.SetActive(true);
-                    remainingEnemies.Add(enemy);
+                enemy.transform.position = currentModule.spawnPoints[spawnNumber].position;
+                enemy.SetActive(true);
+                remainingEnemies.Add(enemy);
 
-                    spawnNumber++;
-                
+                spawnNumber++;
+
 
             }
 
@@ -187,19 +188,6 @@ public class SpawnManager : MonoBehaviour
                 remainingEnemies.Add(enemy);
             }*/
         }
-        
-    }
-
-    public IEnumerator DelaySpawn(GameObject enmy, float delay)
-    {
-
-        yield return new WaitForSeconds(0.5f);
-        
-        enmy.transform.position = currentModule.spawnPoints[spawnNumber].position;
-        enmy.SetActive(true);
-        remainingEnemies.Add(enmy);
-
-        spawnNumber++;
 
     }
 
@@ -210,7 +198,7 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0 + tempEnemies; i < remainingEnemies.Count; ++i)
         {
-            if(spawnNumber >= currentModule.spawnPoints.Length)
+            if (spawnNumber >= currentModule.spawnPoints.Length)
             {
                 spawnNumber = 0;
             }
@@ -251,7 +239,7 @@ public class SpawnManager : MonoBehaviour
                 remainingEnemies[i].transform.position = currentModule.spawnPoints[spawnNumber].position;
                 spawnNumber++;
             }
-        } */          
+        } */
     }
 
     public GameObject SpawnEnemySingle(int poolIndex, string enemyName, int spawnIndex)
