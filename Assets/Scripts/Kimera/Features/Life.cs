@@ -102,7 +102,7 @@ namespace Features
                     currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
                     if(cmp_Controller.SearchFeature<HudHandler>())
                     {
-                        HUDController.instance.cmp_anim.SetTrigger("Damage");
+                        HUDController.instance.cmp_animBars.SetTrigger("Damage");
                     }
                     
                 }

@@ -76,6 +76,18 @@ namespace Features
             return -1;
         }
 
+        public CooldownVerifier GetCooldownListValue(string searchName)
+        {
+            for (int i = 0; i < cooldowns.Length; i++)
+            {
+                if (cooldowns[i].keyName == searchName)
+                {
+                    return cooldowns[i];
+                }
+            }
+            return null;
+        }
+
         public void ResetCooldown(int cooldownNumber)
         {
             if (cooldowns.Length <= cooldownNumber || cooldownNumber < 0) return;

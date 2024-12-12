@@ -7,13 +7,13 @@ public class HUDController : MonoBehaviour
 {
     public static HUDController instance;
 
-    public Animator cmp_anim;
-    bool iconReady = true;
+    public Animator cmp_animBars, cmp_animDash, cmp_animSpecial;
+    bool dashReady = true, specialReady = true;
     float tempHealth;
 
     public Image lifeBar, shieldBar;
     public float lerpDuration;
-    public Image parryBorder, parryCircle, dashCircle, parryIcon, dashIcon;
+    public Image specialCircle, dashCircle, specialIcon, dashIcon;
     public Color initialColor;
     public Color furyColor;
     public Image furyImage;
@@ -29,37 +29,42 @@ public class HUDController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        iconReady = true;
+        dashReady = true;
+        specialReady = true;
         tempHealth = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(parryCircle.fillAmount == 1)
+        if(specialCircle.fillAmount == 1)
         {
             targetPointP += Time.deltaTime;
-            parryBorder.color = Color.Lerp(new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 0.25f), new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 1), targetPointP);
-            if(parryBorder.fillAmount == 1)
             targetPointIP += Time.deltaTime;
-            parryIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointIP);
+            specialIcon.color = Color.Lerp(new Color(1, 1, 1, 0), Color.white, targetPointIP);
         }
         else
         {
             targetPointP = 0;
             targetPointIP = 0;
-            parryBorder.color = new Color(parryBorder.color.r, parryBorder.color.g, parryBorder.color.b, 0.25f);
-            parryIcon.color = new Color(1, 1, 1,0);
+            specialIcon.color = new Color(1, 1, 1,0);
         }
     }
 
-    public void UpdateParryCooldown(float timer, float duration)
+    public void UpdateSpecialCooldown(float timer, float duration)
     {
-        float cooldownRatio = Mathf.InverseLerp(duration, duration/2, timer);
-        float borderRatio = Mathf.InverseLerp(duration/2, 0, timer);
-        parryCircle.fillAmount = cooldownRatio;
-        //if(parryCircle.fillAmount == 1)
-        parryBorder.fillAmount = borderRatio;
+        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
+        specialCircle.fillAmount = cooldownRatio;
+
+        if (specialCircle.fillAmount == 1 && specialReady == false)
+        {
+            cmp_animSpecial.SetTrigger("SpecialReady");
+            specialReady = true;
+        }
+        else if (specialCircle.fillAmount <= 0.5f)
+        {
+            specialReady = false;
+        }
     }
 
     public void UpdateDashCooldown(float timer, float duration)
@@ -67,16 +72,16 @@ public class HUDController : MonoBehaviour
         float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
         dashCircle.fillAmount = cooldownRatio;
 
-        Debug.Log(iconReady);
+        Debug.Log(dashReady);
 
-        if (dashCircle.fillAmount == 1 && iconReady == false)
+        if (dashCircle.fillAmount == 1 && dashReady == false)
         {
-            cmp_anim.SetTrigger("Ready");
-            iconReady = true;
+            cmp_animDash.SetTrigger("DashReady");
+            dashReady = true;
         }
         else if(dashCircle.fillAmount <= 0.5f)
         {
-            iconReady = false;
+            dashReady = false;
         }
     }
 
@@ -97,13 +102,6 @@ public class HUDController : MonoBehaviour
         float shieldRatio = Mathf.InverseLerp(0, maxShield, currentShield);
 
         shieldBar.fillAmount = Mathf.Lerp(shieldBar.fillAmount, shieldRatio, lerpDuration);
-    }
-
-    public void UpdateBorderColor(float currentFurry, float maxFurry)
-    {
-        float furryRatio = Mathf.InverseLerp(0, maxFurry, currentFurry);
-
-        parryBorder.color = Color.Lerp(new Color(initialColor.r, initialColor.g, initialColor.b, parryBorder.color.a), new Color(furyColor.r, furyColor.g, furyColor.b, parryBorder.color.a), furryRatio);
     }
 
     public void UpdateFuryImage(float currentFurry, float maxFurry)

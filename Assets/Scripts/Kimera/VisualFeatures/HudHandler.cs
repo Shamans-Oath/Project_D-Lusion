@@ -29,7 +29,7 @@ namespace Features
         {
             settings = controller.settings;
 
-            specialCooldown = controller.SearchFeature<Block>().parryCooldown;
+            specialCooldown = controller.SearchFeature<CooldownAction>().GetCooldownListValue("SpecialAtk").cooldownTime;
             dashCooldown = settings.Search("dashCooldownSeconds");
             //Setup Properties
 
@@ -51,8 +51,8 @@ namespace Features
                 maxShield = controller.SearchFeature<Shield>().maxShield;
                 HUDController.instance.UpdateShieldBar(currentShield, maxShield);
 
-                specialCooldownTimer = controller.SearchFeature<CooldownAction>().;
-                HUDController.instance.UpdateParryCooldown(specialCooldownTimer, specialCooldown);
+                specialCooldownTimer = controller.SearchFeature<CooldownAction>().GetCooldownListValue("SpecialAtk").timer;
+                HUDController.instance.UpdateSpecialCooldown(specialCooldownTimer, specialCooldown);
 
                 dashCooldownTimer = controller.SearchFeature<Dash>().realDashCooldown;
                 isDashing = controller.SearchFeature<Dash>().IsDashing;
@@ -63,7 +63,6 @@ namespace Features
 
                 furryValue = furry.furryCount;
                 maxFurry = furry.maxFurryCount;
-                HUDController.instance.UpdateBorderColor(furryValue, maxFurry);
                 HUDController.instance.UpdateFuryImage(furryValue, maxFurry);
             }                
         }
