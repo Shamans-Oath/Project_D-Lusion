@@ -37,7 +37,7 @@ public class HUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(specialCircle.fillAmount == 1)
+        /*if(specialCircle.fillAmount == 1)
         {
             targetPointP += Time.deltaTime;
             targetPointIP += Time.deltaTime;
@@ -48,12 +48,12 @@ public class HUDController : MonoBehaviour
             targetPointP = 0;
             targetPointIP = 0;
             specialIcon.color = new Color(1, 1, 1,0);
-        }
+        }*/
     }
 
     public void UpdateSpecialCooldown(float timer, float duration)
     {
-        float cooldownRatio = Mathf.InverseLerp(duration, 0, timer);
+        float cooldownRatio = Mathf.InverseLerp(0, duration, timer);
         specialCircle.fillAmount = cooldownRatio;
 
         if (specialCircle.fillAmount == 1 && specialReady == false)
