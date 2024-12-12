@@ -18,7 +18,7 @@ namespace Features
         //Properties
         int currentHealth, maxHealth;
         int currentShield, maxShield;
-        float parryCooldown, parryCooldownTimer;
+        float specialCooldown, specialCooldownTimer;
         float dashCooldown, dashCooldownTimer;
         bool isDashing;
         float furryValue, maxFurry;
@@ -29,7 +29,7 @@ namespace Features
         {
             settings = controller.settings;
 
-            parryCooldown = controller.SearchFeature<Block>().parryCooldown;
+            specialCooldown = controller.SearchFeature<Block>().parryCooldown;
             dashCooldown = settings.Search("dashCooldownSeconds");
             //Setup Properties
 
@@ -51,8 +51,8 @@ namespace Features
                 maxShield = controller.SearchFeature<Shield>().maxShield;
                 HUDController.instance.UpdateShieldBar(currentShield, maxShield);
 
-                parryCooldownTimer = controller.SearchFeature<Block>().parryCooldownTimer;
-                HUDController.instance.UpdateParryCooldown(parryCooldownTimer, parryCooldown);
+                specialCooldownTimer = controller.SearchFeature<CooldownAction>().;
+                HUDController.instance.UpdateParryCooldown(specialCooldownTimer, specialCooldown);
 
                 dashCooldownTimer = controller.SearchFeature<Dash>().realDashCooldown;
                 isDashing = controller.SearchFeature<Dash>().IsDashing;
