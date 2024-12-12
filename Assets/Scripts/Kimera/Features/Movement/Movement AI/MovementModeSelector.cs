@@ -57,7 +57,13 @@ namespace Features
         private void OnEnable()
         {
             if (agent) StartCoroutine(FixAgent(agent));
-
+            StartCoroutine(StopOnEnable());
+        }
+        public IEnumerator StopOnEnable()
+        {
+            ToggleActive(false);
+            yield return new WaitForSeconds(1f);
+            ToggleActive(true);
         }
         private void Start()
         {

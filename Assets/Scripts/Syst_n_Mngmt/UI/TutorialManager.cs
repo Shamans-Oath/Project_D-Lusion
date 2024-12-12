@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Video;
+using UnityEngine.Localization.Events;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -19,11 +22,11 @@ public class TutorialManager : MonoBehaviour
     private Tutorial lastTutorialGroup;
     Coroutine timerCoroutine, exitCoroutine;
 
-
+    public TableEntryReference searchTable;
     public Tutorial[] tutorials;
 
     private int inputImageNumber = -1;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,14 +91,20 @@ public class TutorialManager : MonoBehaviour
 
         if (t.Name != null && Name != null)
         {
-            Name.text = t.Name;
+            var localeName = LocalizationSettings.StringDatabase.GetLocalizedString("Tutorial", t.nameLangKey);
+            Debug.Log(localeName);
+            if (localeName != null) Name.text = localeName;
+            else Name.text = t.Name;
         }
 
         if (t.Description != null && Description != null)
         {
-            Description.text = t.Description;
+            var localeDesc = LocalizationSettings.StringDatabase.GetLocalizedString("Tutorial", t.descriptionLangKey);
+            Debug.Log(localeDesc);
+            if (localeDesc!=null) Description.text = localeDesc;
+            else Description.text = t.Description;
         }
-
+            
         if (t.Clip != null && cmp_VideoPlayer != null)
         {
             cmp_VideoPlayer.clip = t.Clip;
@@ -162,12 +171,15 @@ public class TutorialManager : MonoBehaviour
 public class Tutorial
 {
     public string Name;
+    public string nameLangKey;
+    public TableEntryReference nameLocale;
     public Sprite Icon;
     [Tooltip("Match de number of icon with de Scheme Control of the Game Input")]
     public Sprite[] Icons;
     public VideoClip Clip;
     [TextArea(1,5)]
     public string Description;
+    public string descriptionLangKey;
     public float Time;
     public bool oneTimeTrigger;
 }

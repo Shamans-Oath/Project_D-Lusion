@@ -31,6 +31,7 @@ public class LanguageController : MonoBehaviour
         yield return LocalizationSettings.InitializationOperation;
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeID];
         data.language = localeID;
+        data.Save();
         _active = false;
 
     }

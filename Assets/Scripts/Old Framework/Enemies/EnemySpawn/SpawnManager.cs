@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing.Text;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -18,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> remainingEnemies = new List<GameObject>();
 
     public bool isActive;
-
+    public string spawnFxKey;
     [HideInInspector]
     public float waveCooldown;
     public int currentWave = 0;
@@ -59,7 +58,9 @@ public class SpawnManager : MonoBehaviour
                         currentWave++;
                         waveCooldown = currentEncounter.timeBetweenWaves;
                         ReadEncounter(currentWave);
-                        for(int i = 1; i <= currentEncounter.waves[currentWave].numberOfBatches; i++)
+
+
+                        for (int i = 1; i <= currentEncounter.waves[currentWave].numberOfBatches; i++)
                         {
                             if (i == 1)
                             {
@@ -137,11 +138,13 @@ public class SpawnManager : MonoBehaviour
         }
 
         int numberOfBatches = currentEncounter.waves[waveIndex].numberOfBatches;
+        
 
         for (int x = 0; x < currentEncounter.waves[waveIndex].waveInfo.Length; x++)
         {
             int enemiesToSpawn = currentEncounter.waves[waveIndex].waveInfo[x].numberOfEnemies / numberOfBatches;
             Debug.Log(enemiesToSpawn);
+
 
             if (!currentEncounter.waves[waveIndex].waveInfo[x].usesSubmodule)
             {
@@ -168,12 +171,15 @@ public class SpawnManager : MonoBehaviour
                 {
                     spawnNumber = 0;
                 }
+                if (spawnFxKey != null && spawnFxKey != "") ElementInstancer.instance.Generate(ElementInstancer.instance.GetObjectListValue(spawnFxKey), currentModule.spawnPoints[spawnNumber].position);
 
-                enemy.transform.position = currentModule.spawnPoints[spawnNumber].position;
-                enemy.SetActive(true);
-                remainingEnemies.Add(enemy);
+                    enemy.transform.position = currentModule.spawnPoints[spawnNumber].position;
+                    enemy.SetActive(true);
+                    remainingEnemies.Add(enemy);
 
-                spawnNumber++;
+                    spawnNumber++;
+                
+
             }
 
             /*if(remainingEnemies.Count != amountToSpawn)
@@ -182,6 +188,19 @@ public class SpawnManager : MonoBehaviour
             }*/
         }
         
+    }
+
+    public IEnumerator DelaySpawn(GameObject enmy, float delay)
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        
+        enmy.transform.position = currentModule.spawnPoints[spawnNumber].position;
+        enmy.SetActive(true);
+        remainingEnemies.Add(enmy);
+
+        spawnNumber++;
+
     }
 
     public void PlaceEnemies()

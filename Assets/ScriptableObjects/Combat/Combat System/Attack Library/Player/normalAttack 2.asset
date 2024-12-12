@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: normalAttack 2
   m_EditorClassIdentifier: 
   animationClipHuman: {fileID: 7400000, guid: 5786c545e5650854e828f58c934fdf8b, type: 2}
-  animationClipBeast: {fileID: 7400000, guid: 77154b060e32b184998ef8fb7ddbf9c9, type: 2}
+  animationClipBeast: {fileID: 7400000, guid: 29ab35621626a2a4fbc4df58d7ddac9e, type: 2}
   attackToughness: 2
   unallowPlayerControlOverride: 0
   swings:
@@ -49,7 +49,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     settings: {fileID: 11400000, guid: d1440d3492a1a5b4898ca742c210133a, type: 2}
     duration: 0.6666665
-    start: 0.088235274
-    end: 0.60457504
+    start: 0.2563264
+    end: 0.6666665
     hitboxAttach: 0
     vfxNames: auraFX
